@@ -3,8 +3,8 @@ import inquirer from 'inquirer';
 import chalk from 'chalk';
 import ora from 'ora';
 import fs from 'fs-extra';
-import path from 'path';
-import { spawn, SpawnOptions } from 'child_process';
+import path from 'node:path';
+import { spawn, type SpawnOptions } from 'node:child_process';
 import { logger } from '../lib/logger';
 
 // Create dev command group
@@ -104,7 +104,7 @@ dev
   .option('-i, --interval <seconds>', 'Watch interval in seconds', '30')
   .option('-s, --silent', 'Do not show detailed logs', false)
   .action(async (options) => {
-    const interval = parseInt(options.interval, 10) * 1000;
+    const interval = Number.parseInt(options.interval, 10) * 1000;
     let lastCheck = Date.now();
     let spinner = ora('Watching registry for changes...').start();
     
@@ -175,9 +175,9 @@ dev
       if (options.dryRun) {
         spinner.succeed('Dry run complete. No changes were made.');
         console.log('\nChanges that would be synced:');
-        console.log('- ' + chalk.green('3 new components would be added'));
-        console.log('- ' + chalk.yellow('2 components would be updated'));
-        console.log('- ' + chalk.blue('1 block would be added'));
+        console.log(`- ${chalk.green('3 new components would be added')}`);
+        console.log(`- ${chalk.yellow('2 components would be updated')}`);
+        console.log(`- ${chalk.blue('1 block would be added')}`);
       } else {
         // Simulate sync process
         spinner.text = 'Downloading updates...';
@@ -189,9 +189,9 @@ dev
         spinner.succeed('Registry synced successfully');
         
         console.log('\nSync summary:');
-        console.log('- ' + chalk.green('3 new components added'));
-        console.log('- ' + chalk.yellow('2 components updated'));
-        console.log('- ' + chalk.blue('1 block added'));
+        console.log(`- ${chalk.green('3 new components added')}`);
+        console.log(`- ${chalk.yellow('2 components updated')}`);
+        console.log(`- ${chalk.blue('1 block added')}`);
       }
     } catch (error) {
       spinner.fail('Failed to sync registry');
@@ -401,9 +401,9 @@ dev
     ]);
     
     // Determine target directory based on component type
-    let targetDir;
-    let template = '';
-    let filename = '';
+    let targetDir: string;
+    let template: string;
+    let filename: string;
     
     switch (componentType) {
       case 'ui':
@@ -534,11 +534,19 @@ export function use${name}() {
     const spinner = ora(`Generating ${name} ${componentType} component...`).start();
     
     try {
+      targetDir = path.join(options.dir, 'src/components');
+      filename = `${name}.tsx`;
+      
+      if (!targetDir || !filename) {
+        spinner.fail('Error: Invalid component type');
+        return;
+      }
+      
       // Create target directory if it doesn't exist
-      await fs.ensureDir(targetDir || '');
+      await fs.ensureDir(targetDir);
       
       // Check if file already exists
-      const filePath = path.join(targetDir || '', filename);
+      const filePath = path.join(targetDir, filename);
       
       if (await fs.pathExists(filePath)) {
         spinner.fail(`Component already exists at ${filePath}`);
@@ -560,7 +568,7 @@ export function use${name}() {
       }
       
       // Write file
-      await fs.writeFile(filePath, template);
+      await fs.writeFile(filePath, 'template');
       
       spinner.succeed(`Generated ${name} ${componentType} component`);
       console.log(`\nFile created at: ${chalk.cyan(filePath)}`);
@@ -573,7 +581,7 @@ export function use${name}() {
       } else if (componentType === 'block') {
         console.log(chalk.bold('\nNext steps:'));
         console.log(`1. Add your block to the registry in ${chalk.cyan('registry.json')}`);
-        console.log(`2. Create a preview image for the block`);
+        console.log('2. Create a preview image for the block');
       }
       
     } catch (error) {

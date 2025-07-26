@@ -1,6 +1,7 @@
 // Block installer
 
 import fs from "fs-extra";
+// biome-ignore lint/style/useNodejsImportProtocol: nodejs import protocol
 import path from "path";
 import { logger } from "./logger";
 import { fetchRegistryItem } from "./registry-client";
@@ -11,7 +12,7 @@ import {
 	uninstallComponent,
 	isComponentInstalled,
 } from "./component-installer";
-import { InstallOptions, InstallResult } from "./types";
+import type { InstallOptions, InstallResult } from "./types";
 
 /**
  * Install a block from registry
@@ -204,7 +205,7 @@ export async function getBlockInfo(
 	installed: boolean;
 	installedFiles?: string[];
 	dependencies?: string[];
-	[key: string]: any;
+	[key: string]: unknown;
 } | null> {
 	try {
 		// Fetch block data from registry

@@ -5,7 +5,8 @@ import ora from 'ora';
 import { fetchRegistryItems } from '../lib/registry-client';
 import { installBlock } from '../lib/block-installer';
 import { logger } from '../lib/logger';
-import { Block } from '../lib/types';
+import type { Block } from '../lib/types';
+import type { RegistryItem } from '../lib/types';
 
 // import { spawnSync } from 'child_process';
 
@@ -22,9 +23,9 @@ blocks
     const spinner = ora('Fetching blocks...').start();
     
     try {
-      const registry = await fetchRegistryItems({ type: 'block' });
-      const allBlocks = registry?.items.filter((item: Block) => 
-        item.type === 'registry:block'
+      const registry = await fetchRegistryItems({ type: 'block' }) as unknown as RegistryItem[];
+      const allBlocks = registry?.filter((item: RegistryItem) => 
+        item.type === 'block'
       );
       
       spinner.succeed(`Found ${allBlocks.length} blocks`);
@@ -39,17 +40,17 @@ blocks
       console.log(chalk.bold('Available Blocks:'));
       console.log(chalk.dim('─'.repeat(80)));
       
-      allBlocks.forEach((block: Block) => {
-        console.log(`${chalk.bold(block.title)} ${chalk.dim('(' + block.name + ')')}`);
+      for (const block of allBlocks) {
+        console.log(`${chalk.bold(block.name)} ${chalk.dim(`(${block.name})`)}`);
         console.log(chalk.dim(block.description || 'No description'));
         
         // Display dependencies if any
-        if (block.registryDependencies && block.registryDependencies.length > 0) {
-          console.log(chalk.dim(`Dependencies: ${block.registryDependencies.length}`));
+        if (block.dependencies && block.dependencies.length > 0) {
+          console.log(chalk.dim(`Dependencies: ${block.dependencies.length}`));
         }
         
         console.log(chalk.dim('─'.repeat(80)));
-      });
+      }
       
     } catch (error) {
       spinner.fail('Failed to fetch blocks');
@@ -72,10 +73,10 @@ blocks
       const spinner = ora('Fetching available blocks...').start();
       
       try {
-        const registry = await fetchRegistryItems({ type: 'block' });
-        const blocks = registry?.items.filter((item: Block) => 
-          item.type === 'registry:block'
-        );
+        const registry = await fetchRegistryItems({ type: 'block' }) as unknown as RegistryItem[];
+        const blocks = registry?.filter((item: RegistryItem) => 
+          item.type === 'block'
+        );  
         
         spinner.stop();
         
@@ -84,10 +85,10 @@ blocks
             type: 'list',
             name: 'blockName',
             message: 'Select a block to add:',
-            choices: blocks.map((b: Block) => ({
-              name: `${b.title} - ${b.description || 'No description'}`,
+            choices: blocks?.map((b: RegistryItem) => ({
+              name: `${b.name} - ${b.description || 'No description'}`,
               value: b.name
-            }))
+            })) || []
           }
         ]);
         
@@ -113,9 +114,9 @@ blocks
       // Show next steps
       console.log('\n');
       console.log(chalk.bold('Next steps:'));
-      console.log(`  1. Review the files created in your project`);
-      console.log(`  2. Run your project to see the new block`);
-      console.log(`     ${chalk.dim('pnpm dev')}`);
+      console.log('1. Review the files created in your project');
+      console.log('2. Run your project to see the new block');
+      console.log(` ${chalk.dim('pnpm dev')}`);
       console.log('\n');
       
     } catch (error) {
@@ -138,9 +139,9 @@ blocks
       const spinner = ora('Fetching available blocks...').start();
       
       try {
-        const registry = await fetchRegistryItems({ type: 'block' });
-        const blocks = registry?.items.filter((item: Block) => 
-          item.type === 'registry:block'
+        const registry = await fetchRegistryItems({ type: 'block' }) as unknown as RegistryItem[];
+        const blocks = registry?.filter((item: RegistryItem) => 
+          item.type === 'block'
         );
         
         spinner.stop();
@@ -150,10 +151,10 @@ blocks
             type: 'list',
             name: 'blockName',
             message: 'Select a block to preview:',
-            choices: blocks.map((b: Block) => ({
-              name: `${b.title} - ${b.description || 'No description'}`,
+            choices: blocks?.map((b: RegistryItem) => ({
+              name: `${b.name} - ${b.description || 'No description'}`,
               value: b.name
-            }))
+            })) || []
           }
         ]);
         
@@ -197,9 +198,9 @@ blocks
       const spinner = ora('Fetching available blocks...').start();
       
       try {
-        const registry = await fetchRegistryItems({ type: 'block' });
-        const blocks = registry?.items.filter((item: Block) => 
-          item.type === 'registry:block'
+        const registry = await fetchRegistryItems({ type: 'block' }) as unknown as RegistryItem[];
+        const blocks = registry?.filter((item: RegistryItem) => 
+          item.type === 'block'
         );
         
         spinner.stop();
@@ -209,10 +210,10 @@ blocks
             type: 'list',
             name: 'blockName',
             message: 'Select a block to open in v0.dev:',
-            choices: blocks.map((b: Block) => ({
-              name: `${b.title} - ${b.description || 'No description'}`,
+            choices: blocks?.map((b: RegistryItem) => ({
+              name: `${b.name} - ${b.description || 'No description'}`,
               value: b.name
-            }))
+            })) || []
           }
         ]);
         

@@ -8,5 +8,5 @@
     "target": "ES2017"
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "dist", "src/index.ts"]
+  "exclude": ["node_modules", "dist", "src/index.ts", "__tests__"]
 }

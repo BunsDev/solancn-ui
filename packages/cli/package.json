@@ -10,7 +10,10 @@
 		"build": "tsup src/index.ts --format cjs --dts",
 		"dev": "tsup src/index.ts --format cjs --watch",
 		"lint": "biome check ./src",
-		"lint:fix": "biome check --write ./src"
+		"lint:fix": "biome check --write ./src",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"test:coverage": "vitest run --coverage"
 	},
 	"files": [
 		"dist",
@@ -28,19 +31,24 @@
 	"author": "Val Alexander",
 	"license": "MIT",
 	"dependencies": {
+		"boxen": "^7.1.1",
 		"chalk": "^5.4.1",
 		"commander": "^14.0.0",
 		"fs-extra": "^11.3.0",
-		"open": "^8.4.0",
 		"inquirer": "^12.8.2",
+		"memfs": "^4.20.0",
 		"node-fetch": "^3.3.2",
-		"ora": "^8.2.0",
-		"boxen": "^7.1.1"
+		"open": "^8.4.0",
+		"ora": "^8.2.0"
 	},
 	"devDependencies": {
 		"@types/fs-extra": "^11.0.4",
 		"@types/node": "^24.1.0",
+		"@vitest/coverage-v8": "^3.2.4",
+		"mock-fs": "^5.5.0",
+		"strip-ansi": "^7.1.0",
 		"tsup": "^8.5.0",
-		"typescript": "^5.8.3"
+		"typescript": "^5.8.3",
+		"vitest": "^3.2.4"
 	}
 }

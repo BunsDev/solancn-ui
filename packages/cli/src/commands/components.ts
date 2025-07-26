@@ -6,7 +6,7 @@ import ora from "ora";
 import { fetchRegistryItems } from "../lib/registry-client";
 import { installComponent } from "../lib/component-installer";
 import { logger } from "../lib/logger";
-import type { Component } from "../lib/types";
+import type { RegistryItem } from "../lib/types";
 
 // Create components command group
 const components = new Command("components").description(
@@ -24,12 +24,9 @@ components
 
     try {
       const registry = await fetchRegistryItems({ type: "component" });
-      const allComponents = registry?.items.filter(
-        (item: Component) =>
-          item.type === "registry:ui" || item.type === "registry:component",
-      );
+      const allComponents = registry?.items as unknown as any[];
 
-      let components = allComponents;
+      let components = allComponents || [];
 
       // Apply type filter if specified
       if (options.type) {
@@ -39,13 +36,11 @@ components
         };
         const filterType = typeMap[options.type];
         if (filterType) {
-          components = allComponents.filter(
-            (item: Component) => item.type === filterType,
-          );
+          components = allComponents?.filter((item: any) => item.type === filterType);
         }
       }
 
-      spinner.succeed(`Found ${components.length} components`);
+      spinner.succeed(`Found ${components?.length || 0} components`);
 
       if (options.json) {
         console.log(JSON.stringify(components, null, 2));
@@ -117,10 +112,10 @@ components
       const spinner = ora("Fetching available components...").start();
 
       try {
-        const registry = await fetchRegistryItems({ type: "component" });
-        const components = registry?.items.filter(
-          (item: Component) =>
-            item.type === "registry:ui" || item.type === "registry:component",
+        const registry = await fetchRegistryItems({ type: "component" }) as unknown as RegistryItem[];
+        const components = registry?.filter(
+          (item: any) =>
+            item?.type === "registry:ui" || item?.type === "registry:component",
         );
 
         spinner.stop();
@@ -130,7 +125,7 @@ components
             type: "list",
             name: "componentName",
             message: "Select a component to add:",
-            choices: components?.map((c: Component) => ({
+            choices: components?.map((c: any) => ({
               name: `${c.title} - ${c.description || "No description"}`,
               value: c.name,
             })),
@@ -250,17 +245,14 @@ components
 
     try {
       const registry = await fetchRegistryItems({ type: "component" });
-      const allComponents = registry?.items.filter(
-        (item: Component) =>
-          item.type === "registry:ui" || item.type === "registry:component",
-      );
+      const allComponents = registry?.items as unknown as RegistryItem[];
 
       // Simple search implementation
-      const results = allComponents.filter(
-        (item: Component) =>
-          item.name.includes(query) ||
-          item.title?.toLowerCase().includes(query.toLowerCase()) ||
-          item.description?.toLowerCase().includes(query.toLowerCase()),
+      const results = allComponents?.filter(
+        (item: any) =>
+          item?.componentName?.includes(query) ||
+          item?.componentName?.toLowerCase().includes(query.toLowerCase()) ||
+          item?.description?.toLowerCase().includes(query.toLowerCase()),
       );
 
       spinner.succeed(`Found ${results.length} matches`);
@@ -286,9 +278,9 @@ components
       console.log(`${chalk.bold("Search Results:")}`);
       console.log(chalk.dim("─".repeat(80)));
 
-      for (const component of results) {
+      for (const component of results as unknown as any[]) {
         const type =
-          component.type === "registry:ui"
+          component.type === "ui"
             ? chalk.blue("UI")
             : chalk.green("Component");
         console.log(
