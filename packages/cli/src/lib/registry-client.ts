@@ -1,13 +1,186 @@
-import fetch from 'node-fetch';
+import fs from "fs-extra";
+import path from "path";
+import { logger } from "./logger";
+import fetch from "node-fetch";
 
-const REGISTRY_BASE_URL = 'https://ui.solancn.com/r';
+// Registry item types
+export type RegistryItemType = 'component' | 'block' | 'primitive' | 'theme';
 
-export async function fetchRegistryItem(name: string) {
-  const response = await fetch(`${REGISTRY_BASE_URL}/${name}.json`);
-  return response.json();
+// Registry item interface
+export interface RegistryItem {
+  name: string;
+  type: string;
+  description?: string;
+  dependencies?: string[];
+  files?: Record<string, string>;
+  [key: string]: any;
 }
 
-export async function fetchAllRegistryItems() {
-  const response = await fetch(`${REGISTRY_BASE_URL}/registry.json`);
-  return response.json();
+// Registry data interface
+export interface RegistryData {
+  components?: Record<string, RegistryItem>;
+  blocks?: Record<string, RegistryItem>;
+  primitives?: Record<string, RegistryItem>;
+  theme?: RegistryItem;
+}
+
+/**
+ * Default registry URL
+ * Can be overridden by REGISTRY_URL environment variable
+ */
+const DEFAULT_REGISTRY_URL = 'https://solancn-ui.vercel.app';
+
+/**
+ * Get registry base URL
+ */
+export function getRegistryBaseUrl(): string {
+  return process.env.REGISTRY_URL || DEFAULT_REGISTRY_URL;
+}
+
+/**
+ * Load registry data from a local registry.json file
+ */
+export async function loadLocalRegistry(cwd: string = process.cwd()): Promise<RegistryData | null> {
+  const registryPath = path.join(cwd, 'registry.json');
+
+  try {
+    if (await fs.pathExists(registryPath)) {
+      const data = await fs.readJson(registryPath);
+      logger.debug('Loaded local registry from:', registryPath);
+      return data;
+    }
+  } catch (error) {
+    logger.error('Failed to load local registry:', error);
+  }
+
+  return null;
+}
+
+/**
+ * Fetch registry data from remote API
+ */
+export async function fetchRemoteRegistry(): Promise<RegistryData | null> {
+  try {
+    const baseUrl = getRegistryBaseUrl();
+    const response = await fetch(`${baseUrl}/api/registry`);
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch registry: ${response.status} ${response.statusText}`);
+    }
+    
+    const data = await response.json() as RegistryData;
+    logger.debug('Fetched remote registry');
+    return data;
+  } catch (error) {
+    logger.error('Failed to fetch remote registry:', error);
+    return null;
+  }
+}
+
+/**
+ * Get registry data (try local first, then remote)
+ */
+export async function getRegistry(cwd: string = process.cwd()): Promise<RegistryData | null> {
+  // Try loading from local registry.json first
+  const localRegistry = await loadLocalRegistry(cwd);
+  if (localRegistry) {
+    return localRegistry;
+  }
+  
+  // Fallback to remote registry
+  return fetchRemoteRegistry();
+}
+
+interface FetchRegistryItemsOptions {
+  type: RegistryItemType;
+}
+
+/**
+ * Fetch a specific item type from registry (components, blocks, primitives, theme)
+ */
+export async function fetchRegistryItems(options: FetchRegistryItemsOptions, cwd: string = process.cwd()): Promise<Record<string, RegistryItem> | null> {
+  const registry = await getRegistry(cwd);
+  
+  if (!registry) {
+    return null;
+  }
+  
+  switch (options.type) {
+    case 'component':
+      return registry.components || null;
+    case 'block':
+      return registry.blocks || null;
+    case 'primitive':
+      return registry.primitives || null;
+    case 'theme':
+      return registry.theme ? { theme: registry.theme } : null;
+    default:
+      return null;
+  }
+}
+
+/**
+ * Fetch a specific registry item by type and name
+ */
+export async function fetchRegistryItem(options: FetchRegistryItemsOptions, name?: string, cwd: string = process.cwd()): Promise<RegistryItem | null> {
+  const items = await fetchRegistryItems(options, cwd);
+  
+  if (!items) {
+    return null;
+  }
+  
+  // For theme, just return the theme item
+  if (options.type === 'theme') {
+    return items.theme || null;
+  }
+  
+  // For other types, return the specific named item
+  if (name && items[name]) {
+    return items[name];
+  }
+  
+  return null;
+}
+
+/**
+ * Search registry items by query
+ */
+export async function searchRegistry(query: string, options: FetchRegistryItemsOptions, cwd: string = process.cwd()): Promise<Record<string, RegistryItem>> {
+  const registry = await getRegistry(cwd);
+  
+  if (!registry) {
+    return {};
+  }
+  
+  const normalizedQuery = query.toLowerCase();
+  const results: Record<string, RegistryItem> = {};
+  
+  // Helper function to search and add matching items
+  const searchItems = (items: Record<string, RegistryItem> | undefined, itemType: string) => {
+    if (!items) return;
+    
+    Object.entries(items).forEach(([key, item]) => {
+      const matchesName = key.toLowerCase().includes(normalizedQuery);
+      const matchesDescription = item.description?.toLowerCase().includes(normalizedQuery);
+      
+      if (matchesName || matchesDescription) {
+        results[key] = { ...item, type: itemType };
+      }
+    });
+  };
+  
+  // Search in the requested type only, or all types if not specified
+  if (!options.type || options.type === 'component') {
+    searchItems(registry.components, 'component');
+  }
+  
+  if (!options.type || options.type === 'block') {
+    searchItems(registry.blocks, 'block');
+  }
+  
+  if (!options.type || options.type === 'primitive') {
+    searchItems(registry.primitives, 'primitive');
+  }
+  
+  return results;
 }
