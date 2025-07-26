@@ -14,6 +14,22 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "s2.coinmarketcap.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cryptologos.cc",
+      },
+      {
+        protocol: "https",
+        hostname: "files.swissborg.com",
+      }
+    ],
+  },
 };
 
 export default nextConfig;

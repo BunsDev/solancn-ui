@@ -26,7 +26,6 @@ import {
   ListIcon,
   Search,
   Filter,
-  SlidersHorizontal,
   X,
   Heart,
   ArrowLeft,
@@ -275,10 +274,10 @@ export default function NFTComponent() {
   // NFT Card Component
   const NFTCard = ({ nft }: { nft: (typeof nftsData)[0] }) => (
     <Card
-      className="bg-black border border-[#9945FF]/20 overflow-hidden hover:border-[#9945FF]/50 transition-all cursor-pointer"
+      className="bg-black border border-[#9945FF]/20 overflow-hidden hover:border-[#9945FF]/50 transition-all cursor-pointer w-full h-full"
       onClick={() => handleSelectNFT(nft)}
     >
-      <div className="relative aspect-square overflow-hidden">
+      <div className="relative w-full h-full aspect-square overflow-hidden">
         <img
           src={nft.image}
           alt={nft.name}
@@ -312,14 +311,17 @@ export default function NFTComponent() {
   // NFT List Item Component
   const NFTListItem = ({ nft }: { nft: (typeof nftsData)[0] }) => (
     <Card
-      className="bg-black border border-[#9945FF]/20 overflow-hidden hover:border-[#9945FF]/50 transition-all cursor-pointer"
+      className="bg-black border border-[#9945FF]/20 overflow-hidden hover:border-[#9945FF]/50 transition-all cursor-pointer w-full h-full"
       onClick={() => handleSelectNFT(nft)}
     >
       <div className="flex">
         <div className="w-20 h-20 relative">
-          <img
+          <Image
             src={nft.image}
             alt={nft.name}
+            width={80}
+            height={80}
+            priority
             className="w-full h-full object-cover"
           />
         </div>

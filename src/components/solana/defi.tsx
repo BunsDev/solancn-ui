@@ -90,7 +90,8 @@ const yieldOpportunities = [
     asset: "SOL",
     apy: "6.2%",
     tvl: "$845M",
-    risk: "Low"
+    risk: "Low",
+    logo: "https://docs.marinade.finance/~gitbook/image?url=https%3A%2F%2F2385969780-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FHvhBFBu5z7MIlkYpgMXs%252Fuploads%252FnClg7nXeO1Bwpi2IymQY%252FMNDE.png%3Falt%3Dmedia%26token%3D7ac16f64-668c-4b84-85a3-dd801552e031&width=768&dpr=4&quality=100&sign=ecb74eb5&sv=2",
   },
   {
     id: 2,
@@ -98,31 +99,27 @@ const yieldOpportunities = [
     asset: "SOL",
     apy: "6.8%",
     tvl: "$620M",
-    risk: "Low"
+    risk: "Low",
+    // logo: "https://cryptologos.cc/logos/solana-sol-logo.png?v=040",
+    logo: "https://s2.coinmarketcap.com/static/img/coins/200x200/28541.png",
   },
   {
     id: 3,
-    protocol: "Solend",
-    asset: "USDC",
-    apy: "5.8%",
-    tvl: "$152M",
-    risk: "Medium"
-  },
-  {
-    id: 4,
     protocol: "Orca",
     asset: "SOL/USDC",
     apy: "12.4%",
     tvl: "$85M",
-    risk: "Medium-High"
+    risk: "Medium-High",
+    logo: "https://cryptologos.cc/logos/orca-orca-logo.png",
   },
   {
-    id: 5,
+    id: 4,
     protocol: "Raydium",
     asset: "JUP/SOL",
     apy: "18.6%",
     tvl: "$42M",
-    risk: "High"
+    risk: "High",
+    logo: "https://files.swissborg.com/product/wealth-app/assets/ic_crypto_ray.png",
   }
 ];
 

@@ -11,73 +11,108 @@ import {
 } from "@solana/web3.js";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
-// import { SolanaWalletProvider } from "@/components/providers/solana-provider";
 import SwapComponent from "@/components/solana/swap";
 import { bridge } from "@/components/solana/bridge";
 import { borrow } from "@/components/solana/borrow";
 import { lend } from "@/components/solana/lend";
 import { defi } from "@/components/solana/defi";
 import { nft } from "@/components/solana/nft";
+import { portfolio } from "@/components/solana/portfolio";
 import { staking } from "@/components/solana/staking";
 import { receive, transfer } from "../solana";
-import { ArrowRight, Wallet, Layers, BarChart3, Award, Search, Coins, ArrowRightLeft, Download, Upload, Banknote, Landmark } from "lucide-react";
+import { ArrowRight, Wallet, Layers, BarChart3, Award, Search, Coins, ArrowRightLeft, Download, Upload, Banknote, Landmark, RefreshCw } from "lucide-react";
 import { cn } from "@/lib/utils";
 import SolanaWalletProvider from "../context/wallet-provider";
 
-// Custom styled WalletButton component
+// Custom styled WalletButton component with enhanced styling
 const StyledWalletButton = () => {
   return (
-    <div
-      className={cn(
-        "wallet-adapter-button-container",
-        // "wallet-adapter-button-container",
-        "dark:bg-[#9945FF] text-[#FFFFFF] rounded-md border-none hover:opacity-90 ",
-      )}
+    <div 
+    className={cn(
+      "wallet-adapter-button-container",
+      // "wallet-adapter-button-container",
+      "dark:bg-[#9945FF] text-text rounded-md border-none hover:opacity-90 ",
+    )}
     >
-      <WalletMultiButton className="bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:opacity-90" />
+      <WalletMultiButton 
+        className={cn(
+          "bg-gradient-to-r from-[#9945FF] to-[#14F195] dark:bg-[#9945FF] dark:text-text",
+          "hover:opacity-90 transition-all duration-200",
+          "shadow-md hover:shadow-lg",
+          "border border-[#9945FF]/20 dark:border-[#9945FF]/20",
+          "font-medium text-white dark:text-text",
+          "flex items-center gap-2"
+        )} 
+      />
     </div>
   );
 };
 
-// Custom wallet status component that shows address and balance
+// Enhanced wallet status component that shows address, balance, and refresh option
 const WalletStatus = () => {
   const { publicKey, connected } = useWallet();
   const { connection } = useConnection();
   const [balance, setBalance] = useState(0);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const fetchBalance = async () => {
+    if (!publicKey) return;
+    try {
+      setIsRefreshing(true);
+      const bal = await connection.getBalance(publicKey);
+      setBalance(bal / LAMPORTS_PER_SOL);
+    } catch (e) {
+      console.error("Failed to fetch balance:", e);
+      setBalance(0);
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
 
   useEffect(() => {
-    // Get account balance
     if (publicKey) {
-      (async () => {
-        try {
-          const bal = await connection.getBalance(publicKey);
-          setBalance(bal / LAMPORTS_PER_SOL);
-        } catch (e) {
-          console.error("Failed to fetch balance:", e);
-          setBalance(0);
-        }
-      })();
+      fetchBalance();
+      // Set up a refresh interval
+      const intervalId = setInterval(fetchBalance, 30000); // Refresh every 30 seconds
+      return () => clearInterval(intervalId);
     }
   }, [connection, publicKey]);
 
   if (!connected || !publicKey) return null;
 
   return (
-    <div className="bg-[#9945FF]/10 dark:bg-[#FFFFFF]/10 p-4 rounded-lg border border-[#9945FF]/20 text-text">
-      <div className="flex flex-col gap-2">
-        <div className="flex justify-between">
-          <span className="text-text">Address:</span>
-          <span className="font-mono text-text">
-            {publicKey.toString().slice(0, 6)}...
-            {publicKey.toString().slice(-4)}
-          </span>
+    <Card className="bg-black border border-[#9945FF]/20 shadow-md overflow-hidden">
+      <CardHeader className="pb-2">
+        <CardTitle className="text-text text-lg">Wallet Connected</CardTitle>
+        <CardDescription className="text-text/70">Your Solana wallet is ready to use</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="flex flex-col gap-3">
+          <div className="flex justify-between items-center bg-[#9945FF]/10 p-3 rounded-md">
+            <span className="text-text font-medium">Address</span>
+            <span className="font-mono text-text bg-black/30 p-1 px-2 rounded-md">
+              {publicKey.toString().slice(0, 6)}...
+              {publicKey.toString().slice(-4)}
+            </span>
+          </div>
+          <div className="flex justify-between items-center bg-[#14F195]/10 p-3 rounded-md">
+            <span className="text-text font-medium">Balance</span>
+            <div className="flex items-center gap-2">
+              <span className="text-text">{balance.toFixed(4)} SOL</span>
+              <button 
+                type="button"
+                onClick={fetchBalance} 
+                className="text-[#9945FF] hover:text-[#14F195] transition-colors p-1 rounded-full"
+                disabled={isRefreshing}
+                aria-label="Refresh balance"
+              >
+                <RefreshCw size={16} className={isRefreshing ? "animate-spin" : ""} />
+              </button>
+            </div>
+          </div>
         </div>
-        <div className="flex justify-between">
-          <span className="text-text">Balance:</span>
-          <span className="text-text">{balance.toFixed(4)} SOL</span>
-        </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 
@@ -87,79 +122,95 @@ function SolanaContent() {
 
   return (
     <div className="flex min-h-screen flex-col bg-black text-text w-full">
-      <header className="border-b border-[#9945FF]/20 p-4">
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-text">Solana Dashboard</h1>
+      <header className="border-b border-[#9945FF]/20 p-4 sticky top-0 z-10 bg-black/90 backdrop-blur-sm">
+        <div className="container mx-auto flex justify-between items-center gap-2">
+          <div className="flex items-center gap-2 cursor-pointer transition-all duration-200 hover:bg-[#9945FF]/20 p-2 rounded-md text-white">
+            <div className="w-8 h-8 cursor-pointer rounded-full bg-gradient-to-r from-[#9945FF] to-[#14F195] flex items-center justify-center">
+              <Wallet className="text-white w-4 h-4" />
+            </div>
+            <h1 className="text-2xl font-bold">Solana Dashboard</h1>
+          </div>
           <StyledWalletButton />
         </div>
       </header>
 
-      <main className="flex-1 p-6 flex flex-col w-full">
+      <main className="flex-1 p-2 flex flex-col w-full">
         <div className="container mx-auto">
-          {/* <div className="mb-8 flex flex-col">
-            <WalletStatus />
-          </div> */}
+          {connected && (
+            <div className="mb-2 w-full max-w-7xl mx-auto transition-all duration-500 ease-in-out">
+              <WalletStatus />
+            </div>
+          )}
 
           {connected ? (
-            <Tabs defaultValue="swap" className="w-full flex flex-col">
-              <TabsList className="grid grid-cols-9 mb-8 bg-black border border-[#9945FF]/30 w-full">
+            <Tabs defaultValue="swap" className="w-full flex flex-col justify-center items-center">
+              <TabsList className="grid grid-cols-3 md:grid-cols-9 mb-2 bg-black border border-[#9945FF]/30 w-full overflow-hidden gap-1 mt-1 p-1 justify-center items-center">
                 <TabsTrigger
                   value="swap"
-                  className="data-[state=active]:bg-[#9945FF]/20"
+                  className="data-[state=active]:bg-[#9945FF]/20 data-[state=active]:text-white flex items-center gap-2 justify-center transition-all"
                 >
-                  Swap
+                  <ArrowRightLeft className="w-4 h-4 md:mr-1" />
+                  <span className="hidden md:inline">Swap</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="stake"
-                  className="data-[state=active]:bg-[#9945FF]/20"
+                  className="data-[state=active]:bg-[#9945FF]/20 data-[state=active]:text-white flex items-center gap-2 justify-center transition-all"
                 >
-                  Stake
+                  <Award className="w-4 h-4 md:mr-1" />
+                  <span className="hidden md:inline">Stake</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="portfolio"
-                  className="data-[state=active]:bg-[#9945FF]/20"
+                  className="data-[state=active]:bg-[#9945FF]/20 data-[state=active]:text-white flex items-center gap-2 justify-center transition-all"
                 >
-                  Portfolio
+                  <BarChart3 className="w-4 h-4 md:mr-1" />
+                  <span className="hidden md:inline">Portfolio</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="bridge"
-                  className="data-[state=active]:bg-[#9945FF]/20"
+                  className="data-[state=active]:bg-[#9945FF]/20 data-[state=active]:text-white flex items-center gap-2 justify-center transition-all"
                 >
-                  Bridge
+                  <Layers className="w-4 h-4 md:mr-1" />
+                  <span className="hidden md:inline">Bridge</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="nft"
-                  className="data-[state=active]:bg-[#9945FF]/20"
+                  className="data-[state=active]:bg-[#9945FF]/20 data-[state=active]:text-white flex items-center gap-2 justify-center transition-all"
                 >
-                  NFTs
+                  <Search className="w-4 h-4 md:mr-1" />
+                  <span className="hidden md:inline">NFTs</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="transfer"
-                  className="data-[state=active]:bg-[#9945FF]/20"
+                  className="data-[state=active]:bg-[#9945FF]/20 data-[state=active]:text-white flex items-center gap-2 justify-center transition-all"
                 >
-                  Transfer
+                  <Upload className="w-4 h-4 md:mr-1" />
+                  <span className="hidden md:inline">Transfer</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="receive"
-                  className="data-[state=active]:bg-[#9945FF]/20"
+                  className="data-[state=active]:bg-[#9945FF]/20 data-[state=active]:text-white flex items-center gap-2 justify-center transition-all"
                 >
-                  Receive
+                  <Download className="w-4 h-4 md:mr-1" />
+                  <span className="hidden md:inline">Receive</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="borrow"
-                  className="data-[state=active]:bg-[#9945FF]/20"
+                  className="data-[state=active]:bg-[#9945FF]/20 data-[state=active]:text-white flex items-center gap-2 justify-center transition-all"
                 >
-                  Borrow
+                  <Coins className="w-4 h-4 md:mr-1" />
+                  <span className="hidden md:inline">Borrow</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="lend"
-                  className="data-[state=active]:bg-[#9945FF]/20"
+                  className="data-[state=active]:bg-[#9945FF]/20 data-[state=active]:text-white flex items-center gap-2 justify-center transition-all"
                 >
-                  Lend
+                  <Banknote className="w-4 h-4 md:mr-1" />
+                  <span className="hidden md:inline">Lend</span>
                 </TabsTrigger>
               </TabsList>
 
-              <div className="grid grid-cols-1 md:grid-cols-1 gap-6 w-full">
+              <div className="grid grid-cols-1 md:grid-cols-1 gap-2 w-full">
                 <TabsContent value="swap" className="mt-0 col-span-6">
                   <Card className="bg-black border border-[#9945FF]/20">
                     <CardHeader>
@@ -190,7 +241,7 @@ function SolanaContent() {
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      {defi.components.Default}
+                      {portfolio.components.Default}
                     </CardContent>
                   </Card>
                 </TabsContent>
@@ -272,16 +323,42 @@ function SolanaContent() {
             </Tabs>
           ) : (
             <div className="flex flex-col items-center justify-center py-20 text-center">
-              <h2 className="text-3xl font-bold mb-4 text-text">
-                Connect Wallet
-              </h2>
-              <p className="text-text mb-8 max-w-md">
-                Connect your Solana wallet to access the full functionality of
-                the dashboard including swapping, staking, and managing your
-                portfolio.
-              </p>
-              <div className="flex justify-center">
-                <StyledWalletButton />
+              <div className="relative">
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#9945FF] to-[#14F195] rounded-lg blur opacity-25 animate-pulse group-hover:opacity-75 transition duration-1000" />
+                <div className="relative w-full bg-black border border-[#9945FF]/30 rounded-lg p-8 shadow-xl">
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-r from-[#9945FF] to-[#14F195] rounded-full flex items-center justify-center mb-6">
+                    <Wallet className="text-white w-8 h-8" />
+                  </div>
+                  
+                  <h2 className="text-3xl font-bold mb-4 text-text bg-clip-text text-transparent bg-gradient-to-r from-[#9945FF] to-[#14F195]">
+                    Connect Wallet
+                  </h2>
+                  
+                  <p className="text-text/80 mb-8 max-w-md mx-auto">
+                    Connect your Solana wallet to access the full functionality of
+                    the dashboard including swapping, staking, and managing your
+                    portfolio.
+                  </p>
+                  
+                  <div className="mb-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
+                    <div className="bg-[#9945FF]/10 p-4 rounded-lg border border-[#9945FF]/20 text-center">
+                      <ArrowRightLeft className="mx-auto h-6 w-6 text-[#9945FF] mb-2" />
+                      <p className="text-text font-medium">Swap Tokens</p>
+                    </div>
+                    <div className="bg-[#9945FF]/10 p-4 rounded-lg border border-[#9945FF]/20 text-center">
+                      <Award className="mx-auto h-6 w-6 text-[#14F195] mb-2" />
+                      <p className="text-text font-medium">Stake Assets</p>
+                    </div>
+                    <div className="bg-[#9945FF]/10 p-4 rounded-lg border border-[#9945FF]/20 text-center">
+                      <BarChart3 className="mx-auto h-6 w-6 text-[#9945FF] mb-2" />
+                      <p className="text-text font-medium">Track Portfolio</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-center">
+                    <StyledWalletButton />
+                  </div>
+                </div>
               </div>
             </div>
           )}

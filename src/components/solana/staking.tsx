@@ -23,13 +23,15 @@ import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import Image from "next/image";
 
 // Mock staking validators
 const validators = [
   {
     id: "marinade",
     name: "Marinade Finance",
-    logo: "https://cryptologos.cc/logos/marinade-mnde-logo.png",
+    logo: "https://s2.coinmarketcap.com/static/img/coins/200x200/28541.png",
+    // logo: "https://docs.marinade.finance/~gitbook/image?url=https%3A%2F%2F2385969780-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FHvhBFBu5z7MIlkYpgMXs%252Fuploads%252FhgVb1Qdu49Mxwjp3Szkd%252FmSOL.png%3Falt%3Dmedia%26token%3D1479b4d0-502c-459d-8741-6b170e47c345&width=768&dpr=1&quality=100&sign=cc260d1d&sv=2",
     apy: 6.2,
     totalStaked: 28456789,
     commission: 3.0,
@@ -40,7 +42,8 @@ const validators = [
   {
     id: "lido",
     name: "Lido",
-    logo: "https://cryptologos.cc/logos/lido-dao-ldo-logo.png",
+    logo: "https://s2.coinmarketcap.com/static/img/coins/200x200/28541.png",
+    // logo: "https://cryptologos.cc/logos/lido-dao-ldo-logo.png?v=040",
     apy: 6.1,
     totalStaked: 35789432,
     commission: 3.5,
@@ -51,34 +54,12 @@ const validators = [
   {
     id: "jito",
     name: "Jito",
-    logo: "https://pbs.twimg.com/profile_images/1516145916517535753/xGgXbZeW_400x400.jpg",
+    logo: "https://s2.coinmarketcap.com/static/img/coins/200x200/28541.png",
     apy: 6.8,
     totalStaked: 18256432,
     commission: 3.0,
     uptime: 99.9,
     description: "MEV-aware validator for Solana with optimal rewards.",
-    status: "active",
-  },
-  {
-    id: "socean",
-    name: "Socean",
-    logo: "https://pbs.twimg.com/profile_images/1425104169586495488/d1_vF55r_400x400.jpg",
-    apy: 6.5,
-    totalStaked: 12458976,
-    commission: 3.2,
-    uptime: 99.7,
-    description: "Auto-diversification across multiple validators for reduced risk.",
-    status: "active",
-  },
-  {
-    id: "chorus",
-    name: "Chorus One",
-    logo: "https://pbs.twimg.com/profile_images/1326904766355673088/iOC0JQ5v_400x400.png",
-    apy: 6.3,
-    totalStaked: 15789543,
-    commission: 3.1,
-    uptime: 99.8,
-    description: "Professional validator operator across multiple proof-of-stake networks.",
     status: "active",
   },
 ];
@@ -604,9 +585,12 @@ export default function StakingComponent() {
             <CardContent className="space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center overflow-hidden">
-                  <img 
-                    src={selectedValidator.logo} 
+                  <Image 
+                    src={selectedValidator.logo || ""} 
                     alt={selectedValidator.name}
+                    width={40}
+                    height={40}
+                    priority
                     className="w-10 h-10 object-contain"
                   />
                 </div>
