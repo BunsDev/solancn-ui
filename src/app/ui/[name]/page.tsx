@@ -2,7 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { ComponentCard } from "@/components/docs/component-card";
+import { UIPrimitiveCard } from "@/components/docs/ui-primitive-card";
 import { Button } from "@/components/ui/button";
 import { getRegistryItem, getUIPrimitives } from "@/lib/registry";
 import { getPrompt } from "@/lib/utils";
@@ -43,8 +43,8 @@ export default async function UIPrimitiveItemPage({
         </div>
       </div>
 
-      <ComponentCard
-        component={primitive}
+      <UIPrimitiveCard
+        primitive={primitive}
         baseUrl={process.env.VERCEL_PROJECT_PRODUCTION_URL ?? ""}
         prompt={getPrompt()}
       />

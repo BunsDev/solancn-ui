@@ -2,7 +2,7 @@
 
 import { ArrowLeft, Check, Search, SlidersHorizontal, X } from "lucide-react";
 import Link from "next/link";
-import { Component, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";

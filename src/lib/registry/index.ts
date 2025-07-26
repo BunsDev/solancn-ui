@@ -1,5 +1,5 @@
 import registry from "@/registry";
-import type { Block, Component, RegistryItemType } from "@/lib/types";
+import type { Block, Component, UIPrimitive, RegistryItemType } from "@/lib/types";
 
 export function getRegistryItems(): Component[] {
   // exclude style item as it's not relevant to show in the ui
@@ -36,8 +36,8 @@ export function getComponents(): Component[] {
   ) as unknown as Component[];
 }
 
-export function getUIPrimitives(): Component[] {
+export function getUIPrimitives(): UIPrimitive[] {
   return getRegistryItems().filter(
     (component) => component.type === "registry:ui" as RegistryItemType,
-  ) as unknown as Component[];
+  ) as unknown as UIPrimitive[];
 }
