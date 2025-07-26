@@ -5,5 +5,5 @@ export default function DemoLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-  return <>{children}</>;
+  return <div className="flex h-[100vh] w-full flex-col gap-4 bg-background">{children}</div>;
 }
