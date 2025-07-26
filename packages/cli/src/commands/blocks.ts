@@ -232,7 +232,7 @@ blocks
       const registryBaseUrl = process.env.REGISTRY_URL || 'https://ui.solancn.com';
       
       // Create the v0.dev URL
-      const v0Url = `https://v0.dev/chat/api/open?title=Solancn%20UI&prompt=These+are+existing+design+system+styles+and+files.+Please+utilize+them+alongside+base+components+to+build.&url=${encodeURIComponent(`${registryBaseUrl}/r/${blockName}.json`)}`;
+      const v0Url = `https://v0.dev/chat/api/open?title=solancn&prompt=These+are+existing+design+system+styles+and+files.+Please+utilize+them+alongside+base+components+to+build.&url=${encodeURIComponent(`${registryBaseUrl}/r/${blockName}.json`)}`;
       
       spinner.succeed(`Opening ${chalk.green(blockName)} in v0.dev`);
       

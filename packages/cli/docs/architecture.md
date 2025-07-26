@@ -1,7 +1,7 @@
 
 ```
 solancn
-├── init          # Initialize a new project with SolancnUI
+├── init          # Initialize a new project with solancn
 ├── components    # Manage components
 │   ├── list      # List available components
 │   ├── add       # Add component to project

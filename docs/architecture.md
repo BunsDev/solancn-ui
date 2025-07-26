@@ -1,10 +1,10 @@
 # Architecture
 
-This document provides a comprehensive overview of the SolancnUI architecture, explaining its core components, design patterns, and how the various parts of the system work together.
+This document provides a comprehensive overview of the solancn architecture, explaining its core components, design patterns, and how the various parts of the system work together.
 
 ## System Overview
 
-SolancnUI is a design system registry built with Next.js, Shadcn/ui, and Tailwind CSS. It functions as a central repository for UI components, blocks, and design tokens that can be used across multiple Solana-related applications to ensure consistency and accelerate development.
+solancn is a design system registry built with Next.js, Shadcn/ui, and Tailwind CSS. It functions as a central repository for UI components, blocks, and design tokens that can be used across multiple Solana-related applications to ensure consistency and accelerate development.
 
 ## Core Technologies
 

@@ -10,8 +10,8 @@ import "@/app/tokens.css";
 import "@/app/tailwind.css";
 
 export const metadata: Metadata = {
-  title: "Solancn UI",
-  description: "Solancn UI - A modern UI component library",
+  title: "solancn",
+  description: "solancn - modern UI component primitive",
   icons: [{ rel: "icon", url: "/favicon.ico", type: "image/x-icon" }],
 };
 

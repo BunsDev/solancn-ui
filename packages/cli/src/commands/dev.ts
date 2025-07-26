@@ -9,7 +9,7 @@ import { logger } from '../lib/logger';
 
 // Create dev command group
 const dev = new Command('dev')
-  .description('Development workflows for SolancnUI projects');
+  .description('Development workflows for solancn projects');
 
 // Start development server
 dev

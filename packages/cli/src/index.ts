@@ -9,12 +9,12 @@ const program = new Command();
 
 program
 	.name("solancn")
-	.description("CLI for SolancnUI design system")
+	.description("CLI for solancn design system")
 	.version("0.0.1");
 
 program
 	.command("init")
-	.description("Initialize a new project with SolancnUI")
+	.description("Initialize a new project with solancn")
 	.action(init);
 
 // Add the imported command objects directly to the program

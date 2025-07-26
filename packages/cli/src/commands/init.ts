@@ -10,7 +10,7 @@ export async function init() {
   // Display welcome message with boxen
   console.log(
     boxen(
-      `${chalk.bold.blue("Welcome to SolancnUI")}\n\nLet's set up your new project with modern UI components, blocks, and themes. ${chalk.dim("Follow the prompts to customize your setup.")}`,
+      `${chalk.bold.blue("Welcome to solancn")}\n\nLet's set up your new project with modern UI components, blocks, and themes. ${chalk.dim("Follow the prompts to customize your setup.")}`,
       {
         padding: 1,
         margin: 1,
