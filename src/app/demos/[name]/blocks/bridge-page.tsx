@@ -14,10 +14,11 @@ import {
   RefreshCw,
 } from "lucide-react";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import WalletStatus from "@/components/wallet/wallet-status";
+import SolanaWalletProvider from "../context/wallet-provider";
 
-export default function BridgePage() {
-    const { connected } = useWallet();
-    const { publicKey } = useWallet();
+function BridgeContent() {
+    const { connected , publicKey } = useWallet();
     const { connection } = useConnection();
     const [balance, setBalance] = useState(0);
     const [isRefreshing, setIsRefreshing] = useState(false);
@@ -55,6 +56,7 @@ export default function BridgePage() {
         </CardDescription>
       </CardHeader>
       <CardContent>
+        <WalletStatus />
         <div className="flex flex-col gap-3">
           <div className="flex justify-between items-center bg-[#9945FF]/10 p-3 rounded-md">
             <span className="text-text font-medium">Address</span>
@@ -84,5 +86,13 @@ export default function BridgePage() {
         </div>
       </CardContent>
     </Card>
+  );
+}
+// Export a wrapper component that provides the wallet context
+export default function BridgePage() {
+  return (
+    <SolanaWalletProvider>
+      <BridgeContent />
+    </SolanaWalletProvider>
   );
 }

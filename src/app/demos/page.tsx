@@ -63,6 +63,13 @@ export default function DemoPage() {
       gradient: "from-orange-500 to-red-500",
     },
     {
+      title: "NFT Gallery",
+      description: "NFT showcase with minting and trading capabilities",
+      href: "/demos/nftDemo",
+      tags: ["NFTs", "Marketplace", "Collection"],
+      gradient: "from-pink-500 to-orange-500",
+    },
+    {
       title: "Lend Assets",
       description: "Earn yield by lending your crypto assets",
       href: "/demos/lendDemo",

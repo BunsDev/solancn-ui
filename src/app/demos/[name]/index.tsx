@@ -2,7 +2,6 @@ import type { ReactElement, ReactNode } from "react";
 
 // blocks
 import { blankDemo } from "@/app/demos/[name]/blocks/blankDemo";
-import { dashboardDemo } from "@/app/demos/[name]/blocks/dashboardDemo";
 import { solanaDemo } from "@/app/demos/[name]/blocks/solanaDemo";
 import { nftDemo } from "@/app/demos/[name]/blocks/nftDemo";
 import { frameDemo } from "@/app/demos/[name]/blocks/frameDemo";
@@ -34,7 +33,7 @@ import { stake } from "@/app/demos/[name]/solana/stake";
 import { swap } from "@/app/demos/[name]/solana/swap";
 import { transfer } from "@/app/demos/[name]/solana/transfer";
 import { wallet } from "@/app/demos/[name]/solana/wallet";
-import { nft } from "@/app/demos/[name]/solana/nft";
+import { nft } from "@/app/demos/[name]/nft";
 
 // ui
 import { accordion } from "@/app/demos/[name]/ui/accordion";
@@ -75,7 +74,6 @@ export const demos: { [name: string]: Demo } = {
   // blocks
   blankDemo,
   nftDemo,
-  dashboardDemo,
   solanaDemo,
   bridgeDemo,
   swapDemo,
@@ -106,6 +104,8 @@ export const demos: { [name: string]: Demo } = {
   swap,
   transfer,
   wallet,
+
+  // nft
   nft,
 
   // ui

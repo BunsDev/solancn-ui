@@ -6,7 +6,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -398,6 +397,8 @@ export function NFTComponent() {
               <Image
                 src={selectedNFT.image}
                 alt={selectedNFT.name}
+                width={500}
+                height={500}
                 className="w-full h-full object-contain"
               />
             </div>
@@ -690,8 +691,8 @@ export function NFTComponent() {
             </div>
 
             {/* NFTs grid or list */}
-            <div className="md:col-span-3">
-              <TabsContent value="explore" className="mt-0">
+            <Tabs value="explore" className="md:col-span-3">
+              <TabsContent value="explore" className="md:col-span-3">
                 {filteredNFTs.length > 0 ? (
                   <div
                     className={
@@ -726,7 +727,7 @@ export function NFTComponent() {
                   </div>
                 )}
               </TabsContent>
-
+                
               <TabsContent value="collected" className="mt-0">
                 {connected ? (
                   <div
@@ -767,7 +768,7 @@ export function NFTComponent() {
                   ))}
                 </div>
               </TabsContent>
-            </div>
+            </Tabs>
           </div>
         </>
       )}

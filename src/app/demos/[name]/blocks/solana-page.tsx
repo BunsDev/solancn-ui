@@ -10,7 +10,7 @@ import {
   CardDescription,
   CardFooter,
 } from "@/components/ui/card";
-import { LAMPORTS_PER_SOL } from "@solana/web3.js";
+import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { swap } from "@/components/solana/swap";
@@ -18,7 +18,7 @@ import { bridge } from "@/components/solana/bridge";
 import { borrow } from "@/components/solana/borrow";
 import { lend } from "@/components/solana/lend";
 import { defi } from "@/components/solana/defi";
-import { nft } from "@/components/solana/nft";
+import { nft } from "@/components/nft";
 import { frame } from "@/components/solana/frame";
 import { transfer } from "@/components/solana/transfer";
 import { portfolio } from "@/components/solana/portfolio";
@@ -34,221 +34,22 @@ import {
   Banknote,
   RefreshCw,
   Download,
-  Minimize2,
-  ChevronUp,
-  Maximize2,
-  ChevronDown,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 import SolanaWalletProvider from "../context/wallet-provider";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
+import WalletStatus from "@/components/wallet/wallet-status";
+import StyledWalletButton from "@/components/wallet/wallet-button";
 
-// Custom styled WalletButton component with enhanced styling
-const StyledWalletButton = () => {
-  return (
-    <div
-      className={cn(
-        "wallet-adapter-button-container",
-        "dark:bg-[#9945FF] text-text rounded-md border-none hover:opacity-90 ",
-      )}
-    >
-      <WalletMultiButton
-        className={cn(
-          "bg-gradient-to-r from-[#9945FF] to-[#14F195] dark:bg-[#9945FF] dark:text-text",
-          "hover:opacity-90 transition-all duration-200",
-          "shadow-md hover:shadow-lg",
-          "border border-[#9945FF]/20 dark:border-[#9945FF]/20",
-          "font-medium text-white dark:text-text",
-          "flex items-center gap-2",
-        )}
-      />
-    </div>
-  );
-};
-
-// Section component for responsive sections
-interface SectionProps {
-  title: string;
-  icon: React.ReactNode;
-  children: React.ReactNode;
-  defaultExpanded?: boolean;
-  className?: string;
-  priority?: number; // Higher priority sections stay expanded longer on smaller screens
+interface SolanaContentProps {
+  demoMode?: boolean;
 }
 
-const Section = ({
-  title,
-  icon,
-  children,
-  defaultExpanded = false,
-  className = "",
-  priority = 0,
-}: SectionProps) => {
-  const [isExpanded, setIsExpanded] = useState(defaultExpanded);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-
-  // Toggle section expanded state
-  const toggleExpanded = () => {
-    setIsExpanded(!isExpanded);
-    if (isFullscreen && !isExpanded) {
-      setIsFullscreen(false); // Exit fullscreen when collapsing
-    }
-  };
-
-  // Toggle fullscreen mode
-  const toggleFullscreen = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsFullscreen(!isFullscreen);
-    if (!isExpanded && !isFullscreen) {
-      setIsExpanded(true); // Ensure expanded when going fullscreen
-    }
-  };
-
-  // Determine responsive classes based on priority and fullscreen state
-  const getSectionClasses = () => {
-    if (isFullscreen) {
-      return "col-span-12 order-first h-auto max-h-none z-10";
-    }
-
-    // Base priority classes - higher priority sections take more space on medium screens
-    const priorityClasses =
-      {
-        0: "md:col-span-6 lg:col-span-4",
-        1: "md:col-span-6 lg:col-span-4",
-        2: "md:col-span-6 lg:col-span-6",
-        3: "md:col-span-12 lg:col-span-8",
-      }[priority] || "md:col-span-6 lg:col-span-4";
-
-    return `${priorityClasses}`;
-  };
-
-  return (
-    <Card
-      className={cn(
-        "bg-background border border-[#9945FF]/20 shadow-sm transition-all duration-300",
-        getSectionClasses(),
-        isExpanded ? "" : "h-[65px] overflow-hidden",
-        className,
-        isFullscreen ? "fixed inset-4 overflow-auto" : "",
-      )}
-    >
-      <CardHeader
-        className={cn(
-          "flex flex-row items-center justify-between p-3 cursor-pointer",
-          isExpanded ? "border-b border-[#9945FF]/10" : "",
-        )}
-        onClick={toggleExpanded}
-      >
-        <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded-md bg-[#9945FF]/10">{icon}</div>
-          <CardTitle className="text-text text-lg">{title}</CardTitle>
-        </div>
-        <div className="flex items-center gap-1">
-          {isExpanded && (
-            <Button
-              onClick={toggleFullscreen}
-              className="p-1.5 rounded-md hover:bg-[#9945FF]/20 text-text/70 hover:text-text transition-colors"
-              title={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
-            >
-              {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
-            </Button>
-          )}
-          <Button className="p-1.5 rounded-md hover:bg-[#9945FF]/20 text-text/70 hover:text-text transition-colors">
-            {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-          </Button>
-        </div>
-      </CardHeader>
-      {isExpanded && (
-        <CardContent
-          className={cn(
-            "p-3",
-            isFullscreen ? "h-[calc(100%-60px)] overflow-auto" : "",
-          )}
-        >
-          {children}
-        </CardContent>
-      )}
-    </Card>
-  );
-};
-
-// Enhanced wallet status component that shows address, balance, and refresh option
-const WalletStatus = () => {
-  const { publicKey, connected } = useWallet();
-  const { connection } = useConnection();
-  const [balance, setBalance] = useState(0);
-  const [isRefreshing, setIsRefreshing] = useState(false);
-
-  const fetchBalance = async () => {
-    if (!publicKey) return;
-    try {
-      setIsRefreshing(true);
-      const bal = await connection.getBalance(publicKey);
-      setBalance(bal / LAMPORTS_PER_SOL);
-    } catch (e) {
-      console.error("Failed to fetch balance:", e);
-      setBalance(0);
-    } finally {
-      setIsRefreshing(false);
-    }
-  };
-
-  useEffect(() => {
-    if (publicKey) {
-      fetchBalance();
-      // Set up a refresh interval
-      const intervalId = setInterval(fetchBalance, 30000); // Refresh every 30 seconds
-      return () => clearInterval(intervalId);
-    }
-  }, [connection, publicKey]);
-
-  if (!connected || !publicKey) return null;
-
-  return (
-    <Card className="bg-background border border-[#9945FF]/20 shadow-md overflow-hidden">
-      <CardHeader className="pb-2">
-        <CardTitle className="text-text text-lg">Wallet Connected</CardTitle>
-        <CardDescription className="text-text/70">
-          Your Solana wallet is ready to use
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="flex flex-col gap-3">
-          <div className="flex justify-between items-center bg-[#9945FF]/10 p-3 rounded-md">
-            <span className="text-text font-medium">Address</span>
-            <span className="font-mono text-text bg-background/30 p-1 px-2 rounded-md">
-              {publicKey.toString().slice(0, 6)}...
-              {publicKey.toString().slice(-4)}
-            </span>
-          </div>
-          <div className="flex justify-between items-center bg-[#14F195]/10 p-3 rounded-md">
-            <span className="text-text font-medium">Balance</span>
-            <div className="flex items-center gap-2">
-              <span className="text-text">{balance.toFixed(4)} SOL</span>
-              <button
-                type="button"
-                onClick={fetchBalance}
-                className="text-[#9945FF] hover:text-[#14F195] transition-colors p-1 rounded-full"
-                disabled={isRefreshing}
-                aria-label="Refresh balance"
-              >
-                <RefreshCw
-                  size={16}
-                  className={isRefreshing ? "animate-spin" : ""}
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
-
-// Component content with wallet context
-function SolanaContent() {
-  const { publicKey, connected } = useWallet();
+function SolanaContent({ demoMode = true }: SolanaContentProps) {
+  let { publicKey, connected } = useWallet();
+  if (demoMode) {
+    publicKey = new PublicKey("DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ");
+    connected = true;
+  }
 
   return (
     <div className="flex min-h-screen flex-col bg-background text-text w-full">
@@ -260,7 +61,11 @@ function SolanaContent() {
             </div>
             <h1 className="text-2xl font-bold">Solana Dashboard</h1>
           </div>
-          <StyledWalletButton />
+          {demoMode ? (
+            <StyledWalletButton />
+          ) : (
+            <WalletStatus />
+          )}
         </div>
       </header>
 
@@ -504,9 +309,9 @@ function SolanaContent() {
                   </h2>
 
                   <p className="text-text/80 mb-8 max-w-md mx-auto">
-                    Connect your Solana wallet to access the full functionality
-                    of the dashboard including swapping, staking, and managing
-                    your portfolio.
+                    Connect wallet to access the full functionality of the
+                    dashboard including swapping, staking, and managing your
+                    portfolio.
                   </p>
 
                   <div className="mb-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-2xl mx-auto">

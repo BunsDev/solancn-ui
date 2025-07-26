@@ -27,7 +27,11 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "files.swissborg.com",
-      }
+      },
+      {
+        protocol: "https",
+        hostname: "phantom.app",
+      },
     ],
   },
 };

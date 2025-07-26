@@ -5,5 +5,5 @@ import { UIPrimitivesClientPage } from "./client-page";
 export default function UIPrimitivesPage() {
   // Fetch UI Primitives from registry on server
   const primitives = getUIPrimitives();
-  return <UIPrimitivesClientPage initialPrimitives={primitives} />;
+  return <UIPrimitivesClientPage primitives={primitives} />;
 }

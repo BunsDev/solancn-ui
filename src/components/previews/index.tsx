@@ -1,5 +1,3 @@
-"use client";
-
 import type React from 'react';
 import type { Block, Component, UIPrimitive } from "@/lib/types";
 import { Button } from "@/components/ui/button";

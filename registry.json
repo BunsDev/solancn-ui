@@ -140,6 +140,8 @@
       "title": "Bridge",
       "description": "A bridge application with your brand themed components",
       "registryDependencies": [
+        "https://ui.solancn.com/r/brand-header.json",
+        "https://ui.solancn.com/r/brand-sidebar.json",
         "https://ui.solancn.com/r/product-grid.json",
         "https://ui.solancn.com/r/theme.json"
       ],
@@ -155,19 +157,26 @@
           "target": "app/page.tsx"
         }
       ]
-    },
-    {
+    },    {
       "name": "swapDemo",
       "type": "registry:block",
       "title": "Swap",
-      "description": "A token swap interface for Solana with brand themed components",
+      "description": "A styled, simple, reusable header",
       "registryDependencies": [
-        "https://ui.solancn.com/r/product-grid.json",
+        "button",
+        "input",
+        "avatar",
+        "sidebar",
+        "https://ui.solancn.com/r/sonner.json",
         "https://ui.solancn.com/r/theme.json"
       ],
       "files": [
         {
-          "path": "src/v0/minimal-layout.tsx",
+          "path": "src/components/brand-header.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/v0/shell-layout.tsx",
           "type": "registry:file",
           "target": "app/layout.tsx"
         },
@@ -177,8 +186,7 @@
           "target": "app/page.tsx"
         }
       ]
-    },
-    {
+    },    {
       "name": "transferDemo",
       "type": "registry:block",
       "title": "Transfer",

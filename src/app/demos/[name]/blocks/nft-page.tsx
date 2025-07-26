@@ -1,36 +1,55 @@
-import ProductGrid from "@/components/product-grid";
-import { getCategories, getProducts } from "@/lib/products";
+"use client";
 
-export default async function NFTPage() {
-  const products = await getProducts();
-  const categories = await getCategories();
+import type React from "react";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Wallet } from "lucide-react";
+import SolanaWalletProvider from "../context/wallet-provider";
+import StyledWalletButton from "@/components/wallet/wallet-button";
+import { NFTComponent } from "@/components/nft";
 
+// Component content with wallet context
+function NFTContent() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <main className="flex-1">
-        <section className="py-12">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h1 className="font-bold text-3xl tracking-tighter sm:text-4xl md:text-5xl">
-                  Welcome to NFT Store
-                </h1>
-
-                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl">
-                  Shop our unique collection of products. Free shipping on all
-                  orders!
-                </p>
-              </div>
+    <div className="flex min-h-screen flex-col bg-background text-text w-full">
+      <header className="border-b border-[#9945FF]/20 p-4 sticky top-0 z-10 bg-background/90 backdrop-blur-sm">
+        <div className="container mx-auto flex justify-between items-center gap-2">
+          <div className="flex items-center gap-2 cursor-pointer transition-all duration-200 hover:bg-[#9945FF]/20 p-2 rounded-md text-text">
+            <div className="w-8 h-8 cursor-pointer rounded-full bg-gradient-to-r from-[#9945FF] to-[#14F195] flex items-center justify-center">
+              <Wallet className="text-text w-4 h-4" />
             </div>
+            <h1 className="text-2xl font-bold">Solana Dashboard</h1>
           </div>
-        </section>
+          <StyledWalletButton />
+        </div>
+      </header>
 
-        <section className="py-8 md:py-12">
-          <div className="container px-4 md:px-6">
-            <ProductGrid products={products} categories={categories} />
-          </div>
-        </section>
+      <main className="flex-1 p-2 flex flex-col w-full">
+        <div className="container mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-2 w-full">
+              <Card className="bg-background border border-[#9945FF]/20">
+                <CardHeader>
+                  <CardTitle className="text-text">NFTs</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <NFTComponent />
+                </CardContent>
+              </Card>
+            </div>
+        </div>
       </main>
     </div>
+  );
+}
+
+export default function NFTPage() {
+  return (
+    <SolanaWalletProvider>
+      <NFTContent />
+    </SolanaWalletProvider>
   );
 }

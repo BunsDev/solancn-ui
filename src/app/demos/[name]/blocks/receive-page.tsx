@@ -1,21 +1,12 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import dynamic from "next/dynamic";
-
-// Dynamically import the receive component to prevent SSR issues
-const ReceiveComponent = dynamic(
-  () => import("@/components/solana/receive").then((mod) => {
-    const ReceiveComp = () => mod.receive.components.Default;
-    return ReceiveComp;
-  }),
-  { ssr: false }
-);
-import SolanaWalletProvider from "../context/wallet-provider";
+  import SolanaWalletProvider from "../context/wallet-provider";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { cn } from "@/lib/utils";
 import { Download } from "lucide-react";
+import { ReceiveComponent } from "@/components/solana/receive";
 
 // Custom styled WalletButton component with enhanced styling
 const StyledWalletButton = () => {
