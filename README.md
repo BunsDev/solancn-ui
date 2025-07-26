@@ -111,7 +111,7 @@ Your app should now be running on [localhost:3000](http://localhost:3000).
 
 `app/registry` routes contains the registry pages.
 
-`app/demo` routes contains various UI primitives, Components, or Blocks (based on `registry.json`)
+`app/demos` routes contains various UI primitives, Components, or Blocks (based on `registry.json`)
 
 `@/components` contains all components used in the registry
 

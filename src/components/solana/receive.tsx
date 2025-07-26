@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import {
   Card,
   CardContent,
@@ -16,6 +19,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { toast } from "sonner";
 
 export default function ReceiveComponent() {
   return (
