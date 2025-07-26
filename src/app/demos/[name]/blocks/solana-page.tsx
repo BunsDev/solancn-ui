@@ -18,6 +18,7 @@ import { bridge } from "@/components/solana/bridge";
 import { defi } from "@/components/solana/defi";
 import { nft } from "@/components/solana/nft";
 import { staking } from "@/components/solana/staking";
+import { receive, transfer } from "../solana";
 // Custom styled WalletButton component
 const StyledWalletButton = () => {
   return (
@@ -79,7 +80,7 @@ function SolanaContent() {
   const { publicKey, connected } = useWallet();
 
   return (
-    <div className="flex min-h-screen flex-col bg-black text-text">
+    <div className="flex min-h-screen flex-col bg-black text-text w-full">
       <header className="border-b border-[#9945FF]/20 p-4">
         <div className="container mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold text-text">Solana Dashboard</h1>
@@ -87,15 +88,15 @@ function SolanaContent() {
         </div>
       </header>
 
-      <main className="flex-1 p-6">
+      <main className="flex-1 p-6 flex flex-col w-full">
         <div className="container mx-auto">
-          <div className="mb-8">
+          {/* <div className="mb-8 flex flex-col">
             <WalletStatus />
-          </div>
+          </div> */}
 
           {connected ? (
-            <Tabs defaultValue="swap" className="w-full">
-              <TabsList className="grid grid-cols-9 mb-8 bg-black border border-[#9945FF]/30">
+            <Tabs defaultValue="swap" className="w-full flex flex-col">
+              <TabsList className="grid grid-cols-9 mb-8 bg-black border border-[#9945FF]/30 w-full">
                 <TabsTrigger
                   value="swap"
                   className="data-[state=active]:bg-[#9945FF]/20"
@@ -152,8 +153,8 @@ function SolanaContent() {
                 </TabsTrigger>
               </TabsList>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <TabsContent value="swap" className="mt-0">
+              <div className="grid grid-cols-1 md:grid-cols-1 gap-6 w-full">
+                <TabsContent value="swap" className="mt-0 col-span-6">
                   <Card className="bg-black border border-[#9945FF]/20">
                     <CardHeader>
                       <CardTitle className="text-text">Swap Tokens</CardTitle>
@@ -164,7 +165,7 @@ function SolanaContent() {
                   </Card>
                 </TabsContent>
 
-                <TabsContent value="stake" className="mt-0">
+                <TabsContent value="stake" className="mt-0 col-span-6">
                   <Card className="bg-black border border-[#9945FF]/20">
                     <CardHeader>
                       <CardTitle className="text-text">Stake SOL</CardTitle>
@@ -175,7 +176,7 @@ function SolanaContent() {
                   </Card>
                 </TabsContent>
 
-                <TabsContent value="portfolio" className="mt-0">
+                <TabsContent value="portfolio" className="mt-0 col-span-6">
                   <Card className="bg-black border border-[#9945FF]/20">
                     <CardHeader>
                       <CardTitle className="text-text">
@@ -188,7 +189,7 @@ function SolanaContent() {
                   </Card>
                 </TabsContent>
                 
-                <TabsContent value="bridge" className="mt-0">
+                <TabsContent value="bridge" className="mt-0 col-span-6">
                   <Card className="bg-black border border-[#9945FF]/20">
                     <CardHeader>
                       <CardTitle className="text-text">
@@ -201,7 +202,7 @@ function SolanaContent() {
                   </Card>
                 </TabsContent>
                 
-                <TabsContent value="nft" className="mt-0">
+                <TabsContent value="nft" className="mt-0 col-span-6">
                   <Card className="bg-black border border-[#9945FF]/20">
                     <CardHeader>
                       <CardTitle className="text-text">
@@ -214,7 +215,7 @@ function SolanaContent() {
                   </Card>
                 </TabsContent>
 
-                <TabsContent value="transfer" className="mt-0">
+                <TabsContent value="transfer" className="mt-0 col-span-6">
                   <Card className="bg-black border border-[#9945FF]/20">
                     <CardHeader>
                       <CardTitle className="text-text">
@@ -222,14 +223,12 @@ function SolanaContent() {
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-400">
-                        Transfer functionality will be implemented here.
-                      </p>
+                      {transfer.components.Default}
                     </CardContent>
                   </Card>
                 </TabsContent>
 
-                <TabsContent value="receive" className="mt-0">
+                <TabsContent value="receive" className="mt-0 col-span-6">
                   <Card className="bg-black border border-[#9945FF]/20">
                     <CardHeader>
                       <CardTitle className="text-text">
@@ -237,14 +236,12 @@ function SolanaContent() {
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-400">
-                        Receive functionality will be implemented here.
-                      </p>
+                    {receive.components.Default}
                     </CardContent>
                   </Card>
                 </TabsContent>
 
-                <TabsContent value="borrow" className="mt-0">
+                <TabsContent value="borrow" className="mt-0 col-span-6">
                   <Card className="bg-black border border-[#9945FF]/20">
                     <CardHeader>
                       <CardTitle className="text-text">Borrow Assets</CardTitle>
@@ -255,7 +252,7 @@ function SolanaContent() {
                   </Card>
                 </TabsContent>
 
-                <TabsContent value="lend" className="mt-0">
+                <TabsContent value="lend" className="mt-0 col-span-6">
                   <Card className="bg-black border border-[#9945FF]/20">
                     <CardHeader>
                       <CardTitle className="text-text">Lend Assets</CardTitle>

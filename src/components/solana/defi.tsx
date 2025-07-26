@@ -85,6 +85,7 @@ const portfolioAssets = [
 
 const yieldOpportunities = [
   {
+    id: 1,
     protocol: "Marinade Finance",
     asset: "SOL",
     apy: "6.2%",
@@ -92,6 +93,7 @@ const yieldOpportunities = [
     risk: "Low"
   },
   {
+    id: 2,
     protocol: "Jito",
     asset: "SOL",
     apy: "6.8%",
@@ -99,6 +101,7 @@ const yieldOpportunities = [
     risk: "Low"
   },
   {
+    id: 3,
     protocol: "Solend",
     asset: "USDC",
     apy: "5.8%",
@@ -106,6 +109,7 @@ const yieldOpportunities = [
     risk: "Medium"
   },
   {
+    id: 4,
     protocol: "Orca",
     asset: "SOL/USDC",
     apy: "12.4%",
@@ -113,6 +117,7 @@ const yieldOpportunities = [
     risk: "Medium-High"
   },
   {
+    id: 5,
     protocol: "Raydium",
     asset: "JUP/SOL",
     apy: "18.6%",
@@ -387,7 +392,7 @@ export default function DeFiComponent() {
                 </thead>
                 <tbody>
                   {yieldOpportunities.map((opportunity) => (
-                    <tr key={opportunity.asset} className="hover:bg-[#9945FF]/10">
+                    <tr key={opportunity.id} className="hover:bg-[#9945FF]/10">
                       <td className="text-left p-3">
                         <div className="font-medium">{opportunity.protocol}</div>
                       </td>

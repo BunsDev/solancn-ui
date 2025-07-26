@@ -62,7 +62,7 @@ export default function TransferComponent() {
   };
 
   return (
-    <Card className="w-[400px] bg-black text-white border border-[#9945FF]/20">
+    <Card className="w-full bg-black text-white border border-[#9945FF]/20">
       <CardHeader className="border-b border-[#9945FF]/20">
         <CardTitle className="text-[#14F195]">Transfer</CardTitle>
         <CardDescription className="text-gray-400">
@@ -131,12 +131,11 @@ export default function TransferComponent() {
               <div className="text-sm font-medium">Recent</div>
               <div className="space-y-1">
                 {recentAddresses.map((addr) => (
-                  <div
+                  <button
                     key={addr.address}
-                    className="flex items-center justify-between p-2 hover:bg-[#9945FF]/10 rounded-md cursor-pointer"
+                    type="button"
+                    className="w-full flex items-center justify-between p-2 hover:bg-[#9945FF]/10 rounded-md cursor-pointer text-left"
                     onClick={() => setRecipient(addr.address)}
-                    onKeyUp={() => setRecipient(addr.address)}
-                    onKeyDown={() => setRecipient(addr.address)}
                   >
                     <div className="flex items-center space-x-2">
                       <div className="w-6 h-6 rounded-full bg-gradient-to-r from-[#9945FF] to-[#14F195]" />
@@ -148,7 +147,7 @@ export default function TransferComponent() {
                       </div>
                     </div>
                     <div className="text-xs text-gray-400">{addr.date}</div>
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>

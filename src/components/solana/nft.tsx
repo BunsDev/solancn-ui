@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -21,18 +21,19 @@ import {
 import { useWallet } from "@solana/wallet-adapter-react";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { 
-  Grid2X2Icon, 
-  ListIcon, 
-  Search, 
-  Filter, 
-  SlidersHorizontal, 
-  X, 
-  Heart, 
+import {
+  Grid2X2Icon,
+  ListIcon,
+  Search,
+  Filter,
+  SlidersHorizontal,
+  X,
+  Heart,
   ArrowLeft,
   ArrowRight,
   ExternalLink,
 } from "lucide-react";
+import Image from "next/image";
 
 // Mock NFT data
 const nftsData = [
@@ -112,7 +113,8 @@ const nftsData = [
     id: "5",
     name: "Solana Squad #427",
     collection: "Solana Squad",
-    image: "https://i.seadn.io/gae/fzWJqiFvTXXuIriYqQbvLzCjbp5KRpD6zJ8NU03Y8fmV5OKsUxJCobG64dQCvhJ-CJsJpjyPSaQwS_mG5Son6rzkLlVUbUBzmVUP?auto=format&dpr=1&w=1000",
+    image:
+      "https://i.seadn.io/gae/fzWJqiFvTXXuIriYqQbvLzCjbp5KRpD6zJ8NU03Y8fmV5OKsUxJCobG64dQCvhJ-CJsJpjyPSaQwS_mG5Son6rzkLlVUbUBzmVUP?auto=format&dpr=1&w=1000",
     price: 5.7,
     currency: "SOL",
     rarity: 62,
@@ -130,7 +132,8 @@ const nftsData = [
     id: "6",
     name: "Mad Lad #1337",
     collection: "Mad Lads",
-    image: "https://cryptotesters.com/wp-content/uploads/2023/05/Mad-Lads-NFT-collection.jpeg",
+    image:
+      "https://cryptotesters.com/wp-content/uploads/2023/05/Mad-Lads-NFT-collection.jpeg",
     price: 36.9,
     currency: "SOL",
     rarity: 91,
@@ -166,7 +169,8 @@ const nftsData = [
     id: "8",
     name: "ABC #456",
     collection: "ABC Collection",
-    image: "https://i.seadn.io/gae/K-1z3_vI91mhliMNJ-4qpWuTiYU5ACxx7U3DC0w6V_XaeGy9Ypz1P5Ngg0S7iZlKvdKJP8vgWEtKR_mR4wkVUBoWWJgPwaYxSenU?auto=format&dpr=1&w=1000",
+    image:
+      "https://i.seadn.io/gae/K-1z3_vI91mhliMNJ-4qpWuTiYU5ACxx7U3DC0w6V_XaeGy9Ypz1P5Ngg0S7iZlKvdKJP8vgWEtKR_mR4wkVUBoWWJgPwaYxSenU?auto=format&dpr=1&w=1000",
     price: 8.3,
     currency: "SOL",
     rarity: 71,
@@ -196,9 +200,14 @@ const collections = [
 
 export default function NFTComponent() {
   const { connected } = useWallet();
-  const [view, setView] = useState<"grid" | "list">("grid");
-  const [activeTab, setActiveTab] = useState<"explore" | "collected" | "collections">("explore");
-  const [selectedNFT, setSelectedNFT] = useState<typeof nftsData[0] | null>(null);
+  // Using undefined initial state to prevent hydration mismatch
+  const [view, setView] = useState<"grid" | "list" | undefined>(undefined);
+  const [activeTab, setActiveTab] = useState<
+    "explore" | "collected" | "collections" | undefined
+  >(undefined);
+  const [selectedNFT, setSelectedNFT] = useState<(typeof nftsData)[0] | null>(
+    null,
+  );
   const [filters, setFilters] = useState({
     collection: "",
     minPrice: "",
@@ -206,21 +215,34 @@ export default function NFTComponent() {
     status: "",
   });
   const [searchQuery, setSearchQuery] = useState("");
+  const [mounted, setMounted] = useState(false);
+
+  // Initialize client-side only state after component mounts
+  useEffect(() => {
+    setView("grid");
+    setActiveTab("explore");
+    setMounted(true);
+  }, []);
 
   // Filter NFTs based on search and filters
   const filteredNFTs = nftsData.filter((nft) => {
-    const matchesSearch = nft.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                         nft.collection.toLowerCase().includes(searchQuery.toLowerCase());
-    
-    const matchesCollection = filters.collection ? nft.collection === filters.collection : true;
-    
-    const matchesPrice = (!filters.minPrice || nft.price >= Number(filters.minPrice)) && 
-                        (!filters.maxPrice || nft.price <= Number(filters.maxPrice));
-    
-    const matchesStatus = filters.status === "" || 
-                         (filters.status === "listed" && nft.listed) ||
-                         (filters.status === "unlisted" && !nft.listed);
-    
+    const matchesSearch =
+      nft.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      nft.collection.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesCollection = filters.collection
+      ? nft.collection === filters.collection
+      : true;
+
+    const matchesPrice =
+      (!filters.minPrice || nft.price >= Number(filters.minPrice)) &&
+      (!filters.maxPrice || nft.price <= Number(filters.maxPrice));
+
+    const matchesStatus =
+      filters.status === "" ||
+      (filters.status === "listed" && nft.listed) ||
+      (filters.status === "unlisted" && !nft.listed);
+
     return matchesSearch && matchesCollection && matchesPrice && matchesStatus;
   });
 
@@ -236,7 +258,7 @@ export default function NFTComponent() {
   };
 
   // Handle NFT selection
-  const handleSelectNFT = (nft: typeof nftsData[0]) => {
+  const handleSelectNFT = (nft: (typeof nftsData)[0]) => {
     setSelectedNFT(nft);
   };
 
@@ -246,18 +268,20 @@ export default function NFTComponent() {
   };
 
   // Calculate unique collections
-  const uniqueCollections = Array.from(new Set(nftsData.map(nft => nft.collection)));
+  const uniqueCollections = Array.from(
+    new Set(nftsData.map((nft) => nft.collection)),
+  );
 
   // NFT Card Component
-  const NFTCard = ({ nft }: { nft: typeof nftsData[0] }) => (
-    <Card 
+  const NFTCard = ({ nft }: { nft: (typeof nftsData)[0] }) => (
+    <Card
       className="bg-black border border-[#9945FF]/20 overflow-hidden hover:border-[#9945FF]/50 transition-all cursor-pointer"
       onClick={() => handleSelectNFT(nft)}
     >
       <div className="relative aspect-square overflow-hidden">
-        <img 
-          src={nft.image} 
-          alt={nft.name} 
+        <img
+          src={nft.image}
+          alt={nft.name}
           className="w-full h-full object-cover"
         />
         <div className="absolute top-2 right-2">
@@ -274,7 +298,9 @@ export default function NFTComponent() {
           </div>
           {nft.listed && (
             <div className="text-right">
-              <p className="text-sm font-semibold text-[#14F195]">{nft.price} {nft.currency}</p>
+              <p className="text-sm font-semibold text-[#14F195]">
+                {nft.price} {nft.currency}
+              </p>
               <p className="text-xs text-gray-400">Listed</p>
             </div>
           )}
@@ -284,16 +310,16 @@ export default function NFTComponent() {
   );
 
   // NFT List Item Component
-  const NFTListItem = ({ nft }: { nft: typeof nftsData[0] }) => (
-    <Card 
+  const NFTListItem = ({ nft }: { nft: (typeof nftsData)[0] }) => (
+    <Card
       className="bg-black border border-[#9945FF]/20 overflow-hidden hover:border-[#9945FF]/50 transition-all cursor-pointer"
       onClick={() => handleSelectNFT(nft)}
     >
       <div className="flex">
         <div className="w-20 h-20 relative">
-          <img 
-            src={nft.image} 
-            alt={nft.name} 
+          <img
+            src={nft.image}
+            alt={nft.name}
             className="w-full h-full object-cover"
           />
         </div>
@@ -308,7 +334,9 @@ export default function NFTComponent() {
             </Badge>
             {nft.listed && (
               <div className="text-right">
-                <p className="text-sm font-semibold text-[#14F195]">{nft.price} {nft.currency}</p>
+                <p className="text-sm font-semibold text-[#14F195]">
+                  {nft.price} {nft.currency}
+                </p>
               </div>
             )}
           </div>
@@ -318,7 +346,9 @@ export default function NFTComponent() {
   );
 
   // Collection Card Component
-  const CollectionCard = ({ collection }: { collection: typeof collections[0] }) => (
+  const CollectionCard = ({
+    collection,
+  }: { collection: (typeof collections)[0] }) => (
     <Card className="bg-black border border-[#9945FF]/20 overflow-hidden hover:border-[#9945FF]/50 transition-all cursor-pointer">
       <div className="p-4">
         <h3 className="font-medium">{collection.name}</h3>
@@ -329,11 +359,15 @@ export default function NFTComponent() {
           </div>
           <div>
             <p className="text-xs text-gray-400">Volume</p>
-            <p className="text-sm font-medium">{collection.volume.toLocaleString()} SOL</p>
+            <p className="text-sm font-medium">
+              {collection.volume.toLocaleString()} SOL
+            </p>
           </div>
           <div>
             <p className="text-xs text-gray-400">Items</p>
-            <p className="text-sm font-medium">{collection.items.toLocaleString()}</p>
+            <p className="text-sm font-medium">
+              {collection.items.toLocaleString()}
+            </p>
           </div>
         </div>
       </div>
@@ -343,30 +377,30 @@ export default function NFTComponent() {
   // Detail view for selected NFT
   const NFTDetailView = () => {
     if (!selectedNFT) return null;
-    
+
     return (
       <div className="space-y-6">
-        <Button 
-          variant="outline" 
+        <Button
+          variant="outline"
           size="sm"
           className="border-[#9945FF]/30 hover:bg-[#9945FF]/10"
           onClick={handleBackToGallery}
         >
           <ArrowLeft className="h-4 w-4 mr-2" /> Back to gallery
         </Button>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* NFT Image */}
           <Card className="bg-black border border-[#9945FF]/20 overflow-hidden">
             <div className="aspect-square relative">
-              <img 
-                src={selectedNFT.image} 
-                alt={selectedNFT.name} 
+              <Image
+                src={selectedNFT.image}
+                alt={selectedNFT.name}
                 className="w-full h-full object-contain"
               />
             </div>
           </Card>
-          
+
           {/* NFT Details */}
           <div className="space-y-6">
             <Card className="bg-black border border-[#9945FF]/20">
@@ -374,11 +408,13 @@ export default function NFTComponent() {
                 <div className="flex justify-between">
                   <div>
                     <CardTitle>{selectedNFT.name}</CardTitle>
-                    <CardDescription className="text-gray-400">{selectedNFT.collection}</CardDescription>
+                    <CardDescription className="text-gray-400">
+                      {selectedNFT.collection}
+                    </CardDescription>
                   </div>
-                  <Button 
-                    variant="outline" 
-                    size="icon" 
+                  <Button
+                    variant="outline"
+                    size="icon"
                     className="rounded-full border-[#9945FF]/30 hover:bg-[#9945FF]/10"
                   >
                     <Heart className="h-4 w-4" />
@@ -390,27 +426,29 @@ export default function NFTComponent() {
                   <p className="text-sm text-gray-400">Owner</p>
                   <div className="flex items-center gap-2">
                     <p className="font-mono">{selectedNFT.owner}</p>
-                    <Button 
-                      variant="ghost" 
-                      size="icon" 
+                    <Button
+                      variant="ghost"
+                      size="icon"
                       className="h-6 w-6 rounded-full hover:bg-[#9945FF]/10"
                     >
                       <ExternalLink className="h-3 w-3" />
                     </Button>
                   </div>
                 </div>
-                
+
                 {selectedNFT.listed && (
                   <div>
                     <p className="text-sm text-gray-400">Price</p>
-                    <p className="text-2xl font-semibold text-[#14F195]">{selectedNFT.price} {selectedNFT.currency}</p>
+                    <p className="text-2xl font-semibold text-[#14F195]">
+                      {selectedNFT.price} {selectedNFT.currency}
+                    </p>
                   </div>
                 )}
-                
+
                 <div>
                   <p className="text-sm text-gray-400 mb-2">Rarity score</p>
                   <div className="w-full bg-[#9945FF]/20 rounded-full h-2">
-                    <div 
+                    <div
                       className="bg-gradient-to-r from-[#9945FF] to-[#14F195] h-2 rounded-full"
                       style={{ width: `${selectedNFT.rarity}%` }}
                     />
@@ -420,7 +458,7 @@ export default function NFTComponent() {
                     <p className="text-xs text-gray-400">Legendary</p>
                   </div>
                 </div>
-                
+
                 {selectedNFT.listed && connected && (
                   <Button className="w-full bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:opacity-90">
                     Buy Now
@@ -428,7 +466,7 @@ export default function NFTComponent() {
                 )}
               </CardContent>
             </Card>
-            
+
             <Card className="bg-black border border-[#9945FF]/20">
               <CardHeader>
                 <CardTitle className="text-lg">Attributes</CardTitle>
@@ -436,7 +474,10 @@ export default function NFTComponent() {
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                   {selectedNFT.attributes.map((attr) => (
-                    <div key={attr.trait} className="bg-[#9945FF]/10 rounded-md p-2">
+                    <div
+                      key={attr.trait}
+                      className="bg-[#9945FF]/10 rounded-md p-2"
+                    >
                       <p className="text-xs text-gray-400">{attr.trait}</p>
                       <p className="font-medium text-sm">{attr.value}</p>
                     </div>
@@ -458,9 +499,12 @@ export default function NFTComponent() {
           <CardTitle className="text-lg flex items-center gap-2">
             <Filter className="h-5 w-5" /> Filters
           </CardTitle>
-          {(filters.collection || filters.minPrice || filters.maxPrice || filters.status) && (
-            <Button 
-              variant="ghost" 
+          {(filters.collection ||
+            filters.minPrice ||
+            filters.maxPrice ||
+            filters.status) && (
+            <Button
+              variant="ghost"
               size="sm"
               onClick={resetFilters}
               className="text-[#9945FF] hover:text-[#9945FF] hover:bg-[#9945FF]/10"
@@ -472,13 +516,18 @@ export default function NFTComponent() {
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          <label htmlFor="collection" className="text-sm text-gray-400">Collection</label>
-          <Select value={filters.collection} onValueChange={val => setFilters({...filters, collection: val})}>
+          <label htmlFor="collection" className="text-sm text-gray-400">
+            Collection
+          </label>
+          <Select
+            value={filters.collection}
+            onValueChange={(val) => setFilters({ ...filters, collection: val })}
+          >
             <SelectTrigger className="bg-black border-[#9945FF]/30">
               <SelectValue id="collection" placeholder="All collections" />
             </SelectTrigger>
             <SelectContent className="bg-black border-[#9945FF]/30">
-              <SelectItem value="">All collections</SelectItem>
+              <SelectItem value="all">All collections</SelectItem>
               {uniqueCollections.map((collection) => (
                 <SelectItem key={collection} value={collection}>
                   {collection}
@@ -487,38 +536,49 @@ export default function NFTComponent() {
             </SelectContent>
           </Select>
         </div>
-        
+
         <div>
-          <label htmlFor="priceRange" className="text-sm text-gray-400">Price Range (SOL)</label>
+          <label htmlFor="priceRange" className="text-sm text-gray-400">
+            Price Range (SOL)
+          </label>
           <div className="flex items-center gap-2 mt-2">
-            <Input 
+            <Input
               id="minPrice"
               placeholder="Min"
               type="number"
               className="bg-black border-[#9945FF]/30"
               value={filters.minPrice}
-              onChange={e => setFilters({...filters, minPrice: e.target.value})}
+              onChange={(e) =>
+                setFilters({ ...filters, minPrice: e.target.value })
+              }
             />
             <span className="text-gray-400">to</span>
-            <Input 
+            <Input
               id="maxPrice"
               placeholder="Max"
               type="number"
               className="bg-black border-[#9945FF]/30"
               value={filters.maxPrice}
-              onChange={e => setFilters({...filters, maxPrice: e.target.value})}
+              onChange={(e) =>
+                setFilters({ ...filters, maxPrice: e.target.value })
+              }
             />
           </div>
         </div>
-        
+
         <div className="space-y-2">
-          <label htmlFor="status" className="text-sm text-gray-400">Status</label>
-          <Select value={filters.status} onValueChange={val => setFilters({...filters, status: val})}>
+          <label htmlFor="status" className="text-sm text-gray-400">
+            Status
+          </label>
+          <Select
+            value={filters.status}
+            onValueChange={(val) => setFilters({ ...filters, status: val })}
+          >
             <SelectTrigger className="bg-black border-[#9945FF]/30">
               <SelectValue id="status" placeholder="All items" />
             </SelectTrigger>
             <SelectContent className="bg-black border-[#9945FF]/30">
-              <SelectItem value="">All items</SelectItem>
+              <SelectItem value="all">All items</SelectItem>
               <SelectItem value="listed">Listed</SelectItem>
               <SelectItem value="unlisted">Unlisted</SelectItem>
             </SelectContent>
@@ -528,42 +588,67 @@ export default function NFTComponent() {
     </Card>
   );
 
+  // Only render UI after client-side hydration is complete
+  if (!mounted) {
+    return (
+      <div className="w-full h-[60vh] flex items-center justify-center">
+        <div className="animate-pulse flex space-x-2">
+          <div className="h-3 w-3 bg-[#9945FF] rounded-full" />
+          <div className="h-3 w-3 bg-[#9945FF] rounded-full" />
+          <div className="h-3 w-3 bg-[#9945FF] rounded-full" />
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="space-y-6">
-      {/* Gallery view with NFT detail */}
+    <div className="w-full space-y-4">
       {selectedNFT ? (
         <NFTDetailView />
       ) : (
         <>
           {/* Search and tabs */}
           <div className="flex flex-col md:flex-row gap-4 justify-between">
-            <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as any)} className="w-full md:w-auto">
+            <Tabs
+              value={activeTab}
+              onValueChange={(value) => setActiveTab(value as any)}
+              className="w-full md:w-auto"
+            >
               <TabsList className="bg-black border border-[#9945FF]/20">
-                <TabsTrigger value="explore" className="data-[state=active]:bg-[#9945FF]">
+                <TabsTrigger
+                  value="explore"
+                  className="data-[state=active]:bg-[#9945FF]"
+                >
                   Explore
                 </TabsTrigger>
-                <TabsTrigger value="collected" className="data-[state=active]:bg-[#9945FF]">
+                <TabsTrigger
+                  value="collected"
+                  className="data-[state=active]:bg-[#9945FF]"
+                >
                   My Collection
                 </TabsTrigger>
-                <TabsTrigger value="collections" className="data-[state=active]:bg-[#9945FF]">
+                <TabsTrigger
+                  value="collections"
+                  className="data-[state=active]:bg-[#9945FF]"
+                >
                   Collections
                 </TabsTrigger>
               </TabsList>
             </Tabs>
-            
+
             <div className="flex gap-2">
               <div className="relative flex-1">
                 <Search className="h-4 w-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                <Input 
+                <Input
                   placeholder="Search by name or collection"
                   className="bg-black border-[#9945FF]/30 pl-10"
                   value={searchQuery}
-                  onChange={e => setSearchQuery(e.target.value)}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
                 {searchQuery && (
-                  <Button 
-                    variant="ghost" 
-                    size="icon" 
+                  <Button
+                    variant="ghost"
+                    size="icon"
                     className="h-6 w-6 absolute right-2 top-1/2 transform -translate-y-1/2 hover:bg-transparent"
                     onClick={() => setSearchQuery("")}
                   >
@@ -571,20 +656,20 @@ export default function NFTComponent() {
                   </Button>
                 )}
               </div>
-              
+
               {activeTab !== "collections" && (
                 <div className="flex rounded-md border border-[#9945FF]/30">
-                  <Button 
-                    variant="ghost" 
-                    size="icon" 
+                  <Button
+                    variant="ghost"
+                    size="icon"
                     className={`rounded-none ${view === "grid" ? "bg-[#9945FF]/20" : ""}`}
                     onClick={() => setView("grid")}
                   >
                     <Grid2X2Icon className="h-4 w-4" />
                   </Button>
-                  <Button 
-                    variant="ghost" 
-                    size="icon" 
+                  <Button
+                    variant="ghost"
+                    size="icon"
                     className={`rounded-none ${view === "list" ? "bg-[#9945FF]/20" : ""}`}
                     onClick={() => setView("list")}
                   >
@@ -594,35 +679,42 @@ export default function NFTComponent() {
               )}
             </div>
           </div>
-      
+
           {/* Main content */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {/* Filters - left sidebar */}
             <div className="md:col-span-1">
               <FilterPanel />
             </div>
-            
+
             {/* NFTs grid or list */}
             <div className="md:col-span-3">
               <TabsContent value="explore" className="mt-0">
                 {filteredNFTs.length > 0 ? (
-                  <div className={view === "grid" 
-                    ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
-                    : "flex flex-col gap-3"
-                  }>
-                    {view === "grid"
-                      ? filteredNFTs.map((nft) => <NFTCard key={nft.id} nft={nft} />)
-                      : filteredNFTs.map((nft) => <NFTListItem key={nft.id} nft={nft} />)
+                  <div
+                    className={
+                      view === "grid"
+                        ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
+                        : "flex flex-col gap-3"
                     }
+                  >
+                    {view === "grid"
+                      ? filteredNFTs.map((nft) => (
+                          <NFTCard key={nft.id} nft={nft} />
+                        ))
+                      : filteredNFTs.map((nft) => (
+                          <NFTListItem key={nft.id} nft={nft} />
+                        ))}
                   </div>
                 ) : (
                   <div className="flex flex-col items-center justify-center py-20">
                     <Search className="h-12 w-12 text-gray-500 mb-4" />
                     <h3 className="text-xl font-medium mb-2">No NFTs found</h3>
                     <p className="text-gray-400 text-center">
-                      No NFTs match your current filters. Try adjusting your search criteria.
+                      No NFTs match your current filters. Try adjusting your
+                      search criteria.
                     </p>
-                    <Button 
+                    <Button
                       variant="outline"
                       className="mt-4 border-[#9945FF]/30 hover:bg-[#9945FF]/10"
                       onClick={resetFilters}
@@ -632,33 +724,44 @@ export default function NFTComponent() {
                   </div>
                 )}
               </TabsContent>
-              
+
               <TabsContent value="collected" className="mt-0">
                 {connected ? (
-                  <div className={view === "grid" 
-                    ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
-                    : "flex flex-col gap-3"
-                  }>
+                  <div
+                    className={
+                      view === "grid"
+                        ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
+                        : "flex flex-col gap-3"
+                    }
+                  >
                     {/* Show only 2 NFTs for demo purposes */}
                     {view === "grid"
-                      ? nftsData.slice(4, 6).map((nft) => <NFTCard key={nft.id} nft={nft} />)
-                      : nftsData.slice(4, 6).map((nft) => <NFTListItem key={nft.id} nft={nft} />)
-                    }
+                      ? nftsData
+                          .slice(4, 6)
+                          .map((nft) => <NFTCard key={nft.id} nft={nft} />)
+                      : nftsData
+                          .slice(4, 6)
+                          .map((nft) => <NFTListItem key={nft.id} nft={nft} />)}
                   </div>
                 ) : (
                   <div className="flex flex-col items-center justify-center py-20">
-                    <h3 className="text-xl font-medium mb-2">Connect wallet to view your collection</h3>
+                    <h3 className="text-xl font-medium mb-2">
+                      Connect wallet to view your collection
+                    </h3>
                     <Button className="mt-4 bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:opacity-90">
                       Connect Wallet
                     </Button>
                   </div>
                 )}
               </TabsContent>
-              
+
               <TabsContent value="collections" className="mt-0">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {collections.map((collection) => (
-                    <CollectionCard key={collection.name} collection={collection} />
+                    <CollectionCard
+                      key={collection.name}
+                      collection={collection}
+                    />
                   ))}
                 </div>
               </TabsContent>

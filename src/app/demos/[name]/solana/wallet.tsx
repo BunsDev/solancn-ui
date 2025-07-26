@@ -28,7 +28,7 @@ export const wallet = {
   name: "wallet",
   components: {
     Default: (
-      <Card className="w-[400px] bg-black text-white border border-[#9945FF]/20">
+      <Card className="w-full bg-black text-white border border-[#9945FF]/20">
         <CardHeader className="border-b border-[#9945FF]/20">
           <div className="flex items-center justify-between">
             <div>
