@@ -1,8 +1,8 @@
 import fs from "fs-extra";
+// biome-ignore lint/style/useNodejsImportProtocol: nodejs import protocol
 import path from "path";
 import { logger } from "./logger";
-import { RegistryItem } from "./registry-client";
-import { InstallOptions, InstallResult } from "./types";
+import type { InstallOptions, InstallResult, RegistryItem } from "./types";
 
 /**
  * Install a component or block from registry data
