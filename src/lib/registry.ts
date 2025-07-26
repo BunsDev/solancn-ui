@@ -44,14 +44,15 @@ export function getBlocks(): Block[] {
   ) as Block[];
 }
 
+export function getComponents(): Component[] {
+  return getRegistryItems().filter(
+    (component) => component.type === "registry:component",
+  ) as Component[];
+}
+
 export function getUIPrimitives(): UIPrimitive[] {
   return getRegistryItems().filter(
     (component) => component.type === "registry:ui",
   ) as UIPrimitive[];
 }
 
-export function getComponents(): Component[] {
-  return getRegistryItems().filter(
-    (component) => component.type === "registry:component",
-  ) as Component[];
-}

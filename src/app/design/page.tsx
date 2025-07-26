@@ -5,17 +5,17 @@ import Link from "next/link";
 import type React from "react";
 import { Button } from "@/components/ui/button";
 
-import FontBlock from "@/app/tokens/font-block";
-import ColorBlock from "@/app/tokens/color-block";
+import FontBlock from "@/app/design/font-block";
+import ColorBlock from "@/app/design/color-block";
 
 export default function TokensPage() {
   return (
     <div className="container p-5 md:p-10">
       <div className="mb-8">
         <Button variant="ghost" size="sm" asChild className="mb-4">
-          <Link href="/">
+          <Link href="/docs">
             <ArrowLeft className="mr-2 size-4" />
-            Back to Home
+            Documentation
           </Link>
         </Button>
 

@@ -7,7 +7,7 @@ import {
 } from "@/components/docs/docs-sidebar";
 import { Toaster } from "@/components/ui/sonner";
 
-export default function RegistryLayout({
+export default function BlocksLayout({
   children,
 }: Readonly<{
   children: ReactNode;
@@ -16,7 +16,9 @@ export default function RegistryLayout({
     <SidebarProvider>
       <MobileSidebarTrigger />
       <RegistrySidebar />
-      <main className="flex w-full justify-center">{children}</main>
+      <main className="flex w-full justify-center p-2 mt-16 sm:mt-8 md:mt-4 lg:mt-0 md:p-4 lg:p-8">
+        {children}
+      </main>
       <Toaster />
     </SidebarProvider>
   );

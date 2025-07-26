@@ -16,7 +16,7 @@ export default function ComponentsLayout({
     <SidebarProvider>
       <MobileSidebarTrigger />
       <RegistrySidebar />
-      <main className="flex w-full justify-center">{children}</main>
+      <main className="flex w-full justify-center p-2 mt-16 sm:mt-8 md:mt-4 lg:mt-0 md:p-4 lg:p-8">{children}</main>
       <Toaster />
     </SidebarProvider>
   );

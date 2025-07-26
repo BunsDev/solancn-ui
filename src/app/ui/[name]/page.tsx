@@ -15,7 +15,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function PrimitiveItemPage({
+export default async function UIPrimitiveItemPage({
   params,
 }: {
   params: Promise<{ name: string }>;

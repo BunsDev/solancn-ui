@@ -92,7 +92,7 @@ const FeatureBadge = ({ feature }: { feature: string }) => {
 };
 
 // Primitive card component
-function PrimitiveCard({ primitive }: { primitive: UIPrimitive }) {
+function UIPrimitiveCard({ primitive }: { primitive: UIPrimitive }) {
   const category = getRandomCategory();
   const tags = extractTags(primitive.description);
 
@@ -155,7 +155,7 @@ function PrimitiveCard({ primitive }: { primitive: UIPrimitive }) {
 }
 
 // Client component for search and filter functionality
-export function PrimitivesClientPage({
+export function UIPrimitivesClientPage({
   initialPrimitives,
 }: { initialPrimitives: UIPrimitive[] }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -201,9 +201,9 @@ export function PrimitivesClientPage({
     <div className="container p-5 md:p-10">
       <div className="mb-8">
         <Button variant="ghost" size="sm" asChild className="mb-4">
-          <Link href="/">
+          <Link href="/ui">
             <ArrowLeft className="mr-2 size-4" />
-            Back to Home
+            UI Primitives
           </Link>
         </Button>
 
@@ -306,7 +306,7 @@ export function PrimitivesClientPage({
       {primitives.length > 0 ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {primitives.map((primitive) => (
-            <PrimitiveCard key={primitive.name} primitive={primitive} />
+            <UIPrimitiveCard key={primitive.name} primitive={primitive} />
           ))}
         </div>
       ) : (

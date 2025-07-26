@@ -5,5 +5,5 @@ import { BlocksClientPage } from "./client-page";
 export default function BlocksPage() {
   // Fetch blocks from registry on server
   const blocks = getBlocks();
-  return <BlocksClientPage initialBlocks={blocks} />;
+  return <BlocksClientPage blocks={blocks} />;
 }

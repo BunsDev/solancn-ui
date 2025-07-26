@@ -47,7 +47,7 @@ const blockItems = getBlocks();
 
 export const gettingStartedItems = [
   { title: "Home", path: "/docs" },
-  { title: "Design Tokens", path: "/tokens" },
+  { title: "Design", path: "/design" },
   { title: "Blocks", path: "/blocks" },
   { title: "Components", path: "/components" },
 ];

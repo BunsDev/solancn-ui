@@ -37,9 +37,7 @@ export default async function BlockItemPage({
               Blocks
             </Link>
           </Button>
-          <h1 className="font-bold text-3xl tracking-tight">
-            {block.title}
-          </h1>
+          <h1 className="font-bold text-3xl tracking-tight">{block.title}</h1>
         </div>
       </div>
 

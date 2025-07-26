@@ -24,15 +24,21 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import type { Block } from "@/lib/registry";
+import type { RegistryItem } from "@/lib/types";
+import { getLink } from "@/lib/utils";
 
-// Category definitions and their colors
+// Category definitions with their display names and colors
 const categories = [
-  { name: "Dashboard", color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400" },
-  { name: "Marketing", color: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400" },
-  { name: "Forms", color: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400" },
-  { name: "Cards", color: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400" },
-  { name: "Authentication", color: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-400" },
-  { name: "Layout", color: "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-400" },
+  { id: "dashboard", name: "Dashboard", color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400" },
+  { id: "marketing", name: "Marketing", color: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400" },
+  { id: "forms", name: "Forms", color: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400" },
+  { id: "cards", name: "Cards", color: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400" },
+  { id: "authentication", name: "Authentication", color: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-400" },
+  { id: "layout", name: "Layout", color: "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-400" },
+  { id: "navigation", name: "Navigation", color: "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-400" },
+  { id: "feedback", name: "Feedback", color: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400" },
+  { id: "overlays", name: "Overlays", color: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400" },
+  { id: "data", name: "Data Display", color: "bg-lime-100 text-lime-800 dark:bg-lime-900/30 dark:text-lime-400" },
 ];
 
 // Helper to extract tags from description
@@ -40,6 +46,71 @@ const extractTags = (description: string | undefined = "") => {
   // Extract words with # symbol
   const tags = description?.match(/#[\w-]+/g) || [];
   return tags.map(tag => tag.substring(1));
+};
+
+// Helper to assign a category based on block name and description
+const assignCategory = (block: Block): string => {
+  const name = block.name.toLowerCase();
+  const description = block.description?.toLowerCase() || "";
+  
+  // Try to determine category from block data
+  if (block.category) {
+    return block.category.toLowerCase();
+  }
+  
+  // Use pattern matching to assign categories
+  if (name.includes("nav") || name.includes("menu") || name.includes("sidebar") || 
+      description.includes("navigation") || description.includes("menu")) {
+    return "navigation";
+  }
+  
+  if (name.includes("form") || name.includes("input") || name.includes("field") ||
+      description.includes("form") || description.includes("input")) {
+    return "forms";
+  }
+  
+  if (name.includes("card") || description.includes("card")) {
+    return "cards";
+  }
+  
+  if (name.includes("auth") || name.includes("login") || name.includes("signup") ||
+      description.includes("authentication") || description.includes("login")) {
+    return "authentication";
+  }
+  
+  if (name.includes("layout") || name.includes("grid") || name.includes("section") ||
+      description.includes("layout") || description.includes("section")) {
+    return "layout";
+  }
+  
+  if (name.includes("dashboard") || name.includes("analytics") ||
+      description.includes("dashboard") || description.includes("analytics")) {
+    return "dashboard";
+  }
+  
+  if (name.includes("alert") || name.includes("toast") || name.includes("notification") ||
+      description.includes("alert") || description.includes("notification")) {
+    return "feedback";
+  }
+  
+  if (name.includes("modal") || name.includes("dialog") || name.includes("drawer") || name.includes("popover") ||
+      description.includes("modal") || description.includes("dialog")) {
+    return "overlays";
+  }
+  
+  if (name.includes("table") || name.includes("list") || name.includes("data") || 
+      description.includes("data") || description.includes("display")) {
+    return "data";
+  }
+  
+  if (name.includes("hero") || name.includes("cta") || name.includes("landing") ||
+      description.includes("marketing") || description.includes("landing") ||
+      description.includes("hero")) {
+    return "marketing";
+  }
+  
+  // Default to layout if no category matches
+  return "layout";
 };
 
 // Feature badges for block cards
@@ -65,23 +136,18 @@ const FeatureBadge = ({ feature }: { feature: string }) => {
 
 // Block card component
 function BlockCard({ block }: { block: Block }) {
-  const category = block.category ? 
-    categories.find(c => c.name.toLowerCase() === block.category?.toLowerCase()) || 
-    categories[Math.floor(Math.random() * categories.length)] : 
-    categories[Math.floor(Math.random() * categories.length)];
-  const tags = extractTags(block.description);
+  // Assign category to this block
+  const categoryId = block.category || assignCategory(block);
+  const category = categories.find(c => c.id === categoryId) || categories.find(c => c.id === "layout");
   
-  // Randomly assign features for demo - in production you'd get these from metadata
-  const features = [];
-  if (Math.random() > 0.7) features.push("New");
-  if (Math.random() > 0.5) features.push("Responsive");
-  if (Math.random() > 0.8) features.push("Animated");
+  // Get tags from description
+  const tags = extractTags(block.description);
   
   return (
     <Card className="overflow-hidden transition-all hover:shadow-md">
       <CardHeader className="p-0">
         <div className="relative h-44 w-full bg-slate-100 dark:bg-slate-800">
-          <Link href={`/blocks/${block.name}`} className="absolute inset-0">
+          <Link href={getLink(block as RegistryItem)} className="absolute inset-0">
             {/* Use a placeholder image - in production, you'd use actual previews */}
             <div className="flex h-full w-full items-center justify-center text-slate-400">
               <span className="text-sm">Block Preview</span>
@@ -91,18 +157,11 @@ function BlockCard({ block }: { block: Block }) {
       </CardHeader>
       <CardContent className="p-4">
         <div className="mb-2 flex items-center gap-2">
-          <Badge variant="secondary" className={category.color}>
-            {category.name}
+          <Badge variant="secondary" className={category?.color || ""}>
+            {category?.name || "Layout"}
           </Badge>
-          {features.length > 0 && (
-            <div className="flex flex-wrap gap-1">
-              {features.map((feature) => (
-                <FeatureBadge key={feature.toLowerCase()} feature={feature} />
-              ))}
-            </div>
-          )}
         </div>
-        <Link href={`/blocks/${block.name}`}>
+        <Link href={getLink(block as RegistryItem)}>
           <CardTitle className="mb-1 text-lg hover:underline">{block.title}</CardTitle>
         </Link>
         <p className="mb-2 line-clamp-2 text-sm text-muted-foreground">
@@ -124,37 +183,49 @@ function BlockCard({ block }: { block: Block }) {
 }
 
 // Client component for search and filter functionality
-export function BlocksClientPage({ initialBlocks }: { initialBlocks: Block[] }) {
+export function BlocksClientPage({ blocks }: { blocks: Block[] }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [blocks, setBlocks] = useState(initialBlocks);
+  const [filteredBlocks, setFilteredBlocks] = useState(blocks);
 
+  // Process blocks to assign categories
+  const processedBlocks = blocks.map(block => ({
+    ...block,
+    category: block.category || assignCategory(block)
+  }));
+
+  // Filter blocks based on search term and category
   const filterBlocks = useCallback(() => {
-    let filtered = [...initialBlocks];
+    let filtered = [...processedBlocks];
     
+    // Apply search filter
     if (searchTerm) {
       const term = searchTerm.toLowerCase();
       filtered = filtered.filter(
         block => 
           block.title.toLowerCase().includes(term) || 
-          block.description?.toLowerCase().includes(term)
+          block.description?.toLowerCase().includes(term) ||
+          extractTags(block.description).some(tag => tag.toLowerCase().includes(term))
       );
     }
     
+    // Apply category filter
     if (selectedCategory) {
-      // In production, you'd filter based on actual categories from metadata
-      // This is a placeholder filtering mechanism
-      const categoryIndex = categories.findIndex(c => c.name === selectedCategory);
-      filtered = filtered.filter((_, idx) => idx % categories.length === categoryIndex);
+      const categoryObj = categories.find(c => c.name === selectedCategory);
+      if (categoryObj) {
+        filtered = filtered.filter(block => block.category === categoryObj.id);
+      }
     }
     
-    setBlocks(filtered);
-  }, [searchTerm, selectedCategory, initialBlocks]);
+    setFilteredBlocks(filtered);
+  }, [searchTerm, selectedCategory, processedBlocks]);
 
+  // Apply filters when dependencies change
   useEffect(() => {
     filterBlocks();
   }, [filterBlocks]);
 
+  // Clear all filters
   const clearFilters = () => {
     setSearchTerm("");
     setSelectedCategory(null);
@@ -164,9 +235,9 @@ export function BlocksClientPage({ initialBlocks }: { initialBlocks: Block[] }) 
     <div className="container p-5 md:p-10">
       <div className="mb-8">
         <Button variant="ghost" size="sm" asChild className="mb-4">
-          <Link href="/">
+          <Link href="/docs">
             <ArrowLeft className="mr-2 size-4" />
-            Back to Home
+            Documentation
           </Link>
         </Button>
 
@@ -202,7 +273,7 @@ export function BlocksClientPage({ initialBlocks }: { initialBlocks: Block[] }) 
               <DropdownMenuGroup>
                 {categories.map((category) => (
                   <DropdownMenuItem
-                    key={category.name}
+                    key={category.id}
                     onClick={() => setSelectedCategory(category.name)}
                     className="cursor-pointer"
                   >
@@ -226,8 +297,8 @@ export function BlocksClientPage({ initialBlocks }: { initialBlocks: Block[] }) 
       {/* Results stats */}
       <div className="mb-6">
         <p className="text-sm text-muted-foreground">
-          Showing <span className="font-medium text-foreground">{blocks.length}</span> of{" "}
-          <span className="font-medium text-foreground">{initialBlocks.length}</span> blocks
+          Showing <span className="font-medium text-foreground">{filteredBlocks.length}</span> of{" "}
+          <span className="font-medium text-foreground">{blocks.length}</span> blocks
           {searchTerm && (
             <>
               {" "}
@@ -244,16 +315,16 @@ export function BlocksClientPage({ initialBlocks }: { initialBlocks: Block[] }) 
       </div>
 
       {/* Blocks grid */}
-      {blocks.length > 0 ? (
+      {filteredBlocks.length > 0 ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {blocks.map((block) => (
+          {filteredBlocks.map((block) => (
             <BlockCard key={block.name} block={block} />
           ))}
         </div>
       ) : (
         <div className="flex min-h-[400px] flex-col items-center justify-center rounded-lg border border-dashed py-10 text-center">
           <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
-            <Search className="h-10 w-10 text-primary/60" />
+            <Search className="h-10 w-10 text-primary/60" aria-hidden="true" />
           </div>
           <h2 className="mt-4 text-xl font-medium">No blocks found</h2>
           <p className="mt-2 text-muted-foreground">
