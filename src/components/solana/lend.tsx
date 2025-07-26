@@ -464,3 +464,11 @@ export const LendComponent = () => {
     </Card>
   );
 };
+
+
+export const lend = {
+  name: "lend",
+  components: {
+    Default: <LendComponent />,
+  },
+};

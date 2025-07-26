@@ -1,29 +1,35 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import React, { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useWallet, useConnection } from "@solana/wallet-adapter-react";
+import {
+  Connection,
+  PublicKey,
+  LAMPORTS_PER_SOL,
+} from "@solana/web3.js";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
-import { LAMPORTS_PER_SOL } from "@solana/web3.js";
-import SolanaWalletProvider from "../context/wallet-provider";
-import { cn } from "@/lib/utils";
-
-// Import all Solana components
-import { borrow } from "../solana/borrow";
-import { lend } from "../solana/lend";
-import { swap } from "../solana/swap";
+// import { SolanaWalletProvider } from "@/components/providers/solana-provider";
 import SwapComponent from "@/components/solana/swap";
 import { bridge } from "@/components/solana/bridge";
+import { borrow } from "@/components/solana/borrow";
+import { lend } from "@/components/solana/lend";
 import { defi } from "@/components/solana/defi";
 import { nft } from "@/components/solana/nft";
 import { staking } from "@/components/solana/staking";
 import { receive, transfer } from "../solana";
+import { ArrowRight, Wallet, Layers, BarChart3, Award, Search, Coins, ArrowRightLeft, Download, Upload, Banknote, Landmark } from "lucide-react";
+import { cn } from "@/lib/utils";
+import SolanaWalletProvider from "../context/wallet-provider";
+
 // Custom styled WalletButton component
 const StyledWalletButton = () => {
   return (
     <div
       className={cn(
+        "wallet-adapter-button-container",
         // "wallet-adapter-button-container",
         "dark:bg-[#9945FF] text-[#FFFFFF] rounded-md border-none hover:opacity-90 ",
       )}

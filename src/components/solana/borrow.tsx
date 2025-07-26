@@ -457,3 +457,11 @@ export const BorrowComponent = () => {
     </Card>
   );
 };
+
+
+export const borrow = {
+  name: "borrow",
+  components: {
+    Default: <BorrowComponent />,
+  },
+};
