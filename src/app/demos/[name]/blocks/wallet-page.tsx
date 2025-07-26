@@ -9,6 +9,16 @@ import { cn } from "@/lib/utils";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { Wallet as WalletIcon, RefreshCw } from "lucide-react";
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+
+// Dynamically import the wallet component to prevent SSR issues
+const WalletComponent = dynamic(
+  () => import("@/components/solana/wallet").then((mod) => {
+    const WalletComp = () => mod.wallet.components.Default;
+    return WalletComp;
+  }),
+  { ssr: false }
+);
 
 // Custom styled WalletButton component with enhanced styling
 const StyledWalletButton = () => {
@@ -132,7 +142,7 @@ function WalletContent() {
                 <CardHeader>
                   <CardTitle className="text-text">Wallet Details</CardTitle>
                 </CardHeader>
-                <CardContent>{wallet.components.Default}</CardContent>
+                <CardContent><WalletComponent /></CardContent>
               </Card>
             </div>
           ) : (
@@ -154,7 +164,7 @@ function WalletContent() {
                   </p>
 
                   <div className="flex justify-center">
-                    <StyledWalletButton />
+                    <StyledWalletButton />  
                   </div>
                 </div>
               </div>

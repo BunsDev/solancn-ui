@@ -14,7 +14,6 @@ import {
   RefreshCw,
 } from "lucide-react";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-    
 
 export default function BridgePage() {
     const { connected } = useWallet();

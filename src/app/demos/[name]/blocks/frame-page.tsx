@@ -1,12 +1,21 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { frame } from "@/components/solana/frame";
 import SolanaWalletProvider from "../context/wallet-provider";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { cn } from "@/lib/utils";
 import { SquareDashedBottom } from "lucide-react";
+import dynamic from "next/dynamic";
+
+// Dynamically import the frame component to prevent SSR issues
+const FrameComponent = dynamic(
+  () => import("@/components/solana/frame").then((mod) => {
+    const FrameComp = () => mod.frame.components.Default;
+    return FrameComp;
+  }),
+  { ssr: false }
+);
 
 // Custom styled WalletButton component with enhanced styling
 const StyledWalletButton = () => {
@@ -55,7 +64,7 @@ function FrameContent() {
               <CardHeader>
                 <CardTitle className="text-text">Solana Frames</CardTitle>
               </CardHeader>
-              <CardContent>{frame.components.Default}</CardContent>
+              <CardContent><FrameComponent /></CardContent>
             </Card>
           ) : (
             <div className="flex flex-col items-center justify-center py-20 text-center">

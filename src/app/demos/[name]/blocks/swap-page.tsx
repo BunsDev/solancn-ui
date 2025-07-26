@@ -1,7 +1,16 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { swap } from "@/components/solana/swap";
+import dynamic from "next/dynamic";
+
+// Dynamically import the swap component to prevent SSR issues
+const SwapComponent = dynamic(
+  () => import("@/components/solana/swap").then((mod) => {
+    const SwapComp = () => mod.swap.components.Default;
+    return SwapComp;
+  }),
+  { ssr: false }
+);
 import SolanaWalletProvider from "../context/wallet-provider";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
@@ -55,7 +64,7 @@ function SwapContent() {
               <CardHeader>
                 <CardTitle className="text-text">Swap</CardTitle>
               </CardHeader>
-              <CardContent>{swap.components.Default}</CardContent>
+              <CardContent><SwapComponent /></CardContent>
             </Card>
           ) : (
             <div className="flex flex-col items-center justify-center py-20 text-center">

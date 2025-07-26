@@ -1,7 +1,16 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { transfer } from "@/components/solana/transfer";
+import dynamic from "next/dynamic";
+
+// Dynamically import the transfer component to prevent SSR issues
+const TransferComponent = dynamic(
+  () => import("@/components/solana/transfer").then((mod) => {
+    const TransferComp = () => mod.transfer.components.Default;
+    return TransferComp;
+  }),
+  { ssr: false }
+);
 import SolanaWalletProvider from "../context/wallet-provider";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
@@ -55,7 +64,7 @@ function TransferContent() {
               <CardHeader>
                 <CardTitle className="text-text">Transfer</CardTitle>
               </CardHeader>
-              <CardContent>{transfer.components.Default}</CardContent>
+              <CardContent><TransferComponent /></CardContent>
             </Card>
           ) : (
             <div className="flex flex-col items-center justify-center py-20 text-center">

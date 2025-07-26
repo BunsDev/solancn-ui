@@ -1,12 +1,21 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { borrow } from "@/components/solana/borrow";
+import dynamic from "next/dynamic";
 import SolanaWalletProvider from "../context/wallet-provider";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { cn } from "@/lib/utils";
 import { Coins } from "lucide-react";
+
+// Dynamically import the borrow component to prevent SSR issues
+const BorrowComponent = dynamic(
+  () => import("@/components/solana/borrow").then((mod) => {
+    const BorrowComp = () => mod.borrow.components.Default;
+    return BorrowComp;
+  }),
+  { ssr: false }
+);
 
 // Custom styled WalletButton component with enhanced styling
 const StyledWalletButton = () => {
@@ -55,7 +64,9 @@ function BorrowContent() {
               <CardHeader>
                 <CardTitle className="text-text">Borrow Assets</CardTitle>
               </CardHeader>
-              <CardContent>{borrow.components.Default}</CardContent>
+              <CardContent>
+                <BorrowComponent />
+              </CardContent>
             </Card>
           ) : (
             <div className="flex flex-col items-center justify-center py-20 text-center">
