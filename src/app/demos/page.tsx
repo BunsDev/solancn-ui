@@ -93,7 +93,7 @@ export default function DemoPage() {
     {
       title: "Portfolio Dashboard",
       description: "View your Solana token portfolio and holdings",
-      href: "/demos/portfolio",
+      href: "/demos/portfolioDemo",
       tags: ["Portfolio", "Assets", "Dashboard"],
       gradient: "from-indigo-500 to-blue-500",
     },

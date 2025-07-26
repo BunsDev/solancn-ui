@@ -12,6 +12,7 @@ import { borrowDemo } from "@/app/demos/[name]/blocks/borrowDemo";
 import { lendDemo } from "@/app/demos/[name]/blocks/lendDemo";
 import { receiveDemo } from "@/app/demos/[name]/blocks/receiveDemo";
 import { transferDemo } from "@/app/demos/[name]/blocks/transferDemo";
+import { portfolioDemo } from "@/app/demos/[name]/blocks/portfolioDemo";
 
 // components
 import { brandHeader } from "@/app/demos/[name]/components/brand-header";
@@ -83,6 +84,7 @@ export const demos: { [name: string]: Demo } = {
   lendDemo,
   walletDemo,
   frameDemo,
+  portfolioDemo,
 
   // components
   hero,
