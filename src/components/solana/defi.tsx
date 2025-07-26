@@ -133,7 +133,7 @@ interface DeFiCardProps {
 }
 
 const DeFiCard: React.FC<DeFiCardProps> = ({ title, value, subtitle, change, changePercent, isNegative = false, children }) => (
-  <Card className="bg-black border border-[#9945FF]/20">
+  <Card className="bg-background border border-[#9945FF]/20">
     <CardHeader className="pb-2">
       <div className="flex justify-between items-start">
         <div>
@@ -298,7 +298,7 @@ export default function DeFiComponent() {
         </div>
 
         {/* Actions Card */}
-        <Card className="bg-black border border-[#9945FF]/20">
+        <Card className="bg-background border border-[#9945FF]/20">
           <CardHeader>
             <CardTitle className="text-[#14F195]">Quick Actions</CardTitle>
           </CardHeader>
@@ -322,7 +322,7 @@ export default function DeFiComponent() {
       {/* Portfolio Details and Yield Opportunities */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Portfolio Assets */}
-        <Card className="bg-black border border-[#9945FF]/20">
+        <Card className="bg-background border border-[#9945FF]/20">
           <CardHeader>
             <CardTitle className="text-[#14F195]">Portfolio Assets</CardTitle>
             <CardDescription className="text-gray-400">Your current holdings</CardDescription>
@@ -368,7 +368,7 @@ export default function DeFiComponent() {
         </Card>
 
         {/* Yield Opportunities */}
-        <Card className="bg-black border border-[#9945FF]/20">
+        <Card className="bg-background border border-[#9945FF]/20">
           <CardHeader>
             <CardTitle className="text-[#14F195]">Yield Opportunities</CardTitle>
             <CardDescription className="text-gray-400">Top earning strategies</CardDescription>
@@ -421,7 +421,7 @@ export default function DeFiComponent() {
       </div>
 
       {/* Recent Activity */}
-      <Card className="bg-black border border-[#9945FF]/20">
+      <Card className="bg-background border border-[#9945FF]/20">
         <CardHeader>
           <CardTitle className="text-[#14F195]">Recent Activity</CardTitle>
         </CardHeader>

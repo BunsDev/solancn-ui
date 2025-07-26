@@ -24,7 +24,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { useWallet } from "@solana/wallet-adapter-react";
 
-export default function TransferComponent() {
+export function TransferComponent() {
   const { connected } = useWallet();
   const [recipient, setRecipient] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
@@ -62,7 +62,7 @@ export default function TransferComponent() {
   };
 
   return (
-    <Card className="w-full bg-black text-white border border-[#9945FF]/20">
+    <Card className="w-full bg-background text-white border border-[#9945FF]/20">
       <CardHeader className="border-b border-[#9945FF]/20">
         <CardTitle className="text-[#14F195]">Transfer</CardTitle>
         <CardDescription className="text-gray-400">
@@ -81,7 +81,7 @@ export default function TransferComponent() {
                 value={recipient}
                 onChange={(e) => setRecipient(e.target.value)}
                 placeholder="Address or .sol domain"
-                className="bg-black border-[#9945FF]/30 focus:border-[#9945FF] pr-20"
+                className="bg-background border-[#9945FF]/30 focus:border-[#9945FF] pr-20"
               />
               <Button
                 variant="ghost"
@@ -170,13 +170,13 @@ export default function TransferComponent() {
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
                 placeholder="0.00"
-                className="flex-1 bg-black border-[#9945FF]/30 focus:border-[#9945FF]"
+                className="flex-1 bg-background border-[#9945FF]/30 focus:border-[#9945FF]"
               />
               <Select value={token} onValueChange={setToken}>
-                <SelectTrigger className="w-[120px] bg-black border-[#9945FF]/30">
+                <SelectTrigger className="w-[120px] bg-background border-[#9945FF]/30">
                   <SelectValue placeholder="Select token" />
                 </SelectTrigger>
-                <SelectContent className="bg-black border-[#9945FF]/30">
+                <SelectContent className="bg-background border-[#9945FF]/30">
                   <SelectItem value="sol">SOL</SelectItem>
                   <SelectItem value="usdc">USDC</SelectItem>
                   <SelectItem value="rndr">RNDR</SelectItem>
@@ -196,7 +196,7 @@ export default function TransferComponent() {
           </div>
 
           <Tabs defaultValue="quick" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 bg-black border border-[#9945FF]/30">
+            <TabsList className="grid w-full grid-cols-2 bg-background border border-[#9945FF]/30">
               <TabsTrigger
                 value="quick"
                 className="data-[state=active]:bg-[#9945FF]/20"
@@ -229,7 +229,7 @@ export default function TransferComponent() {
                     value={memo}
                     onChange={(e) => setMemo(e.target.value)}
                     placeholder="Add a note to this transfer"
-                    className="bg-black border-[#9945FF]/30 focus:border-[#9945FF]"
+                    className="bg-background border-[#9945FF]/30 focus:border-[#9945FF]"
                   />
                 </div>
 

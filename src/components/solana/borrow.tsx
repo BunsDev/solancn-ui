@@ -148,7 +148,7 @@ export const BorrowComponent = () => {
   );
 
   return (
-    <Card className="w-full bg-black text-white border border-[#9945FF]/20">
+    <Card className="w-full bg-background text-white border border-[#9945FF]/20">
       <CardHeader className="border-b border-[#9945FF]/20">
         <CardTitle className="text-[#14F195]">Borrow Assets</CardTitle>
         <CardDescription className="text-gray-400">
@@ -157,7 +157,7 @@ export const BorrowComponent = () => {
       </CardHeader>
       <CardContent className="pt-6 space-y-6">
         <Tabs value={borrowTab} className="w-full" onValueChange={setBorrowTab}>
-          <TabsList className="grid grid-cols-2 mb-4 bg-black border border-[#9945FF]/30">
+          <TabsList className="grid grid-cols-2 mb-4 bg-background border border-[#9945FF]/30">
             <TabsTrigger
               value="available"
               className="data-[state=active]:bg-[#9945FF]/20"
@@ -349,10 +349,10 @@ export const BorrowComponent = () => {
           <div className="space-y-4">
             <div className="flex space-x-2">
               <Select value={selectedAsset} onValueChange={setSelectedAsset}>
-                <SelectTrigger className="bg-black border-[#9945FF]/30 w-1/3">
+                <SelectTrigger className="bg-background border-[#9945FF]/30 w-1/3">
                   <SelectValue placeholder="Asset" />
                 </SelectTrigger>
-                <SelectContent className="bg-black border-[#9945FF]/30">
+                <SelectContent className="bg-background border-[#9945FF]/30">
                   {assets.map((asset) => (
                     <SelectItem key={asset.symbol} value={asset.symbol}>
                       {asset.symbol}
@@ -365,7 +365,7 @@ export const BorrowComponent = () => {
                 value={borrowAmount}
                 onChange={(e) => setBorrowAmount(e.target.value)}
                 placeholder="0.00"
-                className="flex-1 bg-black border-[#9945FF]/30 focus:border-[#9945FF]"
+                className="flex-1 bg-background border-[#9945FF]/30 focus:border-[#9945FF]"
               />
             </div>
 

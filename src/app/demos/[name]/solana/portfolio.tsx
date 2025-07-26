@@ -1,3 +1,5 @@
+"use client";
+
 import { PortfolioComponent } from "@/components/solana/portfolio";
 
 export const portfolio = {

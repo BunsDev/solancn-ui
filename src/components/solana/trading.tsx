@@ -87,7 +87,7 @@ export default function TradingComponent() {
       {/* Market selection and chart */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
         {/* Market pairs */}
-        <Card className="bg-black border border-[#9945FF]/20 lg:col-span-1">
+        <Card className="bg-background border border-[#9945FF]/20 lg:col-span-1">
           <CardHeader className="pb-2">
             <CardTitle className="text-[#14F195] text-lg">Markets</CardTitle>
           </CardHeader>
@@ -95,12 +95,12 @@ export default function TradingComponent() {
             <div className="px-4">
               <Input 
                 placeholder="Search markets" 
-                className="bg-black border-[#9945FF]/30" 
+                className="bg-background border-[#9945FF]/30" 
               />
             </div>
             <div className="mt-2 overflow-auto max-h-[300px]">
               <table className="w-full">
-                <thead className="sticky top-0 bg-black border-b border-[#9945FF]/20">
+                <thead className="sticky top-0 bg-background border-b border-[#9945FF]/20">
                   <tr>
                     <th className="text-left p-4 text-sm text-gray-400">Pair</th>
                     <th className="text-right p-4 text-sm text-gray-400">Price</th>
@@ -130,7 +130,7 @@ export default function TradingComponent() {
         </Card>
 
         {/* Price chart */}
-        <Card className="bg-black border border-[#9945FF]/20 lg:col-span-3 min-h-[300px] relative">
+        <Card className="bg-background border border-[#9945FF]/20 lg:col-span-3 min-h-[300px] relative">
           <CardHeader className="pb-2">
             <CardTitle className="text-[#14F195] text-lg flex justify-between">
               <span>{selectedPair} Chart</span>
@@ -153,10 +153,10 @@ export default function TradingComponent() {
       {/* Orderbook, trades and order form */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Orderbook and recent trades */}
-        <Card className="bg-black border border-[#9945FF]/20 lg:col-span-2">
+        <Card className="bg-background border border-[#9945FF]/20 lg:col-span-2">
           <CardHeader className="pb-2">
             <Tabs defaultValue="orderbook" className="w-full">
-              <TabsList className="grid grid-cols-3 bg-black border border-[#9945FF]/30">
+              <TabsList className="grid grid-cols-3 bg-background border border-[#9945FF]/30">
                 <TabsTrigger value="orderbook" className="data-[state=active]:bg-[#9945FF]/20">
                   Order Book
                 </TabsTrigger>
@@ -249,7 +249,7 @@ export default function TradingComponent() {
         </Card>
 
         {/* Order form */}
-        <Card className="bg-black border border-[#9945FF]/20 lg:col-span-1">
+        <Card className="bg-background border border-[#9945FF]/20 lg:col-span-1">
           <CardHeader className="pb-2">
             <CardTitle className="text-[#14F195] text-lg">
               <div className="flex w-full">
@@ -273,10 +273,10 @@ export default function TradingComponent() {
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <Select defaultValue={orderType} onValueChange={(value) => setOrderType(value)}>
-                    <SelectTrigger className="w-full bg-black border-[#9945FF]/30">
+                    <SelectTrigger className="w-full bg-background border-[#9945FF]/30">
                       <SelectValue placeholder="Order Type" />
                     </SelectTrigger>
-                    <SelectContent className="bg-black border-[#9945FF]/30">
+                    <SelectContent className="bg-background border-[#9945FF]/30">
                       <SelectItem value="limit">Limit</SelectItem>
                       <SelectItem value="market">Market</SelectItem>
                       <SelectItem value="stopLimit">Stop Limit</SelectItem>
@@ -294,7 +294,7 @@ export default function TradingComponent() {
                     placeholder="0.00" 
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
-                    className="bg-black border-[#9945FF]/30" 
+                    className="bg-background border-[#9945FF]/30" 
                   />
                 </div>
               )}
@@ -307,7 +307,7 @@ export default function TradingComponent() {
                   placeholder="0.00" 
                   value={amount}
                   onChange={(e) => handleAmountChange(e.target.value)}
-                  className="bg-black border-[#9945FF]/30" 
+                  className="bg-background border-[#9945FF]/30" 
                 />
                 <div className="flex justify-between gap-2">
                   <Button variant="outline" size="sm" className="flex-1 text-xs border-[#9945FF]/30" onClick={() => handleAmountChange((0.25).toString())}>25%</Button>
@@ -325,7 +325,7 @@ export default function TradingComponent() {
                   placeholder="0.00" 
                   value={total}
                   onChange={(e) => handleTotalChange(e.target.value)}
-                  className="bg-black border-[#9945FF]/30" 
+                  className="bg-background border-[#9945FF]/30" 
                 />
               </div>
 

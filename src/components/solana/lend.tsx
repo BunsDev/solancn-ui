@@ -147,7 +147,7 @@ export const LendComponent = () => {
   };
 
   return (
-    <Card className="w-full bg-black text-white border border-[#14F195]/20">
+    <Card className="w-full bg-background text-white border border-[#14F195]/20">
       <CardHeader className="border-b border-[#14F195]/20">
         <CardTitle className="text-[#9945FF]">Lend Assets</CardTitle>
         <CardDescription className="text-gray-400">
@@ -157,7 +157,7 @@ export const LendComponent = () => {
 
       <CardContent className="pt-6 space-y-6">
         <Tabs value={lendTab} className="w-full" onValueChange={setLendTab}>
-          <TabsList className="grid grid-cols-2 mb-4 bg-black border border-[#14F195]/30">
+          <TabsList className="grid grid-cols-2 mb-4 bg-background border border-[#14F195]/30">
             <TabsTrigger
               value="available"
               className="data-[state=active]:bg-[#14F195]/20"
@@ -346,10 +346,10 @@ export const LendComponent = () => {
           <div className="space-y-4">
             <div className="flex space-x-2">
               <Select value={selectedAsset} onValueChange={setSelectedAsset}>
-                <SelectTrigger className="bg-black border-[#14F195]/30 w-1/3">
+                <SelectTrigger className="bg-background border-[#14F195]/30 w-1/3">
                   <SelectValue placeholder="Asset" />
                 </SelectTrigger>
-                <SelectContent className="bg-black border-[#14F195]/30">
+                <SelectContent className="bg-background border-[#14F195]/30">
                   {assets.map((asset) => (
                     <SelectItem key={asset.symbol} value={asset.symbol}>
                       {asset.symbol}
@@ -363,7 +363,7 @@ export const LendComponent = () => {
                   value={supplyAmount}
                   onChange={(e) => setSupplyAmount(e.target.value)}
                   placeholder="0.00"
-                  className="w-full bg-black border-[#14F195]/30 focus:border-[#14F195] pr-16"
+                  className="w-full bg-background border-[#14F195]/30 focus:border-[#14F195] pr-16"
                 />
                 {connected && selectedAsset && (
                   <Button
@@ -464,7 +464,6 @@ export const LendComponent = () => {
     </Card>
   );
 };
-
 
 export const lend = {
   name: "lend",

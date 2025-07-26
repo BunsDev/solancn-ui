@@ -274,7 +274,7 @@ export default function NFTComponent() {
   // NFT Card Component
   const NFTCard = ({ nft }: { nft: (typeof nftsData)[0] }) => (
     <Card
-      className="bg-black border border-[#9945FF]/20 overflow-hidden hover:border-[#9945FF]/50 transition-all cursor-pointer w-full h-full"
+      className="bg-background border border-[#9945FF]/20 overflow-hidden hover:border-[#9945FF]/50 transition-all cursor-pointer w-full h-full"
       onClick={() => handleSelectNFT(nft)}
     >
       <div className="relative w-full h-full aspect-square overflow-hidden">
@@ -284,7 +284,7 @@ export default function NFTComponent() {
           className="w-full h-full object-cover"
         />
         <div className="absolute top-2 right-2">
-          <Badge className="bg-black/70 text-white hover:bg-black/80">
+          <Badge className="bg-background/70 text-white hover:bg-background/80">
             {nft.rarity} Rarity
           </Badge>
         </div>
@@ -311,7 +311,7 @@ export default function NFTComponent() {
   // NFT List Item Component
   const NFTListItem = ({ nft }: { nft: (typeof nftsData)[0] }) => (
     <Card
-      className="bg-black border border-[#9945FF]/20 overflow-hidden hover:border-[#9945FF]/50 transition-all cursor-pointer w-full h-full"
+      className="bg-background border border-[#9945FF]/20 overflow-hidden hover:border-[#9945FF]/50 transition-all cursor-pointer w-full h-full"
       onClick={() => handleSelectNFT(nft)}
     >
       <div className="flex">
@@ -331,7 +331,7 @@ export default function NFTComponent() {
             <p className="text-xs text-gray-400">{nft.collection}</p>
           </div>
           <div className="flex items-center gap-4">
-            <Badge className="bg-black/70 text-white hover:bg-black/80">
+            <Badge className="bg-background/70 text-white hover:bg-background/80">
               {nft.rarity} Rarity
             </Badge>
             {nft.listed && (
@@ -351,7 +351,7 @@ export default function NFTComponent() {
   const CollectionCard = ({
     collection,
   }: { collection: (typeof collections)[0] }) => (
-    <Card className="bg-black border border-[#9945FF]/20 overflow-hidden hover:border-[#9945FF]/50 transition-all cursor-pointer">
+    <Card className="bg-background border border-[#9945FF]/20 overflow-hidden hover:border-[#9945FF]/50 transition-all cursor-pointer">
       <div className="p-4">
         <h3 className="font-medium">{collection.name}</h3>
         <div className="grid grid-cols-3 gap-3 mt-3">
@@ -393,7 +393,7 @@ export default function NFTComponent() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* NFT Image */}
-          <Card className="bg-black border border-[#9945FF]/20 overflow-hidden">
+          <Card className="bg-background border border-[#9945FF]/20 overflow-hidden">
             <div className="aspect-square relative">
               <Image
                 src={selectedNFT.image}
@@ -405,7 +405,7 @@ export default function NFTComponent() {
 
           {/* NFT Details */}
           <div className="space-y-6">
-            <Card className="bg-black border border-[#9945FF]/20">
+            <Card className="bg-background border border-[#9945FF]/20">
               <CardHeader>
                 <div className="flex justify-between">
                   <div>
@@ -469,7 +469,7 @@ export default function NFTComponent() {
               </CardContent>
             </Card>
 
-            <Card className="bg-black border border-[#9945FF]/20">
+            <Card className="bg-background border border-[#9945FF]/20">
               <CardHeader>
                 <CardTitle className="text-lg">Attributes</CardTitle>
               </CardHeader>
@@ -495,7 +495,7 @@ export default function NFTComponent() {
 
   // Filter panel
   const FilterPanel = () => (
-    <Card className="bg-black border border-[#9945FF]/20">
+    <Card className="bg-background border border-[#9945FF]/20">
       <CardHeader className="pb-2">
         <div className="flex justify-between items-center">
           <CardTitle className="text-lg flex items-center gap-2">
@@ -525,10 +525,10 @@ export default function NFTComponent() {
             value={filters.collection}
             onValueChange={(val) => setFilters({ ...filters, collection: val })}
           >
-            <SelectTrigger className="bg-black border-[#9945FF]/30">
+            <SelectTrigger className="bg-background border-[#9945FF]/30">
               <SelectValue id="collection" placeholder="All collections" />
             </SelectTrigger>
-            <SelectContent className="bg-black border-[#9945FF]/30">
+            <SelectContent className="bg-background border-[#9945FF]/30">
               <SelectItem value="all">All collections</SelectItem>
               {uniqueCollections.map((collection) => (
                 <SelectItem key={collection} value={collection}>
@@ -548,7 +548,7 @@ export default function NFTComponent() {
               id="minPrice"
               placeholder="Min"
               type="number"
-              className="bg-black border-[#9945FF]/30"
+              className="bg-background border-[#9945FF]/30"
               value={filters.minPrice}
               onChange={(e) =>
                 setFilters({ ...filters, minPrice: e.target.value })
@@ -559,7 +559,7 @@ export default function NFTComponent() {
               id="maxPrice"
               placeholder="Max"
               type="number"
-              className="bg-black border-[#9945FF]/30"
+              className="bg-background border-[#9945FF]/30"
               value={filters.maxPrice}
               onChange={(e) =>
                 setFilters({ ...filters, maxPrice: e.target.value })
@@ -576,10 +576,10 @@ export default function NFTComponent() {
             value={filters.status}
             onValueChange={(val) => setFilters({ ...filters, status: val })}
           >
-            <SelectTrigger className="bg-black border-[#9945FF]/30">
+            <SelectTrigger className="bg-background border-[#9945FF]/30">
               <SelectValue id="status" placeholder="All items" />
             </SelectTrigger>
-            <SelectContent className="bg-black border-[#9945FF]/30">
+            <SelectContent className="bg-background border-[#9945FF]/30">
               <SelectItem value="all">All items</SelectItem>
               <SelectItem value="listed">Listed</SelectItem>
               <SelectItem value="unlisted">Unlisted</SelectItem>
@@ -616,7 +616,7 @@ export default function NFTComponent() {
               onValueChange={(value) => setActiveTab(value as any)}
               className="w-full md:w-auto"
             >
-              <TabsList className="bg-black border border-[#9945FF]/20">
+              <TabsList className="bg-background border border-[#9945FF]/20">
                 <TabsTrigger
                   value="explore"
                   className="data-[state=active]:bg-[#9945FF]"
@@ -643,7 +643,7 @@ export default function NFTComponent() {
                 <Search className="h-4 w-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <Input
                   placeholder="Search by name or collection"
-                  className="bg-black border-[#9945FF]/30 pl-10"
+                  className="bg-background border-[#9945FF]/30 pl-10"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />

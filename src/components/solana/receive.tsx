@@ -22,7 +22,7 @@ import {
 import { useWallet } from "@solana/wallet-adapter-react";
 import { toast } from "sonner";
 
-export default function ReceiveComponent() {
+export function ReceiveComponent() {
   const { publicKey, connected } = useWallet();
   const [amount, setAmount] = useState<string>("");
   const [selectedToken, setSelectedToken] = useState<string>("sol");
@@ -61,7 +61,7 @@ export default function ReceiveComponent() {
   };
 
   return (
-    <Card className="w-full bg-black text-white border border-[#9945FF]/20">
+    <Card className="w-full bg-background text-white border border-[#9945FF]/20">
       <CardHeader className="border-b border-[#9945FF]/20">
         <CardTitle className="text-[#14F195]">Receive</CardTitle>
         <CardDescription className="text-gray-400">
@@ -71,7 +71,7 @@ export default function ReceiveComponent() {
       <CardContent className="pt-6">
         <div className="space-y-6">
           <div className="flex flex-col items-center">
-            <div className="w-48 h-48 bg-white p-2 rounded-lg mb-4">
+            <div className="w-48 h-48 bg-background p-2 rounded-lg mb-4">
               {/* QR Code placeholder */}
               <div className="w-full h-full bg-[#9945FF]/10 flex items-center justify-center">
                 <div className="text-black font-bold">QR Code</div>
@@ -140,7 +140,7 @@ export default function ReceiveComponent() {
           </div>
 
           <Tabs defaultValue="request" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 bg-black border border-[#9945FF]/30">
+            <TabsList className="grid w-full grid-cols-2 bg-background border border-[#9945FF]/30">
               <TabsTrigger
                 value="request"
                 className="data-[state=active]:bg-[#9945FF]/20"
@@ -167,17 +167,17 @@ export default function ReceiveComponent() {
                     placeholder="0.00"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
-                    className="flex-1 bg-black border-[#9945FF]/30 focus:border-[#9945FF]"
+                    className="flex-1 bg-background border-[#9945FF]/30 focus:border-[#9945FF]"
                   />
                   <Select
                     defaultValue="sol"
                     value={selectedToken}
                     onValueChange={setSelectedToken}
                   >
-                    <SelectTrigger className="w-[120px] bg-black border-[#9945FF]/30">
+                    <SelectTrigger className="w-[120px] bg-background border-[#9945FF]/30">
                       <SelectValue placeholder="Select token" />
                     </SelectTrigger>
-                    <SelectContent className="bg-black border-[#9945FF]/30">
+                    <SelectContent className="bg-background border-[#9945FF]/30">
                       <SelectItem value="sol">SOL</SelectItem>
                       <SelectItem value="usdc">USDC</SelectItem>
                       <SelectItem value="rndr">RNDR</SelectItem>
@@ -195,7 +195,7 @@ export default function ReceiveComponent() {
                   value={memo}
                   onChange={(e) => setMemo(e.target.value)}
                   placeholder="What's this payment for?"
-                  className="bg-black border-[#9945FF]/30 focus:border-[#9945FF]"
+                  className="bg-background border-[#9945FF]/30 focus:border-[#9945FF]"
                 />
               </div>
 
@@ -226,17 +226,17 @@ export default function ReceiveComponent() {
                     placeholder="yourname"
                     value={domainName}
                     onChange={(e) => setDomainName(e.target.value)}
-                    className="flex-1 bg-black border-[#9945FF]/30 focus:border-[#9945FF]"
+                    className="flex-1 bg-background border-[#9945FF]/30 focus:border-[#9945FF]"
                   />
                   <Select
                     defaultValue=".sol"
                     value={domainExtension}
                     onValueChange={setDomainExtension}
                   >
-                    <SelectTrigger className="w-[100px] bg-black border-[#9945FF]/30">
+                    <SelectTrigger className="w-[100px] bg-background border-[#9945FF]/30">
                       <SelectValue placeholder=".sol" />
                     </SelectTrigger>
-                    <SelectContent className="bg-black border-[#9945FF]/30">
+                    <SelectContent className="bg-background border-[#9945FF]/30">
                       <SelectItem value=".sol">.sol</SelectItem>
                       <SelectItem value=".backpack">.backpack</SelectItem>
                     </SelectContent>
@@ -316,3 +316,10 @@ export default function ReceiveComponent() {
     </Card>
   );
 }
+
+export const receive = {
+  name: "receive",
+  components: {
+    Default: <ReceiveComponent />,
+  },
+};

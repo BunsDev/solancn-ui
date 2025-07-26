@@ -1,6 +1,6 @@
 "use client";
 
-import SwapComponent from "@/components/solana/swap";
+import { SwapComponent } from "@/components/solana/swap";
 
 export const swap = {
   name: "swap",

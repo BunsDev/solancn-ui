@@ -154,13 +154,13 @@ export default function StakingComponent() {
   // Validator selector card component
   const ValidatorCard = ({ validator, isSelected, onSelect }: ValidatorCardProps) => (
     <Card 
-      className={`bg-black hover:bg-[#9945FF]/5 transition-all cursor-pointer ${
+      className={`bg-background hover:bg-[#9945FF]/5 transition-all cursor-pointer ${
         isSelected ? 'border-[#9945FF]' : 'border-[#9945FF]/20'
       }`}
       onClick={() => onSelect(validator)}
     >
       <CardContent className="p-4 flex items-center gap-4">
-        <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden">
+        <div className="w-10 h-10 rounded-full bg-background flex items-center justify-center overflow-hidden">
           <img 
             src={validator.logo} 
             alt={validator.name}
@@ -196,11 +196,11 @@ export default function StakingComponent() {
     const validator = getValidatorById(position.validator);
     
     return (
-      <Card className="bg-black border border-[#9945FF]/20">
+      <Card className="bg-background border border-[#9945FF]/20">
         <CardContent className="p-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden">
+              <div className="w-10 h-10 rounded-full bg-background flex items-center justify-center overflow-hidden">
                 <img 
                   src={validator.logo} 
                   alt={validator.name}
@@ -254,7 +254,7 @@ export default function StakingComponent() {
       {/* Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Total Staked Card */}
-        <Card className="bg-black border border-[#9945FF]/20">
+        <Card className="bg-background border border-[#9945FF]/20">
           <CardHeader className="pb-2">
             <CardDescription className="text-gray-400">Total Staked</CardDescription>
             <CardTitle className="text-3xl">{connected ? getTotalStaked().toFixed(2) : "0.00"} SOL</CardTitle>
@@ -269,7 +269,7 @@ export default function StakingComponent() {
         </Card>
         
         {/* Rewards Card */}
-        <Card className="bg-black border border-[#9945FF]/20">
+        <Card className="bg-background border border-[#9945FF]/20">
           <CardHeader className="pb-2">
             <CardDescription className="text-gray-400">Total Rewards</CardDescription>
             <CardTitle className="text-3xl text-[#14F195]">+{connected ? getTotalRewards().toFixed(4) : "0.0000"} SOL</CardTitle>
@@ -284,7 +284,7 @@ export default function StakingComponent() {
         </Card>
         
         {/* Network Stats Card */}
-        <Card className="bg-black border border-[#9945FF]/20">
+        <Card className="bg-background border border-[#9945FF]/20">
           <CardHeader className="pb-2">
             <CardDescription className="text-gray-400">Network Stats</CardDescription>
             <CardTitle className="text-xl">Solana Staking</CardTitle>
@@ -312,7 +312,7 @@ export default function StakingComponent() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Staking Form */}
         <div className="md:col-span-2">
-          <Card className="bg-black border border-[#9945FF]/20">
+          <Card className="bg-background border border-[#9945FF]/20">
             <CardHeader>
               <CardTitle className="text-[#14F195]">Stake SOL</CardTitle>
               <CardDescription className="text-gray-400">
@@ -322,11 +322,11 @@ export default function StakingComponent() {
             <CardContent className="space-y-6">
               {/* Stake/Unstake Tabs */}
               <Tabs defaultValue="stake" value={stakeTab} onValueChange={setStakeTab}>
-                <TabsList className="bg-black border border-[#9945FF]/20">
-                  <TabsTrigger value="stake" className="data-[state=active]:bg-[#9945FF]">
+                <TabsList className="bg-background border border-[#9945FF]/20">
+                  <TabsTrigger value="stake" className="data-[state=active]:bg-[#9945FF]/20">
                     Stake
                   </TabsTrigger>
-                  <TabsTrigger value="unstake" className="data-[state=active]:bg-[#9945FF]">
+                  <TabsTrigger value="unstake" className="data-[state=active]:bg-[#9945FF]/20">
                     Unstake
                   </TabsTrigger>
                 </TabsList>
@@ -364,7 +364,7 @@ export default function StakingComponent() {
                         placeholder="0.00"
                         value={stakeAmount}
                         onChange={(e) => setStakeAmount(e.target.value)}
-                        className="bg-black border-[#9945FF]/30"
+                        className="bg-background border-[#9945FF]/30"
                       />
                       <Button 
                         variant="outline"
@@ -412,10 +412,10 @@ export default function StakingComponent() {
                               onValueChange={setLockPeriod}
                               aria-labelledby="lock-period-label"
                             >
-                              <SelectTrigger className="bg-black border-[#9945FF]/30">
+                              <SelectTrigger className="bg-background border-[#9945FF]/30">
                                 <SelectValue id="lock-period" placeholder="Select lock period" />
                               </SelectTrigger>
-                              <SelectContent className="bg-black border-[#9945FF]/30">
+                              <SelectContent className="bg-background border-[#9945FF]/30">
                                 <SelectItem value="0">No lock (unstake anytime)</SelectItem>
                                 <SelectItem value="30">30 days (+0.5% APY boost)</SelectItem>
                                 <SelectItem value="60">60 days (+1.0% APY boost)</SelectItem>
@@ -483,11 +483,11 @@ export default function StakingComponent() {
                         </p>
                         
                         {userStakingPositions.map((position) => (
-                          <Card key={position.id} className="bg-black border border-[#9945FF]/20">
+                          <Card key={position.id} className="bg-background border border-[#9945FF]/20">
                             <CardContent className="p-4">
                               <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3">
-                                  <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden">
+                                  <div className="w-10 h-10 rounded-full bg-background flex items-center justify-center overflow-hidden">
                                     <img 
                                       src={getValidatorById(position.validator).logo} 
                                       alt={getValidatorById(position.validator).name}
@@ -504,10 +504,10 @@ export default function StakingComponent() {
                                 </div>
                                 
                                 <Select>
-                                  <SelectTrigger className="w-[120px] bg-black border-[#9945FF]/30">
+                                  <SelectTrigger className="w-[120px] bg-background border-[#9945FF]/30">
                                     <SelectValue placeholder="Amount" />
                                   </SelectTrigger>
-                                  <SelectContent className="bg-black border-[#9945FF]/30">
+                                  <SelectContent className="bg-background border-[#9945FF]/30">
                                     <SelectItem value="25">25%</SelectItem>
                                     <SelectItem value="50">50%</SelectItem>
                                     <SelectItem value="75">75%</SelectItem>
@@ -576,13 +576,13 @@ export default function StakingComponent() {
         
         {/* Info Card */}
         <div className="md:col-span-1">
-          <Card className="bg-black border border-[#9945FF]/20">
+          <Card className="bg-background border border-[#9945FF]/20">
             <CardHeader>
               <CardTitle className="text-[#14F195]">About {selectedValidator.name}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center overflow-hidden">
+                <div className="w-12 h-12 rounded-full bg-background flex items-center justify-center overflow-hidden">
                   <Image 
                     src={selectedValidator.logo || ""} 
                     alt={selectedValidator.name}
@@ -632,7 +632,7 @@ export default function StakingComponent() {
             </CardContent>
           </Card>
           
-          <Card className="bg-black border border-[#9945FF]/20 mt-6">
+          <Card className="bg-background border border-[#9945FF]/20 mt-6">
             <CardHeader>
               <CardTitle className="text-[#14F195]">Staking FAQ</CardTitle>
             </CardHeader>

@@ -63,7 +63,7 @@ const recentTransactions = [
   }
 ];
 
-export default function BridgeComponent() {
+export function BridgeComponent() {
   const { connected } = useWallet();
   const [fromNetwork, setFromNetwork] = useState("solana");
   const [toNetwork, setToNetwork] = useState("ethereum");
@@ -111,7 +111,7 @@ export default function BridgeComponent() {
     <div className="flex flex-col gap-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Bridge Card */}
-        <Card className="bg-black border border-[#9945FF]/20 md:col-span-2">
+        <Card className="bg-background border border-[#9945FF]/20 md:col-span-2">
           <CardHeader>
             <CardTitle className="text-[#14F195]">Bridge Assets</CardTitle>
             <CardDescription className="text-gray-400">
@@ -124,7 +124,7 @@ export default function BridgeComponent() {
             <div className="space-y-2">
               <label htmlFor="fromNetwork" className="text-sm text-gray-400">From</label>
               <Select value={fromNetwork} onValueChange={setFromNetwork}>
-                <SelectTrigger className="bg-black border-[#9945FF]/30">
+                <SelectTrigger className="bg-background border-[#9945FF]/30">
                   <SelectValue placeholder="Select network">
                     {sourceNetwork && (
                       <div className="flex items-center gap-2">
@@ -136,7 +136,7 @@ export default function BridgeComponent() {
                     )}
                   </SelectValue>
                 </SelectTrigger>
-                <SelectContent className="bg-black border-[#9945FF]/30">
+                <SelectContent className="bg-background border-[#9945FF]/30">
                   {networks.map((network) => (
                     <SelectItem 
                       key={network.id} 
@@ -186,7 +186,7 @@ export default function BridgeComponent() {
             <div className="space-y-2">
               <label htmlFor="toNetwork" className="text-sm text-gray-400">To</label>
               <Select value={toNetwork} onValueChange={setToNetwork}>
-                <SelectTrigger className="bg-black border-[#9945FF]/30">
+                <SelectTrigger className="bg-background border-[#9945FF]/30">
                   <SelectValue placeholder="Select network">
                     {targetNetwork && (
                       <div className="flex items-center gap-2">
@@ -198,7 +198,7 @@ export default function BridgeComponent() {
                     )}
                   </SelectValue>
                 </SelectTrigger>
-                <SelectContent className="bg-black border-[#9945FF]/30">
+                <SelectContent className="bg-background border-[#9945FF]/30">
                   {networks.map((network) => (
                     <SelectItem 
                       key={network.id} 
@@ -221,10 +221,10 @@ export default function BridgeComponent() {
             <div className="space-y-2">
               <label htmlFor="token" className="text-sm text-gray-400">Token</label>
               <Select value={selectedToken} onValueChange={setSelectedToken}>
-                <SelectTrigger className="bg-black border-[#9945FF]/30">
+                <SelectTrigger className="bg-background border-[#9945FF]/30">
                   <SelectValue placeholder="Select token" />
                 </SelectTrigger>
-                <SelectContent className="bg-black border-[#9945FF]/30">
+                <SelectContent className="bg-background border-[#9945FF]/30">
                   {availableTokens.map((token) => (
                     <SelectItem key={token.symbol} value={token.symbol}>
                       <div className="flex items-center gap-2">
@@ -250,7 +250,7 @@ export default function BridgeComponent() {
                   placeholder="0.00"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
-                  className="bg-black border-[#9945FF]/30"
+                  className="bg-background border-[#9945FF]/30"
                 />
                 <Button 
                   variant="outline"
@@ -270,7 +270,7 @@ export default function BridgeComponent() {
                 placeholder={`Enter ${targetNetwork?.name} address`}
                 value={recipient}
                 onChange={(e) => setRecipient(e.target.value)}
-                className="bg-black border-[#9945FF]/30"
+                className="bg-background border-[#9945FF]/30"
               />
               {toNetwork !== fromNetwork && (
                 <p className="text-xs text-gray-400">
@@ -313,7 +313,7 @@ export default function BridgeComponent() {
         </Card>
 
         {/* Info Card */}
-        <Card className="bg-black border border-[#9945FF]/20">
+        <Card className="bg-background border border-[#9945FF]/20">
           <CardHeader>
             <CardTitle className="text-[#14F195]">Bridge Information</CardTitle>
           </CardHeader>
@@ -348,7 +348,7 @@ export default function BridgeComponent() {
       </div>
 
       {/* Transactions History */}
-      <Card className="bg-black border border-[#9945FF]/20">
+      <Card className="bg-background border border-[#9945FF]/20">
         <CardHeader>
           <CardTitle className="text-[#14F195]">Recent Transactions</CardTitle>
         </CardHeader>

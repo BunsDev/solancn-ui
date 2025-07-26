@@ -1,4 +1,4 @@
-import SwapComponent from "@/components/solana/swap";
+import { SwapComponent } from "@/components/solana/swap";
 
 export default async function SwapPage() {
   return (

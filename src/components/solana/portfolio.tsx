@@ -21,7 +21,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const PortfolioComponent = () => {
   return (
-    <Card className="w-full bg-black text-white border border-[#9945FF]/20">
+    <Card className="w-full bg-background text-white border border-[#9945FF]/20">
       <CardHeader className="border-b border-[#9945FF]/20">
         <CardTitle className="text-[#14F195]">Portfolio Dashboard</CardTitle>
         <CardDescription className="text-gray-400">
@@ -30,7 +30,7 @@ export const PortfolioComponent = () => {
       </CardHeader>
       <CardContent className="pt-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          <Card className="bg-black border border-[#9945FF]/20">
+          <Card className="bg-background border border-[#9945FF]/20">
             <CardContent className="p-4">
               <div className="text-sm text-gray-400">Total Balance</div>
               <div className="text-2xl font-bold">$0.00</div>
@@ -38,7 +38,7 @@ export const PortfolioComponent = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-black border border-[#9945FF]/20">
+          <Card className="bg-background border border-[#9945FF]/20">
             <CardContent className="p-4">
               <div className="text-sm text-gray-400">24h Change</div>
               <div className="text-2xl font-bold text-[#14F195]">+0.00%</div>
@@ -46,7 +46,7 @@ export const PortfolioComponent = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-black border border-[#9945FF]/20">
+          <Card className="bg-background border border-[#9945FF]/20">
             <CardContent className="p-4">
               <div className="text-sm text-gray-400">SOL Price</div>
               <div className="text-2xl font-bold">$57.24</div>
@@ -56,7 +56,7 @@ export const PortfolioComponent = () => {
         </div>
 
         <Tabs defaultValue="tokens" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 bg-black border border-[#9945FF]/30">
+          <TabsList className="grid w-full grid-cols-3 bg-background border border-[#9945FF]/30">
             <TabsTrigger
               value="tokens"
               className="data-[state=active]:bg-[#9945FF]/20"
