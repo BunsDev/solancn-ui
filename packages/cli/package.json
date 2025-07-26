@@ -1,5 +1,5 @@
 {
-	"name": "solancn-cli",
+	"name": "solancn",
 	"version": "0.0.1",
 	"description": "CLI for solancn ui design system",
 	"main": "dist/index.js",
