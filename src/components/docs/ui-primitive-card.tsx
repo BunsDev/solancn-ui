@@ -93,7 +93,7 @@ export function UIPrimitiveCard({ primitive, baseUrl, prompt }: UIPrimitiveCardP
           >
             <iframe
               id="iframe"
-              src={`/demo/${primitive.name}`}
+              src={`/demos/${primitive.name}`}
               className="h-full w-full"
               title="Page Preview"
             />
