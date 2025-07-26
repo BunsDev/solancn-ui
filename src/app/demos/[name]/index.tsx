@@ -5,7 +5,14 @@ import { blankDemo } from "@/app/demos/[name]/blocks/blankDemo";
 import { dashboardDemo } from "@/app/demos/[name]/blocks/dashboardDemo";
 import { solanaDemo } from "@/app/demos/[name]/blocks/solanaDemo";
 import { nftDemo } from "@/app/demos/[name]/blocks/nftDemo";
+import { frameDemo } from "@/app/demos/[name]/blocks/frameDemo";
 import { bridgeDemo } from "@/app/demos/[name]/blocks/bridgeDemo";
+import { walletDemo } from "@/app/demos/[name]/blocks/walletDemo";
+import { swapDemo } from "@/app/demos/[name]/blocks/swapDemo";
+import { borrowDemo } from "@/app/demos/[name]/blocks/borrowDemo";
+import { lendDemo } from "@/app/demos/[name]/blocks/lendDemo";
+import { receiveDemo } from "@/app/demos/[name]/blocks/receiveDemo";
+import { transferDemo } from "@/app/demos/[name]/blocks/transferDemo";
 
 // components
 import { brandHeader } from "@/app/demos/[name]/components/brand-header";
@@ -70,6 +77,14 @@ export const demos: { [name: string]: Demo } = {
   nftDemo,
   dashboardDemo,
   solanaDemo,
+  bridgeDemo,
+  swapDemo,
+  transferDemo,
+  receiveDemo,
+  borrowDemo,
+  lendDemo,
+  walletDemo,
+  frameDemo,
 
   // components
   hero,
