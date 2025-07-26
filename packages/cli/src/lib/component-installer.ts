@@ -69,13 +69,19 @@ export async function installComponent(
 	};
 }
 
+interface UninstallOptions {
+	targetDir: string;
+	dependencies?: string[];
+	force?: boolean;
+}
+
 /**
  * Uninstall a component or block
  */
 export async function uninstallComponent(
 	name: string,
 	item: RegistryItem,
-	options: InstallOptions,
+	options: UninstallOptions,
 ): Promise<InstallResult> {
 	const { targetDir } = options;
 	const files: string[] = [];

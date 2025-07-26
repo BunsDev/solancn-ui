@@ -25,6 +25,11 @@ export interface InstallOptions {
   dependencies?: boolean;
 }
 
+export type uninstallOptions = {
+	targetDir: string;
+	dependencies?: boolean;
+}
+
 /**
  * Installation result
  */
