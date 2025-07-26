@@ -23,9 +23,9 @@ blocks
     const spinner = ora('Fetching blocks...').start();
     
     try {
-      const registry = await fetchRegistryItems({ type: 'block' }) as unknown as RegistryItem[];
-      const allBlocks = registry?.filter((item: RegistryItem) => 
-        item.type === 'block'
+      const registry = await fetchRegistryItems({ type: 'registry:block' }) as Record<string, RegistryItem>;
+      const allBlocks = Object.values(registry)?.filter((item: RegistryItem) => 
+        item.type === 'registry:block'
       );
       
       spinner.succeed(`Found ${allBlocks.length} blocks`);
@@ -73,9 +73,9 @@ blocks
       const spinner = ora('Fetching available blocks...').start();
       
       try {
-        const registry = await fetchRegistryItems({ type: 'block' }) as unknown as RegistryItem[];
-        const blocks = registry?.filter((item: RegistryItem) => 
-          item.type === 'block'
+        const registry = await fetchRegistryItems({ type: 'registry:block' }) as Record<string, RegistryItem>;
+        const blocks = Object.values(registry)?.filter((item: RegistryItem) => 
+          item.type === 'registry:block'
         );  
         
         spinner.stop();
@@ -139,9 +139,9 @@ blocks
       const spinner = ora('Fetching available blocks...').start();
       
       try {
-        const registry = await fetchRegistryItems({ type: 'block' }) as unknown as RegistryItem[];
-        const blocks = registry?.filter((item: RegistryItem) => 
-          item.type === 'block'
+        const registry = await fetchRegistryItems({ type: 'registry:block' }) as Record<string, RegistryItem>;
+        const blocks = Object.values(registry)?.filter((item: RegistryItem) => 
+          item.type === 'registry:block'
         );
         
         spinner.stop();
@@ -198,9 +198,9 @@ blocks
       const spinner = ora('Fetching available blocks...').start();
       
       try {
-        const registry = await fetchRegistryItems({ type: 'block' }) as unknown as RegistryItem[];
-        const blocks = registry?.filter((item: RegistryItem) => 
-          item.type === 'block'
+        const registry = await fetchRegistryItems({ type: 'registry:block' }) as Record<string, RegistryItem>;
+        const blocks = Object.values(registry)?.filter((item: RegistryItem) => 
+          item.type === 'registry:block'
         );
         
         spinner.stop();

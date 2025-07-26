@@ -59,22 +59,22 @@ export function BrandSidebar({
   const mainNavItems: NavItem[] = [
     {
       title: "Home",
-      href: "#",
+      href: "/docs",
       icon: <Home className="size-4" />,
     },
     {
       title: "Projects",
-      href: "#projects",
+      href: "/components",
       icon: <LayoutGrid className="size-4" />,
     },
     {
       title: "Databases",
-      href: "#databases",
+      href: "/blocks",
       icon: <Database className="size-4" />,
     },
     {
       title: "Tables",
-      href: "#tables",
+      href: "/examples",
       icon: <Table className="size-4" />,
       badge: {
         text: "Beta",
@@ -82,7 +82,7 @@ export function BrandSidebar({
     },
     {
       title: "AI",
-      href: "#ai",
+      href: "/ai",
       icon: <MessageSquareText className="size-4" />,
       badge: {
         text: "Alpha",
@@ -93,22 +93,22 @@ export function BrandSidebar({
   const toolsNavItems: NavItem[] = [
     {
       title: "Alerts",
-      href: "#alerts",
+      href: "/alerts",
       icon: <AlertTriangle className="size-4" />,
     },
     {
       title: "Analytics",
-      href: "#analytics",
+      href: "/analytics",
       icon: <BarChart2 className="size-4" />,
     },
     {
       title: "History",
-      href: "#history",
+      href: "/history",
       icon: <Clock className="size-4" />,
     },
     {
       title: "More",
-      href: "#more",
+      href: "/more",
       icon: <MoreHorizontal className="size-4" />,
     },
   ];

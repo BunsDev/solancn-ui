@@ -15,7 +15,9 @@ vi.mock('chalk', () => ({
     dim: (text: string) => text,
   },
 }));
-vi.mock('boxen', () => (text: string) => text);
+vi.mock('boxen', () => ({
+  default: (text: string, options?: any) => `[Boxed: ${text}]`
+}));
 vi.mock('../../lib/logger', () => ({
   logger: {
     spinner: vi.fn().mockReturnValue({
@@ -58,10 +60,13 @@ describe('init command', () => {
   });
   
   it('should create a new project with the selected template', async () => {
-
-    // Mock fs.pathExists to return false (project dir doesn't exist)
-    // @ts-ignore
-    vi.mocked(fs.pathExists)?.mockResolvedValue(false);
+    const mockPathExists = vi.fn()
+      // First call to pathExists should be for registry.json (return true)
+      .mockResolvedValueOnce(true)
+      // Second call to pathExists should be for project dir (return false)
+      .mockResolvedValueOnce(false);
+    
+    vi.mocked(fs.pathExists).mockImplementation(mockPathExists);
     
     // Mock fs.copy
     vi.mocked(fs.copy).mockResolvedValue(undefined);
@@ -73,23 +78,30 @@ describe('init command', () => {
     expect(inquirer.prompt).toHaveBeenCalled();
     
     // Verify directory creation was checked
-    expect(fs.pathExists).toHaveBeenCalledWith(expect.stringContaining('test-project'));
+    expect(mockPathExists).toHaveBeenCalledTimes(1);
+    expect(mockPathExists.mock.calls[0][0]).toContain('test-project');
     
-    // Verify template copy was attempted
-    expect(fs.copy).toHaveBeenCalled();
+    // Verify mkdir was called
+    expect(fs.mkdir).toHaveBeenCalledWith('test-project');
   });
   
   it('should show error if project directory exists', async () => {
-    // Mock fs.pathExists to return true (project dir exists)
-    // @ts-ignore
-    vi.mocked(fs.pathExists)?.mockResolvedValue(true);
+    const mockPathExists = vi.fn()
+      // First call to pathExists should be for registry.json (return true)
+      .mockResolvedValueOnce(true)
+      // Second call to pathExists should be for project dir (return true)
+      .mockResolvedValueOnce(true);
+    
+    vi.mocked(fs.pathExists).mockImplementation(mockPathExists);
     
     // Run the init command
     await init();
     
     // Check that error was shown
     const { logger } = await import('../../lib/logger');
-    expect(logger.boxedError).toHaveBeenCalled();
+    expect(logger.boxedError).toHaveBeenCalledTimes(1);
+    
+    // Verify copy was not called
     expect(fs.copy).not.toHaveBeenCalled();
   });
 
@@ -106,6 +118,6 @@ describe('init command', () => {
     
     // Check that error was shown
     const { logger } = await import('../../lib/logger');
-    expect(logger.boxedError).toHaveBeenCalled();
+    expect(logger.boxedError).toHaveBeenCalledTimes(1);
   });
 });

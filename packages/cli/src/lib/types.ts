@@ -42,7 +42,7 @@ export interface InstallResult {
 }
 
 // Registry item types
-export type RegistryItemType = "component" | "block" | "primitive" | "theme";
+export type RegistryItemType = "registry:component" | "registry:block" | "registry:ui" | "registry:theme";
 
 // Registry item interface
 export interface RegistryItem {
@@ -57,6 +57,6 @@ export interface RegistryItem {
 export interface RegistryData {
   components?: Record<string, RegistryItem>;
   blocks?: Record<string, RegistryItem>;
-  primitives?: Record<string, RegistryItem>;
+  ui?: Record<string, RegistryItem>;
   theme?: RegistryItem;
 }

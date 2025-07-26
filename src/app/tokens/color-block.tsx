@@ -5,7 +5,7 @@ interface SimpleColorBlockProps {
   className: string;
 }
 
-export function ColorBlock({ name, className }: SimpleColorBlockProps) {
+export default function ColorBlock({ name, className }: SimpleColorBlockProps) {
   return (
     <div className="flex items-center gap-4">
       <div className={cn("size-12 rounded border", className)} />

@@ -1,8 +1,7 @@
+// First import vitest
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import fs from "fs-extra";
-import type { RegistryItem, InstallOptions } from "../../lib/types";
 
-// Define mockSpinner before using it in mock
+// Define mocks before any imports of modules that will be mocked
 const mockSpinner = {
   start: vi.fn().mockReturnThis(),
   stop: vi.fn().mockReturnThis(),
@@ -11,23 +10,25 @@ const mockSpinner = {
   text: vi.fn().mockReturnThis(),
 };
 
-// Mock dependencies
+// Set up mocks before importing the actual modules
 vi.mock("fs-extra");
 vi.mock("../../lib/registry-client");
+vi.mock("../../lib/logger", async () => {
+  return {
+    logger: {
+      info: vi.fn(),
+      debug: vi.fn(),
+      success: vi.fn(),
+      error: vi.fn(),
+      warn: vi.fn(),
+      spinner: vi.fn().mockReturnValue(mockSpinner),
+    },
+  };
+});
 
-// Mock logger
-vi.mock("../../lib/logger", () => ({
-  logger: {
-    info: vi.fn(),
-    debug: vi.fn(),
-    success: vi.fn(),
-    error: vi.fn(),
-    warn: vi.fn(),
-    spinner: vi.fn().mockReturnValue(mockSpinner),
-  },
-}));
-
-// Import modules after mocking
+// Import dependencies after setting up mocks
+import fs from "fs-extra";
+import type { RegistryItem, InstallOptions } from "../../lib/types";
 import { logger } from "../../lib/logger";
 import * as registryClient from "../../lib/registry-client";
 import * as installer from "../../lib/installer";

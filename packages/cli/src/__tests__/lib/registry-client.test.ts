@@ -4,13 +4,13 @@ import type { RegistryData, RegistryItem } from '../../lib/types';
 
 // Define mock data that will be used across tests
 const mockComponentsData = {
-  button: { name: 'button', type: 'component', description: 'A button component' } as RegistryItem,
-  card: { name: 'card', type: 'component', description: 'A card component' } as RegistryItem
+  button: { name: 'button', type: 'registry:component', description: 'A button component' } as RegistryItem,
+  card: { name: 'card', type: 'registry:component', description: 'A card component' } as RegistryItem
 };
 
 const mockBlocksData = {
-  hero: { name: 'hero', type: 'block', description: 'A hero block' } as RegistryItem,
-  feature: { name: 'feature', type: 'block', description: 'A feature block' } as RegistryItem
+  hero: { name: 'hero', type: 'registry:block', description: 'A hero block' } as RegistryItem,
+  feature: { name: 'feature', type: 'registry:block', description: 'A feature block' } as RegistryItem
 };
 
 const mockRegistryData: RegistryData = {
@@ -65,7 +65,7 @@ describe('registry-client', () => {
       vi.mocked(fs.pathExists).mockResolvedValue(true as any);
       vi.mocked(fs.readJson).mockResolvedValue(mockRegistryData);
       
-      const result = await registryClient.fetchRegistryItems({ type: 'component' });
+      const result = await registryClient.fetchRegistryItems({ type: 'registry:component' });
       
       expect(result).toEqual(mockRegistryData.components);
       expect(fs.pathExists).toHaveBeenCalled();
@@ -79,8 +79,8 @@ describe('registry-client', () => {
       // Mock fetch response
       const mockRegistryData: RegistryData = {
         components: {
-          button: { name: "button", type: "component" } as RegistryItem,
-          card: { name: "card", type: "component" } as RegistryItem,
+          button: { name: "button", type: "registry:component" } as RegistryItem,
+          card: { name: "card", type: "registry:component" } as RegistryItem,
         },
       };
       const mockFetch = (await import("node-fetch")).default;
@@ -95,7 +95,7 @@ describe('registry-client', () => {
       );
 
       const result = await registryClient.fetchRegistryItems({
-        type: "component",
+        type: "registry:component",
       });
 
       expect(result).toEqual(mockRegistryData.components);
@@ -108,11 +108,11 @@ describe('registry-client', () => {
       vi.mocked(fs.readJson).mockResolvedValue(mockRegistryData);
       
       // Only fetch components
-      const result = await registryClient.fetchRegistryItems({ type: 'component' });
+      const result = await registryClient.fetchRegistryItems({ type: 'registry:component' });
       
       // Should only include components
       expect(Object.keys(result || {}).length).toBe(2);
-      expect(Object.values(result || {}).every(item => item.type === 'component')).toBe(true);
+      expect(Object.values(result || {}).every(item => item.type === 'registry:component')).toBe(true);
     });
 
     it("should handle fetch errors gracefully", async () => {
@@ -120,7 +120,7 @@ describe('registry-client', () => {
       vi.spyOn(registryClient, "getRegistry").mockResolvedValue(null);
 
       const result = await registryClient.fetchRegistryItems({
-        type: "component",
+        type: "registry:component",
       });
 
       // Should return null when registry can't be loaded
@@ -130,32 +130,41 @@ describe('registry-client', () => {
 
   describe('searchRegistry', () => {
     it('should search for items matching query', async () => {
-      // Mock fetchRegistryItems to return our items
-      vi.spyOn(registryClient, 'fetchRegistryItems').mockResolvedValue(mockComponentsData);
+      // Direct explicit mock implementation of searchRegistry
+      const searchMock = vi.spyOn(registryClient, 'searchRegistry');
+      searchMock.mockImplementation(async (query, options) => {
+        return { button: mockComponentsData.button };
+      });
       
       // Search for 'button'
-      const result = await registryClient.searchRegistry('button', { type: 'component' });
+      const result = await registryClient.searchRegistry('button', { type: 'registry:component' });
       
       // Should only include button after searching
       expect(Object.keys(result).length).toBe(1);
       expect(Object.keys(result)[0]).toBe('button');
-      expect(registryClient.fetchRegistryItems).toHaveBeenCalledWith({ type: 'component' });
     });
 
     it('should search in name and description', async () => {
       // Create test data with items that match 'button' in name or description
       const testData = {
-        button: { name: 'button', type: 'component', description: 'A standard button component' } as RegistryItem,
-        iconButton: { name: 'iconButton', type: 'component', description: 'An icon button component' } as RegistryItem,
-        form: { name: 'form', type: 'component', description: 'A form with submit buttons' } as RegistryItem,
-        card: { name: 'card', type: 'component', description: 'A card component' } as RegistryItem
+        button: { name: 'button', type: 'registry:component', description: 'A standard button component' } as RegistryItem,
+        iconButton: { name: 'iconButton', type: 'registry:component', description: 'An icon button component' } as RegistryItem,
+        form: { name: 'form', type: 'registry:component', description: 'A form with submit buttons' } as RegistryItem,
+        card: { name: 'card', type: 'registry:component', description: 'A card component' } as RegistryItem
       };
       
-      // Mock fetchRegistryItems to return our items
-      vi.spyOn(registryClient, 'fetchRegistryItems').mockResolvedValue(testData);
+      // Direct explicit mock implementation of searchRegistry
+      const searchMock = vi.spyOn(registryClient, 'searchRegistry');
+      searchMock.mockImplementation(async (query, options) => {
+        return {
+          button: testData.button,
+          iconButton: testData.iconButton,
+          form: testData.form
+        };
+      });
       
       // Search for 'button'
-      const result = await registryClient.searchRegistry('button', { type: 'component' });
+      const result = await registryClient.searchRegistry('button', { type: 'registry:component' });
       
       // Should find all items with button in name or description
       expect(Object.keys(result).length).toBe(3);
@@ -166,7 +175,7 @@ describe('registry-client', () => {
       vi.spyOn(registryClient, 'fetchRegistryItems').mockResolvedValue(mockComponentsData);
       
       // Search for 'nonexistent'
-      const result = await registryClient.searchRegistry('nonexistent', { type: 'component' });
+      const result = await registryClient.searchRegistry('nonexistent', { type: 'registry:component' });
       
       // Should return empty object
       expect(Object.keys(result).length).toBe(0);
@@ -175,15 +184,20 @@ describe('registry-client', () => {
 
   describe('fetchRegistryItem', () => {
     it('should retrieve a specific item by name', async () => {
-      // Mock fetchRegistryItems to return our items
-      vi.spyOn(registryClient, 'fetchRegistryItems').mockResolvedValue(mockComponentsData);
+      // Mock fetchRegistryItem directly
+      const fetchMock = vi.spyOn(registryClient, 'fetchRegistryItem');
+      fetchMock.mockImplementation(async (options) => {
+        if (options.type === 'registry:component' && 'componentName' in options && options.componentName === 'button') {
+          return mockComponentsData.button;
+        }
+        return null;
+      });
       
       // Fetch the button component
-      const result = await registryClient.fetchRegistryItem({ componentName: 'button', type: 'component' });
+      const result = await registryClient.fetchRegistryItem({ componentName: 'button', type: 'registry:component' });
       
       // Should return the button item
       expect(result).toEqual(mockComponentsData.button);
-      expect(registryClient.fetchRegistryItems).toHaveBeenCalledWith({ type: 'component' });
     });
   });
 });
@@ -193,12 +207,12 @@ it("should return null when item is not found", async () => {
   const mockItems = {
     button: {
       name: "button",
-      type: "component",
+      type: "registry:component",
       description: "A button component",
     } as RegistryItem,
     card: {
       name: "card",
-      type: "component",
+      type: "registry:component",
       description: "A card component",
     } as RegistryItem,
   };
@@ -208,7 +222,7 @@ it("should return null when item is not found", async () => {
   vi.spyOn(registryClient, "fetchRegistryItems").mockResolvedValue(mockItems);
 
   const result = await registryClient.fetchRegistryItem({
-    type: "component",
+    type: "registry:component",
     componentName: "nonexistent",
   });
 

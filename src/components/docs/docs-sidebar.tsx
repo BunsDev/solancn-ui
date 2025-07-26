@@ -14,9 +14,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { RegistryLogo } from "@/components/registry/registry-logo";
-import { ModeToggle } from "@/components/registry/theme-toggle";
+import { RegistryLogo } from "@/components/docs/registry-logo";
+import { ModeToggle } from "@/components/docs/theme-toggle";
 import { Button } from "@/components/ui/button";
+import { getLink } from "@/lib/utils";
 import {
   Collapsible,
   CollapsibleContent,
@@ -38,14 +39,17 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { getBlocks, getComponents, getUIPrimitives } from "@/lib/registry";
+import type { RegistryItem } from "@/lib/types";
 
 const uiItems = getUIPrimitives();
 const componentItems = getComponents();
 const blockItems = getBlocks();
 
 export const gettingStartedItems = [
-  { title: "Home", path: "/" },
+  { title: "Home", path: "/docs" },
   { title: "Design Tokens", path: "/tokens" },
+  { title: "Blocks", path: "/blocks" },
+  { title: "Components", path: "/components" },
 ];
 
 export function MobileSidebarTrigger() {
@@ -189,7 +193,7 @@ export function RegistrySidebar() {
                         >
                           <Link
                             onClick={() => setOpenMobile(false)}
-                            href={`/registry/${item.name}`}
+                            href={getLink(item as RegistryItem)}
                           >
                             {item.title}
                           </Link>
@@ -227,7 +231,7 @@ export function RegistrySidebar() {
                         >
                           <Link
                             onClick={() => setOpenMobile(false)}
-                            href={`/registry/${item.name}`}
+                            href={getLink(item as RegistryItem)}
                           >
                             {item.title}
                           </Link>
@@ -264,7 +268,7 @@ export function RegistrySidebar() {
                         >
                           <Link
                             onClick={() => setOpenMobile(false)}
-                            href={`/registry/${item.name}`}
+                            href={getLink(item as RegistryItem)}
                           >
                             {item.title}
                           </Link>

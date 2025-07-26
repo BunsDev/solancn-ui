@@ -3,10 +3,10 @@
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import type React from "react";
-
-import { FontBlock } from "@/app/(registry)/tokens/font-block";
 import { Button } from "@/components/ui/button";
-import { ColorBlock } from "./color-block";
+
+import FontBlock from "@/app/tokens/font-block";
+import ColorBlock from "@/app/tokens/color-block";
 
 export default function TokensPage() {
   return (

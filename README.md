@@ -1,9 +1,9 @@
-<a href="https://registry-starter.vercel.app/">
-  <h1 align="center">Registry Starter</h1>
+<a href="https://ui.solancn.com/">
+  <h1 align="center">solancn-ui</h1>
 </a>
 
 <p align="center">
-    Registry Starter is a free, open-source template built with Next.js and Shadcn/ui Registry to accelerate your AI-Native Design System.
+    solancn-ui is a free, open-source template built with Next.js and Shadcn/ui Registry to accelerate your Solana Native Design System.
 </p>
 
 <p align="center">
@@ -20,11 +20,11 @@
 
 You can deploy your own version of the Next.js Registry Starter to Vercel with one click:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/bunsdev/solancn-ui&project-name=my-registry&repository-name=my-registry&demo-title=solancn%20UI&demo-description=solancn%20UI%20is%20a%20free%2C%20open-source%20template%20built%20with%20Next.js%20and%20Shadcn%2Fui%20Registry%20to%20accelerate%20your%20Solana%20Native%20Design%20System.&demo-url=https://ui.solancn.com&demo-image=%2F%2Fregistry-starter.vercel.app%2Fpreview.png)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/bunsdev/solancn-ui&project-name=my-registry&repository-name=my-registry&demo-title=solancn%20UI&demo-description=solancn%20UI%20is%20a%20free%2C%20open-source%20template%20built%20with%20Next.js%20and%20Shadcn%2Fui%20Registry%20to%20accelerate%20your%20Solana%20Native%20Design%20System.&demo-url=https://ui.solancn.com&demo-image=%2F%2Fui.solancn.com%2Fpreview.png)
 
 ## Open in v0
 
-[![Open in v0](https://registry-starter.vercel.app/open-in-v0.svg)](https://v0.dev/chat/api/open?title=solancn%20UI&prompt=These+are+existing+design+system+styles+and+files.+Please+utilize+them+alongside+base+components+to+build.&url=https://ui.solancn.com/r/dashboard.json)
+[![Open in v0](https://ui.solancn.com/open-in-v0.svg)](https://v0.dev/chat/api/open?title=solancn%20UI&prompt=These+are+existing+design+system+styles+and+files.+Please+utilize+them+alongside+base+components+to+build.&url=https://ui.solancn.com/r/dashboard.json)
 
 This registry application also exposes `Open in v0` buttons for each component. Once this application is deployed, the
 `Open in v0` button redirects to [`v0.dev`](https://v0.dev) with a prepopulated prompt and a URL pointing back to this
@@ -109,7 +109,7 @@ Your app should now be running on [localhost:3000](http://localhost:3000).
 
 ## File Structure
 
-`app/(registry)` routes contains the registry pages.
+`app/registry` routes contains the registry pages.
 
 `app/demo` routes contains various UI primitives, Components, or Blocks (based on `registry.json`)
 

@@ -2,11 +2,18 @@ import registry from "@/registry";
 
 export interface Component {
   name: string;
-  type: string;
+  type: "registry:block" | "registry:component" | "registry:ui";
   title: string;
+  category?: string;
+  features?: string[];
   description?: string;
+  tags?: string[];
   files?: { path: string; type: string; target: string }[];
 }
+
+export interface Block extends Component {}
+
+export interface UIPrimitive extends Component {}
 
 export function getRegistryItems(): Component[] {
   // exclude style item as it's not relevant to show in the ui
@@ -31,20 +38,20 @@ export function getRegistryItem(name: string): Component {
   return component;
 }
 
-export function getBlocks() {
+export function getBlocks(): Block[] {
   return getRegistryItems().filter(
     (component) => component.type === "registry:block",
-  );
+  ) as Block[];
 }
 
-export function getUIPrimitives() {
+export function getUIPrimitives(): UIPrimitive[] {
   return getRegistryItems().filter(
     (component) => component.type === "registry:ui",
-  );
+  ) as UIPrimitive[];
 }
 
-export function getComponents() {
+export function getComponents(): Component[] {
   return getRegistryItems().filter(
     (component) => component.type === "registry:component",
-  );
+  ) as Component[];
 }

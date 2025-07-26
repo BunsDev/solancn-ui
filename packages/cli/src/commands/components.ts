@@ -23,7 +23,7 @@ components
     const spinner = ora("Fetching components...").start();
 
     try {
-      const registry = await fetchRegistryItems({ type: "component" });
+      const registry = await fetchRegistryItems({ type: "registry:component" });
       const allComponents = registry?.items as unknown as any[];
 
       let components = allComponents || [];
@@ -112,8 +112,8 @@ components
       const spinner = ora("Fetching available components...").start();
 
       try {
-        const registry = await fetchRegistryItems({ type: "component" }) as unknown as RegistryItem[];
-        const components = registry?.filter(
+        const registry = await fetchRegistryItems({ type: "registry:component" }) as unknown as Record<string, RegistryItem>;
+        const components = Object.values(registry)?.filter(
           (item: any) =>
             item?.type === "registry:ui" || item?.type === "registry:component",
         );
@@ -126,7 +126,7 @@ components
             name: "componentName",
             message: "Select a component to add:",
             choices: components?.map((c: any) => ({
-              name: `${c.title} - ${c.description || "No description"}`,
+              name: `${c.name} - ${c.description || "No description"}`,
               value: c.name,
             })),
           },
@@ -244,11 +244,11 @@ components
     const spinner = ora("Searching components...").start();
 
     try {
-      const registry = await fetchRegistryItems({ type: "component" });
-      const allComponents = registry?.items as unknown as RegistryItem[];
+      const registry = await fetchRegistryItems({ type: "registry:component" }) as unknown as Record<string, RegistryItem>;
+      const allComponents = registry;
 
       // Simple search implementation
-      const results = allComponents?.filter(
+      const results = Object.values(allComponents).filter(
         (item: any) =>
           item?.componentName?.includes(query) ||
           item?.componentName?.toLowerCase().includes(query.toLowerCase()) ||
@@ -278,13 +278,13 @@ components
       console.log(`${chalk.bold("Search Results:")}`);
       console.log(chalk.dim("─".repeat(80)));
 
-      for (const component of results as unknown as any[]) {
+      for (const component of results) {
         const type =
-          component.type === "ui"
+          component.type === "registry:ui"
             ? chalk.blue("UI")
             : chalk.green("Component");
         console.log(
-          `${chalk.bold(component.title)} ${chalk.dim(`(${component.name})`)} - ${type}`,
+          `${chalk.bold(component.name)} ${chalk.dim(`(${component.name})`)} - ${type}`,
         );
         console.log(chalk.dim(component.description || "No description"));
         console.log(chalk.dim("─".repeat(80)));

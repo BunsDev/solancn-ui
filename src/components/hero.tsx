@@ -20,7 +20,7 @@ export function Hero({
   return (
     <div className="relative h-[600px] w-full bg-foreground/10">
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-7xl">
           <Badge variant="secondary" className="mb-4">
             Coming soon
           </Badge>

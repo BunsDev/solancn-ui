@@ -1,7 +1,7 @@
 import { ArrowRight, Blocks, Component, ToyBrick } from "lucide-react";
 import Link from "next/link";
 
-import { MCPTabs } from "@/components/registry/mcp-tabs";
+import { MCPTabs } from "@/components/docs/mcp-tabs";
 import {
   Card,
   CardContent,
@@ -10,12 +10,16 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getBlocks, getComponents, getUIPrimitives } from "@/lib/registry";
+import CodeBlock from "@/components/code-block";
+import { getLink } from "@/lib/utils";
+import type { RegistryItem } from "@/lib/types";
+
 
 const uiItems = getUIPrimitives().slice(0, 5);
 const componentItems = getComponents().slice(0, 5);
 const blockItems = getBlocks().slice(0, 5);
 
-export default function Home() {
+export default function RegistryPage() {
   return (
     <main className="container mt-4 p-5 md:mt-8 md:p-10">
       <div className="mb-8">
@@ -51,7 +55,7 @@ export default function Home() {
                 className="flex items-center justify-between"
               >
                 <Link
-                  href={`/registry/${item.name}`}
+                  href={`/blocks/${item.name}`}
                   className="text-sm hover:underline"
                 >
                   {item.title}
@@ -85,7 +89,7 @@ export default function Home() {
                   className="flex items-center justify-between"
                 >
                   <Link
-                    href={`/registry/${item.name}`}
+                    href={getLink(item as RegistryItem)}
                     className="text-sm hover:underline"
                   >
                     {item.title}
@@ -118,7 +122,7 @@ export default function Home() {
                   className="flex items-center justify-between"
                 >
                   <Link
-                    href={`/registry/${item.name}`}
+                    href={getLink(item as RegistryItem)}
                     className="text-sm hover:underline"
                   >
                     {item.title}
@@ -175,7 +179,7 @@ export default function Home() {
           </p>
 
           <p className="mt-4 text-[#1B1F23] dark:text-white">
-            <a href="https://github.com/vercel/registry-starter">
+            <Link href="https://github.com/bunsdev/solancn-ui">
               <svg
                 viewBox="0 0 1024 1024"
                 xmlns="http://www.w3.org/2000/svg"
@@ -190,7 +194,7 @@ export default function Home() {
                 />
               </svg>
               <span className="underline">GitHub Repository</span>
-            </a>
+            </Link>
           </p>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export function FontBlock({
+export default function FontBlock({
   className,
 }: {
   className: string;

@@ -100,13 +100,13 @@ export async function fetchRegistryItems(
   }
 
   switch (options.type) {
-    case "component":
+    case "registry:component":
       return registry.components || null;
-    case "block":
+    case "registry:block":
       return registry.blocks || null;
-    case "primitive":
-      return registry.primitives || null;
-    case "theme":
+    case "registry:ui":
+      return registry.ui || null;
+    case "registry:theme":
       return registry.theme ? { theme: registry.theme } : null;
     default:
       return null;
@@ -132,7 +132,7 @@ export async function fetchRegistryItem(
   }
 
   // For theme, just return the theme item
-  if (options.type === "theme") {
+  if (options.type === "registry:theme") {
     return items.theme || null;
   }
 
@@ -180,16 +180,16 @@ export async function searchRegistry(
   };
 
   // Search in the requested type only, or all types if not specified
-  if (!options.type || options.type === "component") {
-    searchItems(registry.components, "component");
+  if (!options.type || options.type === "registry:component") {
+    searchItems(registry.components, "registry:component");
   }
 
-  if (!options.type || options.type === "block") {
-    searchItems(registry.blocks, "block");
+  if (!options.type || options.type === "registry:block") {
+    searchItems(registry.blocks, "registry:block");
   }
 
-  if (!options.type || options.type === "primitive") {
-    searchItems(registry.primitives, "primitive");
+  if (!options.type || options.type === "registry:ui") {
+    searchItems(registry.ui, "registry:ui");
   }
 
   return results;

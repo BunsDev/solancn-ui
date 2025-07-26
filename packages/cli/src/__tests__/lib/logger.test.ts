@@ -1,4 +1,26 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+// Define mock functions outside any modules
+const mockSpinner = {
+  start: vi.fn().mockReturnThis(),
+  stop: vi.fn().mockReturnThis(),
+  succeed: vi.fn().mockReturnThis(),
+  fail: vi.fn().mockReturnThis(),
+  warn: vi.fn().mockReturnThis(),
+  info: vi.fn().mockReturnThis(),
+  text: vi.fn().mockReturnThis()
+};
+
+const mockOra = vi.fn().mockReturnValue(mockSpinner);
+
+// Set up mocks before importing any module that uses ora
+vi.mock('ora', async () => {
+  return {
+    default: mockOra
+  };
+});
+
+// Import after all mocks are set up
 import stripAnsi from 'strip-ansi';
 import { Logger } from '../../lib/logger';
 
@@ -60,23 +82,23 @@ describe('Logger', () => {
   });
 
   it('should create spinner with prefix', () => {
-    const mockOra = vi.fn().mockReturnValue({
-      start: vi.fn().mockReturnThis(),
-      succeed: vi.fn(),
-      fail: vi.fn(),
-      info: vi.fn()
-    });
-    
-    vi.mock('ora', () => ({
-      default: mockOra
-    }));
-    
-    // Need to re-import logger to use the mocked ora
-    const { logger: testLogger } = require('../../lib/logger');
-    const spinner = testLogger.spinner('Loading');
-    
+    const spinner = logger.spinner('Test spinner');
     expect(mockOra).toHaveBeenCalled();
-    expect(mockOra.mock.calls[0][0]).toContain('Loading');
+    expect(spinner).toBe(mockSpinner);
+  });
+
+  it('should create boxed messages', () => {
+    logger.boxedInfo('Test boxed info');
+    expect(mockConsoleInfo).toHaveBeenCalled();
+    
+    logger.boxedSuccess('Test boxed success');
+    expect(mockConsoleLog).toHaveBeenCalled();
+    
+    logger.boxedError('Test boxed error');
+    expect(mockConsoleError).toHaveBeenCalled();
+    
+    logger.boxedWarning('Test boxed warning');
+    expect(mockConsoleWarn).toHaveBeenCalled();
   });
 
   it('should log boxed info messages', () => {
