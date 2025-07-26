@@ -1,0 +1,36 @@
+{
+	"name": "solancn-cli",
+	"version": "0.0.1",
+	"description": "CLI for solancn ui design system",
+	"main": "dist/index.js",
+	"bin": {
+		"solancn": "dist/index.js"
+	},
+	"scripts": {
+		"build": "tsup src/index.ts --format cjs --dts",
+		"dev": "tsup src/index.ts --format cjs --watch",
+		"lint": "biome check ./src",
+		"lint:fix": "biome check --write ./src"
+	},
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@types/fs-extra": "^11.0.4",
+		"@types/node": "^24.1.0",
+		"tsup": "^8.5.0",
+		"typescript": "^5.8.3"
+	},
+	"dependencies": {
+		"chalk": "^5.4.1",
+		"commander": "^14.0.0",
+		"fs-extra": "^11.3.0",
+		"inquirer": "^12.8.2",
+		"node-fetch": "^3.3.2",
+		"ora": "^8.2.0"
+	}
+}
