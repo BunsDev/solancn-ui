@@ -30,8 +30,7 @@ const validators = [
   {
     id: "marinade",
     name: "Marinade Finance",
-    logo: "https://s2.coinmarketcap.com/static/img/coins/200x200/28541.png",
-    // logo: "https://docs.marinade.finance/~gitbook/image?url=https%3A%2F%2F2385969780-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FHvhBFBu5z7MIlkYpgMXs%252Fuploads%252FhgVb1Qdu49Mxwjp3Szkd%252FmSOL.png%3Falt%3Dmedia%26token%3D1479b4d0-502c-459d-8741-6b170e47c345&width=768&dpr=1&quality=100&sign=cc260d1d&sv=2",
+    logo: "/logos/marinade-sol-logo.png",
     apy: 6.2,
     totalStaked: 28456789,
     commission: 3.0,
@@ -42,8 +41,7 @@ const validators = [
   {
     id: "lido",
     name: "Lido",
-    logo: "https://s2.coinmarketcap.com/static/img/coins/200x200/28541.png",
-    // logo: "https://cryptologos.cc/logos/lido-dao-ldo-logo.png?v=040",
+    logo: "/logos/lido-logo.png",
     apy: 6.1,
     totalStaked: 35789432,
     commission: 3.5,
@@ -54,7 +52,7 @@ const validators = [
   {
     id: "jito",
     name: "Jito",
-    logo: "https://s2.coinmarketcap.com/static/img/coins/200x200/28541.png",
+    logo: "/logos/jito-logo.png",
     apy: 6.8,
     totalStaked: 18256432,
     commission: 3.0,

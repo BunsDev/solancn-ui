@@ -91,7 +91,7 @@ const yieldOpportunities = [
     apy: "6.2%",
     tvl: "$845M",
     risk: "Low",
-    logo: "https://docs.marinade.finance/~gitbook/image?url=https%3A%2F%2F2385969780-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FHvhBFBu5z7MIlkYpgMXs%252Fuploads%252FnClg7nXeO1Bwpi2IymQY%252FMNDE.png%3Falt%3Dmedia%26token%3D7ac16f64-668c-4b84-85a3-dd801552e031&width=768&dpr=4&quality=100&sign=ecb74eb5&sv=2",
+    logo: "/logos/marinade-sol-logo.png",
   },
   {
     id: 2,
@@ -100,8 +100,7 @@ const yieldOpportunities = [
     apy: "6.8%",
     tvl: "$620M",
     risk: "Low",
-    // logo: "https://cryptologos.cc/logos/solana-sol-logo.png?v=040",
-    logo: "https://s2.coinmarketcap.com/static/img/coins/200x200/28541.png",
+    logo: "/logos/jito-logo.png",
   },
   {
     id: 3,
@@ -110,7 +109,7 @@ const yieldOpportunities = [
     apy: "12.4%",
     tvl: "$85M",
     risk: "Medium-High",
-    logo: "https://cryptologos.cc/logos/orca-orca-logo.png",
+    logo: "/logos/orca-logo.png",
   },
   {
     id: 4,
@@ -119,7 +118,7 @@ const yieldOpportunities = [
     apy: "18.6%",
     tvl: "$42M",
     risk: "High",
-    logo: "https://files.swissborg.com/product/wealth-app/assets/ic_crypto_ray.png",
+    logo: "/logos/raydium-logo.png",
   }
 ];
 
