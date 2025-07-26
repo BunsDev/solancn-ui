@@ -43,7 +43,7 @@
       ]
     },
     {
-      "name": "blank",
+      "name": "blankDemo",
       "type": "registry:block",
       "title": "Blank",
       "description": "A blank application with all brand components and code",
@@ -67,7 +67,7 @@
       ]
     },
     {
-      "name": "dashboard",
+      "name": "dashboardDemo",
       "type": "registry:block",
       "title": "Dashboard",
       "description": "A dashboard application with your brand themed components",
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "name": "solana",
+      "name": "solanaDemo",
       "type": "registry:block",
       "title": "Solana",
       "description": "Solana application with your brand themed components",
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "name": "nft",
+      "name": "nftDemo",
       "type": "registry:block",
       "title": "NFT",
       "description": "A nft application with your brand themed components",
@@ -129,6 +129,28 @@
         },
         {
           "path": "src/app/demos/[name]/blocks/nft-page.tsx",
+          "type": "registry:page",
+          "target": "app/page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bridgeDemo",
+      "type": "registry:block",
+      "title": "Bridge",
+      "description": "A bridge application with your brand themed components",
+      "registryDependencies": [
+        "https://ui.solancn.com/r/product-grid.json",
+        "https://ui.solancn.com/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/v0/minimal-layout.tsx",
+          "type": "registry:file",
+          "target": "app/layout.tsx"
+        },
+        {
+          "path": "src/app/demos/[name]/blocks/bridge-page.tsx",
           "type": "registry:page",
           "target": "app/page.tsx"
         }

@@ -5,6 +5,7 @@ import { blankDemo } from "@/app/demos/[name]/blocks/blankDemo";
 import { dashboardDemo } from "@/app/demos/[name]/blocks/dashboardDemo";
 import { solanaDemo } from "@/app/demos/[name]/blocks/solanaDemo";
 import { nftDemo } from "@/app/demos/[name]/blocks/nftDemo";
+import { bridgeDemo } from "@/app/demos/[name]/blocks/bridgeDemo";
 
 // components
 import { brandHeader } from "@/app/demos/[name]/components/brand-header";
