@@ -157,6 +157,160 @@
       ]
     },
     {
+      "name": "swapDemo",
+      "type": "registry:block",
+      "title": "Swap",
+      "description": "A token swap interface for Solana with brand themed components",
+      "registryDependencies": [
+        "https://ui.solancn.com/r/product-grid.json",
+        "https://ui.solancn.com/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/v0/minimal-layout.tsx",
+          "type": "registry:file",
+          "target": "app/layout.tsx"
+        },
+        {
+          "path": "src/app/demos/[name]/blocks/swap-page.tsx",
+          "type": "registry:page",
+          "target": "app/page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "transferDemo",
+      "type": "registry:block",
+      "title": "Transfer",
+      "description": "A token transfer interface for sending on Solana with brand themed components",
+      "registryDependencies": [
+        "https://ui.solancn.com/r/product-grid.json",
+        "https://ui.solancn.com/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/v0/minimal-layout.tsx",
+          "type": "registry:file",
+          "target": "app/layout.tsx"
+        },
+        {
+          "path": "src/app/demos/[name]/blocks/transfer-page.tsx",
+          "type": "registry:page",
+          "target": "app/page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "receiveDemo",
+      "type": "registry:block",
+      "title": "Receive",
+      "description": "A token receive interface for Solana with brand themed components",
+      "registryDependencies": [
+        "https://ui.solancn.com/r/product-grid.json",
+        "https://ui.solancn.com/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/v0/minimal-layout.tsx",
+          "type": "registry:file",
+          "target": "app/layout.tsx"
+        },
+        {
+          "path": "src/app/demos/[name]/blocks/receive-page.tsx",
+          "type": "registry:page",
+          "target": "app/page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "borrowDemo",
+      "type": "registry:block",
+      "title": "Borrow",
+      "description": "A lending protocol interface for borrowing assets on Solana with brand themed components",
+      "registryDependencies": [
+        "https://ui.solancn.com/r/product-grid.json",
+        "https://ui.solancn.com/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/v0/minimal-layout.tsx",
+          "type": "registry:file",
+          "target": "app/layout.tsx"
+        },
+        {
+          "path": "src/app/demos/[name]/blocks/borrow-page.tsx",
+          "type": "registry:page",
+          "target": "app/page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "lendDemo",
+      "type": "registry:block",
+      "title": "Lend",
+      "description": "A lending protocol interface for depositing assets on Solana with brand themed components",
+      "registryDependencies": [
+        "https://ui.solancn.com/r/product-grid.json",
+        "https://ui.solancn.com/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/v0/minimal-layout.tsx",
+          "type": "registry:file",
+          "target": "app/layout.tsx"
+        },
+        {
+          "path": "src/app/demos/[name]/blocks/lend-page.tsx",
+          "type": "registry:page",
+          "target": "app/page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "walletDemo",
+      "type": "registry:block",
+      "title": "Wallet",
+      "description": "A wallet interface showing details and transactions on Solana with brand themed components",
+      "registryDependencies": [
+        "https://ui.solancn.com/r/product-grid.json",
+        "https://ui.solancn.com/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/v0/minimal-layout.tsx",
+          "type": "registry:file",
+          "target": "app/layout.tsx"
+        },
+        {
+          "path": "src/app/demos/[name]/blocks/wallet-page.tsx",
+          "type": "registry:page",
+          "target": "app/page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "frameDemo",
+      "type": "registry:block",
+      "title": "Frames",
+      "description": "A Solana Frames interface with brand themed components",
+      "registryDependencies": [
+        "https://ui.solancn.com/r/product-grid.json",
+        "https://ui.solancn.com/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/v0/minimal-layout.tsx",
+          "type": "registry:file",
+          "target": "app/layout.tsx"
+        },
+        {
+          "path": "src/app/demos/[name]/blocks/frame-page.tsx",
+          "type": "registry:page",
+          "target": "app/page.tsx"
+        }
+      ]
+    },
+    {
       "name": "brand-header",
       "type": "registry:component",
       "title": "Brand Header",
