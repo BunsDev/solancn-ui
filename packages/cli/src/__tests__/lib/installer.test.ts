@@ -2,11 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import fs from "fs-extra";
 import type { RegistryItem, InstallOptions } from "../../lib/types";
 
-// Mock dependencies
-vi.mock("fs-extra");
-vi.mock("../../lib/registry-client");
-
-// Create a mock spinner object
+// Define mockSpinner before using it in mock
 const mockSpinner = {
   start: vi.fn().mockReturnThis(),
   stop: vi.fn().mockReturnThis(),
@@ -14,6 +10,10 @@ const mockSpinner = {
   fail: vi.fn().mockReturnThis(),
   text: vi.fn().mockReturnThis(),
 };
+
+// Mock dependencies
+vi.mock("fs-extra");
+vi.mock("../../lib/registry-client");
 
 // Mock logger
 vi.mock("../../lib/logger", () => ({

@@ -5,6 +5,7 @@
 	"scripts": {
 		"dev": "npm run registry:build && next dev --turbopack",
 		"build": "npm run registry:build && next build",
+		"bdev": "npm run registry:build && next build && next dev --turbopack",
 		"start": "next start",
 		"lint": "biome check",
 		"lint:fix": "biome check --write",

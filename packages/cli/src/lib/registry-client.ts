@@ -113,12 +113,16 @@ export async function fetchRegistryItems(
   }
 }
 
+interface FetchRegistryItemOptions {
+  type: RegistryItemType;
+  componentName?: string;
+}
+
 /**
  * Fetch a specific registry item by type and name
  */
 export async function fetchRegistryItem(
-  options: FetchRegistryItemsOptions,
-  name?: string,
+  options: FetchRegistryItemOptions,
   cwd: string = process.cwd(),
 ): Promise<RegistryItem | null> {
   const items = await fetchRegistryItems(options, cwd);
@@ -133,8 +137,8 @@ export async function fetchRegistryItem(
   }
 
   // For other types, return the specific named item
-  if (name && items[name]) {
-    return items[name];
+  if (options.componentName && items[options.componentName]) {
+    return items[options.componentName];
   }
 
   return null;
