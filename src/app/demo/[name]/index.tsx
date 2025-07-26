@@ -3,6 +3,7 @@ import type { ReactElement, ReactNode } from "react";
 // blocks
 import { blank } from "@/app/demo/[name]/blocks/blank";
 import { dashboard } from "@/app/demo/[name]/blocks/dashboard";
+import { solana } from "@/app/demo/[name]/blocks/solana";
 import { store } from "@/app/demo/[name]/blocks/store";
 
 // components
@@ -13,6 +14,18 @@ import { login } from "@/app/demo/[name]/components/login";
 import { logo } from "@/app/demo/[name]/components/logo";
 import { productGrid } from "@/app/demo/[name]/components/product-grid";
 import { promo } from "@/app/demo/[name]/components/promo";
+
+// solana
+import { borrow } from "@/app/demo/[name]/solana/borrow";
+import { bridge } from "@/app/demo/[name]/solana/bridge";
+import { frame } from "@/app/demo/[name]/solana/frame";
+import { lend } from "@/app/demo/[name]/solana/lend";
+import { portfolio } from "@/app/demo/[name]/solana/portfolio";
+import { receive } from "@/app/demo/[name]/solana/receive";
+import { stake } from "@/app/demo/[name]/solana/stake";
+import { swap } from "@/app/demo/[name]/solana/swap";
+import { transfer } from "@/app/demo/[name]/solana/transfer";
+import { wallet } from "@/app/demo/[name]/solana/wallet";
 
 // ui
 import { accordion } from "@/app/demo/[name]/ui/accordion";
@@ -54,6 +67,7 @@ export const demos: { [name: string]: Demo } = {
   blank,
   store,
   dashboard,
+  solana,
 
   // components
   hero,
@@ -63,6 +77,18 @@ export const demos: { [name: string]: Demo } = {
   "brand-header": brandHeader,
   "brand-sidebar": brandSidebar,
   "product-grid": productGrid,
+
+  // solana
+  borrow,
+  bridge,
+  frame,
+  lend,
+  portfolio,
+  receive,
+  stake,
+  swap,
+  transfer,
+  wallet,
 
   // ui
   accordion,

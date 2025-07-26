@@ -17,7 +17,7 @@ export function AddToCursor({
   return (
     <Button
       size="sm"
-      className="bg-black text-white hover:bg-black hover:shadow-sm dark:bg-white dark:text-black dark:hover:bg-white"
+      className="bg-primary text-text hover:bg-primary hover:shadow-sm dark:bg-primary dark:text-text dark:hover:bg-primary"
       asChild
     >
       <Link href={generateCursorDeeplink()}>

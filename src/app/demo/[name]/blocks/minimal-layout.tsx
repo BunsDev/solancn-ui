@@ -6,8 +6,8 @@ export default function MinimalLayout({
   children: ReactNode;
 }>) {
   return (
-    <main className="mt-16 flex w-full justify-center">
-      <div className="container">{children}</div>
+    <main className="flex w-full justify-center bg-black">
+      <div className="w-full">{children}</div>
     </main>
   );
 }
