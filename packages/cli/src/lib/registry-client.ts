@@ -18,6 +18,10 @@ export function getRegistryBaseUrl(): string {
   return process.env.REGISTRY_URL || DEFAULT_REGISTRY_URL;
 }
 
+export function getRegistryUrl(): string {
+  return process.env.REGISTRY_URL || DEFAULT_REGISTRY_URL;
+}
+
 /**
  * Load registry data from a local registry.json file
  */

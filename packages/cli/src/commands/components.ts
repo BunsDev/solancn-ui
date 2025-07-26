@@ -4,7 +4,7 @@ import chalk from "chalk";
 import boxen from "boxen";
 import ora from "ora";
 import { fetchRegistryItems } from "../lib/registry-client";
-import { installComponent } from "../lib/component-installer";
+import { installComponent, uninstallComponent } from "../lib/installer";
 import { logger } from "../lib/logger";
 import type { RegistryItem } from "../lib/types";
 
@@ -216,8 +216,8 @@ components
       // 2. Check dependencies
       // 3. Remove files
 
-      // Placeholder for actual implementation
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // Use the unified installer for component removal
+      await uninstallComponent(name, options.dir, { force: true });
 
       spinner.succeed(`Removed ${chalk.yellow(name)} from your project`);
 
