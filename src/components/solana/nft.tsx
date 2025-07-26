@@ -197,7 +197,7 @@ const collections = [
   { name: "ABC Collection", floor: 8.3, volume: 4532, items: 3333 },
 ];
 
-export default function NFTComponent() {
+export function NFTComponent() {
   const { connected } = useWallet();
   // Using undefined initial state to prevent hydration mismatch
   const [view, setView] = useState<"grid" | "list" | undefined>(undefined);

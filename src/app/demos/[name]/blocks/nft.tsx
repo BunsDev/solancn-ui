@@ -1,12 +1,12 @@
 import MinimalLayout from "@/app/demos/[name]/blocks/minimal-layout";
-import StorePage from "@/app/demos/[name]/blocks/store-page";
+import NFTPage from "@/app/demos/[name]/blocks/nft-page";
 
-export const store = {
-  name: "store",
+export const nft = {
+  name: "nft",
   components: {
     Default: (
       <MinimalLayout>
-        <StorePage />
+        <NFTPage />
       </MinimalLayout>
     ),
   },

@@ -1,7 +1,7 @@
 import ProductGrid from "@/components/product-grid";
 import { getCategories, getProducts } from "@/lib/products";
 
-export default async function StorePage() {
+export default async function NFTPage() {
   const products = await getProducts();
   const categories = await getCategories();
 
@@ -13,7 +13,7 @@ export default async function StorePage() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h1 className="font-bold text-3xl tracking-tighter sm:text-4xl md:text-5xl">
-                  Welcome to Store
+                  Welcome to NFT Store
                 </h1>
 
                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl">

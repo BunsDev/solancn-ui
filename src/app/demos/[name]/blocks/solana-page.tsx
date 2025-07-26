@@ -1,14 +1,15 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import type React from "react";
+import { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-  CardDescription
+  CardDescription,
+  CardFooter,
 } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
@@ -28,16 +29,20 @@ import {
   Layers,
   BarChart3,
   Award,
-  Search,
   Coins,
   ArrowRightLeft,
-  Download,
-  Upload,
   Banknote,
   RefreshCw,
+  Download,
+  Minimize2,
+  ChevronUp,
+  Maximize2,
+  ChevronDown,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import SolanaWalletProvider from "../context/wallet-provider";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
 
 // Custom styled WalletButton component with enhanced styling
 const StyledWalletButton = () => {
@@ -45,7 +50,6 @@ const StyledWalletButton = () => {
     <div
       className={cn(
         "wallet-adapter-button-container",
-        // "wallet-adapter-button-container",
         "dark:bg-[#9945FF] text-text rounded-md border-none hover:opacity-90 ",
       )}
     >
@@ -60,6 +64,112 @@ const StyledWalletButton = () => {
         )}
       />
     </div>
+  );
+};
+
+// Section component for responsive sections
+interface SectionProps {
+  title: string;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+  defaultExpanded?: boolean;
+  className?: string;
+  priority?: number; // Higher priority sections stay expanded longer on smaller screens
+}
+
+const Section = ({
+  title,
+  icon,
+  children,
+  defaultExpanded = false,
+  className = "",
+  priority = 0,
+}: SectionProps) => {
+  const [isExpanded, setIsExpanded] = useState(defaultExpanded);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  // Toggle section expanded state
+  const toggleExpanded = () => {
+    setIsExpanded(!isExpanded);
+    if (isFullscreen && !isExpanded) {
+      setIsFullscreen(false); // Exit fullscreen when collapsing
+    }
+  };
+
+  // Toggle fullscreen mode
+  const toggleFullscreen = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsFullscreen(!isFullscreen);
+    if (!isExpanded && !isFullscreen) {
+      setIsExpanded(true); // Ensure expanded when going fullscreen
+    }
+  };
+
+  // Determine responsive classes based on priority and fullscreen state
+  const getSectionClasses = () => {
+    if (isFullscreen) {
+      return "col-span-12 order-first h-auto max-h-none z-10";
+    }
+
+    // Base priority classes - higher priority sections take more space on medium screens
+    const priorityClasses =
+      {
+        0: "md:col-span-6 lg:col-span-4",
+        1: "md:col-span-6 lg:col-span-4",
+        2: "md:col-span-6 lg:col-span-6",
+        3: "md:col-span-12 lg:col-span-8",
+      }[priority] || "md:col-span-6 lg:col-span-4";
+
+    return `${priorityClasses}`;
+  };
+
+  return (
+    <Card
+      className={cn(
+        "bg-background border border-[#9945FF]/20 shadow-sm transition-all duration-300",
+        getSectionClasses(),
+        isExpanded ? "" : "h-[65px] overflow-hidden",
+        className,
+        isFullscreen ? "fixed inset-4 overflow-auto" : "",
+      )}
+    >
+      <CardHeader
+        className={cn(
+          "flex flex-row items-center justify-between p-3 cursor-pointer",
+          isExpanded ? "border-b border-[#9945FF]/10" : "",
+        )}
+        onClick={toggleExpanded}
+      >
+        <div className="flex items-center gap-2">
+          <div className="p-1.5 rounded-md bg-[#9945FF]/10">{icon}</div>
+          <CardTitle className="text-text text-lg">{title}</CardTitle>
+        </div>
+        <div className="flex items-center gap-1">
+          {isExpanded && (
+            <Button
+              onClick={toggleFullscreen}
+              className="p-1.5 rounded-md hover:bg-[#9945FF]/20 text-text/70 hover:text-text transition-colors"
+              title={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
+            >
+              {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
+            </Button>
+          )}
+          <Button className="p-1.5 rounded-md hover:bg-[#9945FF]/20 text-text/70 hover:text-text transition-colors">
+            {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+          </Button>
+        </div>
+      </CardHeader>
+      {isExpanded && (
+        <CardContent
+          className={cn(
+            "p-3",
+            isFullscreen ? "h-[calc(100%-60px)] overflow-auto" : "",
+          )}
+        >
+          {children}
+        </CardContent>
+      )}
+    </Card>
   );
 };
 
@@ -157,7 +267,7 @@ function SolanaContent() {
       <main className="flex-1 p-2 flex flex-col w-full">
         <div className="container mx-auto">
           {connected && (
-            <div className="mb-2 w-full max-w-7xl mx-auto transition-all duration-500 ease-in-out">
+            <div className="mb-4 w-full max-w-7xl mx-auto transition-all duration-500 ease-in-out">
               <WalletStatus />
             </div>
           )}
@@ -299,7 +409,6 @@ function SolanaContent() {
                   </Card>
                 </TabsContent>
 
-
                 <TabsContent value="bridge" className="mt-0 col-span-6">
                   <Card className="bg-background border border-[#9945FF]/20">
                     <CardHeader>
@@ -325,7 +434,7 @@ function SolanaContent() {
                     <CardContent>{defi.components.Default}</CardContent>
                   </Card>
                 </TabsContent>
-              
+
                 <TabsContent value="nfts" className="mt-0 col-span-6">
                   <Card className="bg-background border border-[#9945FF]/20">
                     <CardHeader>
@@ -338,9 +447,7 @@ function SolanaContent() {
                 <TabsContent value="transfer" className="mt-0 col-span-6">
                   <Card className="bg-background border border-[#9945FF]/20">
                     <CardHeader>
-                      <CardTitle className="text-text">
-                        Transfer
-                      </CardTitle>
+                      <CardTitle className="text-text">Transfer</CardTitle>
                     </CardHeader>
                     <CardContent>{transfer.components.Default}</CardContent>
                   </Card>
@@ -349,9 +456,7 @@ function SolanaContent() {
                 <TabsContent value="receive" className="mt-0 col-span-6">
                   <Card className="bg-background border border-[#9945FF]/20">
                     <CardHeader>
-                      <CardTitle className="text-text">
-                        Receive
-                      </CardTitle>
+                      <CardTitle className="text-text">Receive</CardTitle>
                     </CardHeader>
                     <CardContent>{receive.components.Default}</CardContent>
                   </Card>

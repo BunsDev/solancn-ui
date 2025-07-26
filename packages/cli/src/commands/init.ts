@@ -33,7 +33,7 @@ export async function init() {
       type: "list",
       name: "template",
       message: "Select a starter template:",
-      choices: ["blank", "dashboard", "store"],
+      choices: ["blank", "dashboard", "solana", "nft"],
     },
   ]);
 

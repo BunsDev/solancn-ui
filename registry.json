@@ -113,10 +113,10 @@
       ]
     },
     {
-      "name": "store",
+      "name": "nft",
       "type": "registry:block",
-      "title": "Store",
-      "description": "A store application with your brand themed components",
+      "title": "NFT",
+      "description": "A nft application with your brand themed components",
       "registryDependencies": [
         "https://ui.solancn.com/r/product-grid.json",
         "https://ui.solancn.com/r/theme.json"
@@ -128,7 +128,7 @@
           "target": "app/layout.tsx"
         },
         {
-          "path": "src/app/demos/[name]/blocks/store-page.tsx",
+          "path": "src/app/demos/[name]/blocks/nft-page.tsx",
           "type": "registry:page",
           "target": "app/page.tsx"
         }

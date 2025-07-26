@@ -4,7 +4,7 @@ import type { ReactElement, ReactNode } from "react";
 import { blank } from "@/app/demos/[name]/blocks/blank";
 import { dashboard } from "@/app/demos/[name]/blocks/dashboard";
 import { solana } from "@/app/demos/[name]/blocks/solana";
-import { store } from "@/app/demos/[name]/blocks/store";
+import { nft as nftBlock } from "@/app/demos/[name]/blocks/nft";
 
 // components
 import { brandHeader } from "@/app/demos/[name]/components/brand-header";
@@ -26,6 +26,7 @@ import { stake } from "@/app/demos/[name]/solana/stake";
 import { swap } from "@/app/demos/[name]/solana/swap";
 import { transfer } from "@/app/demos/[name]/solana/transfer";
 import { wallet } from "@/app/demos/[name]/solana/wallet";
+import { nft } from "@/app/demos/[name]/solana/nft";
 
 // ui
 import { accordion } from "@/app/demos/[name]/ui/accordion";
@@ -65,7 +66,7 @@ interface Demo {
 export const demos: { [name: string]: Demo } = {
   // blocks
   blank,
-  store,
+  nftBlock,
   dashboard,
   solana,
 
@@ -89,6 +90,7 @@ export const demos: { [name: string]: Demo } = {
   swap,
   transfer,
   wallet,
+  nft,
 
   // ui
   accordion,

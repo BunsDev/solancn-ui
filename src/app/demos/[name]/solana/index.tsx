@@ -8,6 +8,7 @@ import { stake } from "./stake";
 import { swap } from "./swap";
 import { transfer } from "./transfer";
 import { wallet } from "./wallet";
+import { nft } from "./nft";
 
 // Export all Solana components for ease of importing
 export {
@@ -15,6 +16,7 @@ export {
   bridge,
   frame,
   lend,
+  nft,
   portfolio,
   receive,
   stake,
