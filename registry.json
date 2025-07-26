@@ -67,30 +67,6 @@
       ]
     },
     {
-      "name": "dashboardDemo",
-      "type": "registry:block",
-      "title": "Dashboard",
-      "description": "A dashboard application with your brand themed components",
-      "registryDependencies": [
-        "https://ui.solancn.com/r/sonner.json",
-        "https://ui.solancn.com/r/brand-header.json",
-        "https://ui.solancn.com/r/brand-sidebar.json",
-        "https://ui.solancn.com/r/theme.json"
-      ],
-      "files": [
-        {
-          "path": "src/v0/shell-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
-        },
-        {
-          "path": "src/app/demos/[name]/blocks/dashboard-page.tsx",
-          "type": "registry:page",
-          "target": "app/page.tsx"
-        }
-      ]
-    },
-    {
       "name": "solanaDemo",
       "type": "registry:block",
       "title": "Solana",
@@ -192,7 +168,6 @@
       "title": "Transfer",
       "description": "A token transfer interface for sending on Solana with brand themed components",
       "registryDependencies": [
-        "https://ui.solancn.com/r/product-grid.json",
         "https://ui.solancn.com/r/theme.json"
       ],
       "files": [
@@ -214,7 +189,6 @@
       "title": "Receive",
       "description": "A token receive interface for Solana with brand themed components",
       "registryDependencies": [
-        "https://ui.solancn.com/r/product-grid.json",
         "https://ui.solancn.com/r/theme.json"
       ],
       "files": [
@@ -236,7 +210,6 @@
       "title": "Borrow",
       "description": "A lending protocol interface for borrowing assets on Solana with brand themed components",
       "registryDependencies": [
-        "https://ui.solancn.com/r/product-grid.json",
         "https://ui.solancn.com/r/theme.json"
       ],
       "files": [
@@ -258,7 +231,6 @@
       "title": "Lend",
       "description": "A lending protocol interface for depositing assets on Solana with brand themed components",
       "registryDependencies": [
-        "https://ui.solancn.com/r/product-grid.json",
         "https://ui.solancn.com/r/theme.json"
       ],
       "files": [
@@ -280,7 +252,6 @@
       "title": "Wallet",
       "description": "A wallet interface showing details and transactions on Solana with brand themed components",
       "registryDependencies": [
-        "https://ui.solancn.com/r/product-grid.json",
         "https://ui.solancn.com/r/theme.json"
       ],
       "files": [
@@ -302,7 +273,6 @@
       "title": "Frame",
       "description": "A Solana Frame UI demo with a frame generation component",
       "registryDependencies": [
-        "https://ui.solancn.com/r/product-grid.json",
         "https://ui.solancn.com/r/theme.json"
       ],
       "files": [
@@ -324,7 +294,6 @@
       "title": "Portfolio",
       "description": "A Solana token portfolio viewer with balance tracking",
       "registryDependencies": [
-        "https://ui.solancn.com/r/product-grid.json",
         "https://ui.solancn.com/r/theme.json"
       ],
       "files": [
@@ -346,8 +315,12 @@
       "title": "Stake",
       "description": "A Solana staking interface for SOL and SPL tokens",
       "registryDependencies": [
-        "https://ui.solancn.com/r/product-grid.json",
-        "https://ui.solancn.com/r/theme.json"
+        "button",
+        "input",
+        "avatar",
+        "sidebar",
+        "https://ui.solancn.com/r/sonner.json",
+        "https://ui.solancn.com/r/theme.json"        
       ],
       "files": [
         {

@@ -18,7 +18,7 @@ import {
 
 export function WalletComponent() {
   return (
-    <Card className="w-full bg-background text-white border border-[#9945FF]/20">
+    <Card className="w-full bg-background text-text border border-[#9945FF]/20">
       <CardHeader className="border-b border-[#9945FF]/20">
         <div className="flex items-center justify-between">
           <div>
@@ -57,7 +57,7 @@ export function WalletComponent() {
                   <Button
                     size="sm"
                     variant="ghost"
-                    className="h-8 px-2 text-gray-400 hover:text-white hover:bg-black/20"
+                    className="h-8 px-2 text-gray-400 hover:text-text hover:bg-black/20"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +78,7 @@ export function WalletComponent() {
                   <Button
                     size="sm"
                     variant="ghost"
-                    className="h-8 px-2 text-gray-400 hover:text-white hover:bg-black/20"
+                    className="h-8 px-2 text-gray-400 hover:text-text hover:bg-black/20"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +102,7 @@ export function WalletComponent() {
                   <Button
                     size="sm"
                     variant="ghost"
-                    className="h-8 px-2 text-gray-400 hover:text-white hover:bg-black/20"
+                    className="h-8 px-2 text-gray-400 hover:text-text hover:bg-black/20"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

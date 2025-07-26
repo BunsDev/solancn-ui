@@ -138,7 +138,7 @@ const DeFiCard: React.FC<DeFiCardProps> = ({ title, value, subtitle, change, cha
       <div className="flex justify-between items-start">
         <div>
           <CardDescription className="text-gray-400">{title}</CardDescription>
-          <CardTitle className="text-2xl mt-1 text-white">{value}</CardTitle>
+          <CardTitle className="text-2xl mt-1 text-text">{value}</CardTitle>
         </div>
         {(change || changePercent) && (
           <div className={`flex items-center ${isNegative ? 'text-red-500' : 'text-[#14F195]'}`}>

@@ -260,7 +260,7 @@ export default function TradingComponent() {
                   Buy
                 </Button>
                 <Button 
-                  className={`flex-1 rounded-l-none ${orderSide === 'sell' ? 'bg-red-500 hover:bg-red-500/90 text-white' : 'bg-transparent hover:bg-red-500/10 text-red-500 border border-red-500'}`}
+                  className={`flex-1 rounded-l-none ${orderSide === 'sell' ? 'bg-red-500 hover:bg-red-500/90 text-text' : 'bg-transparent hover:bg-red-500/10 text-red-500 border border-red-500'}`}
                   onClick={() => setOrderSide('sell')}
                 >
                   Sell

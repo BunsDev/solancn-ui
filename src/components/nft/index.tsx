@@ -277,9 +277,11 @@ export function NFTComponent() {
       onClick={() => handleSelectNFT(nft)}
     >
       <div className="relative w-full h-full aspect-square overflow-hidden">
-        <img
+        <Image
           src={nft.image}
           alt={nft.name}
+          width={80}
+          height={80}
           className="w-full h-full object-cover"
         />
         <div className="absolute top-2 right-2">

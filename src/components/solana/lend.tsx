@@ -147,7 +147,7 @@ export const LendComponent = () => {
   };
 
   return (
-    <Card className="w-full bg-background text-white border border-[#14F195]/20">
+    <Card className="w-full bg-background text-text border border-[#14F195]/20">
       <CardHeader className="border-b border-[#14F195]/20">
         <CardTitle className="text-[#9945FF]">Lend Assets</CardTitle>
         <CardDescription className="text-gray-400">

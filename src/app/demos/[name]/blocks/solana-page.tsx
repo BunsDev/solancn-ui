@@ -22,7 +22,7 @@ import { nft } from "@/components/nft";
 import { frame } from "@/components/solana/frame";
 import { transfer } from "@/components/solana/transfer";
 import { portfolio } from "@/components/solana/portfolio";
-import { staking } from "@/components/solana/staking";
+import { stake } from "@/components/solana/stake";
 import { receive } from "@/components/solana/receive";
 import {
   Wallet,
@@ -210,7 +210,7 @@ function SolanaContent({ demoMode = true }: SolanaContentProps) {
                     <CardHeader>
                       <CardTitle className="text-text">Stake</CardTitle>
                     </CardHeader>
-                    <CardContent>{staking.components.Default}</CardContent>
+                    <CardContent>{stake.components.Default}</CardContent>
                   </Card>
                 </TabsContent>
 
@@ -301,7 +301,7 @@ function SolanaContent({ demoMode = true }: SolanaContentProps) {
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#9945FF] to-[#14F195] rounded-lg blur opacity-25 animate-pulse group-hover:opacity-75 transition duration-1000" />
                 <div className="relative w-full bg-background border border-[#9945FF]/30 rounded-lg p-8 shadow-xl">
                   <div className="w-20 h-20 mx-auto bg-gradient-to-r from-[#9945FF] to-[#14F195] rounded-full flex items-center justify-center mb-6">
-                    <Wallet className="text-white w-8 h-8" />
+                    <Wallet className="text-text w-8 h-8" />
                   </div>
 
                   <h2 className="text-3xl font-bold mb-4 text-text bg-clip-text text-transparent bg-gradient-to-r from-[#9945FF] to-[#14F195]">

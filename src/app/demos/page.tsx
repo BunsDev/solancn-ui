@@ -146,7 +146,7 @@ export default function DemoPage() {
               </CardContent>
               <CardFooter>
                 <Button
-                  className={`w-full bg-gradient-to-r ${demo.gradient} text-white hover:opacity-90`}
+                  className={`w-full bg-gradient-to-r ${demo.gradient} text-text hover:opacity-90`}
                 >
                   View Demo
                 </Button>

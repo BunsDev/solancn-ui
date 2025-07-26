@@ -18,7 +18,7 @@ import {
 
 export function SwapComponent() {
   return (
-    <Card className="w-full bg-background text-white border border-[#9945FF]/20">
+    <Card className="w-full bg-background text-text border border-[#9945FF]/20">
       <CardHeader className="border-b border-[#9945FF]/20">
         <CardTitle className="text-[#14F195]">Swap Tokens</CardTitle>
         <CardDescription className="text-gray-400">
