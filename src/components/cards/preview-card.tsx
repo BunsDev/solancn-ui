@@ -1,34 +1,29 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import type { Block, Component, UIPrimitive } from "@/lib/types";
-import { createElement } from "react";
+import type { RegistryItem } from "@/lib/types";
 
 interface PreviewProps {
-  item: Block | Component | UIPrimitive;
+  item: RegistryItem;
 }
 
-export const MinimalPreview = ({ item }: PreviewProps) => {
+export default function MinimalPreview({ item }: PreviewProps) {
   // Fallback preview for items without a defined preview
   const fallbackPreview = (
-    <div className="flex h-full w-full items-center justify-center">
+    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#9945FF]/10 to-[#14F195]/10 dark:from-[#9945FF]/20 dark:to-[#14F195]/20">
       <div className="text-center">
-        <div className="text-lg font-semibold text-slate-700 dark:text-slate-300">{item.title}</div>
-        <div className="text-xs text-slate-500 dark:text-slate-400">{item.name}</div>
+        <div className="text-lg font-semibold text-[#9945FF] dark:text-[#14F195]">{item.name}</div>
+        <div className="text-xs text-slate-500 dark:text-slate-400">{item.type}</div>
       </div>
     </div>
   );
 
+  // Apply proper styling to ensure previews are visible in cards
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{item.title}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="scale-[0.9] justify-center flex h-36 w-full items-center overflow-hidden pointer-events-none">
-          {item.preview || fallbackPreview}
-        </div>
-      </CardContent>
-    </Card>
+    <div className="w-full h-full overflow-hidden bg-slate-950 rounded-t-md border-b border-slate-800">
+      <div className="w-full h-full flex items-center justify-center p-4 transform scale-100">
+        {item.preview || fallbackPreview}
+      </div>
+    </div>
   );
 };

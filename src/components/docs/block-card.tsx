@@ -43,7 +43,7 @@ export function BlockCard({ block, baseUrl, prompt }: BlockCardProps) {
   };
 
   return (
-    <section>
+    <div className="flex flex-col justify-center h-dvh gap-4">
       <Card id="starting-kit" className="border-foreground/25">
         <CardHeader>
           <div className="flex flex-col gap-4">
@@ -88,7 +88,7 @@ export function BlockCard({ block, baseUrl, prompt }: BlockCardProps) {
         <CardContent className="flex flex-col items-center justify-center gap-4 rounded-md px-6">
           <div
             className={
-              "h-[800px] w-full overflow-hidden rounded-md border border-border p-4"
+              "h-full sm:h-[calc(100vh-24rem)] max-h-full w-full overflow-hidden rounded-md border border-border p-4"
             }
           >
             <iframe
@@ -100,6 +100,6 @@ export function BlockCard({ block, baseUrl, prompt }: BlockCardProps) {
           </div>
         </CardContent>
       </Card>
-    </section>
+    </div>
   );
 }

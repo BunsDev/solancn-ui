@@ -26,7 +26,7 @@ import { Input } from "@/components/ui/input";
 import type { Category, Component, RegistryItem } from "@/lib/types";
 import { getLink } from "@/lib/utils";
 import { getCategory } from "@/lib/registry/getCategory";
-import { MinimalPreview } from "@/components/cards/preview-card"; // Update import path
+import MinimalPreview from "@/components/cards/preview-card"; // Update import path
 
 // Category definitions with their display names and colors
 const categories = [

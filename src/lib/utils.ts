@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import type { RegistryItem } from "./types";
+import React from "react";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -20,3 +21,5 @@ export function getLink(item: RegistryItem): string {
     : "";
   return `/${itemTypeLink}/${item.name}`;
 }
+
+// Preview rendering is handled by the MinimalPreview component

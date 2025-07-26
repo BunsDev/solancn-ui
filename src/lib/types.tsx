@@ -93,7 +93,9 @@ export type RegistryItemType = "registry:component" | "registry:block" | "regist
 // Registry item interface
 export interface RegistryItem {
   name: string;
+  title: string;
   type: RegistryItemType;
+  preview?: React.ReactNode;
   description?: string;
   category?: string;
   tags?: string[];

@@ -28,7 +28,7 @@ export default async function BlockItemPage({
   }
 
   return (
-    <div className="flex flex-col gap-4 w-full mx-auto justify-center">
+    <div className="flex flex-col gap-4 mx-auto h-dvh w-dvw justify-center">
       <div className="mb-6 flex items-center justify-between">
         <div>
           <Button variant="ghost" size="sm" asChild className="mb-4">

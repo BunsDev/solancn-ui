@@ -25,7 +25,7 @@ import {
 import { Input } from "@/components/ui/input";
 import type { Block, Category, RegistryItem } from "@/lib/types";
 import { getCategory } from "@/lib/registry/getCategory";
-import { MinimalPreview } from "@/components/cards/preview-card";
+import MinimalPreview from "@/components/cards/preview-card";
 
 // Category definitions with their display names and colors
 const categories = [
@@ -101,9 +101,9 @@ function BlockCard({ block }: { block: Block }) {
     block.description?.match(/#(\w+)/g)?.map((t) => t.substring(1)) || [];
 
   return (
-    <Card className="overflow-hidden transition-all hover:shadow-md">
-      <CardHeader className="p-0">
-        <div className="relative aspect-video overflow-hidden rounded-t-md">
+    <Card className="overflow-hidden transition-all hover:shadow-md hover:scale-[1.02] border border-slate-800">
+      <CardHeader className="p-0 h-52 bg-slate-950">
+        <div className="relative h-full overflow-hidden rounded-t-md">
           <Link href={`/blocks/${block.name}`} className="absolute inset-0">
             {/* Use MinimalPreview component for displaying block preview */}
             <div className="flex h-full w-full items-center justify-center">
@@ -199,7 +199,7 @@ export function BlocksClientPage({ blocks }: { blocks: Block[] }) {
   };
 
   return (
-    <div className="container p-5 md:p-10">
+    <div className="p-5 md:p-10">
       <div className="mb-8">
         <Button variant="ghost" size="sm" asChild className="mb-4">
           <Link href="/docs">
