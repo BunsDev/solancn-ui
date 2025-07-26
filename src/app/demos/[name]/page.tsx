@@ -38,8 +38,15 @@ export default async function DemoPage({
   if (!component) {
     notFound();
   }
+  
+  // Check if demo exists in our demos object
+  const demo = demos[name];
+  if (!demo) {
+    console.error(`Demo "${name}" not found in demos object`);
+    notFound();
+  }
 
-  const { components } = demos[name];
+  const { components } = demo;
 
   return (
     <div className="flex h-[100vh] w-full flex-col gap-4 bg-background">

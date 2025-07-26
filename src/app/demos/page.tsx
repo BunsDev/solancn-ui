@@ -93,14 +93,14 @@ export default function DemoPage() {
     {
       title: "Portfolio Dashboard",
       description: "View your Solana token portfolio and holdings",
-      href: "/demos/portfolioDemo",
+      href: "/demos/portfolio",
       tags: ["Portfolio", "Assets", "Dashboard"],
       gradient: "from-indigo-500 to-blue-500",
     },
     {
       title: "Stake Assets",
       description: "Stake your SOL and earn staking rewards",
-      href: "/demos/stakeDemo",
+      href: "/demos/stake",
       tags: ["Stake", "Rewards", "Earn"],
       gradient: "from-amber-500 to-orange-500",
     }
