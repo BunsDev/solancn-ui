@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-// import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useWallet, useConnection } from "@solana/wallet-adapter-react";
@@ -9,13 +8,16 @@ import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import SolanaWalletProvider from "../context/wallet-provider";
 import { cn } from "@/lib/utils";
-// Import borrow and lend components
+
+// Import all Solana components
 import { borrow } from "../solana/borrow";
 import { lend } from "../solana/lend";
-// Import styles for the wallet adapter
-// import "@solana/wallet-adapter-react-ui/styles.css";
 import { swap } from "../solana/swap";
 import SwapComponent from "@/components/solana/swap";
+import { bridge } from "@/components/solana/bridge";
+import { defi } from "@/components/solana/defi";
+import { nft } from "@/components/solana/nft";
+import { staking } from "@/components/solana/staking";
 // Custom styled WalletButton component
 const StyledWalletButton = () => {
   return (
@@ -93,7 +95,7 @@ function SolanaContent() {
 
           {connected ? (
             <Tabs defaultValue="swap" className="w-full">
-              <TabsList className="grid grid-cols-7 mb-8 bg-black border border-[#9945FF]/30">
+              <TabsList className="grid grid-cols-9 mb-8 bg-black border border-[#9945FF]/30">
                 <TabsTrigger
                   value="swap"
                   className="data-[state=active]:bg-[#9945FF]/20"
@@ -111,6 +113,18 @@ function SolanaContent() {
                   className="data-[state=active]:bg-[#9945FF]/20"
                 >
                   Portfolio
+                </TabsTrigger>
+                <TabsTrigger
+                  value="bridge"
+                  className="data-[state=active]:bg-[#9945FF]/20"
+                >
+                  Bridge
+                </TabsTrigger>
+                <TabsTrigger
+                  value="nft"
+                  className="data-[state=active]:bg-[#9945FF]/20"
+                >
+                  NFTs
                 </TabsTrigger>
                 <TabsTrigger
                   value="transfer"
@@ -156,9 +170,7 @@ function SolanaContent() {
                       <CardTitle className="text-text">Stake SOL</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-400">
-                        Staking functionality will be implemented here.
-                      </p>
+                      {staking.components.Default}
                     </CardContent>
                   </Card>
                 </TabsContent>
@@ -171,9 +183,33 @@ function SolanaContent() {
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-400">
-                        Portfolio details will be displayed here.
-                      </p>
+                      {defi.components.Default}
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+                
+                <TabsContent value="bridge" className="mt-0">
+                  <Card className="bg-black border border-[#9945FF]/20">
+                    <CardHeader>
+                      <CardTitle className="text-text">
+                        Bridge Assets
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      {bridge.components.Default}
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+                
+                <TabsContent value="nft" className="mt-0">
+                  <Card className="bg-black border border-[#9945FF]/20">
+                    <CardHeader>
+                      <CardTitle className="text-text">
+                        NFT Gallery
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      {nft.components.Default}
                     </CardContent>
                   </Card>
                 </TabsContent>

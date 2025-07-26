@@ -60,7 +60,7 @@
           "target": "app/layout.tsx"
         },
         {
-          "path": "src/app/demo/[name]/blocks/blank-page.tsx",
+          "path": "src/app/demos/[name]/blocks/blank-page.tsx",
           "type": "registry:page",
           "target": "app/page.tsx"
         }
@@ -84,7 +84,7 @@
           "target": "app/layout.tsx"
         },
         {
-          "path": "src/app/demo/[name]/blocks/dashboard-page.tsx",
+          "path": "src/app/demos/[name]/blocks/dashboard-page.tsx",
           "type": "registry:page",
           "target": "app/page.tsx"
         }
@@ -106,7 +106,7 @@
           "target": "app/layout.tsx"
         },
         {
-          "path": "src/app/demo/[name]/blocks/solana-page.tsx",
+          "path": "src/app/demos/[name]/blocks/solana-page.tsx",
           "type": "registry:page",
           "target": "app/page.tsx"
         }
@@ -128,7 +128,7 @@
           "target": "app/layout.tsx"
         },
         {
-          "path": "src/app/demo/[name]/blocks/store-page.tsx",
+          "path": "src/app/demos/[name]/blocks/store-page.tsx",
           "type": "registry:page",
           "target": "app/page.tsx"
         }
@@ -159,7 +159,7 @@
           "target": "app/layout.tsx"
         },
         {
-          "path": "src/app/demo/[name]/blocks/blank-page.tsx",
+          "path": "src/app/demos/[name]/blocks/blank-page.tsx",
           "type": "registry:page",
           "target": "app/page.tsx"
         }
@@ -188,7 +188,7 @@
           "target": "app/layout.tsx"
         },
         {
-          "path": "src/app/demo/[name]/blocks/blank-page.tsx",
+          "path": "src/app/demos/[name]/blocks/blank-page.tsx",
           "type": "registry:page",
           "target": "app/page.tsx"
         }
@@ -216,7 +216,7 @@
           "target": "app/layout.tsx"
         },
         {
-          "path": "src/app/demo/[name]/blocks/blank-page.tsx",
+          "path": "src/app/demos/[name]/blocks/blank-page.tsx",
           "type": "registry:page",
           "target": "app/page.tsx"
         }
@@ -241,7 +241,7 @@
           "target": "app/layout.tsx"
         },
         {
-          "path": "src/app/demo/[name]/blocks/blank-page.tsx",
+          "path": "src/app/demos/[name]/blocks/blank-page.tsx",
           "type": "registry:page",
           "target": "app/page.tsx"
         }
@@ -268,7 +268,7 @@
           "target": "app/layout.tsx"
         },
         {
-          "path": "src/app/demo/[name]/blocks/blank-page.tsx",
+          "path": "src/app/demos/[name]/blocks/blank-page.tsx",
           "type": "registry:page",
           "target": "app/page.tsx"
         }
@@ -294,7 +294,7 @@
           "target": "app/layout.tsx"
         },
         {
-          "path": "src/app/demo/[name]/blocks/blank-page.tsx",
+          "path": "src/app/demos/[name]/blocks/blank-page.tsx",
           "type": "registry:page",
           "target": "app/page.tsx"
         }

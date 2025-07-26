@@ -4,7 +4,6 @@ import "./globals.css";
 import { AppLayout } from "@/components/app-layout";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import { ThemeSelect } from "@/components/theme-select";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({

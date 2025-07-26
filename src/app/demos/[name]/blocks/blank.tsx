@@ -1,4 +1,4 @@
-import BlankPage from "@/app/demo/[name]/blocks/blank-page";
+import BlankPage from "@/app/demos/[name]/blocks/blank-page";
 
 export const blank = {
   name: "blank",

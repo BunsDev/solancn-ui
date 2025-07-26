@@ -6,6 +6,18 @@ import {
   RegistrySidebar,
 } from "@/components/docs/docs-sidebar";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Geist, Geist_Mono } from "next/font/google";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export default function ComponentsLayout({
   children,
@@ -13,11 +25,27 @@ export default function ComponentsLayout({
   children: ReactNode;
 }>) {
   return (
-    <SidebarProvider>
-      <MobileSidebarTrigger />
-      <RegistrySidebar />
-      <main className="flex w-full justify-center p-2 mt-16 sm:mt-8 md:mt-4 lg:mt-0 md:p-4 lg:p-8 overflow-y-auto">{children}</main>
-      <Toaster />
-    </SidebarProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange={true}
+          storageKey="solancn-ui-theme"
+        >
+          <SidebarProvider>
+            <MobileSidebarTrigger />
+            <RegistrySidebar />
+            <main className="flex w-full justify-center p-2 mt-16 sm:mt-8 md:mt-4 lg:mt-0 md:p-4 lg:p-8 overflow-y-auto">
+              {children}
+            </main>
+            <Toaster />
+          </SidebarProvider>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

@@ -21,7 +21,7 @@ solancn is a design system registry built with Next.js, Shadcn/ui, and Tailwind 
 /
 ├── app/                     # Next.js App Router routes
 │   ├── docs/          # Documentation application routes
-│   ├── demo/                # Component demonstration routes
+│   ├── demos/                # Component demonstration routes
 │   └── r/                   # API routes for registry endpoints
 ├── components/              # React components
 │   ├── ui/                  # Shadcn/ui primitives

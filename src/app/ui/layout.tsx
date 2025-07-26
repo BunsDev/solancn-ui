@@ -6,6 +6,7 @@ import {
   RegistrySidebar,
 } from "@/components/docs/docs-sidebar";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "next-themes";
 
 export default function UIPrimitivesLayout({
   children,
@@ -13,11 +14,23 @@ export default function UIPrimitivesLayout({
   children: ReactNode;
 }>) {
   return (
-    <SidebarProvider>
-      <MobileSidebarTrigger />
-      <RegistrySidebar />
-      <main className="flex w-full justify-center p-2 mt-16 sm:mt-8 md:mt-4 lg:mt-0 md:p-4 lg:p-8 overflow-y-auto">{children}</main>
-      <Toaster />
-    </SidebarProvider>
+    <html lang="en" suppressHydrationWarning>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="dark"
+        enableSystem={false}
+        disableTransitionOnChange={true}
+        storageKey="solancn-ui-theme"
+      >
+        <SidebarProvider>
+          <MobileSidebarTrigger />
+          <RegistrySidebar />
+          <main className="flex w-full justify-center p-2 mt-16 sm:mt-8 md:mt-4 lg:mt-0 md:p-4 lg:p-8 overflow-y-auto">
+            {children}
+          </main>
+          <Toaster />
+        </SidebarProvider>
+      </ThemeProvider>
+    </html>
   );
 }

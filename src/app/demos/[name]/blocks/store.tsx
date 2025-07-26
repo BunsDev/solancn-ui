@@ -1,5 +1,5 @@
-import MinimalLayout from "@/app/demo/[name]/blocks/minimal-layout";
-import StorePage from "@/app/demo/[name]/blocks/store-page";
+import MinimalLayout from "@/app/demos/[name]/blocks/minimal-layout";
+import StorePage from "@/app/demos/[name]/blocks/store-page";
 
 export const store = {
   name: "store",
