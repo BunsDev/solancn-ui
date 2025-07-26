@@ -23,9 +23,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import type { Block, RegistryItem } from "@/lib/types";
-import { getLink } from "@/lib/utils";
+import type { Block, Category, RegistryItem } from "@/lib/types";
 import { getCategory } from "@/lib/registry/getCategory";
+import { MinimalPreview } from "@/components/cards/preview-card";
 
 // Category definitions with their display names and colors
 const categories = [
@@ -95,55 +95,50 @@ const extractTags = (description: string | undefined = "") => {
 
 // Block card component
 function BlockCard({ block }: { block: Block }) {
-  // Assign category to this block
-  const categoryId = block.category || getCategory(block as RegistryItem);
-  const category =
-    categories.find((c) => c.id === categoryId) ||
-    categories.find((c) => c.id === "layout");
-
-  // Get tags from description
-  const tags = extractTags(block.description);
+  // Determine category and extract tags
+  const category = getCategory(block as RegistryItem);
+  const tags =
+    block.description?.match(/#(\w+)/g)?.map((t) => t.substring(1)) || [];
 
   return (
     <Card className="overflow-hidden transition-all hover:shadow-md">
       <CardHeader className="p-0">
-        <div className="relative h-44 w-full bg-slate-200 dark:bg-slate-950">
-          <Link
-            href={getLink(block as RegistryItem)}
-            className="absolute inset-0"
-          >
-            {/* Use a placeholder image - in production, you'd use actual previews */}
-            <div className="flex h-full w-full items-center justify-center text-slate-400">
-              <span className="text-lg font-semibold">{block.title} Block</span>
+        <div className="relative aspect-video overflow-hidden rounded-t-md">
+          <Link href={`/blocks/${block.name}`} className="absolute inset-0">
+            {/* Use MinimalPreview component for displaying block preview */}
+            <div className="flex h-full w-full items-center justify-center">
+              <MinimalPreview item={block} />
             </div>
           </Link>
         </div>
       </CardHeader>
       <CardContent className="p-4">
         <div className="mb-2 flex items-center gap-2">
-          <Badge variant="secondary" className={category?.color || ""}>
-            {category?.name || "Layout"}
+          <Badge variant="secondary" className={block.categoryColor}>
+            {block.categoryName}
           </Badge>
         </div>
-        <Link href={getLink(block as RegistryItem)}>
+        <Link href={`/blocks/${block.name}`}>
           <CardTitle className="mb-1 text-lg hover:underline">
-            {block.title}
+            {block.title || block.name}
           </CardTitle>
         </Link>
-        <p className="mb-2 line-clamp-2 text-sm text-muted-foreground">
-          {block.description ||
-            "A beautiful UI block for your next web application."}
-        </p>
+        <div className="text-sm text-muted-foreground">{block.description}</div>
+        <div className="mt-2 flex flex-wrap gap-1">
+          {tags.map((tag) => (
+            <Badge key={tag} variant="outline" className="text-xs">
+              {tag}
+            </Badge>
+          ))}
+        </div>
       </CardContent>
-      <CardFooter className="flex flex-wrap gap-1 border-t p-3">
-        {tags.map((tag) => (
-          <Badge key={tag} variant="outline" className="bg-background text-xs">
-            {tag}
-          </Badge>
-        ))}
-        {tags.length === 0 && (
-          <span className="text-xs text-muted-foreground">No tags</span>
-        )}
+      <CardFooter className="border-t p-4">
+        <div className="flex w-full items-center justify-between">
+          <span className="text-xs text-muted-foreground">Block</span>
+          <Button size="sm" variant="outline" className="ml-auto" asChild>
+            <Link href={`/blocks/${block.name}`}>View Block</Link>
+          </Button>
+        </div>
       </CardFooter>
     </Card>
   );
@@ -156,10 +151,14 @@ export function BlocksClientPage({ blocks }: { blocks: Block[] }) {
   const [filteredBlocks, setFilteredBlocks] = useState(blocks);
 
   // Process blocks to assign categories
-  const processedBlocks = blocks.map((block) => ({
-    ...block,
-    category: block.category || getCategory(block as RegistryItem),
-  }));
+  const processedBlocks = blocks.map((block) => {
+    const categoryObj = getCategory(block as RegistryItem);
+    return {
+      ...block,
+      categoryName: categoryObj.name,
+      categoryColor: categoryObj.color
+    };
+  });
 
   // Filter blocks based on search term and category
   const filterBlocks = useCallback(() => {
@@ -170,7 +169,7 @@ export function BlocksClientPage({ blocks }: { blocks: Block[] }) {
       const term = searchTerm.toLowerCase();
       filtered = filtered.filter(
         (block) =>
-          block.title.toLowerCase().includes(term) ||
+          block.name.toLowerCase().includes(term) ||
           block.description?.toLowerCase().includes(term) ||
           extractTags(block.description).some((tag) =>
             tag.toLowerCase().includes(term),
@@ -180,12 +179,9 @@ export function BlocksClientPage({ blocks }: { blocks: Block[] }) {
 
     // Apply category filter
     if (selectedCategory) {
-      const categoryObj = categories.find((c) => c.name === selectedCategory);
-      if (categoryObj) {
-        filtered = filtered.filter(
-          (block) => block.category === categoryObj.id,
-        );
-      }
+      filtered = filtered.filter(
+        (block) => block.categoryName === selectedCategory
+      );
     }
 
     setFilteredBlocks(filtered);
@@ -215,7 +211,7 @@ export function BlocksClientPage({ blocks }: { blocks: Block[] }) {
         <h1 className="mb-2 text-3xl font-bold tracking-tight">UI Blocks</h1>
         <p className="text-muted-foreground">
           A collection of beautifully designed UI blocks ready for your next
-          project. Browse, preview, and integrate these components seamlessly.
+          project. Browse, preview, and integrate these blocks seamlessly.
         </p>
       </div>
 
@@ -235,7 +231,7 @@ export function BlocksClientPage({ blocks }: { blocks: Block[] }) {
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="flex items-center gap-2">
                 <SlidersHorizontal className="h-4 w-4" />
-                {selectedCategory ? selectedCategory : "Filter by Category"}
+                {selectedCategory || "Filter by Category"}
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">

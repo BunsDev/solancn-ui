@@ -1,31 +1,55 @@
+import type React from "react";  
+
 export interface Component extends RegistryItem {
   name: string;
   title: string;
   installed: boolean;
   type: "registry:component";
+  preview: React.ReactNode;
   description?: string;
   category?: string;
   tags?: string[];
   installedFiles?: string[];
   dependencies?: string[];
+  categoryName?: string;
+  categoryColor?: string;
 };
 
 export interface Block extends RegistryItem {
   name: string;
   title: string;
   type: "registry:block";
+  preview: React.ReactNode;
   description?: string;
   category?: string;
   tags?: string[];
   files?: Record<string, string>;
   dependencies?: string[];
   registryDependencies?: string[];
+  categoryName?: string;
+  categoryColor?: string;
 };
 
 export interface UIPrimitive extends RegistryItem {
   name: string;
   title: string;
   type: "registry:ui";
+  preview: React.ReactNode;
+  description?: string;
+  category?: string;
+  tags?: string[];
+  files?: Record<string, string>;
+  dependencies?: string[];
+  registryDependencies?: string[];
+  categoryName?: string;
+  categoryColor?: string;
+};
+
+export interface Theme extends RegistryItem {
+  name: string;
+  title: string;
+  type: "registry:theme";
+  preview?: React.ReactNode;
   description?: string;
   category?: string;
   tags?: string[];
@@ -34,17 +58,6 @@ export interface UIPrimitive extends RegistryItem {
   registryDependencies?: string[];
 };
 
-export interface Theme extends RegistryItem {
-  name: string;
-  title: string;
-  type: "registry:theme";
-  description?: string;
-  category?: string;
-  tags?: string[];
-  files?: Record<string, string>;
-  dependencies?: string[];
-  registryDependencies?: string[];
-};
 /**
  * Installation options
  */
@@ -67,6 +80,11 @@ export interface InstallResult {
   files: string[];
   name?: string;
   message?: string;
+}
+
+export interface Category {
+    name: string;
+    color: string;
 }
 
 // Registry item types

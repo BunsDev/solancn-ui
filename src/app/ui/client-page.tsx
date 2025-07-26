@@ -23,44 +23,69 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import type { UIPrimitive } from "@/lib/types";
+import type { Category, RegistryItem, UIPrimitive } from "@/lib/types";
+import { getLink } from "@/lib/utils";
+import { getCategory } from "@/lib/registry/getCategory";
+import { MinimalPreview } from "@/components/cards/preview-card";
 
-// Category definitions and their colors
+// Category definitions with their display names and colors
 const categories = [
   {
+    id: "dashboard",
     name: "Dashboard",
     color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400",
   },
   {
+    id: "marketing",
     name: "Marketing",
     color:
       "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400",
   },
   {
+    id: "forms",
     name: "Forms",
     color:
       "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400",
   },
   {
+    id: "cards",
     name: "Cards",
     color:
       "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400",
   },
   {
+    id: "authentication",
     name: "Authentication",
     color:
       "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-400",
   },
   {
+    id: "layout",
     name: "Layout",
     color: "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-400",
   },
+  {
+    id: "navigation",
+    name: "Navigation",
+    color: "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-400",
+  },
+  {
+    id: "feedback",
+    name: "Feedback",
+    color: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400",
+  },
+  {
+    id: "overlays",
+    name: "Overlays",
+    color:
+      "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400",
+  },
+  {
+    id: "data",
+    name: "Data Display",
+    color: "bg-lime-100 text-lime-800 dark:bg-lime-900/30 dark:text-lime-400",
+  },
 ];
-
-// Helper function to get a random category for demo purposes
-const getRandomCategory = () => {
-  return categories[Math.floor(Math.random() * categories.length)];
-};
 
 // Helper to extract tags from description
 const extractTags = (description: string | undefined = "") => {
@@ -69,86 +94,54 @@ const extractTags = (description: string | undefined = "") => {
   return tags.map((tag) => tag.substring(1));
 };
 
-// Feature badges for primitive cards
-const FeatureBadge = ({ feature }: { feature: string }) => {
-  const colors: Record<string, string> = {
-    new: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400",
-    responsive:
-      "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400",
-    animated:
-      "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400",
-  };
-
-  // Convert feature to lowercase and use as key, with a fallback
-  const colorClass =
-    colors[feature.toLowerCase()] ||
-    "bg-slate-100 text-slate-800 dark:bg-slate-900/30 dark:text-slate-400";
-
-  return (
-    <Badge variant="outline" className={`${colorClass} font-medium`}>
-      {feature}
-    </Badge>
-  );
-};
-
-// Primitive card component
+// UI primitive card component
 function UIPrimitiveCard({ primitive }: { primitive: UIPrimitive }) {
-  const category = getRandomCategory();
+  // Extract tags from the description
   const tags = extractTags(primitive.description);
-
-  // Randomly assign features for demo - in production you'd get these from metadata
-  const features = [];
-  if (Math.random() > 0.7) features.push("New");
-  if (Math.random() > 0.5) features.push("Responsive");
-  if (Math.random() > 0.8) features.push("Animated");
+  const category = getCategory(primitive as RegistryItem);
 
   return (
     <Card className="overflow-hidden transition-all hover:shadow-md">
       <CardHeader className="p-0">
-        <div className="relative h-44 w-full bg-slate-100 dark:bg-slate-800">
-          <Link
-            href={`/ui/${primitive.name}`}
-            className="absolute inset-0"
-          >
-            {/* Use a placeholder image - in production, you'd use actual previews */}
-            <div className="flex h-full w-full items-center justify-center text-slate-400">
-              <span className="text-sm">Primitive Preview</span>
+        <div className="relative aspect-video overflow-hidden rounded-t-md">
+          <Link href={getLink(primitive)} className="absolute inset-0">
+            <div className="flex h-full w-full items-center justify-center">
+              <MinimalPreview item={primitive} />
             </div>
           </Link>
         </div>
       </CardHeader>
       <CardContent className="p-4">
         <div className="mb-2 flex items-center gap-2">
-          <Badge variant="secondary" className={category.color}>  
-            {category.name}
+          <Badge variant="secondary" className={primitive.categoryColor}>
+            {primitive.categoryName}
           </Badge>
-          {features.length > 0 && (
-            <div className="flex flex-wrap gap-1">
-              {features.map((feature) => (
-                <FeatureBadge key={feature.toLowerCase()} feature={feature} />
-              ))}
-            </div>
-          )}
         </div>
-        <Link href={`/ui/${primitive.name}`}>
+        <Link href={getLink(primitive)}>
           <CardTitle className="mb-1 text-lg hover:underline">
-            {primitive.title}
+            {primitive.title || primitive.name}
           </CardTitle>
         </Link>
-        <p className="mb-2 line-clamp-2 text-sm text-muted-foreground">
-          {primitive.description ||
-            "A beautiful UI primitive for your next web application."}
-        </p>
+        <div className="text-sm text-muted-foreground">
+          {primitive.description}
+        </div>
+        <div className="mt-2 flex flex-wrap gap-1">
+          {tags.map((tag) => (
+            <Badge key={tag} variant="outline" className="text-xs">
+              {tag}
+            </Badge>
+          ))}
+        </div>
       </CardContent>
-      <CardFooter className="flex flex-wrap gap-1 border-t p-3">
-        {tags.map((tag) => (
-          <Badge key={tag} variant="outline" className="bg-background text-xs">
-            {tag}
-          </Badge>
-        ))}
-        {tags.length === 0 && (
-          <span className="text-xs text-muted-foreground">No tags</span>
-        )}
+      <CardFooter className="border-t p-4">
+        <div className="flex w-full items-center justify-between">
+          <span className="text-xs text-muted-foreground">
+            {primitive.type.replace("registry:", "")}
+          </span>
+          <Button size="sm" variant="outline" className="ml-auto" asChild>
+            <Link href={getLink(primitive)}>View Primitive</Link>
+          </Button>
+        </div>
       </CardFooter>
     </Card>
   );
@@ -156,54 +149,71 @@ function UIPrimitiveCard({ primitive }: { primitive: UIPrimitive }) {
 
 // Client component for search and filter functionality
 export function UIPrimitivesClientPage({
-  initialPrimitives,
-}: { initialPrimitives: UIPrimitive[] }) {
+  primitives,
+}: { primitives: UIPrimitive[] }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [primitives, setPrimitives] = useState(initialPrimitives);
+  const [filteredPrimitives, setFilteredPrimitives] = useState(primitives);
 
+  // Process primitives to assign categories
+  const processedPrimitives = primitives.map((primitive) => ({
+    ...primitive,
+    category: primitive.category || getCategory(primitive as RegistryItem),
+  }));
+
+  // Filter primitives based on search term and category
   const filterPrimitives = useCallback(() => {
-    let filtered = [...initialPrimitives];
+    let filtered = [...processedPrimitives];
 
+    // Apply search filter
     if (searchTerm) {
       const term = searchTerm.toLowerCase();
       filtered = filtered.filter(
         (primitive) =>
-          primitive.title.toLowerCase().includes(term) ||
-          primitive.description?.toLowerCase().includes(term),
+          primitive.name.toLowerCase().includes(term) ||
+          primitive.description?.toLowerCase().includes(term) ||
+          extractTags(primitive.description).some((tag) =>
+            tag.toLowerCase().includes(term),
+          ),
       );
     }
 
+    // Apply category filter
     if (selectedCategory) {
-      // In production, you'd filter based on actual categories from metadata
-      // This is a placeholder filtering mechanism
-      const categoryIndex = categories.findIndex(
-        (c) => c.name === selectedCategory,
-      );
-      filtered = filtered.filter(
-        (_, idx) => idx % categories.length === categoryIndex,
-      );
+      const categoryObj = categories.find((c) => c.name === selectedCategory);
+      if (categoryObj) {
+        filtered = filtered.filter(
+          (primitive) => primitive.category === categoryObj.id,
+        );
+      }
     }
 
-    setPrimitives(filtered);
-  }, [searchTerm, selectedCategory, initialPrimitives]);
+    setFilteredPrimitives(
+      filtered.map((primitive) => ({
+        ...primitive,
+        category: getCategory(primitive as RegistryItem).name,
+      })),
+    );
+  }, [searchTerm, selectedCategory, processedPrimitives]);
 
+  // Apply filters when dependencies change
   useEffect(() => {
     filterPrimitives();
-  }, [filterPrimitives]);
+  }, [searchTerm, selectedCategory]);
 
+  // Clear all filters
   const clearFilters = () => {
     setSearchTerm("");
     setSelectedCategory(null);
   };
 
   return (
-    <div className="container p-5 md:p-10">
+    <div className="p-5 md:p-10">
       <div className="mb-8">
         <Button variant="ghost" size="sm" asChild className="mb-4">
-          <Link href="/ui">
+          <Link href="/docs">
             <ArrowLeft className="mr-2 size-4" />
-            UI Primitives
+            Documentation
           </Link>
         </Button>
 
@@ -212,7 +222,7 @@ export function UIPrimitivesClientPage({
         </h1>
         <p className="text-muted-foreground">
           A collection of beautifully designed UI primitives ready for your next
-          project. Browse, preview, and integrate these components seamlessly.
+          project. Browse, preview, and integrate these primitives seamlessly.
         </p>
       </div>
 
@@ -232,7 +242,7 @@ export function UIPrimitivesClientPage({
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="flex items-center gap-2">
                 <SlidersHorizontal className="h-4 w-4" />
-                {selectedCategory ? selectedCategory : "Filter by Category"}
+                {selectedCategory || "Filter by Category"}
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
@@ -241,7 +251,7 @@ export function UIPrimitivesClientPage({
               <DropdownMenuGroup>
                 {categories.map((category) => (
                   <DropdownMenuItem
-                    key={category.name}
+                    key={category.id}
                     onClick={() => setSelectedCategory(category.name)}
                     className="cursor-pointer"
                   >
@@ -254,6 +264,16 @@ export function UIPrimitivesClientPage({
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                onClick={clearFilters}
+                className="cursor-pointer"
+              >
+                <div className="flex w-full items-center gap-2">
+                  <X className="h-4 w-4" />
+                  <span>Clear filters</span>
+                </div>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           {(searchTerm || selectedCategory) && (
@@ -274,11 +294,11 @@ export function UIPrimitivesClientPage({
         <p className="text-sm text-muted-foreground">
           Showing{" "}
           <span className="font-medium text-foreground">
-            {primitives.length}
+            {filteredPrimitives.length}
           </span>{" "}
           of{" "}
           <span className="font-medium text-foreground">
-            {initialPrimitives.length}
+            {primitives.length}
           </span>{" "}
           primitives
           {searchTerm && (
@@ -303,16 +323,16 @@ export function UIPrimitivesClientPage({
       </div>
 
       {/* Primitives grid */}
-      {primitives.length > 0 ? (
+      {filteredPrimitives.length > 0 ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {primitives.map((primitive) => (
+          {filteredPrimitives.map((primitive) => (
             <UIPrimitiveCard key={primitive.name} primitive={primitive} />
           ))}
         </div>
       ) : (
         <div className="flex min-h-[400px] flex-col items-center justify-center rounded-lg border border-dashed py-10 text-center">
           <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
-            <Search className="h-10 w-10 text-primary/60" />
+            <Search className="h-10 w-10 text-primary/60" aria-hidden="true" />
           </div>
           <h2 className="mt-4 text-xl font-medium">No primitives found</h2>
           <p className="mt-2 text-muted-foreground">

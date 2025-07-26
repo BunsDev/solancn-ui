@@ -23,10 +23,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import type { Component } from "@/lib/types";
-import type { RegistryItem } from "@/lib/types";
+import type { Category, Component, RegistryItem } from "@/lib/types";
 import { getLink } from "@/lib/utils";
 import { getCategory } from "@/lib/registry/getCategory";
+import { MinimalPreview } from "@/components/cards/preview-card"; // Update import path
 
 // Category definitions with their display names and colors
 const categories = [
@@ -96,64 +96,62 @@ const extractTags = (description: string | undefined = "") => {
 
 // Component card component
 function ComponentCard({ component }: { component: Component }) {
-  // Assign category to this component
-  const categoryId =
-    component.category || getCategory(component as RegistryItem);
-  const category =
-    categories.find((c) => c.id === categoryId) ||
-    categories.find((c) => c.id === "layout");
-
-  // Get tags from description
+  // Extract tags from the description
   const tags = extractTags(component.description);
+  const category = getCategory(component as RegistryItem);
 
   return (
     <Card className="overflow-hidden transition-all hover:shadow-md">
       <CardHeader className="p-0">
-        <div className="relative h-44 w-full bg-slate-200 dark:bg-slate-950">
+        <div className="relative aspect-video overflow-hidden rounded-t-md">
           <Link
-            href={getLink(component as RegistryItem)}
+            href={getLink(component)}
             className="absolute inset-0"
           >
-            {/* Use a placeholder image - in production, you'd use actual previews */}
-            <div className="flex h-full w-full items-center justify-center text-slate-400">
-              <span className="text-lg font-semibold">
-                {component.title} Component
-              </span>
-            </div>{" "}
-            {/* <Image
-                src={component.preview || "/placeholder.png"}
-                alt={component.title}
-                width={500}
-                height={500}
-              /> */}
+            <div className="flex h-full w-full items-center justify-center">
+              <MinimalPreview item={component} />
+            </div>
           </Link>
         </div>
       </CardHeader>
       <CardContent className="p-4">
         <div className="mb-2 flex items-center gap-2">
-          <Badge variant="secondary" className={category?.color || ""}>
-            {category?.name || "Layout"}
+          <Badge variant="secondary" className={component.categoryColor}>
+            {component.categoryName}
           </Badge>
         </div>
-        <Link href={getLink(component as RegistryItem)}>
+        <Link href={getLink(component)}>
           <CardTitle className="mb-1 text-lg hover:underline">
             {component.title}
           </CardTitle>
         </Link>
-        <p className="mb-2 line-clamp-2 text-sm text-muted-foreground">
-          {component.description ||
-            "A beautiful UI component for your next web application."}
-        </p>
+        <div className="text-sm text-muted-foreground">
+          {component.description}
+        </div>
+        <div className="mt-2 flex flex-wrap gap-1">
+          {tags.map((tag) => (
+            <Badge key={tag} variant="outline" className="text-xs">
+              {tag}
+            </Badge>
+          ))}
+        </div>
       </CardContent>
-      <CardFooter className="flex flex-wrap gap-1 border-t p-3">
-        {tags.map((tag) => (
-          <Badge key={tag} variant="outline" className="bg-background text-xs">
-            {tag}
-          </Badge>
-        ))}
-        {tags.length === 0 && (
-          <span className="text-xs text-muted-foreground">No tags</span>
-        )}
+      <CardFooter className="border-t p-4">
+        <div className="flex w-full items-center justify-between">
+          <span className="text-xs text-muted-foreground">
+            {component.type.replace("registry:", "")}
+          </span>
+          <Button
+            size="sm"
+            variant="outline"
+            className="ml-auto"
+            asChild
+          >
+            <Link href={getLink(component)}>
+              View Component
+            </Link>
+          </Button>
+        </div>
       </CardFooter>
     </Card>
   );
@@ -200,7 +198,10 @@ export function ComponentsClientPage({
       }
     }
 
-    setFilteredComponents(filtered);
+    setFilteredComponents(filtered.map((component) => ({
+      ...component,
+      category: getCategory(component as RegistryItem).name,
+    })));
   }, [searchTerm, selectedCategory, processedComponents]);
 
   // Apply filters when dependencies change

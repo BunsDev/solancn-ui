@@ -1,12 +1,12 @@
-import type { RegistryItem } from "../types";
+import type { Category, RegistryItem } from "../types";
 
-export function getCategory(item: RegistryItem): string {
+export function getCategory(item: RegistryItem): Category {
   const name = item.name.toLowerCase();
   const description = item.description?.toLowerCase() || "";
 
   // Try to determine category from block data
   if (item.category) {
-    return item.category.toLowerCase();
+    return { name: item.category, color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400" };
   }
 
   // Use pattern matching to assign categories
@@ -17,7 +17,7 @@ export function getCategory(item: RegistryItem): string {
     description.includes("navigation") ||
     description.includes("menu")
   ) {
-    return "navigation";
+    return { name: "navigation", color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400" };
   }
 
   if (
@@ -27,11 +27,11 @@ export function getCategory(item: RegistryItem): string {
     description.includes("form") ||
     description.includes("input")
   ) {
-    return "forms";
+    return { name: "forms", color: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400" };
   }
 
   if (name.includes("card") || description.includes("card")) {
-    return "cards";
+    return { name: "cards", color: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400" };
   }
 
   if (
@@ -41,7 +41,7 @@ export function getCategory(item: RegistryItem): string {
     description.includes("authentication") ||
     description.includes("login")
   ) {
-    return "authentication";
+    return { name: "authentication", color: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-400" };
   }
 
   if (
@@ -51,7 +51,7 @@ export function getCategory(item: RegistryItem): string {
     description.includes("layout") ||
     description.includes("section")
   ) {
-    return "layout";
+    return { name: "layout", color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400" };
   }
 
   if (
@@ -60,7 +60,7 @@ export function getCategory(item: RegistryItem): string {
     description.includes("dashboard") ||
     description.includes("analytics")
   ) {
-    return "dashboard";
+    return { name: "dashboard", color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400" };
   }
 
   if (
@@ -70,7 +70,7 @@ export function getCategory(item: RegistryItem): string {
     description.includes("alert") ||
     description.includes("notification")
   ) {
-    return "feedback";
+    return { name: "feedback", color: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400" };
   }
 
   if (
@@ -81,7 +81,7 @@ export function getCategory(item: RegistryItem): string {
     description.includes("modal") ||
     description.includes("dialog")
   ) {
-    return "overlays";
+    return { name: "overlays", color: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400" };
   }
 
   if (
@@ -91,7 +91,7 @@ export function getCategory(item: RegistryItem): string {
     description.includes("data") ||
     description.includes("display")
   ) {
-    return "data";
+    return { name: "data", color: "bg-lime-100 text-lime-800 dark:bg-lime-900/30 dark:text-lime-400" };
   }
 
   if (
@@ -102,9 +102,9 @@ export function getCategory(item: RegistryItem): string {
     description.includes("landing") ||
     description.includes("hero")
   ) {
-    return "marketing";
+    return { name: "marketing", color: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400" };
   }
 
   // Default to layout if no category matches
-  return "layout";
+  return { name: "layout", color: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400" };
 }

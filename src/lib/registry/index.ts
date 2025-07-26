@@ -1,5 +1,6 @@
 import registry from "@/registry";
 import type { Block, Component, UIPrimitive, RegistryItemType } from "@/lib/types";
+import { previewRegistry } from "@/components/previews";
 
 export function getRegistryItems(): Component[] {
   // exclude style item as it's not relevant to show in the ui
@@ -7,7 +8,13 @@ export function getRegistryItems(): Component[] {
     (item) => item.type !== "registry:style" as RegistryItemType,
   );
 
-  return components as unknown as Component[];
+  // Apply previews to all items
+  const itemsWithPreviews = components.map(item => ({
+    ...item,
+    preview: previewRegistry[item.name] || null
+  }));
+
+  return itemsWithPreviews as unknown as Component[];
 }
 
 export function getRegistryItem(name: string): Component {
