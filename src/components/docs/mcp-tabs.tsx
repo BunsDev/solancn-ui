@@ -51,7 +51,8 @@ export function MCPTabs({ rootUrl }: { rootUrl: string }) {
 
       <TabsContent value="cursor">
         <p className="text-muted-foreground text-sm">
-          Click Add to Cursor or copy and paste the code into{" "}
+          {/* Click Add to Cursor or copy and paste the code into{" "} */}
+          Copy and paste the code into{" "}
           <code className="inline text-sm tabular-nums">.cursor/mcp.json</code>
         </p>
       </TabsContent>
@@ -67,7 +68,7 @@ export function MCPTabs({ rootUrl }: { rootUrl: string }) {
 
       <div className="relative">
         <div className="absolute top-3 right-3 flex gap-2">
-          {tab === "cursor" && <AddToCursor mcp={mcp} />}
+          {/* {tab === "cursor" && <AddToCursor mcp={mcp} />} */}
 
           <Button
             size="sm"

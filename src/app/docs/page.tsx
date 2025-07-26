@@ -170,8 +170,8 @@ export default function RegistryPage() {
           </p>
           <p className="mt-2 text-muted-foreground">
             To get begin, select a{" "}
-            <a href="/starters" className="underline">
-              starter
+            <a href="/demo" className="underline">
+              demo
             </a>{" "}
             and click the <span className="font-bold">Open in v0</span> button.
             You can also open individual components or blocks in v0 if you want

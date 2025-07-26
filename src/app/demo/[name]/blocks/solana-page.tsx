@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useWallet, useConnection } from "@solana/wallet-adapter-react";
@@ -13,8 +13,9 @@ import { cn } from "@/lib/utils";
 import { borrow } from "../solana/borrow";
 import { lend } from "../solana/lend";
 // Import styles for the wallet adapter
-import "@solana/wallet-adapter-react-ui/styles.css";
-
+// import "@solana/wallet-adapter-react-ui/styles.css";
+import { swap } from "../solana/swap";
+import SwapComponent from "@/components/solana/swap";
 // Custom styled WalletButton component
 const StyledWalletButton = () => {
   return (
@@ -144,9 +145,7 @@ function SolanaContent() {
                       <CardTitle className="text-text">Swap Tokens</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-400">
-                        Swap functionality will be implemented here.
-                      </p>
+                     <SwapComponent />
                     </CardContent>
                   </Card>
                 </TabsContent>
