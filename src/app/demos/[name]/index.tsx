@@ -1,10 +1,10 @@
 import type { ReactElement, ReactNode } from "react";
 
 // blocks
-import { blank } from "@/app/demos/[name]/blocks/blank";
-import { dashboard } from "@/app/demos/[name]/blocks/dashboard";
-import { solana } from "@/app/demos/[name]/blocks/solana";
-import { nft as nftBlock } from "@/app/demos/[name]/blocks/nft";
+import { blankDemo } from "@/app/demos/[name]/blocks/blankDemo";
+import { dashboardDemo } from "@/app/demos/[name]/blocks/dashboardDemo";
+import { solanaDemo } from "@/app/demos/[name]/blocks/solanaDemo";
+import { nftDemo } from "@/app/demos/[name]/blocks/nftDemo";
 
 // components
 import { brandHeader } from "@/app/demos/[name]/components/brand-header";
@@ -65,10 +65,10 @@ interface Demo {
 
 export const demos: { [name: string]: Demo } = {
   // blocks
-  blank,
-  nftBlock,
-  dashboard,
-  solana,
+  blankDemo,
+  nftDemo,
+  dashboardDemo,
+  solanaDemo,
 
   // components
   hero,
