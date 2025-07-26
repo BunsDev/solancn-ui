@@ -18,22 +18,18 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import type { Component } from "@/lib/types";
+import type { Block } from "@/lib/types";
 
-interface ComponentCardProps {
-  component: Component;
+interface BlockCardProps {
+  block: Block;
   baseUrl: string;
   prompt: string;
 }
 
-export function ComponentCard({
-  component,
-  baseUrl,
-  prompt,
-}: ComponentCardProps) {
+export function BlockCard({ block, baseUrl, prompt }: BlockCardProps) {
   const [copied, setCopied] = useState(false);
 
-  const registryUrl = `https://${baseUrl}/r/${component.name}.json`;
+  const registryUrl = `https://${baseUrl}/r/${block.name}.json`;
   const npxCommand = `npx shadcn@latest add ${registryUrl}`;
 
   const copyToClipboard = async () => {
@@ -54,7 +50,7 @@ export function ComponentCard({
             <CardTitle className="font-medium text-lg">Preview</CardTitle>
 
             <div className="flex w-full flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-16">
-              <CardDescription>{component.description}</CardDescription>
+              <CardDescription>{block.description}</CardDescription>
 
               <div className="flex items-center gap-1 sm:ml-auto">
                 <TooltipProvider>
@@ -81,7 +77,7 @@ export function ComponentCard({
 
                 <OpenInV0Button
                   registryUrl={registryUrl}
-                  title={`${component.title} Kit`}
+                  title={`${block.title} Kit`}
                   prompt={prompt}
                 />
               </div>
@@ -97,7 +93,7 @@ export function ComponentCard({
           >
             <iframe
               id="iframe"
-              src={`/demo/${component.name}`}
+              src={`/demo/${block.name}`}
               className="h-full w-full"
               title="Page Preview"
             />

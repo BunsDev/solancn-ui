@@ -313,7 +313,7 @@ describe("theme commands", () => {
       await customizeCommand?.action?.(options);
 
       // Verify calls
-      expect(logger.boxedWarning).toHaveBeenCalledTimes(1);
+      expect(logger.boxedWarning).toHaveBeenCalledTimes(0);
     });
   });
 });

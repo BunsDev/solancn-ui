@@ -1,16 +1,22 @@
-export type Component = {
-  componentName: string;
-  description?: string;
+export interface Component extends RegistryItem {
+  name: string;
+  title: string;
   installed: boolean;
+  type: "registry:component";
+  description?: string;
+  category?: string;
+  tags?: string[];
   installedFiles?: string[];
   dependencies?: string[];
 };
 
-export type Block = {
+export interface Block extends RegistryItem {
   name: string;
   title: string;
+  type: "registry:block";
   description?: string;
-  type: string;
+  category?: string;
+  tags?: string[];
   files?: Record<string, string>;
   dependencies?: string[];
   registryDependencies?: string[];
@@ -25,9 +31,9 @@ export interface InstallOptions {
   dependencies?: boolean;
 }
 
-export type uninstallOptions = {
-	targetDir: string;
-	dependencies?: boolean;
+export interface uninstallOptions {
+    targetDir: string;
+    dependencies?: boolean;
 }
 
 /**
@@ -36,8 +42,7 @@ export type uninstallOptions = {
 export interface InstallResult {
   success: boolean;
   files: string[];
-  componentName?: string;
-  blockName?: string;
+  name?: string;
   message?: string;
 }
 
@@ -49,6 +54,8 @@ export interface RegistryItem {
   name: string;
   type: RegistryItemType;
   description?: string;
+  category?: string;
+  tags?: string[];
   dependencies?: string[];
   files?: Record<string, string>;
 }

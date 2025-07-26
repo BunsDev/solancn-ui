@@ -15,7 +15,7 @@ export async function installItem(
   targetDir: string,
   options: Partial<InstallOptions> & { itemType?: RegistryItemType } = {},
 ): Promise<InstallResult> {
-  const { itemType = "component", force = false } = options;
+  const { itemType = "registry:component", force = false } = options;
   const skipDependencies = !options?.dependencies;
   const spinner = logger.spinner(`Installing ${itemType}: ${name}`);
 
@@ -27,7 +27,7 @@ export async function installItem(
       spinner.fail(`${itemType} "${name}" not found in registry`);
       return {
         success: false,
-        componentName: name,
+        name: name,
         message: `${itemType} "${name}" not found in registry`,
         files: [],
       };
@@ -38,7 +38,7 @@ export async function installItem(
       spinner.fail(`${itemType} "${name}" has no files defined`);
       return {
         success: false,
-        componentName: name,
+        name: name,
         message: `${itemType} "${name}" has no files defined`,
         files: [],
       };
@@ -76,7 +76,7 @@ export async function installItem(
         spinner.fail(`File ${filename} already exists. Use --force to overwrite.`);
         return {
           success: false,
-          componentName: name,
+          name: name,
           message: `File ${filename} already exists. Use --force to overwrite.`,
           files,
         };
@@ -99,7 +99,7 @@ export async function installItem(
     
     return {
       success: true,
-      componentName: name,
+      name: name,
       message: `${itemType} "${name}" installed successfully`,
       files,
     };
@@ -118,7 +118,7 @@ export async function uninstallItem(
   targetDir: string,
   options: { itemType?: RegistryItemType, force?: boolean } = {},
 ): Promise<InstallResult> {
-  const { itemType = "component", force = false } = options;
+  const { itemType = "registry:component", force = false } = options;
   const spinner = logger.spinner(`Uninstalling ${itemType}: ${name}`);
 
   try {
@@ -129,7 +129,7 @@ export async function uninstallItem(
       spinner.fail(`${itemType} "${name}" not found in registry`);
       return {
         success: false,
-        componentName: name,
+        name: name,
         message: `${itemType} "${name}" not found in registry`,
         files: [],
       };
@@ -140,7 +140,7 @@ export async function uninstallItem(
       spinner.fail(`${itemType} "${name}" has no files defined`);
       return {
         success: false,
-        componentName: name,
+        name: name,
         message: `${itemType} "${name}" has no files defined`,
         files: [],
       };
@@ -166,7 +166,7 @@ export async function uninstallItem(
     
     return {
       success: true,
-      componentName: name,
+      name: name,
       message: `${itemType} "${name}" uninstalled successfully`,
       files,
     };
@@ -401,7 +401,7 @@ export const installComponent = (
   targetDir: string,
   options: Partial<InstallOptions> = {},
 ): Promise<InstallResult> => {
-  return installItem(name, targetDir, { ...options, itemType: "component" });
+  return installItem(name, targetDir, { ...options, itemType: "registry:component" });
 };
 
 export const uninstallComponent = (
@@ -409,14 +409,14 @@ export const uninstallComponent = (
   targetDir: string,
   options: { force?: boolean } = {},
 ): Promise<InstallResult> => {
-  return uninstallItem(name, targetDir, { ...options, itemType: "component" });
+  return uninstallItem(name, targetDir, { ...options, itemType: "registry:component" });
 };
 
 export const isComponentInstalled = (
-  componentName: string,
+  name: string,
   targetDir: string,
 ): Promise<boolean> => {
-  return isItemInstalled(componentName, "component", targetDir);
+  return isItemInstalled(name, "registry:component", targetDir);
 };
 
 export const installBlock = (
@@ -424,7 +424,7 @@ export const installBlock = (
   targetDir: string,
   options: Partial<InstallOptions> = {},
 ): Promise<InstallResult> => {
-  return installItem(name, targetDir, { ...options, itemType: "block" });
+  return installItem(name, targetDir, { ...options, itemType: "registry:block" });
 };
 
 export const uninstallBlock = (
@@ -432,14 +432,14 @@ export const uninstallBlock = (
   targetDir: string,
   options: { force?: boolean } = {},
 ): Promise<InstallResult> => {
-  return uninstallItem(name, targetDir, { ...options, itemType: "block" });
+  return uninstallItem(name, targetDir, { ...options, itemType: "registry:block" });
 };
 
 export const isBlockInstalled = (
-  blockName: string,
+  name: string,
   targetDir: string,
 ): Promise<boolean> => {
-  return isItemInstalled(blockName, "block", targetDir);
+  return isItemInstalled(name, "registry:block", targetDir);
 };
 
 export const getBlockInfo = (
@@ -454,13 +454,13 @@ export const getBlockInfo = (
   dependencies?: string[];
   [key: string]: unknown;
 } | null> => {
-  return getItemInfo(name, "block", targetDir);
+  return getItemInfo(name, "registry:block", targetDir);
 };
 
 export const getInstalledBlocks = (
   targetDir: string,
 ): Promise<{ name: string; installed: boolean }[]> => {
-  return getInstalledItems("block", targetDir);
+  return getInstalledItems("registry:block", targetDir);
 };
 
 export const getComponentInfo = (
@@ -475,11 +475,11 @@ export const getComponentInfo = (
   dependencies?: string[];
   [key: string]: unknown;
 } | null> => {
-  return getItemInfo(name, "component", targetDir);
+  return getItemInfo(name, "registry:component", targetDir);
 };
 
 export const getInstalledComponents = (
   targetDir: string,
 ): Promise<{ name: string; installed: boolean }[]> => {
-  return getInstalledItems("component", targetDir);
+  return getInstalledItems("registry:component", targetDir);
 };

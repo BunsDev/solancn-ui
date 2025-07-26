@@ -3,9 +3,8 @@ import inquirer from 'inquirer';
 import chalk from 'chalk';
 import ora from 'ora';
 import { fetchRegistryItems } from '../lib/registry-client';
-import { installBlock } from '../lib/block-installer';
+import { installBlock } from '../lib/installer';
 import { logger } from '../lib/logger';
-import type { Block } from '../lib/types';
 import type { RegistryItem } from '../lib/types';
 
 // import { spawnSync } from 'child_process';
@@ -109,7 +108,7 @@ blocks
     
     try {
       const block = await installBlock(blockName, targetDir, { force: options.force });
-      spinner.succeed(`Added ${chalk.green(block.blockName || blockName)} block to your project`);
+      spinner.succeed(`Added ${chalk.green(block.name || blockName)} block to your project`);
       
       // Show next steps
       console.log('\n');

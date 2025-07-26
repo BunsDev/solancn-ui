@@ -79,7 +79,7 @@ describe('init command', () => {
     
     // Verify directory creation was checked
     expect(mockPathExists).toHaveBeenCalledTimes(1);
-    expect(mockPathExists.mock.calls[0][0]).toContain('test-project');
+    expect(mockPathExists.mock.calls[0][0])?.toContain('test-project');
     
     // Verify mkdir was called
     expect(fs.mkdir).toHaveBeenCalledWith('test-project');

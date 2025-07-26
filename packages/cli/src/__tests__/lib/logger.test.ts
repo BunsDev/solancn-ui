@@ -1,22 +1,19 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import ora from 'ora';
 
-// Define mock functions outside any modules
-const mockSpinner = {
-  start: vi.fn().mockReturnThis(),
-  stop: vi.fn().mockReturnThis(),
-  succeed: vi.fn().mockReturnThis(),
-  fail: vi.fn().mockReturnThis(),
-  warn: vi.fn().mockReturnThis(),
-  info: vi.fn().mockReturnThis(),
-  text: vi.fn().mockReturnThis()
-};
-
-const mockOra = vi.fn().mockReturnValue(mockSpinner);
 
 // Set up mocks before importing any module that uses ora
 vi.mock('ora', async () => {
   return {
-    default: mockOra
+    default: vi.fn().mockReturnValue({
+      start: vi.fn().mockReturnThis(),
+      stop: vi.fn().mockReturnThis(),
+      succeed: vi.fn().mockReturnThis(),
+      fail: vi.fn().mockReturnThis(),
+      warn: vi.fn().mockReturnThis(),
+      info: vi.fn().mockReturnThis(),
+      text: vi.fn().mockReturnThis()
+    })
   };
 });
 
@@ -83,42 +80,42 @@ describe('Logger', () => {
 
   it('should create spinner with prefix', () => {
     const spinner = logger.spinner('Test spinner');
-    expect(mockOra).toHaveBeenCalled();
-    expect(spinner).toBe(mockSpinner);
+    expect(ora).toHaveBeenCalled();
+    expect(spinner).toBe(ora().start('Test spinner'));
   });
 
   it('should create boxed messages', () => {
     logger.boxedInfo('Test boxed info');
-    expect(mockConsoleInfo).toHaveBeenCalled();
+    expect(mockConsoleInfo).toHaveBeenCalledTimes(0);
     
     logger.boxedSuccess('Test boxed success');
-    expect(mockConsoleLog).toHaveBeenCalled();
+    expect(mockConsoleLog).toHaveBeenCalledTimes(2);
     
     logger.boxedError('Test boxed error');
-    expect(mockConsoleError).toHaveBeenCalled();
+    expect(mockConsoleError).toHaveBeenCalledTimes(0);
     
     logger.boxedWarning('Test boxed warning');
-    expect(mockConsoleWarn).toHaveBeenCalled();
+    expect(mockConsoleWarn).toHaveBeenCalledTimes(0);
   });
 
   it('should log boxed info messages', () => {
     logger.boxedInfo('Boxed info message');
-    expect(mockConsoleLog).toHaveBeenCalled();
+    expect(mockConsoleLog).toHaveBeenCalledTimes(1);
     // Since boxen outputs complex strings with borders, we'll just verify it was called
   });
 
   it('should log boxed success messages', () => {
     logger.boxedSuccess('Boxed success message');
-    expect(mockConsoleLog).toHaveBeenCalled();
+    expect(mockConsoleLog).toHaveBeenCalledTimes(1);
   });
 
   it('should log boxed warning messages', () => {
     logger.boxedWarning('Boxed warning message');
-    expect(mockConsoleLog).toHaveBeenCalled();
+    expect(mockConsoleLog).toHaveBeenCalledTimes(1);
   });
 
   it('should log boxed error messages', () => {
     logger.boxedError('Boxed error message');
-    expect(mockConsoleLog).toHaveBeenCalled();
+    expect(mockConsoleLog).toHaveBeenCalledTimes(1);
   });
 });

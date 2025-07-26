@@ -115,7 +115,7 @@ export async function fetchRegistryItems(
 
 interface FetchRegistryItemOptions {
   type: RegistryItemType;
-  componentName?: string;
+  name?: string;
 }
 
 /**
@@ -137,8 +137,8 @@ export async function fetchRegistryItem(
   }
 
   // For other types, return the specific named item
-  if (options.componentName && items[options.componentName]) {
-    return items[options.componentName];
+  if (options.name && items[options.name]) {
+    return items[options.name];
   }
 
   return null;

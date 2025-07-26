@@ -187,14 +187,14 @@ describe('registry-client', () => {
       // Mock fetchRegistryItem directly
       const fetchMock = vi.spyOn(registryClient, 'fetchRegistryItem');
       fetchMock.mockImplementation(async (options) => {
-        if (options.type === 'registry:component' && 'componentName' in options && options.componentName === 'button') {
+        if (options.type === 'registry:component' && 'name' in options && options.name === 'button') {
           return mockComponentsData.button;
         }
         return null;
       });
       
       // Fetch the button component
-      const result = await registryClient.fetchRegistryItem({ componentName: 'button', type: 'registry:component' });
+      const result = await registryClient.fetchRegistryItem({ name: 'button', type: 'registry:component' });
       
       // Should return the button item
       expect(result).toEqual(mockComponentsData.button);
@@ -223,7 +223,7 @@ it("should return null when item is not found", async () => {
 
   const result = await registryClient.fetchRegistryItem({
     type: "registry:component",
-    componentName: "nonexistent",
+    name: "nonexistent",
   });
 
   // Should return null for non-existent item

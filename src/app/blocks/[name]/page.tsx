@@ -2,9 +2,9 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { ComponentCard } from "@/components/docs/component-card";
+import { BlockCard } from "@/components/docs/block-card";
 import { Button } from "@/components/ui/button";
-import { getRegistryItem, getBlocks } from "@/lib/registry";
+import { getBlocks } from "@/lib/registry";
 import { getPrompt } from "@/lib/utils";
 
 export async function generateStaticParams() {
@@ -41,8 +41,8 @@ export default async function BlockItemPage({
         </div>
       </div>
 
-      <ComponentCard
-        component={block}
+      <BlockCard
+        block={block}
         baseUrl={process.env.VERCEL_PROJECT_PRODUCTION_URL ?? ""}
         prompt={getPrompt()}
       />

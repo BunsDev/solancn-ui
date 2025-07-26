@@ -105,10 +105,10 @@ components
   .argument("[name]", "Name of the component to add")
   .option("-d, --dir <directory>", "Target directory", process.cwd())
   .action(async (name, options) => {
-    let componentName = name;
+    let title = name;
 
     // If no component name is provided, show a selection prompt
-    if (!componentName) {
+    if (!name) {
       const spinner = ora("Fetching available components...").start();
 
       try {
@@ -123,7 +123,7 @@ components
         const answer = await inquirer.prompt([
           {
             type: "list",
-            name: "componentName",
+            name: "title",
             message: "Select a component to add:",
             choices: components?.map((c: any) => ({
               name: `${c.name} - ${c.description || "No description"}`,
@@ -132,7 +132,7 @@ components
           },
         ]);
 
-        componentName = answer.componentName;
+        title = answer.title;
       } catch (error) {
         spinner.fail("Failed to fetch components");
         logger.boxedError(
@@ -144,21 +144,21 @@ components
     }
 
     // Install the component
-    const spinner = ora(`Adding ${componentName} to your project...`).start();
+    const spinner = ora(`Adding ${title} to your project...`).start();
 
     try {
       const component = await installComponent(
-        componentName,
+        title,
         options.dir,
         options,
       );
       spinner.succeed(
-        `Added ${chalk.green(component.componentName || componentName)} to your project`,
+        `Added ${chalk.green(component.name || title)} to your project`,
       );
 
       // Display success message with boxen
       logger.boxedSuccess(
-        `Component ${chalk.bold(componentName)} has been installed! \n\nFiles written to: ${chalk.dim(options.dir)}`,
+        `Component ${chalk.bold(title)} has been installed! \n\nFiles written to: ${chalk.dim(options.dir)}`,
         {
           title: "Installation Complete",
           padding: 1,
@@ -169,16 +169,16 @@ components
       console.log("\n");
       console.log(chalk.bold("Next steps:"));
       console.log(`${chalk.bold("1.")} Import the component in your code`);
-      console.log(
-        `${chalk.dim(`import { ${componentName.replace(/-./g, (x: string) => x[1].toUpperCase())} } from "@/components/${componentName}";`)}`,
+      console.log(  
+        `${chalk.dim(`import { ${title.replace(/-./g, (x: string) => x[1].toUpperCase())} } from "@/components/${title}";`)}`,
       );
       console.log(`${chalk.bold("2.")} Use it in your JSX/TSX`);
       console.log(
-        `${chalk.dim(`<${componentName.replace(/-./g, (x: string) => x[1].toUpperCase())} />`)}`,
+        `${chalk.dim(`<${title.replace(/-./g, (x: string) => x[1].toUpperCase())} />`)}`,
       );
       console.log("\n");
     } catch (error) {
-      spinner.fail(`Failed to add ${componentName}`);
+      spinner.fail(`Failed to add ${title}`);
       logger.boxedError(
         `Failed to add component: ${error instanceof Error ? error.message : String(error)}`,
         { title: "Error" },
@@ -250,8 +250,8 @@ components
       // Simple search implementation
       const results = Object.values(allComponents).filter(
         (item: any) =>
-          item?.componentName?.includes(query) ||
-          item?.componentName?.toLowerCase().includes(query.toLowerCase()) ||
+          item?.name?.includes(query) ||
+          item?.name?.toLowerCase().includes(query.toLowerCase()) ||
           item?.description?.toLowerCase().includes(query.toLowerCase()),
       );
 

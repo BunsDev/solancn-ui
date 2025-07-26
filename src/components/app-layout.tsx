@@ -7,7 +7,7 @@ import { Toaster } from "./ui/sonner";
 
 export function AppLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="flex flex-col h-dvh w-dvw bg-background min-h-dvh min-w-dvw overflow-hidden justify-between items-center mx-auto">
+    <div className="flex flex-col h-dvh w-dvw bg-background min-h-dvh min-w-dvw overflow-hidden justify-between items-center mx-auto overflow-y-auto">
     {/* 
 		<ClusterChecker>
 			<AccountChecker />
