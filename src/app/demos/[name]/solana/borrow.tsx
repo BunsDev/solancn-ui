@@ -1,11 +1,13 @@
 "use client";
 
-import { BorrowComponent } from "@/components/solana/borrow";
+// Create a placeholder component for static generation
+const PlaceholderComponent = () => {
+  return <div className="p-4">Loading borrow component...</div>;
+};
 
 export const borrow = {
   name: "borrow",
   components: {
-    Default: <BorrowComponent />
+    Default: <PlaceholderComponent />,
   },
 };
-

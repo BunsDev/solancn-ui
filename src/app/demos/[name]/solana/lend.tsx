@@ -1,11 +1,13 @@
 "use client";
 
-import { LendComponent } from "@/components/solana/lend";
+// Create a placeholder component for static generation
+const PlaceholderComponent = () => {
+  return <div className="p-4">Loading lend component...</div>;
+};
 
-// Export the component
 export const lend = {
   name: "lend",
   components: {
-    Default: <LendComponent />,
+    Default: <PlaceholderComponent />,
   },
 };

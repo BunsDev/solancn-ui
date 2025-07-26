@@ -1,10 +1,13 @@
 "use client";
 
-import { TransferComponent } from "@/components/solana/transfer";
+// Create a placeholder component for static generation
+const PlaceholderComponent = () => {
+  return <div className="p-4">Loading transfer component...</div>;
+};
 
 export const transfer = {
   name: "transfer",
   components: {
-    Default: <TransferComponent />,
+    Default: <PlaceholderComponent />,
   },
 };
