@@ -9,6 +9,9 @@ import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import SolanaWalletProvider from "../context/wallet-provider";
 import { cn } from "@/lib/utils";
+// Import borrow and lend components
+import { borrow } from "../solana/borrow";
+import { lend } from "../solana/lend";
 // Import styles for the wallet adapter
 import "@solana/wallet-adapter-react-ui/styles.css";
 
@@ -89,7 +92,7 @@ function SolanaContent() {
 
           {connected ? (
             <Tabs defaultValue="swap" className="w-full">
-              <TabsList className="grid grid-cols-5 mb-8 bg-black border border-[#9945FF]/30">
+              <TabsList className="grid grid-cols-7 mb-8 bg-black border border-[#9945FF]/30">
                 <TabsTrigger
                   value="swap"
                   className="data-[state=active]:bg-[#9945FF]/20"
@@ -119,6 +122,18 @@ function SolanaContent() {
                   className="data-[state=active]:bg-[#9945FF]/20"
                 >
                   Receive
+                </TabsTrigger>
+                <TabsTrigger
+                  value="borrow"
+                  className="data-[state=active]:bg-[#9945FF]/20"
+                >
+                  Borrow
+                </TabsTrigger>
+                <TabsTrigger
+                  value="lend"
+                  className="data-[state=active]:bg-[#9945FF]/20"
+                >
+                  Lend
                 </TabsTrigger>
               </TabsList>
 
@@ -190,6 +205,28 @@ function SolanaContent() {
                       <p className="text-gray-400">
                         Receive functionality will be implemented here.
                       </p>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+
+                <TabsContent value="borrow" className="mt-0">
+                  <Card className="bg-black border border-[#9945FF]/20">
+                    <CardHeader>
+                      <CardTitle className="text-text">Borrow Assets</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      {borrow.components.Default}
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+
+                <TabsContent value="lend" className="mt-0">
+                  <Card className="bg-black border border-[#9945FF]/20">
+                    <CardHeader>
+                      <CardTitle className="text-text">Lend Assets</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      {lend.components.Default}
                     </CardContent>
                   </Card>
                 </TabsContent>
