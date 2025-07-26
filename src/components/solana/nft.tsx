@@ -619,19 +619,19 @@ export default function NFTComponent() {
               <TabsList className="bg-background border border-[#9945FF]/20">
                 <TabsTrigger
                   value="explore"
-                  className="data-[state=active]:bg-[#9945FF]"
+                  className="data-[state=active]:bg-[#9945FF]/20"
                 >
                   Explore
                 </TabsTrigger>
                 <TabsTrigger
                   value="collected"
-                  className="data-[state=active]:bg-[#9945FF]"
+                  className="data-[state=active]:bg-[#9945FF]/20"
                 >
-                  My Collection
+                  Collected
                 </TabsTrigger>
                 <TabsTrigger
                   value="collections"
-                  className="data-[state=active]:bg-[#9945FF]"
+                  className="data-[state=active]:bg-[#9945FF]/20"
                 >
                   Collections
                 </TabsTrigger>

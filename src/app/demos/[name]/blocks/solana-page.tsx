@@ -247,13 +247,6 @@ function SolanaContent() {
                     <CardContent>{bridge.components.Default}</CardContent>
                   </Card>
                 </TabsContent>
-                <TabsTrigger
-                  value="transfer"
-                  className="data-[state=active]:bg-[#9945FF]/20 data-[state=active]:text-text flex items-center gap-2 justify-center transition-all"
-                >
-                  <Upload className="w-4 h-4 md:mr-1" />
-                  <span className="hidden md:inline">Transfer</span>
-                </TabsTrigger>
                 <TabsContent value="transfer" className="mt-0 col-span-6">
                   <Card className="bg-background border border-[#9945FF]/20">
                     <CardHeader>
