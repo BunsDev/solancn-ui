@@ -68,7 +68,7 @@ const RouteOption = ({
   </div>
 );
 
-export default function SwapDemo() {
+function SwapContent() {
   const [fromToken, setFromToken] = useState<SwapToken>(mockSwapTokens[0]);
   const [toToken, setToToken] = useState<SwapToken>(mockSwapTokens[1]);
   const [fromAmount, setFromAmount] = useState<string>("1");
@@ -411,7 +411,7 @@ export default function SwapDemo() {
   );
 };
 
-export function SwapContent() {
+export default function SwapDemo() {
   const { connected } = useWallet();
 
   return (
