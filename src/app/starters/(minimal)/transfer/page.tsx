@@ -18,24 +18,24 @@ export function TransferDemo() {
     const [recipient, setRecipient] = useState<string>("");
     const [amount, setAmount] = useState<string>("");
     const [token, setToken] = useState<string>("sol");
-    const [priority, setPriority] = useState<number>(1);
-    const [memo, setMemo] = useState<string>("");
+    // const [priority, setPriority] = useState<number>(1);
+    // const [memo, setMemo] = useState<string>("");
 
     // Calculate estimated fee based on priority
-    const estimatedFee = 0.000005 + priority * 0.000005;
+    // const estimatedFee = 0.000005 + priority * 0.000005;
 
-    // Calculate maximum amount based on token
-    const maxAmount = token === "sol" ? 1.5 : token === "usdc" ? 100 : 5;
+    // // Calculate maximum amount based on token
+    // const maxAmount = token === "sol" ? 1.5 : token === "usdc" ? 100 : 5;
 
-    // Handle max button click
-    const handleSetMax = () => {
-        // Reserve some SOL for fees
-        if (token === "sol") {
-            setAmount((maxAmount - estimatedFee).toFixed(5));
-        } else {
-            setAmount(maxAmount.toString());
-        }
-    };
+    // // Handle max button click
+    // // const handleSetMax = () => {
+    // //     // Reserve some SOL for fees
+    // //     if (token === "sol") {
+    // //         setAmount((maxAmount - estimatedFee).toFixed(5));
+    // //     } else {
+    // //         setAmount(maxAmount.toString());
+    // //     }
+    // // };
 
     // Handle transfer
     const handleTransfer = () => {

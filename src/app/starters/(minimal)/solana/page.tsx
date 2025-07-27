@@ -114,7 +114,8 @@ const tabs = [
   },
 
 ]
-function SolanaContent() {
+
+const SolanaContent: React.FC = () => {
   return (
     <div className="flex min-h-screen flex-col bg-background text-text w-full">
       <main className="flex-1 p-2 flex flex-col w-full">
@@ -156,9 +157,5 @@ function SolanaContent() {
 
 // Export a wrapper component that provides the wallet context
 export function SolanaDemo() {
-  return (
-    <SolanaWalletProvider>
-      <SolanaContent />
-    </SolanaWalletProvider>
-  );
+  return (<SolanaContent />);
 }

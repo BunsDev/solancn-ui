@@ -74,6 +74,11 @@ const starters = [
     url: "/starters/swap",
   },
   {
+    title: "Trading",
+    name: "trading",
+    url: "/starters/trading",
+  },
+  {
     title: "Transfer",
     name: "transfer",
     url: "/starters/transfer",
