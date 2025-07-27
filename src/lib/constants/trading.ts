@@ -1,4 +1,3 @@
-
 // Mock trading data
 export const mockTradingMarketPairs = [
   { name: "SOL/USDC", price: 57.24, change: 3.2 },
@@ -10,7 +9,7 @@ export const mockTradingMarketPairs = [
 
 export const mockTradingOrderbook = {
   asks: [
-    { price: 57.30, size: 42.5, total: 42.5 },
+    { price: 57.3, size: 42.5, total: 42.5 },
     { price: 57.28, size: 15.2, total: 57.7 },
     { price: 57.27, size: 8.4, total: 66.1 },
     { price: 57.26, size: 5.3, total: 71.4 },
@@ -20,7 +19,7 @@ export const mockTradingOrderbook = {
     { price: 57.23, size: 6.2, total: 6.2 },
     { price: 57.22, size: 18.7, total: 24.9 },
     { price: 57.21, size: 12.9, total: 37.8 },
-    { price: 57.20, size: 25.4, total: 63.2 },
+    { price: 57.2, size: 25.4, total: 63.2 },
     { price: 57.19, size: 10.8, total: 74.0 },
   ],
 };

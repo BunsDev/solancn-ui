@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -17,21 +17,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useWallet } from "@solana/wallet-adapter-react";
-import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useWallet } from "@solana/wallet-adapter-react";
 import {
-  Grid2X2Icon,
-  ListIcon,
-  Search,
-  Filter,
-  X,
-  Heart,
   ArrowLeft,
   ArrowRight,
   ExternalLink,
+  Filter,
+  Grid2X2Icon,
+  Heart,
+  ListIcon,
+  Search,
+  X,
 } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 // Mock NFT data
 const nftsData = [
@@ -734,7 +734,7 @@ export function NFTComponent() {
                   </div>
                 )}
               </TabsContent>
-                
+
               <TabsContent value="collected" className="mt-0">
                 {connected ? (
                   <div

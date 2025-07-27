@@ -1,4 +1,4 @@
-import type React from "react";  
+import type React from "react";
 
 export interface Component extends RegistryItem {
   name: string;
@@ -13,7 +13,7 @@ export interface Component extends RegistryItem {
   dependencies?: string[];
   categoryName?: string;
   categoryColor?: string;
-};
+}
 
 export interface Block extends RegistryItem {
   name: string;
@@ -28,7 +28,7 @@ export interface Block extends RegistryItem {
   registryDependencies?: string[];
   categoryName?: string;
   categoryColor?: string;
-};
+}
 
 export interface UIPrimitive extends RegistryItem {
   name: string;
@@ -43,7 +43,7 @@ export interface UIPrimitive extends RegistryItem {
   registryDependencies?: string[];
   categoryName?: string;
   categoryColor?: string;
-};
+}
 
 export interface Theme extends RegistryItem {
   name: string;
@@ -56,7 +56,7 @@ export interface Theme extends RegistryItem {
   files?: Record<string, string>;
   dependencies?: string[];
   registryDependencies?: string[];
-};
+}
 
 /**
  * Installation options
@@ -68,8 +68,8 @@ export interface InstallOptions {
 }
 
 export interface uninstallOptions {
-    targetDir: string;
-    dependencies?: boolean;
+  targetDir: string;
+  dependencies?: boolean;
 }
 
 /**
@@ -83,12 +83,16 @@ export interface InstallResult {
 }
 
 export interface Category {
-    name: string;
-    color: string;
+  name: string;
+  color: string;
 }
 
 // Registry item types
-export type RegistryItemType = "registry:component" | "registry:block" | "registry:ui" | "registry:theme";
+export type RegistryItemType =
+  | "registry:component"
+  | "registry:block"
+  | "registry:ui"
+  | "registry:theme";
 
 // Registry item interface
 export interface RegistryItem {

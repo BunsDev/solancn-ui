@@ -1,7 +1,7 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TradingComponent } from "@/components/trading/trading-component";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 function TradingContent() {
   return (

@@ -17,7 +17,6 @@ import { useEffect, useState } from "react";
 import { RegistryLogo } from "@/components/docs/registry-logo";
 import { ModeToggle } from "@/components/docs/theme-toggle";
 import { Button } from "@/components/ui/button";
-import { getLink } from "@/lib/utils";
 import {
   Collapsible,
   CollapsibleContent,
@@ -40,6 +39,7 @@ import {
 } from "@/components/ui/sidebar";
 import { getBlocks, getComponents, getUIPrimitives } from "@/lib/registry";
 import type { RegistryItem } from "@/lib/types";
+import { getLink } from "@/lib/utils";
 
 const uiItems = getUIPrimitives();
 const componentItems = getComponents();

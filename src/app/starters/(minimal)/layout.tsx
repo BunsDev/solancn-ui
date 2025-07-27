@@ -1,5 +1,5 @@
-import React, { type ReactNode } from "react";
 import SolanaWalletProvider from "@/lib/context/wallet-provider";
+import React, { type ReactNode } from "react";
 
 export default function MinimalLayout({
   children,

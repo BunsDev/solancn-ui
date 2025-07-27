@@ -1,12 +1,12 @@
 "use client";
 
+import { WalletComponentDemo } from "@/components/solana/wallet";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import StyledWalletButton from "@/components/wallet/wallet-button";
+import WalletStatus from "@/components/wallet/wallet-status";
 import SolanaWalletProvider from "@/lib/context/wallet-provider";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { Wallet as WalletIcon } from "lucide-react";
-import StyledWalletButton from "@/components/wallet/wallet-button";
-import WalletStatus from "@/components/wallet/wallet-status";
-import { WalletComponentDemo } from "@/components/solana/wallet";
 
 function WalletContent() {
   const { connected } = useWallet();
@@ -34,7 +34,9 @@ function WalletContent() {
                 <CardHeader>
                   <CardTitle className="text-text">Wallet Details</CardTitle>
                 </CardHeader>
-                <CardContent><WalletComponentDemo /></CardContent>
+                <CardContent>
+                  <WalletComponentDemo />
+                </CardContent>
               </Card>
             </div>
           ) : (
@@ -51,8 +53,8 @@ function WalletContent() {
                   </h2>
 
                   <p className="text-text/80 mb-8 max-w-md mx-auto">
-                    Connect your Solana wallet to view your wallet details, balance
-                    and transaction history.
+                    Connect your Solana wallet to view your wallet details,
+                    balance and transaction history.
                   </p>
 
                   <div className="flex justify-center">
@@ -75,7 +77,6 @@ export default function WalletPage() {
     </SolanaWalletProvider>
   );
 }
-
 
 // "use client";
 

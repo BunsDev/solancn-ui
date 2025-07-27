@@ -1,8 +1,8 @@
 "use client";
 
-import type React from "react";
 import { BridgeComponent } from "@/components/bridge/bridge-component";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import type React from "react";
 
 function BridgeContent() {
   return (

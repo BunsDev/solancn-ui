@@ -163,6 +163,20 @@
       ]
     },
     {
+      "name": "portfolio",
+      "type": "registry:block",
+      "title": "Portfolio Starter",
+      "description": "A portfolio application with asset tracking and transaction history",
+      "registryDependencies": ["theme"],
+      "files": [
+        {
+          "path": "src/app/starters/(minimal)/portfolio/page.tsx",
+          "type": "registry:file",
+          "target": "app/starters/(minimal)/portfolio/page.tsx"
+        }
+      ]
+    },
+    {
       "name": "nft",
       "type": "registry:block",
       "title": "NFT Starter",
@@ -495,9 +509,7 @@
       "type": "registry:component",
       "title": "Brand Logo",
       "description": "A styled, simple, reusable logo",
-      "registryDependencies": [
-        "https://ui.vibes.guide/r/theme.json"
-      ],
+      "registryDependencies": ["https://ui.vibes.guide/r/theme.json"],
       "files": [
         {
           "path": "src/components/logo.tsx",
@@ -547,9 +559,7 @@
       "type": "registry:component",
       "title": "Product Grid",
       "description": "Product grid displaying all products with API to fetch data",
-      "registryDependencies": [
-        "https://ui.vibes.guide/r/theme.json"
-      ],
+      "registryDependencies": ["https://ui.vibes.guide/r/theme.json"],
       "files": [
         {
           "path": "src/components/product-grid.tsx",
@@ -588,10 +598,7 @@
       "type": "registry:ui",
       "title": "Alert",
       "description": "Displays a callout for user attention.",
-      "registryDependencies": [
-        "alert",
-        "https://ui.vibes.guide/r/theme.json"
-      ],
+      "registryDependencies": ["alert", "https://ui.vibes.guide/r/theme.json"],
       "files": [
         {
           "path": "src/app/starters/(minimal)/v0-layout.tsx",
@@ -605,10 +612,7 @@
       "type": "registry:ui",
       "title": "Avatar",
       "description": "An image element with a fallback for representing the user.",
-      "registryDependencies": [
-        "avatar",
-        "https://ui.vibes.guide/r/theme.json"
-      ],
+      "registryDependencies": ["avatar", "https://ui.vibes.guide/r/theme.json"],
       "files": [
         {
           "path": "src/app/starters/(minimal)/v0-layout.tsx",
@@ -622,10 +626,7 @@
       "type": "registry:ui",
       "title": "Badge",
       "description": "Displays a small count or status indicator.",
-      "registryDependencies": [
-        "badge",
-        "https://ui.vibes.guide/r/theme.json"
-      ],
+      "registryDependencies": ["badge", "https://ui.vibes.guide/r/theme.json"],
       "files": [
         {
           "path": "src/app/starters/(minimal)/v0-layout.tsx",
@@ -656,10 +657,7 @@
       "type": "registry:ui",
       "title": "Button",
       "description": "Allows users to take actions with a single click or tap.",
-      "registryDependencies": [
-        "button",
-        "https://ui.vibes.guide/r/theme.json"
-      ],
+      "registryDependencies": ["button", "https://ui.vibes.guide/r/theme.json"],
       "files": [
         {
           "path": "src/app/starters/(minimal)/v0-layout.tsx",
@@ -690,10 +688,7 @@
       "type": "registry:ui",
       "title": "Card",
       "description": "Containers for displaying content and actions about a single subject.",
-      "registryDependencies": [
-        "card",
-        "https://ui.vibes.guide/r/theme.json"
-      ],
+      "registryDependencies": ["card", "https://ui.vibes.guide/r/theme.json"],
       "files": [
         {
           "path": "src/app/starters/(minimal)/v0-layout.tsx",
@@ -707,10 +702,7 @@
       "type": "registry:ui",
       "title": "Chart",
       "description": "Beautiful charts. Built using Recharts. Copy and paste into your apps.",
-      "registryDependencies": [
-        "chart",
-        "https://ui.vibes.guide/r/theme.json"
-      ],
+      "registryDependencies": ["chart", "https://ui.vibes.guide/r/theme.json"],
       "files": [
         {
           "path": "src/app/starters/(minimal)/v0-layout.tsx",
@@ -775,10 +767,7 @@
       "type": "registry:ui",
       "title": "Dialog",
       "description": "A modal dialog that interrupts the user with important content.",
-      "registryDependencies": [
-        "dialog",
-        "https://ui.vibes.guide/r/theme.json"
-      ],
+      "registryDependencies": ["dialog", "https://ui.vibes.guide/r/theme.json"],
       "files": [
         {
           "path": "src/app/starters/(minimal)/v0-layout.tsx",
@@ -809,10 +798,7 @@
       "type": "registry:ui",
       "title": "Input",
       "description": "Displays a form input field or a component that looks like an input field.",
-      "registryDependencies": [
-        "input",
-        "https://ui.vibes.guide/r/theme.json"
-      ],
+      "registryDependencies": ["input", "https://ui.vibes.guide/r/theme.json"],
       "files": [
         {
           "path": "src/app/starters/(minimal)/v0-layout.tsx",
@@ -843,10 +829,7 @@
       "type": "registry:ui",
       "title": "Select",
       "description": "Displays a list of options for the user to pick from—triggered by a button.",
-      "registryDependencies": [
-        "select",
-        "https://ui.vibes.guide/r/theme.json"
-      ],
+      "registryDependencies": ["select", "https://ui.vibes.guide/r/theme.json"],
       "files": [
         {
           "path": "src/app/starters/(minimal)/v0-layout.tsx",
@@ -894,10 +877,7 @@
       "type": "registry:ui",
       "title": "Slider",
       "description": "An input where the user selects a value from within a given range.",
-      "registryDependencies": [
-        "slider",
-        "https://ui.vibes.guide/r/theme.json"
-      ],
+      "registryDependencies": ["slider", "https://ui.vibes.guide/r/theme.json"],
       "files": [
         {
           "path": "src/app/starters/(minimal)/v0-layout.tsx",
@@ -911,10 +891,7 @@
       "type": "registry:ui",
       "title": "Sonner",
       "description": "An opinionated toast component for React.",
-      "registryDependencies": [
-        "sonner",
-        "https://ui.vibes.guide/r/theme.json"
-      ],
+      "registryDependencies": ["sonner", "https://ui.vibes.guide/r/theme.json"],
       "files": [
         {
           "path": "src/app/starters/(minimal)/v0-layout.tsx",
@@ -933,10 +910,7 @@
       "type": "registry:ui",
       "title": "Switch",
       "description": "A control that allows the user to toggle between checked and not checked.",
-      "registryDependencies": [
-        "switch",
-        "https://ui.vibes.guide/r/theme.json"
-      ],
+      "registryDependencies": ["switch", "https://ui.vibes.guide/r/theme.json"],
       "files": [
         {
           "path": "src/app/starters/(minimal)/v0-layout.tsx",
@@ -950,10 +924,7 @@
       "type": "registry:ui",
       "title": "Table",
       "description": "A responsive table component.",
-      "registryDependencies": [
-        "table",
-        "https://ui.vibes.guide/r/theme.json"
-      ],
+      "registryDependencies": ["table", "https://ui.vibes.guide/r/theme.json"],
       "files": [
         {
           "path": "src/app/starters/(minimal)/v0-layout.tsx",
@@ -967,10 +938,7 @@
       "type": "registry:ui",
       "title": "Tabs",
       "description": "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-      "registryDependencies": [
-        "tabs",
-        "https://ui.vibes.guide/r/theme.json"
-      ],
+      "registryDependencies": ["tabs", "https://ui.vibes.guide/r/theme.json"],
       "files": [
         {
           "path": "src/app/starters/(minimal)/v0-layout.tsx",

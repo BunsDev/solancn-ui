@@ -5,9 +5,9 @@ import {
   MobileSidebarTrigger,
   RegistrySidebar,
 } from "@/components/docs/docs-sidebar";
+import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { Geist, Geist_Mono } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

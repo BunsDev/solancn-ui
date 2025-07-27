@@ -4,6 +4,7 @@ import { ArrowLeft, Check, Search, SlidersHorizontal, X } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
+import MinimalPreview from "@/components/cards/preview-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -23,9 +24,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import type { Block, Category, RegistryItem } from "@/lib/types";
 import { getCategory } from "@/lib/registry/getCategory";
-import MinimalPreview from "@/components/cards/preview-card";
+import type { Block, Category, RegistryItem } from "@/lib/types";
 
 // Category definitions with their display names and colors
 const categories = [
@@ -156,7 +156,7 @@ export function BlocksClientPage({ blocks }: { blocks: Block[] }) {
     return {
       ...block,
       categoryName: categoryObj.name,
-      categoryColor: categoryObj.color
+      categoryColor: categoryObj.color,
     };
   });
 
@@ -180,7 +180,7 @@ export function BlocksClientPage({ blocks }: { blocks: Block[] }) {
     // Apply category filter
     if (selectedCategory) {
       filtered = filtered.filter(
-        (block) => block.categoryName === selectedCategory
+        (block) => block.categoryName === selectedCategory,
       );
     }
 

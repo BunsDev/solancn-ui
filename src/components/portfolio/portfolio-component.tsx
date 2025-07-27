@@ -1,6 +1,5 @@
 "use client";
 
-import type React from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -19,6 +18,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import type React from "react";
 
 export const PortfolioComponent: React.FC = () => {
   return (

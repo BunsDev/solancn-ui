@@ -1,7 +1,8 @@
 // src/components/borrow/borrow-component.tsx
 "use client";
 
-import { useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -10,7 +11,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Progress } from "@/components/ui/progress";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
+import { Slider } from "@/components/ui/slider";
 import {
   Table,
   TableBody,
@@ -19,19 +30,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Slider } from "@/components/ui/slider";
-import { Progress } from "@/components/ui/progress";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
+import { useState } from "react";
 
 export function BorrowComponent() {
   // State for collateral amount
@@ -49,33 +49,33 @@ export function BorrowComponent() {
 
   // Calculate max borrow based on collateral and LTV
   const calculateMaxBorrow = () => {
-    const collateral = parseFloat(collateralAmount) || 0;
+    const collateral = Number.parseFloat(collateralAmount) || 0;
     // Mock price of SOL at $57
     const solPrice = 57;
     // Mock price of USDC at $1
     const usdcPrice = 1;
-    
-    const collateralValue = collateralToken === "sol" 
-      ? collateral * solPrice 
-      : collateral * usdcPrice;
-    
-    return (collateralValue * ltvRatio / 100).toFixed(2);
+
+    const collateralValue =
+      collateralToken === "sol"
+        ? collateral * solPrice
+        : collateral * usdcPrice;
+
+    return ((collateralValue * ltvRatio) / 100).toFixed(2);
   };
 
   // Calculate health factor based on borrowed amount and collateral
   const calculateHealthFactor = () => {
-    const collateral = parseFloat(collateralAmount) || 0;
-    const borrow = parseFloat(borrowAmount) || 0;
+    const collateral = Number.parseFloat(collateralAmount) || 0;
+    const borrow = Number.parseFloat(borrowAmount) || 0;
     const solPrice = 57;
-    
+
     if (borrow <= 0) return 10; // Max health if no borrow
-    
-    const collateralValue = collateralToken === "sol" 
-      ? collateral * solPrice 
-      : collateral;
-      
+
+    const collateralValue =
+      collateralToken === "sol" ? collateral * solPrice : collateral;
+
     const newHealthFactor = (collateralValue / borrow) * (100 / ltvRatio);
-    setHealthFactor(parseFloat(newHealthFactor.toFixed(2)));
+    setHealthFactor(Number.parseFloat(newHealthFactor.toFixed(2)));
   };
 
   // Handle collateral amount change
@@ -163,9 +163,7 @@ export function BorrowComponent() {
                 <label htmlFor="collateral" className="text-sm font-medium">
                   Collateral
                 </label>
-                <span className="text-xs text-gray-400">
-                  Balance: 10.0 SOL
-                </span>
+                <span className="text-xs text-gray-400">Balance: 10.0 SOL</span>
               </div>
               <div className="flex space-x-2">
                 <Input
@@ -249,10 +247,7 @@ export function BorrowComponent() {
                   placeholder="0.00"
                   className="flex-1 bg-background border-[#9945FF]/30 focus:border-[#9945FF]"
                 />
-                <Select
-                  value={borrowToken}
-                  onValueChange={setBorrowToken}
-                >
+                <Select value={borrowToken} onValueChange={setBorrowToken}>
                   <SelectTrigger className="w-[120px] bg-background border-[#9945FF]/30">
                     <SelectValue placeholder="Select token" />
                   </SelectTrigger>
@@ -286,7 +281,9 @@ export function BorrowComponent() {
             <div className="bg-[#9945FF]/10 p-4 rounded-md space-y-3">
               <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-400">Health Factor</span>
-                <span className={`text-sm font-medium ${getHealthFactorColor()}`}>
+                <span
+                  className={`text-sm font-medium ${getHealthFactorColor()}`}
+                >
                   {healthFactor}x
                 </span>
               </div>

@@ -1,22 +1,37 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
-import { Badge } from "@/components/ui/badge";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { toast } from "sonner";
-import { ArrowRightLeft, Settings, Zap, Info, RefreshCw, BarChart3, Repeat, LineChart, Clock } from "lucide-react";
-import StyledWalletButton from "@/components/wallet/wallet-button";
-import { cn } from "@/lib/utils";
-import { SwapToken } from "@/lib/types";
-import SwapTokenSelectButton from "@/components/swap/token-select-button";
-import { useWallet } from "@solana/wallet-adapter-react";
 import { SwapComponent } from "@/components/swap/swap-component";
+import SwapTokenSelectButton from "@/components/swap/token-select-button";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import StyledWalletButton from "@/components/wallet/wallet-button";
 import { mockSwapTokens } from "@/lib/constants/swap";
+import { SwapToken } from "@/lib/types";
+import { cn } from "@/lib/utils";
+import { useWallet } from "@solana/wallet-adapter-react";
+import {
+  ArrowRightLeft,
+  BarChart3,
+  Clock,
+  Info,
+  LineChart,
+  RefreshCw,
+  Repeat,
+  Settings,
+  Zap,
+} from "lucide-react";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 export default function SwapPage() {
   const { connected } = useWallet();
@@ -43,7 +58,10 @@ export default function SwapPage() {
                 <CardTitle className="text-text flex justify-between items-center">
                   <span>Swap</span>
                   <div className="flex items-center gap-1 text-xs font-normal">
-                    <Badge variant="outline" className="bg-[#9945FF]/10 hover:bg-[#9945FF]/20">
+                    <Badge
+                      variant="outline"
+                      className="bg-[#9945FF]/10 hover:bg-[#9945FF]/20"
+                    >
                       <span className="flex items-center gap-1">
                         <span className="w-2 h-2 rounded-full bg-green-400"></span>
                         Solana Devnet

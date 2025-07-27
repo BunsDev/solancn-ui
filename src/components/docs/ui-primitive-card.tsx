@@ -26,7 +26,11 @@ interface UIPrimitiveCardProps {
   prompt: string;
 }
 
-export function UIPrimitiveCard({ primitive, baseUrl, prompt }: UIPrimitiveCardProps) {
+export function UIPrimitiveCard({
+  primitive,
+  baseUrl,
+  prompt,
+}: UIPrimitiveCardProps) {
   const [copied, setCopied] = useState(false);
 
   const registryUrl = `https://${baseUrl}/r/${primitive.name}.json`;

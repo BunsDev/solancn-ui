@@ -46,12 +46,11 @@ const starters = [
     name: "nft",
     url: "/starters/nft",
   },
-  // Portfolio component temporarily disabled until recharts is properly configured
-  // {
-  //   title: "Portfolio",
-  //   name: "portfolio",
-  //   url: "/starters/portfolio",
-  // },
+  {
+    title: "Portfolio",
+    name: "portfolio",
+    url: "/starters/portfolio",
+  },
   {
     title: "Receive",
     name: "receive",
@@ -111,7 +110,7 @@ export default function StartPage() {
             name={starter.name}
             baseUrl={process.env.VERCEL_BRANCH_URL ?? ""}
             title={starter.title}
-            promptTitle={`${starter.title} Starter Kit`}
+            promptTitle={`${starter.title ?? ""} Starter Kit`}
             previewUrl={starter.url}
           />
         ))}

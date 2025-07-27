@@ -1,37 +1,32 @@
 "use client";
 
-import type React from "react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { swap } from "@/components/swap/swap-component";
-import { bridge } from "@/components/bridge/bridge-component";
 import { borrow } from "@/components/borrow/borrow-component";
-import { lend } from "@/components/lend/lend-component";
+import { bridge } from "@/components/bridge/bridge-component";
 import { defi } from "@/components/defi/defi-component";
 import { frame } from "@/components/frame/frame-component";
-import { portfolio } from "@/components/portfolio/portfolio-component";
-import { stake } from "@/components/stake/stake-component";
-import { receive } from "@/components/receive/receive-component";
+import { lend } from "@/components/lend/lend-component";
 import { nft } from "@/components/nft/nft-component";
-import { transfer } from "@/components/transfer/transfer-component";
+import { portfolio } from "@/components/portfolio/portfolio-component";
+import { receive } from "@/components/receive/receive-component";
+import { stake } from "@/components/stake/stake-component";
+import { swap } from "@/components/swap/swap-component";
 import { trading } from "@/components/trading/trading-component";
+import { transfer } from "@/components/transfer/transfer-component";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { wallet } from "@/components/wallet/wallet-component";
+import SolanaWalletProvider from "@/lib/context/wallet-provider";
 import {
-  Layers,
-  BarChart3,
-  Award,
-  Coins,
   ArrowRightLeft,
+  Award,
   Banknote,
+  BarChart3,
+  Coins,
   Download,
   FrameIcon,
+  Layers,
 } from "lucide-react";
-import SolanaWalletProvider from "@/lib/context/wallet-provider";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import type React from "react";
 
 const tabs = [
   {
@@ -112,8 +107,7 @@ const tabs = [
     label: "Wallet",
     content: wallet.components.Default,
   },
-
-]
+];
 
 const SolanaContent: React.FC = () => {
   return (
@@ -142,8 +136,11 @@ const SolanaContent: React.FC = () => {
                     <CardHeader>
                       <CardTitle className="text-text">{tab.label}</CardTitle>
                     </CardHeader>
-                    <CardContent>{
-                      typeof tab.content === "function" ? tab.content() : tab.content}</CardContent>
+                    <CardContent>
+                      {typeof tab.content === "function"
+                        ? tab.content()
+                        : tab.content}
+                    </CardContent>
                   </Card>
                 </TabsContent>
               ))}
@@ -153,9 +150,9 @@ const SolanaContent: React.FC = () => {
       </main>
     </div>
   );
-}
+};
 
 // Export a wrapper component that provides the wallet context
 export default function SolanaPage() {
-  return (<SolanaContent />);
+  return <SolanaContent />;
 }

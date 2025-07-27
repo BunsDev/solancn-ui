@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,8 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -19,7 +17,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useWallet } from "@solana/wallet-adapter-react";
+import { useState } from "react";
 import { toast } from "sonner";
 
 export const ReceiveComponent: React.FC = () => {
@@ -315,7 +315,7 @@ export const ReceiveComponent: React.FC = () => {
       </CardFooter>
     </Card>
   );
-}
+};
 
 export const receive = {
   name: "receive",

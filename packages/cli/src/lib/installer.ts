@@ -1,11 +1,16 @@
 // Unified installer for components and blocks
 
-import fs from "fs-extra";
 // biome-ignore lint/style/useNodejsImportProtocol: nodejs import protocol
 import path from "path";
+import fs from "fs-extra";
 // import { logger } from "./logger";
 import { fetchRegistryItem, fetchRegistryItems } from "./registry-client";
-import type { InstallOptions, InstallResult, RegistryItem, RegistryItemType } from "./types";
+import type {
+  InstallOptions,
+  InstallResult,
+  RegistryItem,
+  RegistryItemType,
+} from "./types";
 
 /**
  * Install a registry item (component, block, etc.) from registry data
@@ -62,7 +67,9 @@ export async function installItem(
 
       // Create backups if any files exist
       if (existingFiles.length > 0) {
-        console.log(`Creating backups for existing files: ${existingFiles.join(", ")}`);
+        console.log(
+          `Creating backups for existing files: ${existingFiles.join(", ")}`,
+        );
         // await backupFiles(existingFiles, targetDir);
       }
     }
@@ -76,8 +83,10 @@ export async function installItem(
       const filePath = path.join(targetDir, filename);
 
       // Check if file exists already
-      if (await fs.pathExists(filePath) && !force) {
-        console.log(`File ${filename} already exists. Use --force to overwrite.`);
+      if ((await fs.pathExists(filePath)) && !force) {
+        console.log(
+          `File ${filename} already exists. Use --force to overwrite.`,
+        );
         return {
           success: false,
           name: name,
@@ -95,20 +104,26 @@ export async function installItem(
     }
 
     // Install dependencies if needed
-    if (!skipDependencies && item?.dependencies && item.dependencies.length > 0) {
+    if (
+      !skipDependencies &&
+      item?.dependencies &&
+      item.dependencies.length > 0
+    ) {
       await installDependencies(item.dependencies, targetDir);
     }
 
     console.log(`${itemType} "${name}" installed successfully`);
-    
+
     return {
       success: true,
       name: name,
       message: `${itemType} "${name}" installed successfully`,
       files,
-    };    
+    };
   } catch (error) {
-    console.log(`Error installing ${itemType}: ${error instanceof Error ? error.message : String(error)}`);
+    console.log(
+      `Error installing ${itemType}: ${error instanceof Error ? error.message : String(error)}`,
+    );
     console.error(error instanceof Error ? error.message : String(error));
     throw error;
   }
@@ -120,7 +135,7 @@ export async function installItem(
 export async function uninstallItem(
   name: string,
   targetDir: string,
-  options: { itemType?: RegistryItemType, force?: boolean } = {},
+  options: { itemType?: RegistryItemType; force?: boolean } = {},
 ): Promise<InstallResult> {
   const { itemType = "registry:component", force = false } = options;
   // const spinner = logger.spinner(`Uninstalling ${itemType}: ${name}`);
@@ -167,7 +182,7 @@ export async function uninstallItem(
     }
 
     console.log(`${itemType} "${name}" uninstalled successfully`);
-    
+
     return {
       success: true,
       name: name,
@@ -175,7 +190,9 @@ export async function uninstallItem(
       files,
     };
   } catch (error) {
-    console.log(`Error uninstalling ${itemType}: ${error instanceof Error ? error.message : String(error)}`);
+    console.log(
+      `Error uninstalling ${itemType}: ${error instanceof Error ? error.message : String(error)}`,
+    );
     throw error;
   }
 }
@@ -184,17 +201,17 @@ export async function uninstallItem(
  * Check if a registry item is installed
  */
 export async function isItemInstalled(
-  itemName: string, 
-  itemType: RegistryItemType, 
-  targetDir: string
+  itemName: string,
+  itemType: RegistryItemType,
+  targetDir: string,
 ): Promise<boolean> {
   // Fetch item data from registry
   const item = await fetchRegistryItem({ type: itemType }, itemName);
-  
+
   if (!item) {
     return false;
   }
-  
+
   return checkItemFilesExist(item, targetDir);
 }
 
@@ -210,7 +227,7 @@ export async function checkItemFilesExist(
   }
 
   const filenames = Object.keys(item.files);
-  
+
   for (const filename of filenames) {
     const filePath = path.join(targetDir, filename);
     if (!(await fs.pathExists(filePath))) {
@@ -239,7 +256,7 @@ export async function getItemInfo(
 } | null> {
   // Fetch item data from registry
   const item = await fetchRegistryItem({ type: itemType }, name);
-  
+
   if (!item) {
     return null;
   }
@@ -275,7 +292,7 @@ async function getInstalledFiles(
 
   const installedFiles = [];
   const filenames = Object.keys(item.files);
-  
+
   for (const filename of filenames) {
     const filePath = path.join(targetDir, filename);
     if (await fs.pathExists(filePath)) {
@@ -297,10 +314,10 @@ export async function getInstalledItems(
   if (!(await fs.pathExists(targetDir))) {
     return [];
   }
-  
+
   // Get all registry items of the specified type
   const registry = await getRegistryItems(itemType);
-  
+
   if (!registry) {
     return [];
   }
@@ -323,12 +340,17 @@ export async function getInstalledItems(
  * Get all registry items of a specific type
  * This is a helper function for use by other functions in this module
  */
-async function getRegistryItems(itemType: RegistryItemType): Promise<Record<string, RegistryItem> | null> {
+async function getRegistryItems(
+  itemType: RegistryItemType,
+): Promise<Record<string, RegistryItem> | null> {
   try {
     // Fetch registry items of the specified type
     return fetchRegistryItems({ type: itemType });
   } catch (error) {
-    console.error(`Error fetching ${itemType}s from registry:`, error instanceof Error ? error.message : String(error));
+    console.error(
+      `Error fetching ${itemType}s from registry:`,
+      error instanceof Error ? error.message : String(error),
+    );
     return null;
   }
 }
@@ -341,24 +363,24 @@ export async function installDependencies(
   targetDir: string,
 ): Promise<void> {
   if (!dependencies || dependencies.length === 0) {
-    console.log('No dependencies to install');
+    console.log("No dependencies to install");
     return;
   }
 
-  console.log(`Installing dependencies: ${dependencies.join(', ')}`);
-  
+  console.log(`Installing dependencies: ${dependencies.join(", ")}`);
+
   // Process each dependency
   // This is a simplified implementation that just logs what it would do
   // In a real implementation, this would likely execute package manager commands
   for (const dep of dependencies) {
     // If dependency is another component reference (e.g. @/components/button)
-    if (dep.startsWith('@/')) {
+    if (dep.startsWith("@/")) {
       // Extract the component/block type and name
-      const parts = dep.split('/');
+      const parts = dep.split("/");
       if (parts.length >= 3) {
         const depType = parts[1] as RegistryItemType; // e.g. "components" -> "component"
         const depName = parts[2]; // e.g. "button"
-        
+
         console.log(`Would install dependent ${depType}: ${depName}`);
         // Note: In a real implementation, we might recursively call installItem here
         // but for simplicity we're just logging
@@ -378,7 +400,11 @@ export async function backupFiles(
   files: string[],
   targetDir: string,
 ): Promise<void> {
-  const backupDir = path.join(targetDir, '.backups', new Date().toISOString().replace(/:/g, '-'));
+  const backupDir = path.join(
+    targetDir,
+    ".backups",
+    new Date().toISOString().replace(/:/g, "-"),
+  );
   await fs.ensureDir(backupDir);
 
   for (const file of files) {
@@ -389,7 +415,7 @@ export async function backupFiles(
     if (await fs.pathExists(sourcePath)) {
       // Create directory for the backup file
       await fs.ensureDir(path.dirname(backupPath));
-      
+
       // Copy the file
       await fs.copy(sourcePath, backupPath);
     }
@@ -404,7 +430,10 @@ export const installComponent = (
   targetDir: string,
   options: Partial<InstallOptions> = {},
 ): Promise<InstallResult> => {
-  return installItem(name, targetDir, { ...options, itemType: "registry:component" });
+  return installItem(name, targetDir, {
+    ...options,
+    itemType: "registry:component",
+  });
 };
 
 export const uninstallComponent = (
@@ -412,7 +441,10 @@ export const uninstallComponent = (
   targetDir: string,
   options: { force?: boolean } = {},
 ): Promise<InstallResult> => {
-  return uninstallItem(name, targetDir, { ...options, itemType: "registry:component" });
+  return uninstallItem(name, targetDir, {
+    ...options,
+    itemType: "registry:component",
+  });
 };
 
 export const isComponentInstalled = (
@@ -427,7 +459,10 @@ export const installBlock = (
   targetDir: string,
   options: Partial<InstallOptions> = {},
 ): Promise<InstallResult> => {
-  return installItem(name, targetDir, { ...options, itemType: "registry:block" });
+  return installItem(name, targetDir, {
+    ...options,
+    itemType: "registry:block",
+  });
 };
 
 export const uninstallBlock = (
@@ -435,7 +470,10 @@ export const uninstallBlock = (
   targetDir: string,
   options: { force?: boolean } = {},
 ): Promise<InstallResult> => {
-  return uninstallItem(name, targetDir, { ...options, itemType: "registry:block" });
+  return uninstallItem(name, targetDir, {
+    ...options,
+    itemType: "registry:block",
+  });
 };
 
 export const isBlockInstalled = (

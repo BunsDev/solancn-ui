@@ -1,12 +1,12 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import type React from "react";
-import { Button } from "@/components/ui/button";
 
-import FontBlock from "@/app/design/font-block";
 import ColorBlock from "@/app/design/color-block";
+import FontBlock from "@/app/design/font-block";
 
 export default function TokensPage() {
   return (

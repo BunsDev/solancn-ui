@@ -1,7 +1,7 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LendComponent } from "@/components/lend/lend-component";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 function LendContent() {
   return (

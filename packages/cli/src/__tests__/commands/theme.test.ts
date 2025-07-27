@@ -1,7 +1,7 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { vol } from "memfs";
 import fs from "fs-extra";
 import inquirer from "inquirer";
+import { vol } from "memfs";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { theme } from "../../commands/theme";
 
 // Mock dependencies

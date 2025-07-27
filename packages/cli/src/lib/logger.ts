@@ -1,8 +1,8 @@
+import util from "node:util";
+import boxen, { type Options as BoxenOptions } from "boxen";
 // Logger for CLI
 import chalk from "chalk";
-import util from "node:util";
 import ora, { type Ora, type Options as OraOptions } from "ora";
-import boxen, { type Options as BoxenOptions } from "boxen";
 
 /**
  * Log levels

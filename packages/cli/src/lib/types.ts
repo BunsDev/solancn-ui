@@ -8,7 +8,7 @@ export interface Component extends RegistryItem {
   tags?: string[];
   installedFiles?: string[];
   dependencies?: string[];
-};
+}
 
 export interface Block extends RegistryItem {
   name: string;
@@ -20,7 +20,7 @@ export interface Block extends RegistryItem {
   files?: Record<string, string>;
   dependencies?: string[];
   registryDependencies?: string[];
-};
+}
 
 /**
  * Installation options
@@ -32,8 +32,8 @@ export interface InstallOptions {
 }
 
 export interface uninstallOptions {
-    targetDir: string;
-    dependencies?: boolean;
+  targetDir: string;
+  dependencies?: boolean;
 }
 
 /**
@@ -47,7 +47,11 @@ export interface InstallResult {
 }
 
 // Registry item types
-export type RegistryItemType = "registry:component" | "registry:block" | "registry:ui" | "registry:theme";
+export type RegistryItemType =
+  | "registry:component"
+  | "registry:block"
+  | "registry:ui"
+  | "registry:theme";
 
 // Registry item interface
 export interface RegistryItem {

@@ -1,12 +1,12 @@
-import { Command } from "commander";
-import inquirer, { type Question } from "inquirer";
-import chalk from "chalk";
-import ora from "ora";
-import fs from "fs-extra";
 import path from "node:path";
-import { fetchRegistryItem } from "../lib/registry-client";
-import { logger } from "../lib/logger";
 import boxen from "boxen";
+import chalk from "chalk";
+import { Command } from "commander";
+import fs from "fs-extra";
+import inquirer, { type Question } from "inquirer";
+import ora from "ora";
+import { logger } from "../lib/logger";
+import { fetchRegistryItem } from "../lib/registry-client";
 
 // Create theme command group
 const theme = new Command("theme").description(
@@ -240,35 +240,35 @@ theme
       // Use the inquirer v12 approach with an array of questions
       const answers = await inquirer.prompt<ThemeCustomizationAnswers>([
         {
-          type: 'input',
-          name: 'primaryLight',
-          message: 'Light theme - Primary color:',
-          default: 'oklch(0.52 0.13 144.17)'
+          type: "input",
+          name: "primaryLight",
+          message: "Light theme - Primary color:",
+          default: "oklch(0.52 0.13 144.17)",
         },
         {
-          type: 'input',
-          name: 'primaryForegroundLight',
-          message: 'Light theme - Primary foreground color:',
-          default: 'oklch(1.0 0 0)'
+          type: "input",
+          name: "primaryForegroundLight",
+          message: "Light theme - Primary foreground color:",
+          default: "oklch(1.0 0 0)",
         },
         {
-          type: 'input',
-          name: 'primaryDark',
-          message: 'Dark theme - Primary color:',
-          default: 'oklch(0.52 0.13 144.17)'
+          type: "input",
+          name: "primaryDark",
+          message: "Dark theme - Primary color:",
+          default: "oklch(0.52 0.13 144.17)",
         },
         {
-          type: 'input',
-          name: 'primaryForegroundDark',
-          message: 'Dark theme - Primary foreground color:',
-          default: 'oklch(1.0 0 0)'
+          type: "input",
+          name: "primaryForegroundDark",
+          message: "Dark theme - Primary foreground color:",
+          default: "oklch(1.0 0 0)",
         },
         {
-          type: 'input',
-          name: 'radius',
-          message: 'Border radius:',
-          default: '0.5rem'
-        }
+          type: "input",
+          name: "radius",
+          message: "Border radius:",
+          default: "0.5rem",
+        },
       ]);
 
       // Generate tokens.css content
@@ -289,7 +289,7 @@ theme
 
       // Generate tokens.css content and save the file
       const spinner = ora("Saving theme customization...").start();
-      
+
       try {
         await fs.writeFile(tokensPath, tokensContent);
         spinner.succeed("Theme customized successfully");

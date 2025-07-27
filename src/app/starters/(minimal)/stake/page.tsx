@@ -1,7 +1,7 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { StakeComponent } from "@/components/stake/stake-component";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 function StakeContent() {
   return (

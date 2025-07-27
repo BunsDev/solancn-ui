@@ -1,5 +1,7 @@
 "use client";
 
+import { ThemeSelect } from "@/components/theme-select";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,27 +10,25 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Search,
-  ArrowRight,
-  Wallet,
-  Coins,
-  Activity,
-  TrendingUp,
-  Shield,
-  Zap,
-  Copy,
-} from "lucide-react";
-import Link from "next/link";
-import { Icon } from "@iconify/react";
-import { SiteHeader } from "./site-header";
 import { SidebarProvider } from "@/components/ui/sidebar";
-import { ThemeSelect } from "@/components/theme-select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Icon } from "@iconify/react";
+import {
+  Activity,
+  ArrowRight,
+  Coins,
+  Copy,
+  Search,
+  Shield,
+  TrendingUp,
+  Wallet,
+  Zap,
+} from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { SiteHeader } from "./site-header";
 
 export default function SolancnHome() {
   return (

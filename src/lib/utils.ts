@@ -1,19 +1,22 @@
+import registry from "@/registry";
 import { type ClassValue, clsx } from "clsx";
+import React from "react";
 import { twMerge } from "tailwind-merge";
 import type { RegistryItem } from "./types";
-import React from "react";
-import registry from "@/registry";
-
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
 export function getLink(item: RegistryItem): string {
-  const itemTypeLink = item.type === "registry:block" ? "blocks"
-    : item.type === "registry:component" ? "components"
-      : item.type === "registry:ui" ? "ui"
-        : "";
+  const itemTypeLink =
+    item.type === "registry:block"
+      ? "blocks"
+      : item.type === "registry:component"
+        ? "components"
+        : item.type === "registry:ui"
+          ? "ui"
+          : "";
   return `/${itemTypeLink}/${item.name}`;
 }
 

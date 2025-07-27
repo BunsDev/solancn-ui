@@ -1,6 +1,6 @@
-import fs from "fs-extra";
 // biome-ignore lint/style/useNodejsImportProtocol: disables biome linting for nodejs import protocol
 import path from "path";
+import fs from "fs-extra";
 import fetch from "node-fetch";
 import type { RegistryData, RegistryItem, RegistryItemType } from "./types";
 

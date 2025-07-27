@@ -1,11 +1,11 @@
+import boxen from "boxen";
+import chalk from "chalk";
 import { Command } from "commander";
 import inquirer from "inquirer";
-import chalk from "chalk";
-import boxen from "boxen";
 import ora from "ora";
-import { fetchRegistryItems } from "../lib/registry-client";
 import { installComponent, uninstallComponent } from "../lib/installer";
 import { logger } from "../lib/logger";
+import { fetchRegistryItems } from "../lib/registry-client";
 import type { RegistryItem } from "../lib/types";
 
 // Create components command group
@@ -37,7 +37,9 @@ components
         };
         const filterType = typeMap[options.type];
         if (filterType) {
-          components = allComponents?.filter((item: any) => item.type === filterType);
+          components = allComponents?.filter(
+            (item: any) => item.type === filterType,
+          );
         }
       }
 
@@ -113,10 +115,14 @@ components
       const spinner = ora("Fetching available components...").start();
 
       try {
-        const registry = await fetchRegistryItems({ type: "registry:component" }) as unknown as Record<string, RegistryItem>;
+        const registry = (await fetchRegistryItems({
+          type: "registry:component",
+        })) as unknown as Record<string, RegistryItem>;
         const components = Object.values(registry)?.filter(
           (item: any) =>
-            item?.type === "registry:ui" || item?.type === "registry:component" || item?.type === "registry:block",
+            item?.type === "registry:ui" ||
+            item?.type === "registry:component" ||
+            item?.type === "registry:block",
         );
 
         spinner.stop();
@@ -148,11 +154,7 @@ components
     const spinner = ora(`Adding ${title} to your project...`).start();
 
     try {
-      const component = await installComponent(
-        title,
-        options.dir,
-        options,
-      );
+      const component = await installComponent(title, options.dir, options);
       spinner.succeed(
         `Added ${chalk.green(component.name || title)} to your project`,
       );
@@ -170,7 +172,7 @@ components
       console.log("\n");
       console.log(chalk.bold("Next steps:"));
       console.log(`${chalk.bold("1.")} Import the component in your code`);
-      console.log(  
+      console.log(
         `${chalk.dim(`import { ${title.replace(/-./g, (x: string) => x[1].toUpperCase())} } from "@/components/${title}";`)}`,
       );
       console.log(`${chalk.bold("2.")} Use it in your JSX/TSX`);
@@ -245,7 +247,9 @@ components
     const spinner = ora("Searching components...").start();
 
     try {
-      const registry = await fetchRegistryItems({ type: "registry:component" }) as unknown as Record<string, RegistryItem>;
+      const registry = (await fetchRegistryItems({
+        type: "registry:component",
+      })) as unknown as Record<string, RegistryItem>;
       const allComponents = registry?.items as unknown as any[];
       console.log({ allComponents });
       // Simple search implementation

@@ -52,7 +52,7 @@ export function Logo({
   header?: boolean;
 }) {
   return (
-<div className={cn("relative", containerClassName)}>
+    <div className={cn("relative", containerClassName)}>
       <Image
         // src={header ? }
         src="/logo-round.png"
@@ -61,8 +61,9 @@ export function Logo({
         height={1200}
         className={cn(
           sizes[size ?? "lg"].svg,
-          "max-h-[256px] w-auto", className,
-          header && "h-12"
+          "max-h-[256px] w-auto",
+          className,
+          header && "h-12",
         )}
         {...props}
       />

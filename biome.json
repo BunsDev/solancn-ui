@@ -16,8 +16,14 @@
     "enabled": true,
     "rules": {
       "recommended": true,
+      "a11y": {
+        "useButtonType": "error"
+      },
       "nursery": {
         "useSortedClasses": "off"
+      },
+      "style": {
+        "useSelfClosingElements": "error"
       },
       "suspicious": {
         "noExplicitAny": "off"

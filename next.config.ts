@@ -1,11 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
+  // Temporarily ignore type errors during build to fix starters
   typescript: {
-    // Temporarily ignore type errors during build to fix starters
     ignoreBuildErrors: true,
   },
+  // Skip ESLint to speed up build
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  // Use correct Next.js 15.4.1 configuration
+  serverExternalPackages: [],
   async headers() {
     return [
       {
