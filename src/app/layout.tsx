@@ -3,11 +3,13 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Montserrat } from "next/font/google";
 import type { ReactNode } from "react";
+import { ThemeProvider } from "@/components/theme-provider";
 
 import { cn } from "@/lib/utils";
 
 import "@/app/tokens.css";
 import "@/app/tailwind.css";
+
 
 export const metadata: Metadata = {
   title: "Registry Starter",
@@ -44,13 +46,22 @@ export default function RootLayout({
         MontserratSerif.variable,
         "bg-background text-foreground",
       )}
+      suppressHydrationWarning
     >
       <meta
         name="robots"
         content="noindex, nofollow, noarchive, nosnippet, noimageindex"
       />
-      <body className="flex grow">
-        {children}
+      <body className="flex flex-col w-full h-dvh p-4 md:p-6 lg:p-8">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          forcedTheme="dark"
+          enableSystem={false}
+          storageKey="solancn-ui-theme"
+        >
+          {children}
+        </ThemeProvider>
         <Analytics />
         <SpeedInsights />
       </body>

@@ -33,7 +33,7 @@ export const BRIDGE_NETWORKS: Record<string, BridgeNetwork> = {
   solana: {
     name: "Solana",
     chainId: "solana",
-    logo: "https://phantom.app/img/chains/solana.png",
+    logo: "/logos/tokens/sol.png",
     nativeCurrency: "SOL",
     isTestnet: false,
     blockExplorerUrl: "https://explorer.solana.com",
@@ -41,18 +41,18 @@ export const BRIDGE_NETWORKS: Record<string, BridgeNetwork> = {
   ethereum: {
     name: "Ethereum",
     chainId: "1",
-    logo: "https://phantom.app/img/chains/ethereum.png",
+    logo: "/logos/tokens/eth.png",
     nativeCurrency: "ETH",
     isTestnet: false,
     blockExplorerUrl: "https://etherscan.io",
   },
-  polygon: {
-    name: "Polygon",
-    chainId: "137",
-    logo: "https://phantom.app/img/chains/polygon.png",
-    nativeCurrency: "MATIC",
+  avalanche: {
+    name: "Avalanche",
+    chainId: "43114",
+    logo: "/logos/tokens/avax.png",
+    nativeCurrency: "AVAX",
     isTestnet: false,
-    blockExplorerUrl: "https://polygonscan.com",
+    blockExplorerUrl: "https://snowtrace.io",
   },
 };
 
@@ -61,7 +61,7 @@ export const BRIDGE_SAMPLE_TOKENS: BridgeToken[] = [
   {
     symbol: "SOL",
     name: "Solana",
-    logo: "https://phantom.app/img/chains/solana.png",
+    logo: "/logos/tokens/sol.png",
     balance: 10.5,
     decimals: 9,
     address: "native",
@@ -70,7 +70,7 @@ export const BRIDGE_SAMPLE_TOKENS: BridgeToken[] = [
   {
     symbol: "USDC",
     name: "USD Coin",
-    logo: "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v/logo.png",
+    logo: "/logos/tokens/usdc.png",
     balance: 250.75,
     decimals: 6,
     address: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
@@ -79,19 +79,19 @@ export const BRIDGE_SAMPLE_TOKENS: BridgeToken[] = [
   {
     symbol: "ETH",
     name: "Ethereum",
-    logo: "https://phantom.app/img/chains/ethereum.png",
+    logo: "/logos/tokens/eth.png",
     balance: 1.2,
     decimals: 18,
     address: "native",
     network: "ethereum",
   },
   {
-    symbol: "MATIC",
-    name: "Polygon",
-    logo: "https://phantom.app/img/chains/polygon.png",
+    symbol: "AVAX",
+    name: "Avalanche",
+    logo: "/logos/tokens/avax.png",
     balance: 100,
     decimals: 18,
     address: "native",
-    network: "polygon",
+    network: "avalanche",
   },
 ];

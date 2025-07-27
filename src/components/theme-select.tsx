@@ -7,7 +7,7 @@ import * as React from "react";
 import { Button } from "@/components/ui/button";
 
 export function ThemeSelect() {
-  const { setTheme, theme } = useTheme();
+  const { setTheme, theme } = useTheme(); 
 
   return (
     <Button

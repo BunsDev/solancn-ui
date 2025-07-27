@@ -4,31 +4,18 @@ import type { ReactNode } from "react";
 import {
   MobileSidebarTrigger,
   RegistrySidebar,
-} from "@/components/docs/docs-sidebar";
-import { ThemeProvider } from "@/components/theme-provider";
+} from "@/components/docs/registry-sidebar";
 import { Toaster } from "@/components/ui/sonner";
-import { Geist, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "@/components/theme-provider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export default function BlocksLayout({
+export default function StartersLayout({
   children,
-}: Readonly<{
+}: Readonly<{ 
   children: ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -39,9 +26,7 @@ export default function BlocksLayout({
           <SidebarProvider>
             <MobileSidebarTrigger />
             <RegistrySidebar />
-            <main className="flex h-dvg w-full justify-center p-2 mt-16 sm:mt-8 md:mt-4 lg:mt-0 md:p-4 overflow-y-auto">
-              {children}
-            </main>
+            <main className="flex w-full justify-center">{children}</main>
             <Toaster />
           </SidebarProvider>
         </ThemeProvider>

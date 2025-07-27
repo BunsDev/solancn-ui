@@ -44,8 +44,12 @@ export function MCPTabs({ rootUrl }: { rootUrl: string }) {
     <Tabs value={tab} onValueChange={setTab}>
       <div className="flex items-center justify-between">
         <TabsList>
-          <TabsTrigger value="cursor">Cursor</TabsTrigger>
-          <TabsTrigger value="windsurf">Windsurf</TabsTrigger>
+          <TabsTrigger value="cursor" className="cursor-pointer text-primary hover:bg-background bg-background">
+            Cursor
+          </TabsTrigger>
+          <TabsTrigger value="windsurf" className="cursor-pointer text-primary hover:bg-background bg-background">
+            Windsurf
+          </TabsTrigger>
         </TabsList>
       </div>
 
@@ -67,7 +71,7 @@ export function MCPTabs({ rootUrl }: { rootUrl: string }) {
 
       <div className="relative">
         <div className="absolute top-3 right-3 flex gap-2">
-          {tab === "cursor" && <AddToCursor mcp={mcp} />}
+          {/* {tab === "cursor" && <AddToCursor mcp={mcp} />} */}
 
           <Button
             size="sm"

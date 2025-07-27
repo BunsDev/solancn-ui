@@ -1,6 +1,6 @@
 import type { ReactElement, ReactNode } from "react";
 
-import { accordion } from "@/app/(docs)/components/[slug]/(demos)/accordion";
+import { accordion } from "@/components/demos/accordion";
 import { alert } from "@/app/(docs)/components/[slug]/(demos)/alert";
 import { avatar } from "@/app/(docs)/components/[slug]/(demos)/avatar";
 import { badge } from "@/app/(docs)/components/[slug]/(demos)/badge";

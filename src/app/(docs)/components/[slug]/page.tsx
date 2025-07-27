@@ -35,7 +35,7 @@ export default async function ComponentPage({
           <Button variant="ghost" size="sm" asChild className="mb-4">
             <Link href="/">
               <ArrowLeft className="mr-2 size-4" />
-              Back to Home
+              Return Home
             </Link>
           </Button>
           <h1 className="font-bold text-3xl tracking-tight">

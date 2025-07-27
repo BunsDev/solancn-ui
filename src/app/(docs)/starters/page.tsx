@@ -4,6 +4,9 @@ import type React from "react";
 
 import { ComponentCard } from "@/components/docs/component-card";
 import { Button } from "@/components/ui/button";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { MobileSidebarTrigger } from "@/components/docs/registry-sidebar";
+import { RegistrySidebar } from "@/components/docs/registry-sidebar";
 
 const starters = [
   {
@@ -102,7 +105,9 @@ export default function StartPage() {
           <h1 className="font-bold text-3xl tracking-tight">Starters</h1>
         </div>
       </div>
-
+      <SidebarProvider>
+      <MobileSidebarTrigger />
+      <RegistrySidebar />
       <div className="flex flex-col gap-8">
         {starters.map((starter) => (
           <ComponentCard
@@ -115,6 +120,7 @@ export default function StartPage() {
           />
         ))}
       </div>
+      </SidebarProvider>
     </div>
   );
 }
