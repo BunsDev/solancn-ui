@@ -24,7 +24,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { useWallet } from "@solana/wallet-adapter-react";
 
-export function TransferComponent() {
+export const TransferComponentDemo = () => {
   const { connected } = useWallet();
   const [recipient, setRecipient] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
@@ -314,6 +314,6 @@ export function TransferComponent() {
 export const transfer = {
   name: "transfer",
   components: {
-    Default: <TransferComponent />,
+    Default: <TransferComponentDemo />,
   },
 };

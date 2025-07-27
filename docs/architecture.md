@@ -92,3 +92,77 @@ The application is designed to be deployed on Vercel, with:
 - Server-side rendering when needed
 - API routes for registry endpoints
 - Integration with Vercel analytics and speed insights
+
+## Solana Integration
+
+### Wallet Architecture
+
+The system integrates with Solana wallets using:
+
+1. **Wallet Adapter**: Solana wallet adapter for connecting to browser wallets
+2. **Wallet Components**: Reusable components for wallet connection and status display
+   - `StyledWalletButton`: Custom-styled connect button component
+   - `WalletStatus`: Component to display connected wallet information
+
+### Solana Page Structure
+
+The Solana dashboard uses a tab-based architecture:
+
+1. **Dynamic Tab System**: Configurable tabs array for rendering different sections
+2. **Content Pages**: Specialized pages for different Solana functionality:
+   - DeFi
+   - Trade
+   - Stake
+   - Frame
+   - Portfolio
+   - Bridge
+   - Receive
+   - Borrow
+   - Lend
+
+### DeFi Components
+
+#### Staking Interface
+
+The staking interface follows a modular architecture:
+
+1. **Tabbed Interface**: Stake, Unstake, and History tabs
+2. **Validator Selection**: Component for selecting validators with performance metrics
+3. **Staking Options**: Components for choosing between native and liquid staking
+4. **Transaction Summary**: Dynamic summary of staking actions and expected rewards
+5. **Network Statistics**: Display of relevant network metrics
+
+#### Swap Interface
+
+The swap functionality uses:
+
+1. **Tabbed Interface**: Swap, Limit, and TWAP tabs
+2. **Token Selection**: Components for selecting input and output tokens
+3. **Route Selection**: Components for choosing optimal swap routes
+4. **Settings Panel**: Interface for configuring slippage tolerance and other options
+5. **Price Chart**: Togglable price chart component
+
+### Type System
+
+The Solana components use a strong TypeScript typing system:
+
+1. **Token Interface**: Defines structure for token data including symbol, name, logo, and price
+2. **SwapRoute Interface**: Defines structure for swap routing options
+3. **Validator Interface**: Defines structure for validator information
+4. **Staking Types**: Interfaces for staking options, history, and actions
+
+### Constants and Mocks
+
+Mock data for development and testing is organized in:
+
+1. **Token Constants**: Predefined token definitions with logos and metadata
+2. **Swap Routes**: Mock swap route definitions with performance metrics
+3. **Validator Data**: Mock validator information with APY and commission details
+
+### Theming
+
+Solana-specific theming includes:
+
+1. **Brand Colors**: Integration of Solana brand colors (#9945FF purple and #14F195 green)
+2. **Consistent UI**: Unified design language across all Solana components
+3. **Dark/Light Mode**: Theme support for all Solana-specific components

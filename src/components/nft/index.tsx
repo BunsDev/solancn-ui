@@ -57,7 +57,7 @@ const nftsData = [
     id: "2",
     name: "DeGod #4521",
     collection: "DeGods",
-    image: "https://phantom.app/blog/content/images/2022/01/degods.jpeg",
+    image: "/nfts/degods-nft.png",
     price: 56.3,
     currency: "SOL",
     rarity: 94,

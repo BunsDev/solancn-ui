@@ -16,7 +16,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-export function WalletComponent() {
+export function WalletComponentDemo() {
   return (
     <Card className="w-full bg-background text-text border border-[#9945FF]/20">
       <CardHeader className="border-b border-[#9945FF]/20">
@@ -180,7 +180,7 @@ export function WalletComponent() {
           </div>
 
           <div className="space-y-1">
-            <div className="text-sm font-medium">Your Assets</div>
+            <div className="text-sm font-medium">Assets</div>
             <Table>
               <TableBody>
                 <TableRow className="border-b border-[#9945FF]/10">
@@ -191,7 +191,7 @@ export function WalletComponent() {
                       </div>
                       <div>
                         <div>SOL</div>
-                        <div className="text-xs text-gray-400">Solana</div>
+                        <div className="text-xs text-gray-400">SOL</div>
                       </div>
                     </div>
                   </TableCell>
@@ -234,7 +234,7 @@ export function WalletComponent() {
 export const wallet = {
   name: "wallet",
   components: {
-    Default: <WalletComponent />,
+    Default: <WalletComponentDemo />,
   },
 };
   

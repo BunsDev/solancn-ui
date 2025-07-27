@@ -3,117 +3,10 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import SolanaWalletProvider from "../context/wallet-provider";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
-import { cn } from "@/lib/utils";
-import { LAMPORTS_PER_SOL } from "@solana/web3.js";
-import { Wallet as WalletIcon, RefreshCw } from "lucide-react";
-import { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
-
-// Dynamically import the wallet component to prevent SSR issues
-const WalletComponent = dynamic(
-  () => import("@/components/solana/wallet").then((mod) => {
-    const WalletComp = () => mod.wallet.components.Default;
-    return WalletComp;
-  }),
-  { ssr: false }
-);
-
-// Custom styled WalletButton component with enhanced styling
-const StyledWalletButton = () => {
-  return (
-    <div
-      className={cn(
-        "wallet-adapter-button-container",
-        "dark:bg-[#9945FF] text-text rounded-md border-none hover:opacity-90",
-      )}
-    >
-      <WalletMultiButton
-        className={cn(
-          "bg-gradient-to-r from-[#9945FF] to-[#14F195] dark:bg-[#9945FF] dark:text-text",
-          "hover:opacity-90 transition-all duration-200",
-          "shadow-md hover:shadow-lg",
-          "border border-[#9945FF]/20 dark:border-[#9945FF]/20",
-          "font-medium text-white dark:text-text",
-          "flex items-center gap-2",
-        )}
-      />
-    </div>
-  );
-};
-
-// Enhanced wallet status component
-const WalletStatus = () => {
-  const { publicKey, connected } = useWallet();
-  const { connection } = useConnection();
-  const [balance, setBalance] = useState(0);
-  const [isRefreshing, setIsRefreshing] = useState(false);
-
-  const fetchBalance = async () => {
-    if (!publicKey) return;
-    try {
-      setIsRefreshing(true);
-      const bal = await connection.getBalance(publicKey);
-      setBalance(bal / LAMPORTS_PER_SOL);
-    } catch (e) {
-      console.error("Failed to fetch balance:", e);
-      setBalance(0);
-    } finally {
-      setIsRefreshing(false);
-    }
-  };
-
-  useEffect(() => {
-    if (publicKey) {
-      fetchBalance();
-      // Set up a refresh interval
-      const intervalId = setInterval(fetchBalance, 30000); // Refresh every 30 seconds
-      return () => clearInterval(intervalId);
-    }
-  }, [connection, publicKey]);
-
-  if (!connected || !publicKey) return null;
-
-  return (
-    <Card className="bg-background border border-[#9945FF]/20 shadow-md overflow-hidden mb-6">
-      <CardHeader className="pb-2">
-        <CardTitle className="text-text text-lg">Wallet Connected</CardTitle>
-        <CardDescription className="text-text/70">
-          Your Solana wallet is ready to use
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="flex flex-col gap-3">
-          <div className="flex justify-between items-center bg-[#9945FF]/10 p-3 rounded-md">
-            <span className="text-text font-medium">Address</span>
-            <span className="font-mono text-text bg-background/30 p-1 px-2 rounded-md">
-              {publicKey.toString().slice(0, 6)}...
-              {publicKey.toString().slice(-4)}
-            </span>
-          </div>
-          <div className="flex justify-between items-center bg-[#14F195]/10 p-3 rounded-md">
-            <span className="text-text font-medium">Balance</span>
-            <div className="flex items-center gap-2">
-              <span className="text-text">{balance.toFixed(4)} SOL</span>
-              <button
-                type="button"
-                onClick={fetchBalance}
-                className="text-[#9945FF] hover:text-[#14F195] transition-colors p-1 rounded-full"
-                disabled={isRefreshing}
-                aria-label="Refresh balance"
-              >
-                <RefreshCw
-                  size={16}
-                  className={isRefreshing ? "animate-spin" : ""}
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
+import { Wallet as WalletIcon } from "lucide-react";
+import StyledWalletButton from "@/components/wallet/wallet-button";
+import WalletStatus from "@/components/wallet/wallet-status";
+import { WalletComponentDemo } from "@/components/solana/wallet";
 
 function WalletContent() {
   const { connected } = useWallet();
@@ -141,7 +34,7 @@ function WalletContent() {
                 <CardHeader>
                   <CardTitle className="text-text">Wallet Details</CardTitle>
                 </CardHeader>
-                <CardContent><WalletComponent /></CardContent>
+                <CardContent><WalletComponentDemo /></CardContent>
               </Card>
             </div>
           ) : (
@@ -163,7 +56,7 @@ function WalletContent() {
                   </p>
 
                   <div className="flex justify-center">
-                    <StyledWalletButton />  
+                    <StyledWalletButton />
                   </div>
                 </div>
               </div>

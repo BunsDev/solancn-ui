@@ -110,3 +110,24 @@ export interface RegistryData {
   ui?: Record<string, RegistryItem>;
   theme?: RegistryItem;
 }
+
+export interface Token {
+  symbol: string;
+  name: string;
+  logo: string;
+  decimals: number;
+  address?: string;
+  balance?: number;
+  price?: number;
+  priceChange?: number;
+}
+
+export interface SwapRoute {
+  name: string;
+  icon: React.ReactNode;
+  value: string;
+  fee: number;
+  time: string;
+  impact: number;
+  optimizedFor: string;
+}

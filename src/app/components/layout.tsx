@@ -32,6 +32,7 @@ export default function ComponentsLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
+          forcedTheme="dark"
           enableSystem={false}
           disableTransitionOnChange={true}
           storageKey="solancn-ui-theme"

@@ -1,6 +1,6 @@
 "use client";
 
-import { TransferComponent } from "@/components/solana/transfer";
+import { TransferComponentDemo } from "@/components/solana/transfer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 function TransferContent() {
@@ -13,10 +13,10 @@ function TransferContent() {
               <CardHeader>
                 <CardTitle className="text-text">Transfer</CardTitle>
               </CardHeader>
-              <CardContent><TransferComponent /></CardContent>
+              <CardContent><TransferComponentDemo /></CardContent>
             </Card>
           </div>
-      </main>
+      </main> 
     </div>
   );
 }

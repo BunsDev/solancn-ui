@@ -120,7 +120,7 @@ theme
 
     try {
       // Fetch theme from registry
-      const themeData = await fetchRegistryItem({ type: "theme" });
+      const themeData = await fetchRegistryItem({ type: "registry:theme" });
 
       if (!themeData) {
         spinner.fail("Failed to fetch theme data");
