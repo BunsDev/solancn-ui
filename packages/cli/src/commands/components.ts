@@ -31,8 +31,9 @@ components
       // Apply type filter if specified
       if (options.type) {
         const typeMap: Record<string, string> = {
-          ui: "registry:ui",
+          block: "registry:block",
           component: "registry:component",
+          ui: "registry:ui",
         };
         const filterType = typeMap[options.type];
         if (filterType) {
@@ -43,7 +44,7 @@ components
       spinner.succeed(`Found ${components?.length || 0} components`);
 
       if (options.json) {
-        console.log(JSON.stringify(components, null, 2));
+        console.log(JSON.stringify(components, null, 3));
         return;
       }
 
@@ -79,7 +80,7 @@ components
 
       console.log(
         boxen(
-          `To install a component: ${chalk.cyan("solancn components install <name>")}`,
+          `To install a component: ${chalk.cyan("solancn components add <name>")}`,
           {
             padding: 0.5,
             margin: { top: 1, bottom: 0, left: 0, right: 0 },
@@ -115,7 +116,7 @@ components
         const registry = await fetchRegistryItems({ type: "registry:component" }) as unknown as Record<string, RegistryItem>;
         const components = Object.values(registry)?.filter(
           (item: any) =>
-            item?.type === "registry:ui" || item?.type === "registry:component",
+            item?.type === "registry:ui" || item?.type === "registry:component" || item?.type === "registry:block",
         );
 
         spinner.stop();
@@ -124,7 +125,7 @@ components
           {
             type: "list",
             name: "title",
-            message: "Select a component to add:",
+            message: "Select component to add:",
             choices: components?.map((c: any) => ({
               name: `${c.name} - ${c.description || "No description"}`,
               value: c.name,

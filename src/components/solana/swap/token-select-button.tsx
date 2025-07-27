@@ -1,8 +1,8 @@
-import { Token } from "@/lib/types";
+import { SwapToken } from "@/lib/types";
 import { ChevronDown } from "lucide-react";
 import TokenIcon from "./token-icon";
 
-const TokenSelectButton = ({ token, onClick }: { token: Token; onClick: () => void }) => (
+const SwapTokenSelectButton = ({ token, onClick }: { token: SwapToken; onClick: () => void }) => (
     <button
         onClick={onClick}
         className="flex items-center gap-2 bg-background hover:bg-muted/50 rounded-lg p-2 transition-colors"
@@ -13,4 +13,4 @@ const TokenSelectButton = ({ token, onClick }: { token: Token; onClick: () => vo
     </button>
 );
 
-export default TokenSelectButton;
+export default SwapTokenSelectButton;

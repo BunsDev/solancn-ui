@@ -220,7 +220,7 @@
 }
 
 :root {
-  --background: oklch(1.0 0 0);
+  /* --background: oklch(1.0 0 0);
   --foreground: oklch(0.1884 0.0128 248.5103);
   --card: oklch(0.9784 0.0011 197.1387);
   --card-foreground: oklch(0.1884 0.0128 248.5103);
@@ -251,6 +251,41 @@
   --sidebar-accent: oklch(0.5982 0.2564 298.8623);
   --sidebar-accent-foreground: oklch(1.0 0 0);
   --sidebar-border: oklch(0.9271 0.0101 238.5177);
+  --sidebar-ring: oklch(0.8725 0.1587 162.1544); */
+
+  --background: oklch(0 0 0);
+  --foreground: oklch(0.9328 0.0025 228.7857);
+  --card: oklch(0.2097 0.008 274.5332);
+  --card-foreground: oklch(0.8853 0 0);
+  --popover: oklch(0 0 0);
+  --popover-foreground: oklch(0.9328 0.0025 228.7857);
+  --primary: oklch(0.5982 0.2564 298.8623);
+  --primary-foreground: oklch(1.0 0 0);
+  --secondary: oklch(0.8441 0.1991 156.8329);
+  --secondary-foreground: oklch(0.1884 0.0128 248.5103);
+  --muted: oklch(0.209 0 0);
+  --muted-foreground: oklch(0.5637 0.0078 247.9662);
+  --accent: oklch(0.8461 0.0955 305.1764);
+  --accent-foreground: oklch(0.1448 0 0);
+  --destructive: oklch(0.6188 0.2376 25.7658);
+  --destructive-foreground: oklch(1.0 0 0);
+  --border: oklch(0.269 0.0018 286.2762);
+  --input: oklch(0.302 0.0288 244.8244);
+  --ring: oklch(0.721 0.1777 303.0312);
+  --chart-1: oklch(0.6723 0.1606 244.9955);
+  --chart-2: oklch(0.6907 0.1554 160.3454);
+  --chart-3: oklch(0.8214 0.16 82.5337);
+  --chart-4: oklch(0.7064 0.1822 151.7125);
+  --chart-5: oklch(0.5919 0.2186 10.5826);
+  --sidebar: oklch(0.2097 0.008 274.5332);
+  --sidebar-foreground: oklch(0.8853 0 0);
+  --sidebar-primary: oklch(0.8597 0.1547 162.2575);
+  --sidebar-primary-foreground: oklch(1.0 0 0);
+  /* Sidebar Button Background (Active) */
+  --sidebar-accent: oklch(0.5982 0.2564 298.8623);
+  /* Sidebar Button Foreground (Active) */
+  --sidebar-accent-foreground: oklch(1.0 0 0);
+  --sidebar-border: oklch(0.3795 0.022 240.5943);
   --sidebar-ring: oklch(0.8725 0.1587 162.1544);
   --font-sans: Open Sans, sans-serif;
   --font-serif: Georgia, serif;

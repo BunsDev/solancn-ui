@@ -160,7 +160,7 @@ class Logger {
    * @param options Additional ora options
    * @returns An ora spinner instance with methods like start(), stop(), succeed(), etc.
    */
-  spinner(text: string, options: OraOptions = {}): Ora {
+  spinner(text: string, options?: OraOptions): Ora {
     // Format the text with the logger prefix
     const prefix = this.getPrefix();
     const spinner = ora({
@@ -171,7 +171,7 @@ class Logger {
     });
 
     // Add custom methods to the spinner that maintain our logger's style
-    const originalSucceed = spinner.succeed.bind(spinner);
+    const originalSucceed = spinner?.succeed?.bind(spinner);
     spinner.succeed = (text?: string) => {
       return originalSucceed(
         text ? `${prefix}${chalk.green(text)}` : undefined,

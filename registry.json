@@ -124,16 +124,19 @@
       "files": [
         {
           "path": "src/v0/minimal-layout.tsx",
+          "content": "import { Geist, Geist_Mono, Montserrat } from \"next/font/google\";\nimport React, { type ReactNode } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nimport \"@/app/tokens.css\";\nimport \"@/app/globals.css\";\n\nconst GeistSans = Geist({\n  subsets: [\"latin\"],\n  variable: \"--font-sans\",\n});\n\nconst GeistMono = Geist_Mono({\n  subsets: [\"latin\"],\n  variable: \"--font-mono\",\n});\n\nconst MontserratSerif = Montserrat({\n  subsets: [\"latin\"],\n  variable: \"--font-serif\",\n});\n\nexport default function RootLayout({\n  children,\n}: Readonly<{\n  children: ReactNode;\n}>) {\n  return (\n    <html\n      lang=\"en\"\n      className={cn(\n        GeistSans.variable,\n        GeistMono.variable,\n        MontserratSerif.variable,\n        \"bg-background text-foreground\",\n      )}\n    >\n      <body>\n        <main className=\"mt-16 flex w-full justify-center\">\n          <div className=\"container\">{children}</div>\n        </main>\n      </body>\n    </html>\n  );\n}\n",
           "type": "registry:file",
           "target": "app/layout.tsx"
         },
         {
           "path": "src/app/demos/[name]/blocks/bridge-page.tsx",
+          "content": "\"use client\";\n\nimport type React from \"react\";\nimport { BridgeComponent } from \"@/components/solana/bridge\";\nimport { Card, CardContent, CardHeader, CardTitle } from \"@/components/ui/card\";\n\nfunction BridgeContent() {\n  return (\n    <div className=\"flex min-h-screen flex-col bg-background text-text w-full\">\n      <main className=\"flex-1 p-2 flex flex-col w-full\">\n        <div className=\"container mx-auto py-8\">\n          <BridgeComponent />\n        </div>\n      </main>\n    </div>\n  );\n}\n\n// Export the component directly\nexport default function BridgePage() {\n  return <BridgeContent />;\n}",
           "type": "registry:page",
           "target": "app/page.tsx"
         }
       ]
-    },    {
+    },
+    {
       "name": "swapDemo",
       "type": "registry:block",
       "title": "Swap",
@@ -162,7 +165,8 @@
           "target": "app/page.tsx"
         }
       ]
-    },    {
+    },
+    {
       "name": "transferDemo",
       "type": "registry:block",
       "title": "Transfer",
@@ -320,7 +324,7 @@
         "avatar",
         "sidebar",
         "https://ui.solancn.com/r/sonner.json",
-        "https://ui.solancn.com/r/theme.json"        
+        "https://ui.solancn.com/r/theme.json"
       ],
       "files": [
         {

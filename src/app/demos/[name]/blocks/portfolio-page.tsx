@@ -14,7 +14,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { toast } from "sonner";
 
 // Mock token data
-const tokens = [
+export const mockPortfolioTokens = [
   {
     symbol: "SOL",
     name: "Solana",
@@ -95,14 +95,14 @@ const tokens = [
 ];
 
 // Mock NFT data
-const nfts = [
+const mockPortfolioNFTs = [
   { name: "Solana Monkey #4325", collection: "SMB", floor: 18.5, img: "/images/nfts/smb.png", lastPrice: 24.5 },
   { name: "DeGods #2021", collection: "DeGods", floor: 35.2, img: "/images/nfts/degods.png", lastPrice: 42.0 },
   { name: "Okay Bears #749", collection: "Okay Bears", floor: 25.7, img: "/images/nfts/okay.png", lastPrice: 28.5 },
 ];
 
 // Mock transaction data
-const transactions = [
+const mockPortfolioTransactions = [
   { type: "swap", from: "SOL", to: "USDC", amount: "2.5", value: "$612.95", time: "2025-07-26T12:30:00", status: "completed" },
   { type: "receive", from: "External", to: "Wallet", amount: "250 USDC", value: "$250.00", time: "2025-07-25T18:42:00", status: "completed" },
   { type: "stake", from: "SOL", to: "Staked SOL", amount: "5.0", value: "$1,225.90", time: "2025-07-24T09:15:00", status: "completed" },
@@ -111,13 +111,13 @@ const transactions = [
 ];
 
 // Mock staking data
-const stakingPositions = [
+const mockPortfolioStakingPositions = [
   { validator: "Solana Foundation", amount: 3.25, apy: 7.2, rewards: 0.012, since: "2025-06-15T10:00:00" },
   { validator: "Marinade Finance", amount: 1.75, apy: 7.8, rewards: 0.008, since: "2025-07-01T16:30:00" },
 ];
 
 // Mock DeFi positions data
-const defiPositions = [
+const mockPortfolioDefiPositions = [
   { platform: "Solend", type: "Lending", asset: "USDC", amount: 750, apy: 5.6, value: 750 },
   { platform: "Raydium", type: "Liquidity", asset: "SOL-USDC", amount: "1.2 SOL + 300 USDC", apy: 12.4, value: 594.22 },
   { platform: "Marinade", type: "Staking", asset: "mSOL", amount: "5 SOL", apy: 7.8, value: 1225.9 },
@@ -125,7 +125,7 @@ const defiPositions = [
 
 // Helper components
 const TokenIcon = ({ symbol, size = "md" }: { symbol: string; size?: "sm" | "md" | "lg" }) => {
-  const token = tokens.find(t => t.symbol === symbol);
+  const token = mockPortfolioTokens.find(t => t.symbol === symbol);
   const sizeClass = {
     sm: "w-5 h-5",
     md: "w-7 h-7",
@@ -366,8 +366,8 @@ const AllocationChart = ({ tokens }: { tokens: any[] }) => (
 const PortfolioContent = () => {
 
   // Calculate portfolio totals
-  const totalValue = tokens.reduce((sum, token) => sum + token.value, 0);
-  const totalChange24h = tokens.reduce((sum, token) => sum + (token.change24h * token.value), 0) / totalValue;
+  const totalValue = mockPortfolioTokens.reduce((sum, token) => sum + token.value, 0);
+  const totalChange24h = mockPortfolioTokens.reduce((sum, token) => sum + (token.change24h * token.value), 0) / totalValue;
 
   return (
     <div className="flex min-h-screen flex-col bg-background text-text w-full">
@@ -413,7 +413,7 @@ const PortfolioContent = () => {
                 <CardDescription>Distribution of your portfolio</CardDescription>
               </CardHeader>
               <CardContent>
-                <AllocationChart tokens={tokens} />
+                <AllocationChart tokens={mockPortfolioTokens} />
               </CardContent>
             </Card>
           </div>
@@ -430,23 +430,23 @@ const PortfolioContent = () => {
               </TabsList>
 
               <TabsContent value="tokens" className="mt-4">
-                <TokensTable tokens={tokens} />
+                <TokensTable tokens={mockPortfolioTokens} />
               </TabsContent>
 
               <TabsContent value="nfts" className="mt-4">
-                <NFTGallery nfts={nfts} />
+                <NFTGallery nfts={mockPortfolioNFTs} />
               </TabsContent>
 
               <TabsContent value="activity" className="mt-4">
-                <TransactionsTable transactions={transactions} />
+                <TransactionsTable transactions={mockPortfolioTransactions} />
               </TabsContent>
 
               <TabsContent value="staking" className="mt-4">
-                <StakingTable positions={stakingPositions} />
+                <StakingTable positions={mockPortfolioStakingPositions} />
               </TabsContent>
 
               <TabsContent value="defi" className="mt-4">
-                <DeFiTable positions={defiPositions} />
+                <DeFiTable positions={mockPortfolioDefiPositions} />
               </TabsContent>
             </Tabs>
           </div>

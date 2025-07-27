@@ -376,7 +376,6 @@ export const previewRegistry: Record<string, React.ReactNode> = {
   nftDemo: <NFTPreview />,
   bridgeDemo: <BridgePreview />,
   solanaDemo: <SolanaPreview />,
-  dashboardDemo: <DashboardPreview />,
   receiveDemo: <ReceivePreview />,
   frameDemo: <FramePreview />,
   blankDemo: <BlankPreview />,

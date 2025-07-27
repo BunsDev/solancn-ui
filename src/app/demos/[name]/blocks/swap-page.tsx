@@ -1,56 +1,45 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
-import { Slider } from "@/components/ui/slider";
-import { Separator } from "@/components/ui/separator";
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
 import { toast } from "sonner";
 import SolanaWalletProvider from "../context/wallet-provider";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { ArrowRightLeft, ChevronDown, Settings, Clock, Zap, Info, RefreshCw, LineChart, BarChart3, Repeat, ChevronRight, AlertCircle } from "lucide-react";
+import { ArrowRightLeft, ChevronDown, Settings, Clock, Zap, Info, RefreshCw, BarChart3, Repeat, LineChart } from "lucide-react";
 import StyledWalletButton from "@/components/wallet/wallet-button";
 import { cn } from "@/lib/utils";
-
-interface Token {
-  symbol: string;
-  name: string;
-  logo: string;
-  address?: string;
-  balance?: number;
-  price?: number;
-  priceChange?: number;
-}
+import { SwapToken } from "@/lib/types";
+import SwapTokenSelectButton from "@/components/solana/swap/token-select-button";
 
 // Mock token data
-const tokens: Token[] = [
-  { symbol: "SOL", name: "Solana", logo: "/images/tokens/sol.png", balance: 8.75, price: 245.18, priceChange: 2.5 },
-  { symbol: "USDC", name: "USD Coin", logo: "/images/tokens/usdc.png", balance: 1250.45, price: 1.00, priceChange: 0 },
-  { symbol: "BONK", name: "Bonk", logo: "/images/tokens/bonk.png", balance: 15000000, price: 0.000015, priceChange: 5.2 },
-  { symbol: "JTO", name: "Jito", logo: "/images/tokens/jito.png", balance: 125.5, price: 3.75, priceChange: -1.2 },
-  { symbol: "JUP", name: "Jupiter", logo: "/images/tokens/jup.png", balance: 350, price: 1.25, priceChange: 3.7 },
-  { symbol: "PYTH", name: "Pyth Network", logo: "/images/tokens/pyth.png", balance: 500, price: 0.85, priceChange: -0.8 },
-  { symbol: "RNDR", name: "Render Token", logo: "/images/tokens/rndr.png", balance: 45, price: 7.32, priceChange: 1.5 },
+export const mockSwapTokens: SwapToken[] = [
+  { symbol: "SOL", name: "Solana", logo: "/images/tokens/sol.png", decimals: 9, balance: 8.75, price: 245.18, priceChange: 2.5 },
+  { symbol: "USDC", name: "USD Coin", logo: "/images/tokens/usdc.png", decimals: 6, balance: 1250.45, price: 1.00, priceChange: 0 },
+  { symbol: "BONK", name: "Bonk", logo: "/images/tokens/bonk.png", decimals: 9, balance: 15000000, price: 0.000015, priceChange: 5.2 },
+  { symbol: "JTO", name: "Jito", logo: "/images/tokens/jito.png", decimals: 6, balance: 125.5, price: 3.75, priceChange: -1.2 },
+  { symbol: "JUP", name: "Jupiter", logo: "/images/tokens/jup.png", decimals: 6, balance: 350, price: 1.25, priceChange: 3.7 },
+  { symbol: "PYTH", name: "Pyth Network", logo: "/images/tokens/pyth.png", decimals: 6, balance: 500, price: 0.85, priceChange: -0.8 },
+  { symbol: "RNDR", name: "Render Token", logo: "/images/tokens/rndr.png", decimals: 6, balance: 45, price: 7.32, priceChange: 1.5 },
 ];
 
 const TokenIcon = ({ symbol, size = "md" }: { symbol: string; size?: "sm" | "md" | "lg" }) => {
-  const token = tokens.find(t => t.symbol === symbol);
+  const token = mockSwapTokens.find(t => t.symbol === symbol);
   const sizeClass = {
     sm: "w-5 h-5",
     md: "w-7 h-7",
     lg: "w-10 h-10"
   };
-  
+
   if (!token) {
     return <div className={cn("rounded-full bg-gray-200", sizeClass[size])} />;
   }
-  
+
   return (
     <div className={cn("rounded-full bg-white flex items-center justify-center", sizeClass[size])}>
       {/* Fallback to initials if image fails */}
@@ -59,35 +48,24 @@ const TokenIcon = ({ symbol, size = "md" }: { symbol: string; size?: "sm" | "md"
   );
 };
 
-const TokenSelectButton = ({ token, onClick }: { token: Token; onClick: () => void }) => (
-  <button
-    onClick={onClick}
-    className="flex items-center gap-2 bg-background hover:bg-muted/50 rounded-lg p-2 transition-colors"
-  >
-    <TokenIcon symbol={token.symbol} />
-    <span className="font-medium">{token.symbol}</span>
-    <ChevronDown size={16} />
-  </button>
-);
-
-const RouteOption = ({ 
-  route, 
-  selected, 
-  onSelect 
-}: { 
-  route: { 
-    name: string; 
-    icon: React.ReactNode; 
-    value: string; 
-    fee: number; 
-    time: string; 
+const RouteOption = ({
+  route,
+  selected,
+  onSelect
+}: {
+  route: {
+    name: string;
+    icon: React.ReactNode;
+    value: string;
+    fee: number;
+    time: string;
     impact: number;
     optimizedFor: string;
   };
   selected: boolean;
   onSelect: () => void;
 }) => (
-  <div 
+  <div
     onClick={onSelect}
     className={cn(
       "flex items-center justify-between p-3 rounded-lg cursor-pointer transition-all",
@@ -121,40 +99,40 @@ const RouteOption = ({
 );
 
 const SwapComponent = () => {
-  const [fromToken, setFromToken] = useState<Token>(tokens[0]);
-  const [toToken, setToToken] = useState<Token>(tokens[1]);
+  const [fromToken, setFromToken] = useState<SwapToken>(mockSwapTokens[0]);
+  const [toToken, setToToken] = useState<SwapToken>(mockSwapTokens[1]);
   const [fromAmount, setFromAmount] = useState<string>("1");
   const [toAmount, setToAmount] = useState<string>("245.18");
   const [slippage, setSlippage] = useState<number>(1); // 1%
   const [selectedRouteIndex, setSelectedRouteIndex] = useState<number>(0);
   const [isPriceChart, setIsPriceChart] = useState<boolean>(false);
   const [showAdvanced, setShowAdvanced] = useState<boolean>(false);
-  
+
   // Routes for swapping
   const routes = [
-    { 
-      name: "Jupiter Aggregator", 
-      icon: <Zap className="w-4 h-4 text-[#9945FF]" />, 
-      value: "245.18 USDC", 
-      fee: 0.35, 
-      time: "~12 sec", 
+    {
+      name: "Jupiter Aggregator",
+      icon: <Zap className="w-4 h-4 text-[#9945FF]" />,
+      value: "245.18 USDC",
+      fee: 0.35,
+      time: "~12 sec",
       impact: 0.05,
       optimizedFor: "Best price"
     },
-    { 
-      name: "Raydium", 
-      icon: <RefreshCw className="w-4 h-4" />, 
-      value: "244.95 USDC", 
-      fee: 0.3, 
+    {
+      name: "Raydium",
+      icon: <RefreshCw className="w-4 h-4" />,
+      value: "244.95 USDC",
+      fee: 0.3,
       time: "~8 sec",
       impact: 0.08,
       optimizedFor: ""
     },
-    { 
-      name: "Orca", 
-      icon: <Clock className="w-4 h-4" />, 
-      value: "244.75 USDC", 
-      fee: 0.25, 
+    {
+      name: "Orca",
+      icon: <Clock className="w-4 h-4" />,
+      value: "244.75 USDC",
+      fee: 0.25,
       time: "~15 sec",
       impact: 0.1,
       optimizedFor: "Low fee"
@@ -163,7 +141,7 @@ const SwapComponent = () => {
 
   // Calculate estimated exchange rate
   const exchangeRate = parseFloat(toAmount) / parseFloat(fromAmount);
-  
+
   // Swap the tokens
   const handleSwapTokens = () => {
     const temp = fromToken;
@@ -199,7 +177,7 @@ const SwapComponent = () => {
           <TabsTrigger value="limit">Limit</TabsTrigger>
           <TabsTrigger value="twap">TWAP</TabsTrigger>
         </TabsList>
-        
+
         <TabsContent value="swap" className="space-y-4 pt-4">
           {/* From token input */}
           <div className="space-y-3">
@@ -209,13 +187,13 @@ const SwapComponent = () => {
                 Balance: {fromToken.balance?.toFixed(4)} {fromToken.symbol}
               </div>
             </div>
-            
+
             <div className="flex space-x-2 bg-muted/40 p-4 rounded-lg">
               <div className="flex-grow">
-                <Input 
+                <Input
                   type="text"
                   inputMode="decimal"
-                  placeholder="0.00" 
+                  placeholder="0.00"
                   value={fromAmount}
                   onChange={(e) => setFromAmount(e.target.value)}
                   className="border-none text-xl font-medium bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 p-0 h-auto"
@@ -224,7 +202,7 @@ const SwapComponent = () => {
                   ≈ ${(parseFloat(fromAmount) * (fromToken.price || 0)).toFixed(2)}
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-2">
                 <div className="flex gap-1">
                   <Button variant="ghost" size="sm" onClick={() => setFromAmount((fromToken.balance || 0).toString())}>
@@ -234,27 +212,27 @@ const SwapComponent = () => {
                     HALF
                   </Button>
                 </div>
-                
-                <TokenSelectButton 
-                  token={fromToken} 
+
+                <SwapTokenSelectButton
+                  token={fromToken}
                   onClick={() => {
                     // In a real app, show token selection modal here
                     toast.info(
                       "Token selection",
                       { description: "Token selection would open in a real implementation" }
                     );
-                  }} 
+                  }}
                 />
               </div>
             </div>
           </div>
-          
+
           {/* Swap button */}
           <div className="flex justify-center">
             <div className="bg-muted/30 rounded-full p-2">
-              <Button 
-                variant="ghost" 
-                size="icon" 
+              <Button
+                variant="ghost"
+                size="icon"
                 className="h-8 w-8 rounded-full bg-background hover:bg-[#9945FF]/20"
                 onClick={handleSwapTokens}
               >
@@ -262,7 +240,7 @@ const SwapComponent = () => {
               </Button>
             </div>
           </div>
-          
+
           {/* To token input */}
           <div className="space-y-3">
             <div className="flex justify-between items-center">
@@ -271,13 +249,13 @@ const SwapComponent = () => {
                 Balance: {toToken.balance?.toFixed(4)} {toToken.symbol}
               </div>
             </div>
-            
+
             <div className="flex space-x-2 bg-muted/40 p-4 rounded-lg">
               <div className="flex-grow">
-                <Input 
+                <Input
                   type="text"
                   inputMode="decimal"
-                  placeholder="0.00" 
+                  placeholder="0.00"
                   value={toAmount}
                   onChange={(e) => setToAmount(e.target.value)}
                   className="border-none text-xl font-medium bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 p-0 h-auto"
@@ -286,20 +264,20 @@ const SwapComponent = () => {
                   ≈ ${(parseFloat(toAmount) * (toToken.price || 0)).toFixed(2)}
                 </div>
               </div>
-              
-              <TokenSelectButton 
-                token={toToken} 
+
+              <SwapTokenSelectButton
+                token={toToken}
                 onClick={() => {
                   // In a real app, show token selection modal here
                   toast.info(
                     "Token selection",
                     { description: "Token selection would open in a real implementation" }
                   );
-                }} 
+                }}
               />
             </div>
           </div>
-          
+
           {/* Rate information */}
           <div className="bg-muted/30 rounded-lg p-3">
             <div className="flex justify-between items-center">
@@ -316,7 +294,7 @@ const SwapComponent = () => {
                   </Tooltip>
                 </TooltipProvider>
               </div>
-              
+
               <div className="flex items-center gap-2">
                 <div className="text-sm">
                   1 {fromToken.symbol} ≈ {exchangeRate.toFixed(exchangeRate < 0.1 ? 6 : 4)} {toToken.symbol}
@@ -326,7 +304,7 @@ const SwapComponent = () => {
                 </Button>
               </div>
             </div>
-            
+
             <div className="mt-2 flex justify-between items-center text-xs text-muted-foreground">
               <span>Price Impact</span>
               <span className={routes[selectedRouteIndex].impact > 1 ? "text-orange-500" : "text-green-500"}>
@@ -334,7 +312,7 @@ const SwapComponent = () => {
               </span>
             </div>
           </div>
-          
+
           {/* Routing options */}
           <div className="space-y-2">
             <div className="flex justify-between items-center">
@@ -353,7 +331,7 @@ const SwapComponent = () => {
                 </Tooltip>
               </TooltipProvider>
             </div>
-            
+
             {/* Advanced settings */}
             {showAdvanced && (
               <div className="bg-muted/30 p-3 rounded-lg mb-3 space-y-3">
@@ -372,25 +350,25 @@ const SwapComponent = () => {
                     </TooltipProvider>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Button 
-                      variant={slippage === 0.5 ? "default" : "outline"} 
-                      size="sm" 
+                    <Button
+                      variant={slippage === 0.5 ? "default" : "outline"}
+                      size="sm"
                       className="h-7 px-2 text-xs"
                       onClick={() => setSlippage(0.5)}
                     >
                       0.5%
                     </Button>
-                    <Button 
-                      variant={slippage === 1 ? "default" : "outline"} 
-                      size="sm" 
+                    <Button
+                      variant={slippage === 1 ? "default" : "outline"}
+                      size="sm"
                       className="h-7 px-2 text-xs"
                       onClick={() => setSlippage(1)}
                     >
                       1.0%
                     </Button>
-                    <Button 
-                      variant={slippage === 2 ? "default" : "outline"} 
-                      size="sm" 
+                    <Button
+                      variant={slippage === 2 ? "default" : "outline"}
+                      size="sm"
                       className="h-7 px-2 text-xs"
                       onClick={() => setSlippage(2)}
                     >
@@ -398,14 +376,14 @@ const SwapComponent = () => {
                     </Button>
                   </div>
                 </div>
-                
+
                 <div className="flex justify-between items-center">
                   <span className="text-sm">Auto Router API</span>
                   <Switch checked={true} />
                 </div>
               </div>
             )}
-            
+
             {/* Route options */}
             <div className="space-y-2 max-h-[180px] overflow-y-auto pr-1">
               {routes.map((route, index) => (
@@ -418,33 +396,33 @@ const SwapComponent = () => {
               ))}
             </div>
           </div>
-          
-          <Button 
+
+          <Button
             className="w-full bg-gradient-to-r from-[#9945FF] to-[#14F195] text-white hover:opacity-90"
             onClick={handleSwap}
           >
             Swap
           </Button>
         </TabsContent>
-        
+
         <TabsContent value="limit">
           <div className="py-10 text-center text-muted-foreground">
             <p>Limit order functionality would be implemented here</p>
           </div>
         </TabsContent>
-        
+
         <TabsContent value="twap">
           <div className="py-10 text-center text-muted-foreground">
             <p>Time-Weighted Average Price (TWAP) orders would be implemented here</p>
           </div>
         </TabsContent>
       </Tabs>
-      
+
       {/* Toggle for chart view */}
       <div className="flex justify-center">
-        <Button 
-          variant="outline" 
-          size="sm" 
+        <Button
+          variant="outline"
+          size="sm"
           onClick={() => setIsPriceChart(!isPriceChart)}
           className="text-xs gap-1"
         >
@@ -452,7 +430,7 @@ const SwapComponent = () => {
           {isPriceChart ? "Hide Chart" : "Show Chart"}
         </Button>
       </div>
-      
+
       {/* Price chart - conditionally shown */}
       {isPriceChart && (
         <div className="bg-muted/30 h-[200px] rounded-lg flex items-center justify-center">
@@ -532,7 +510,7 @@ export function SwapContent() {
   );
 }
 
-export default function SwapPage() {
+export default function SwapDemoPage() {
   return (
     <SolanaWalletProvider>
       <SwapContent />

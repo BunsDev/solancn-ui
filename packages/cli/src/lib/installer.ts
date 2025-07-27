@@ -3,7 +3,7 @@
 import fs from "fs-extra";
 // biome-ignore lint/style/useNodejsImportProtocol: nodejs import protocol
 import path from "path";
-import { logger } from "./logger";
+// import { logger } from "./logger";
 import { fetchRegistryItem, fetchRegistryItems } from "./registry-client";
 import type { InstallOptions, InstallResult, RegistryItem, RegistryItemType } from "./types";
 
@@ -17,38 +17,38 @@ export async function installItem(
 ): Promise<InstallResult> {
   const { itemType = "registry:component", force = false } = options;
   const skipDependencies = !options?.dependencies;
-  const spinner = logger.spinner(`Installing ${itemType}: ${name}`);
+  // const spinner = logger.spinner(`Installing ${itemType}: ${name}`);
 
   try {
     // Fetch item data from registry
     const item = await fetchRegistryItem({ type: itemType }, name);
 
-    if (!item) {
-      spinner.fail(`${itemType} "${name}" not found in registry`);
-      return {
-        success: false,
-        name: name,
-        message: `${itemType} "${name}" not found in registry`,
-        files: [],
-      };
-    }
+    // if (!item) {
+    //   spinner.fail(`${itemType} "${name}" not found in registry`);
+    //   return {
+    //     success: false,
+    //     name: name,
+    //     message: `${itemType} "${name}" not found in registry`,
+    //     files: [],
+    //   };
+    // }
 
-    // Ensure the item has files defined
-    if (!item.files || Object.keys(item.files).length === 0) {
-      spinner.fail(`${itemType} "${name}" has no files defined`);
-      return {
-        success: false,
-        name: name,
-        message: `${itemType} "${name}" has no files defined`,
-        files: [],
-      };
-    }
+    // // Ensure the item has files defined
+    // if (!item.files || Object.keys(item.files).length === 0) {
+    //   spinner.fail(`${itemType} "${name}" has no files defined`);
+    //   return {
+    //     success: false,
+    //     name: name,
+    //     message: `${itemType} "${name}" has no files defined`,
+    //     files: [],
+    //   };
+    // }
 
-    logger.info(`Installing ${itemType} "${name}" to ${targetDir}`);
-
+    // logger.info(`Installing ${itemType} "${name}" to ${targetDir}`);
+    console.log(`Installing ${itemType} "${name}" to ${targetDir}`);
     // Install each file
     const files: string[] = [];
-    const filenames = Object.keys(item.files);
+    const filenames = Object.keys(item?.files || {});
 
     // Check if we need to create backups (only if force is true)
     if (force) {
@@ -62,18 +62,22 @@ export async function installItem(
 
       // Create backups if any files exist
       if (existingFiles.length > 0) {
-        await backupFiles(existingFiles, targetDir);
+        console.log(`Creating backups for existing files: ${existingFiles.join(", ")}`);
+        // await backupFiles(existingFiles, targetDir);
       }
     }
 
     // Write files
     for (const filename of filenames) {
-      const content = item.files[filename];
+      if (!item?.files) {
+        continue;
+      }
+      const content = item?.files[filename];
       const filePath = path.join(targetDir, filename);
 
       // Check if file exists already
       if (await fs.pathExists(filePath) && !force) {
-        spinner.fail(`File ${filename} already exists. Use --force to overwrite.`);
+        console.log(`File ${filename} already exists. Use --force to overwrite.`);
         return {
           success: false,
           name: name,
@@ -91,21 +95,21 @@ export async function installItem(
     }
 
     // Install dependencies if needed
-    if (!skipDependencies && item.dependencies && item.dependencies.length > 0) {
+    if (!skipDependencies && item?.dependencies && item.dependencies.length > 0) {
       await installDependencies(item.dependencies, targetDir);
     }
 
-    spinner.succeed(`${itemType} "${name}" installed successfully`);
+    console.log(`${itemType} "${name}" installed successfully`);
     
     return {
       success: true,
       name: name,
       message: `${itemType} "${name}" installed successfully`,
       files,
-    };
+    };    
   } catch (error) {
-    spinner.fail(`Error installing ${itemType}: ${error instanceof Error ? error.message : String(error)}`);
-    logger.error(error instanceof Error ? error.message : String(error));
+    console.log(`Error installing ${itemType}: ${error instanceof Error ? error.message : String(error)}`);
+    console.error(error instanceof Error ? error.message : String(error));
     throw error;
   }
 }
@@ -119,14 +123,14 @@ export async function uninstallItem(
   options: { itemType?: RegistryItemType, force?: boolean } = {},
 ): Promise<InstallResult> {
   const { itemType = "registry:component", force = false } = options;
-  const spinner = logger.spinner(`Uninstalling ${itemType}: ${name}`);
+  // const spinner = logger.spinner(`Uninstalling ${itemType}: ${name}`);
 
   try {
     // Fetch item data from registry
     const item = await fetchRegistryItem({ type: itemType }, name);
 
     if (!item) {
-      spinner.fail(`${itemType} "${name}" not found in registry`);
+      console.log(`${itemType} "${name}" not found in registry`);
       return {
         success: false,
         name: name,
@@ -137,7 +141,7 @@ export async function uninstallItem(
 
     // Ensure the item has files defined
     if (!item.files || Object.keys(item.files).length === 0) {
-      spinner.fail(`${itemType} "${name}" has no files defined`);
+      console.log(`${itemType} "${name}" has no files defined`);
       return {
         success: false,
         name: name,
@@ -146,7 +150,7 @@ export async function uninstallItem(
       };
     }
 
-    logger.info(`Uninstalling ${itemType} "${name}" from ${targetDir}`);
+    console.log(`Uninstalling ${itemType} "${name}" from ${targetDir}`);
 
     // Remove each file
     const files: string[] = [];
@@ -162,7 +166,7 @@ export async function uninstallItem(
       }
     }
 
-    spinner.succeed(`${itemType} "${name}" uninstalled successfully`);
+    console.log(`${itemType} "${name}" uninstalled successfully`);
     
     return {
       success: true,
@@ -171,8 +175,7 @@ export async function uninstallItem(
       files,
     };
   } catch (error) {
-    spinner.fail(`Error uninstalling ${itemType}: ${error instanceof Error ? error.message : String(error)}`);
-    logger.error(error instanceof Error ? error.message : String(error));
+    console.log(`Error uninstalling ${itemType}: ${error instanceof Error ? error.message : String(error)}`);
     throw error;
   }
 }
@@ -325,7 +328,7 @@ async function getRegistryItems(itemType: RegistryItemType): Promise<Record<stri
     // Fetch registry items of the specified type
     return fetchRegistryItems({ type: itemType });
   } catch (error) {
-    logger.error(`Error fetching ${itemType}s from registry:`, error instanceof Error ? error.message : String(error));
+    console.error(`Error fetching ${itemType}s from registry:`, error instanceof Error ? error.message : String(error));
     return null;
   }
 }
@@ -338,11 +341,11 @@ export async function installDependencies(
   targetDir: string,
 ): Promise<void> {
   if (!dependencies || dependencies.length === 0) {
-    logger.info('No dependencies to install');
+    console.log('No dependencies to install');
     return;
   }
 
-  logger.info(`Installing dependencies: ${dependencies.join(', ')}`);
+  console.log(`Installing dependencies: ${dependencies.join(', ')}`);
   
   // Process each dependency
   // This is a simplified implementation that just logs what it would do
@@ -356,13 +359,13 @@ export async function installDependencies(
         const depType = parts[1] as RegistryItemType; // e.g. "components" -> "component"
         const depName = parts[2]; // e.g. "button"
         
-        logger.info(`Would install dependent ${depType}: ${depName}`);
+        console.log(`Would install dependent ${depType}: ${depName}`);
         // Note: In a real implementation, we might recursively call installItem here
         // but for simplicity we're just logging
       }
     } else {
       // External package dependency
-      logger.info(`Would install npm package: ${dep}`);
+      console.log(`Would install npm package: ${dep}`);
       // Note: In a real implementation, we would execute npm/yarn/pnpm here
     }
   }

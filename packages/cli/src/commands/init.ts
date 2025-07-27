@@ -33,7 +33,9 @@ export async function init() {
       type: "list",
       name: "template",
       message: "Select a starter template:",
-      choices: ["blank", "dashboard", "solana", "nft"],
+      choices: ["blankDemo", "solanaDemo", "nftDemo"
+        // , "bridgeDemo", "swapDemo", "portfolioDemo", "walletDemo", "stakeDemo", "lendDemo", "receiveDemo", "frameDemo"
+        ],
     },
   ]);
 
@@ -44,7 +46,14 @@ export async function init() {
     await fs.mkdir(answers.projectName);
 
     // Fetch template from registry
-    const template = await fetchRegistryItem(answers.template);
+    const template = await fetchRegistryItem({ 
+      type: "registry:block", 
+      name: answers.template 
+    });
+
+    if (!template) {
+      throw new Error(`Template "${answers.template}" not found in registry`);
+    }
 
     // Process template files and write to disk
     // ...

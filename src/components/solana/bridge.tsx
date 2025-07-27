@@ -30,7 +30,7 @@ const networks = [
   { id: "bsc", name: "BNB Chain", icon: "B", color: "#F0B90B" },
 ];
 
-const tokens = [
+const mockBridgeTokens = [
   { symbol: "USDC", name: "USD Coin", networks: ["solana", "ethereum", "polygon", "avalanche", "bsc"] },
   { symbol: "USDT", name: "Tether USD", networks: ["solana", "ethereum", "polygon", "avalanche", "bsc"] },
   { symbol: "WETH", name: "Wrapped Ethereum", networks: ["solana", "ethereum", "polygon", "avalanche", "bsc"] },
@@ -72,7 +72,7 @@ export function BridgeComponent() {
   const [recipient, setRecipient] = useState("");
 
   // Filter tokens available on the selected from network
-  const availableTokens = tokens.filter(token => token.networks.includes(fromNetwork));
+  const availableTokens = mockBridgeTokens.filter(token => token.networks.includes(fromNetwork));
   
   // Find the details of the selected networks
   const sourceNetwork = networks.find(network => network.id === fromNetwork);
@@ -102,7 +102,7 @@ export function BridgeComponent() {
     setFromNetwork(toNetwork);
     setToNetwork(temp);
     // Reset token if it's not available on the new network
-    if (!tokens.find(token => token.symbol === selectedToken)?.networks.includes(toNetwork)) {
+    if (!mockBridgeTokens.find(token => token.symbol === selectedToken)?.networks.includes(toNetwork)) {
       setSelectedToken("");
     }
   };

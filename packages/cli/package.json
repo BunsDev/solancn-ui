@@ -1,6 +1,6 @@
 {
 	"name": "solancn",
-	"version": "0.0.1",
+	"version": "0.0.3",
 	"description": "CLI for solancn ui design system",
 	"main": "dist/index.js",
 	"bin": {
@@ -13,7 +13,9 @@
 		"lint:fix": "biome check --write ./src",
 		"test": "vitest run",
 		"test:watch": "vitest",
-		"test:coverage": "vitest run --coverage"
+		"test:coverage": "vitest run --coverage",
+		"cli:test": "node ./dist/index.js init"
+		
 	},
 	"files": [
 		"dist",

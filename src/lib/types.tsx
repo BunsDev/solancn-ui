@@ -111,7 +111,7 @@ export interface RegistryData {
   theme?: RegistryItem;
 }
 
-export interface Token {
+export interface SwapToken {
   symbol: string;
   name: string;
   logo: string;

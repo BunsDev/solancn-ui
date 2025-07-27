@@ -1,7 +1,6 @@
 import fs from "fs-extra";
 // biome-ignore lint/style/useNodejsImportProtocol: disables biome linting for nodejs import protocol
 import path from "path";
-import { logger } from "./logger";
 import fetch from "node-fetch";
 import type { RegistryData, RegistryItem, RegistryItemType } from "./types";
 
@@ -33,11 +32,11 @@ export async function loadLocalRegistry(
   try {
     if (await fs.pathExists(registryPath)) {
       const data = await fs.readJson(registryPath);
-      logger.debug("Loaded local registry from:", registryPath);
+      console.log("Loaded local registry from:", registryPath);
       return data;
     }
   } catch (error) {
-    logger.error("Failed to load local registry:", error);
+    console.error("Failed to load local registry:", error);
   }
 
   return null;
@@ -58,10 +57,10 @@ export async function fetchRemoteRegistry(): Promise<RegistryData | null> {
     }
 
     const data = (await response.json()) as RegistryData;
-    logger.debug("Fetched remote registry");
+    console.log("Fetched remote registry");
     return data;
   } catch (error) {
-    logger.error("Failed to fetch remote registry:", error);
+    console.error("Failed to fetch remote registry:", error);
     return null;
   }
 }

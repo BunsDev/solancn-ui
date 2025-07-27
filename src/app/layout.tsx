@@ -72,10 +72,10 @@ export default function RootLayout({
           // disableTransitionOnChange={true}
           storageKey="solancn-ui-theme"
         >
-          <AppLayout>
+          {/* <AppLayout> */}
             {children}
             <Analytics />
-          </AppLayout>
+          {/* </AppLayout> */}
         </ThemeProvider>
       </body>
     </html>

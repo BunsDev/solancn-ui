@@ -32,14 +32,13 @@ export default function BlocksLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          forcedTheme="dark"
           enableSystem={false}
-          // disableTransitionOnChange={true}
+          disableTransitionOnChange={true}
           storageKey="solancn-ui-theme"
         >
           <SidebarProvider>
             <MobileSidebarTrigger />
-            {/* <RegistrySidebar /> */}
+            <RegistrySidebar />
             <main className="flex h-dvg w-full justify-center p-2 mt-16 sm:mt-8 md:mt-4 lg:mt-0 md:p-4 overflow-y-auto">
               {children}
             </main>

@@ -1,6 +1,6 @@
 {
 	"name": "solancn-ui",
-	"version": "0.0.1",
+	"version": "0.0.3",
 	"private": true,
 	"scripts": {
 		"dev": "npm run registry:build && next dev --turbopack",
