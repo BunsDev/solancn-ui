@@ -9,6 +9,7 @@ const starters = [
   {
     title: "Blank",
     name: "blank",
+    url: "/starters/blank",
   },
   {
     title: "Dashboard",
@@ -38,18 +39,19 @@ const starters = [
   {
     title: "Lend",
     name: "lend",
-    url: "lend",
+    url: "/starters/lend",
   },
   {
     title: "NFT",
     name: "nft",
     url: "/starters/nft",
   },
-  {
-    title: "Portfolio",
-    name: "portfolio",
-    url: "/starters/portfolio",
-  },
+  // Portfolio component temporarily disabled until recharts is properly configured
+  // {
+  //   title: "Portfolio",
+  //   name: "portfolio",
+  //   url: "/starters/portfolio",
+  // },
   {
     title: "Receive",
     name: "receive",

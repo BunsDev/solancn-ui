@@ -7,6 +7,12 @@ import { Button } from "@/components/ui/button";
 import { getRegistryItem, getUIPrimitives } from "@/lib/registry";
 import { getPrompt } from "@/lib/utils";
 
+interface PageProps {
+  params: {
+    name: string;
+  };
+}
+
 export async function generateStaticParams() {
   const primitives = getUIPrimitives();
 
@@ -17,15 +23,16 @@ export async function generateStaticParams() {
 
 export default async function UIPrimitiveItemPage({
   params,
-}: {
-  params: Promise<{ name: string }>;
-}) {
-  const { name } = await params;
+}: PageProps) {
+  const { name } = params;
   const primitive = getUIPrimitives().find((primitive) => primitive.name === name);
 
   if (!primitive) {
     notFound();
   }
+
+  // Get prompt separately to handle the async operation
+  const prompt = await getPrompt();
 
   return (
     <div className="flex flex-col gap-4 w-full mx-auto justify-center">
@@ -46,7 +53,7 @@ export default async function UIPrimitiveItemPage({
       <UIPrimitiveCard
         primitive={primitive}
         baseUrl={process.env.VERCEL_PROJECT_PRODUCTION_URL ?? ""}
-        prompt={await getPrompt()}
+        prompt={prompt}
       />
     </div>
   );
