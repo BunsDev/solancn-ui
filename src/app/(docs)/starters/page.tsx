@@ -284,7 +284,7 @@ export default function StartersPage() {
                   transition={{ duration: 0.4, delay: 0.1 * index }}
                   className="h-full"
                 >
-                  <div className="relative group h-full overflow-auto rounded-xl border border-primary/20 bg-black/50 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 shadow-lg shadow-primary/5 hover:shadow-primary/10">
+                  <div className="relative group h-full rounded-xl border border-primary/20 bg-black/50 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 shadow-lg shadow-primary/5 hover:shadow-primary/10">
                     <div className="absolute top-3 right-3 z-10">
                       <Badge 
                         variant="secondary" 
@@ -399,7 +399,7 @@ export default function StartersPage() {
                   className="group relative"
                 >
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-[#9945FF]/30 to-[#14F195]/30 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-                  <div className="h-full flex flex-col lg:flex-row gap-6 rounded-xl border border-primary/20 bg-black/50 backdrop-blur-sm hover:border-primary/40 transition-all duration-300 relative p-6 shadow-lg shadow-black/20">
+                  <div className="h-full flex flex-col lg:flex-row gap-6 rounded-xl border border-primary/20 bg-black/50 backdrop-blur-sm hover:border-primary/40 transition-all duration-300 relative p-6 shadow-lg shadow-black/20 isolate">
                     <div className="flex-1 flex flex-col justify-between">
                       <div>
                         <div className="flex justify-between items-start mb-4">
@@ -430,7 +430,7 @@ export default function StartersPage() {
                       <div>
                         <Button 
                           asChild 
-                          className="bg-[#9945FF] hover:bg-[#9945FF]/90 text-white transition-all duration-300"
+                          className="bg-[#9945FF] hover:bg-[#9945FF]/90 text-white transition-all duration-300 relative z-10"
                         >
                           <Link href={starter.url}>
                             View {starter.title}
@@ -439,7 +439,7 @@ export default function StartersPage() {
                       </div>
                     </div>
                     
-                    <div className="lg:w-3/5 flex-shrink-0">
+                    <div className="lg:w-3/5 flex-shrink-0 relative z-20" style={{ pointerEvents: 'auto' }}>
                       <ComponentCard
                         key={starter.name}
                         name={starter.name}

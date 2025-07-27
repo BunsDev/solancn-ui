@@ -87,7 +87,7 @@ export function ComponentCard({
                 {description ?? component.description}
               </CardDescription>
 
-              <div className="flex items-center gap-1 sm:ml-auto">
+              <div className="flex items-center gap-1 sm:ml-auto relative z-30">
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipContent className="font-mono">
@@ -97,7 +97,7 @@ export function ComponentCard({
                       <Button
                         onClick={copyToClipboard}
                         variant="outline"
-                        className="p-4"
+                        className="p-4 relative z-50"
                         aria-label="Copy npx command to clipboard"
                       >
                         {copied ? (
@@ -114,6 +114,7 @@ export function ComponentCard({
                   registryUrl={registryUrl}
                   title={promptTitle}
                   prompt={prompt}
+                  className="relative z-50"
                 />
               </div>
             </div>
