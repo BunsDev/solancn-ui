@@ -8,7 +8,7 @@ export default function StartersLayout({
   children: ReactNode;
 }>) {
   return (
-    <div className="flex flex-col w-full max-w-[100vw] mx-auto justify-center items-center overflow-hidden min-h-[100dvh] relative">
+    <div className="flex flex-col w-full max-w-[100vw] mx-auto justify-center items-center overflow-auto min-h-[100dvh] relative">
       <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         {children}
         <Toaster position="top-right" />

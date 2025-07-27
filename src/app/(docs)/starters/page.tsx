@@ -222,7 +222,7 @@ export default function StartersPage() {
   return (
     <div className="flex flex-col w-full min-h-screen">
       {/* Hero Section */}
-      <div className="relative py-12 sm:py-16 md:py-20 overflow-hidden bg-gradient-to-br from-primary/20 to-background mb-6 sm:mb-8 rounded-b-xl">
+      <div className="relative py-12 sm:py-16 md:py-20 overflow-auto bg-gradient-to-br from-primary/20 to-background mb-6 sm:mb-8 rounded-b-xl">
         <div className="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(to_bottom,transparent,black,transparent)]" />
         
         <motion.div 
@@ -284,7 +284,7 @@ export default function StartersPage() {
                   transition={{ duration: 0.4, delay: 0.1 * index }}
                   className="h-full"
                 >
-                  <div className="relative group h-full overflow-hidden rounded-xl border border-primary/20 bg-black/50 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 shadow-lg shadow-primary/5 hover:shadow-primary/10">
+                  <div className="relative group h-full overflow-auto rounded-xl border border-primary/20 bg-black/50 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 shadow-lg shadow-primary/5 hover:shadow-primary/10">
                     <div className="absolute top-3 right-3 z-10">
                       <Badge 
                         variant="secondary" 
