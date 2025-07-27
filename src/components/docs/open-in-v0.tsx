@@ -50,16 +50,17 @@ export function OpenInV0Button({
   return (
     <Button
       aria-label="Open in v0"
-      className={`flex items-center gap-2 rounded-md bg-black px-4 py-2 text-white hover:bg-black/90 dark:bg-white dark:text-black dark:hover:bg-white/90 ${className}`}
+      variant="outline"
+      className={`flex items-center gap-2 rounded-md bg-primary hover:text-foreground hover:bg-primary/90 ${className} cursor-pointer`}
       onClick={handleClick}
       {...props}
     >
-      <span>Open in</span>
+      {/* <span>Open in</span> */}
       <svg
         viewBox="0 0 40 20"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="size-5 text-current"
+        className="size-5 text-foreground"
         role="graphics-symbol"
       >
         <path

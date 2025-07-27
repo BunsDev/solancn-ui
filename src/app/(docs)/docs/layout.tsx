@@ -8,14 +8,13 @@ import {
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
 
-export default function DocsLayout({
+export default async function DocsLayout({
   children,
 }: Readonly<{
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
+        <body>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -29,8 +28,7 @@ export default function DocsLayout({
             <main className="flex w-full justify-center">{children}</main>
             <Toaster />
           </SidebarProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+    </ThemeProvider>
+        </body>
   );
 }

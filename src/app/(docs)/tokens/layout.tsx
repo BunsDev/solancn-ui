@@ -14,7 +14,6 @@ export default function TokensLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeProvider
           attribute="class"
@@ -31,6 +30,5 @@ export default function TokensLayout({
           </SidebarProvider>
         </ThemeProvider>
       </body>
-    </html>
   );
 }

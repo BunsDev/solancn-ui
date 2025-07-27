@@ -69,20 +69,20 @@ export function ComponentCard({
 
   if (component == null) {
     return (
-      <div className="flex h-full items-center justify-center">
+      <div className="flex h-full w-full items-center justify-center">
         <p className="text-muted-foreground">No registry item found</p>
       </div>
     );
   }
 
   return (
-    <section>
+    <div className="flex flex-col w-full gap-2">
       <Card id="starting-kit" className="border-foreground/25">
         <CardHeader>
           <div className="flex flex-col gap-4">
             <CardTitle className="font-medium text-lg">{title}</CardTitle>
 
-            <div className="flex w-full flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-16">
+            <div className="flex w-full flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
               <CardDescription>
                 {description ?? component.description}
               </CardDescription>
@@ -91,7 +91,7 @@ export function ComponentCard({
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipContent className="font-mono">
-                      Copy npx command
+                      Copy command
                     </TooltipContent>
                     <TooltipTrigger asChild>
                       <Button
@@ -121,7 +121,7 @@ export function ComponentCard({
         </CardHeader>
 
         {(components || previewUrl) && (
-          <CardContent className="flex flex-col items-center justify-center gap-4 rounded-md px-6">
+          <CardContent className="grid grid-cols-1 items-center justify-center gap-4 rounded-md px-6 items-center text-center">
             {components &&
               Object.entries(components).map(([key, node]) => (
                 <div className="w-full" key={key}>
@@ -132,7 +132,7 @@ export function ComponentCard({
             {previewUrl && (
               <div
                 className={
-                  "h-[800px] w-full overflow-hidden rounded-md border border-border"
+                  "flex flex-col h-full w-full overflow-hidden rounded-md border border-border"
                 }
               >
                 <iframe
@@ -145,6 +145,6 @@ export function ComponentCard({
           </CardContent>
         )}
       </Card>
-    </section>
+    </div>
   );
 }

@@ -9,11 +9,11 @@ import {
   ToyBrick,
   X,
 } from "lucide-react";
+import { Logo } from "@/components/logo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-
-import { RegistryLogo } from "@/components/docs/registry-logo";
+import Image from "next/image";
 import { ModeToggle } from "@/components/docs/theme-toggle";
 import { Button } from "@/components/ui/button";
 import {
@@ -34,9 +34,11 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
 import type * as React from "react";
+import { RegistryLogo } from "./registry-logo";
 
 export const componentItems = [
   { name: "Accordion", path: "/components/accordion" },
@@ -100,6 +102,9 @@ export function RegistrySidebar() {
   const [filteredComponents, setFilteredComponents] = useState(componentItems);
   const [filteredBlocks, setFilteredBlocks] = useState(blockItems);
 
+  const { state, toggleSidebar } = useSidebar();
+  const isCollapsed = state === "collapsed";
+
   useEffect(() => {
     if (searchTerm) {
       setFilteredComponents(
@@ -119,13 +124,14 @@ export function RegistrySidebar() {
   }, [searchTerm]);
 
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar collapsible="offcanvas">
+
       <SidebarHeader className="border-b">
         <div className="flex items-center justify-between px-2 py-2">
           <Link href="/" className="flex min-w-0 items-center gap-2">
             <RegistryLogo />
           </Link>
-
+          {/* <SidebarTrigger /> */}
           <Button
             variant="ghost"
             className="md:hidden"

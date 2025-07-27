@@ -13,13 +13,13 @@ export default function SwapTokenIcon({
   };
 
   if (!token) {
-    return <div className={cn("rounded-full bg-gray-200", sizeClass[size])} />;
+    return <div className={cn("rounded-full bg-background", sizeClass[size])} />;
   }
 
   return (
     <div
       className={cn(
-        "rounded-full bg-white flex items-center justify-center",
+        "rounded-full bg-background flex items-center justify-center",
         sizeClass[size],
       )}
     >

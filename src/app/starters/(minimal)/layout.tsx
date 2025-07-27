@@ -1,4 +1,3 @@
-import SolanaWalletProvider from "@/lib/context/wallet-provider";
 import React, { type ReactNode } from "react";
 
 export default function MinimalLayout({
@@ -7,10 +6,8 @@ export default function MinimalLayout({
   children: ReactNode;
 }>) {
   return (
-    <main className="mt-16 flex w-full justify-center">
-      <SolanaWalletProvider>
-        <div className="container">{children}</div>
-      </SolanaWalletProvider>
+    <main className="mt-6 flex w-full justify-center">
+      <div className="flex w-full justify-center">{children}</div>
     </main>
   );
 }

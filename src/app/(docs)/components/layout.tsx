@@ -14,7 +14,6 @@ export default function ComponentsLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
       <body>
 
         <ThemeProvider
@@ -31,7 +30,6 @@ export default function ComponentsLayout({
             <Toaster />
           </SidebarProvider>
         </ThemeProvider>
-      </body>
-    </html>
+      </body> 
   );
 }

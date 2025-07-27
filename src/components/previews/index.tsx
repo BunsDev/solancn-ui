@@ -12,15 +12,15 @@ const SwapPreview = () => (
   <div className="bg-gradient-to-br from-[#9945FF] to-[#14F195] p-3 rounded-md flex flex-col items-center justify-center w-full h-full text-white">
     <div className="text-sm font-medium mb-2">Swap</div>
     <div className="flex flex-col w-full gap-2">
-      <div className="bg-white/20 rounded-md p-2 flex justify-between items-center">
+      <div className="bg-background/20 rounded-md p-2 flex justify-between items-center">
         <div className="flex items-center">
-          <div className="w-4 h-4 rounded-full bg-white mr-1.5" />
+          <div className="w-4 h-4 rounded-full bg-background mr-1.5" />
           <span className="text-xs">SOL</span>
         </div>
         <span className="text-xs">1.45</span>
       </div>
       <div className="flex justify-center -my-0.5">
-        <div className="bg-white/30 rounded-full p-1">
+        <div className="bg-background/30 rounded-full p-1">
           <svg
             width="16"
             height="16"
@@ -39,7 +39,7 @@ const SwapPreview = () => (
           </svg>
         </div>
       </div>
-      <div className="bg-white/20 rounded-md p-2 flex justify-between items-center">
+      <div className="bg-background/20 rounded-md p-2 flex justify-between items-center">
         <div className="flex items-center">
           <div className="w-4 h-4 rounded-full bg-green-400 mr-1.5" />
           <span className="text-xs">USDC</span>
@@ -47,7 +47,7 @@ const SwapPreview = () => (
         <span className="text-xs">24.53</span>
       </div>
     </div>
-    <div className="mt-3 bg-white/30 rounded-md py-1.5 px-4 text-xs font-medium w-full text-center">
+    <div className="mt-3 bg-background/30 rounded-md py-1.5 px-4 text-xs font-medium w-full text-center">
       Swap
     </div>
   </div>
@@ -57,14 +57,14 @@ const PortfolioPreview = () => (
   <div className="bg-gradient-to-r from-indigo-500 to-blue-500 p-3 rounded-md flex flex-col items-center justify-center w-full h-full text-white">
     <div className="text-sm font-medium mb-2">Portfolio</div>
     <div className="grid grid-cols-2 gap-2 w-full mb-2">
-      <div className="bg-white/20 rounded-md p-1.5 text-xs text-center">
+      <div className="bg-background/20 rounded-md p-1.5 text-xs text-center">
         SOL
       </div>
-      <div className="bg-white/20 rounded-md p-1.5 text-xs text-center">
+      <div className="bg-background/20 rounded-md p-1.5 text-xs text-center">
         USDC
       </div>
     </div>
-    <div className="bg-white/30 rounded-md py-1 px-3 text-xs font-medium">
+    <div className="bg-background/30 rounded-md py-1 px-3 text-xs font-medium">
       View Assets
     </div>
   </div>
@@ -109,20 +109,20 @@ const NFTPreview = () => (
       NFT Gallery
     </div>
     <div className="grid grid-cols-2 gap-1.5 w-full mb-2">
-      <div className="aspect-square rounded-md overflow-hidden bg-white/20 flex items-center justify-center">
+      <div className="aspect-square rounded-md overflow-hidden bg-background/20 flex items-center justify-center">
         <div className="w-full h-full bg-gradient-to-br from-pink-300 to-purple-400" />
       </div>
-      <div className="aspect-square rounded-md overflow-hidden bg-white/20 flex items-center justify-center">
+      <div className="aspect-square rounded-md overflow-hidden bg-background/20 flex items-center justify-center">
         <div className="w-full h-full bg-gradient-to-br from-blue-300 to-indigo-400" />
       </div>
-      <div className="aspect-square rounded-md overflow-hidden bg-white/20 flex items-center justify-center">
+      <div className="aspect-square rounded-md overflow-hidden bg-background/20 flex items-center justify-center">
         <div className="w-full h-full bg-gradient-to-br from-yellow-300 to-orange-400" />
       </div>
-      <div className="aspect-square rounded-md overflow-hidden bg-white/20 flex items-center justify-center">
+      <div className="aspect-square rounded-md overflow-hidden bg-background/20 flex items-center justify-center">
         <div className="w-full h-full bg-gradient-to-br from-green-300 to-teal-400" />
       </div>
     </div>
-    <div className="bg-white/30 rounded-md py-1 px-3 text-xs font-medium w-full text-center">
+    <div className="bg-background/30 rounded-md py-1 px-3 text-xs font-medium w-full text-center">
       View Collection
     </div>
   </div>
@@ -166,12 +166,12 @@ const BridgePreview = () => (
         </div>
       </div>
 
-      <div className="bg-white/20 rounded-md p-2 flex justify-between items-center">
+      <div className="bg-background/20 rounded-md p-2 flex justify-between items-center">
         <span className="text-xs">Amount</span>
         <span className="text-xs">1.25 SOL</span>
       </div>
     </div>
-    <div className="mt-3 bg-white/30 rounded-md py-1.5 px-4 text-xs font-medium w-full text-center">
+    <div className="mt-3 bg-background/30 rounded-md py-1.5 px-4 text-xs font-medium w-full text-center">
       Bridge Assets
     </div>
   </div>
@@ -194,7 +194,7 @@ const SolanaPreview = () => (
       </svg>
       Solana
     </div>
-    <div className="w-full bg-white/10 rounded-md p-2 mb-2">
+    <div className="w-full bg-background/10 rounded-md p-2 mb-2">
       <div className="flex justify-between items-center mb-1">
         <span className="text-xs text-white/80">Network</span>
         <span className="text-xs font-medium">Mainnet</span>
@@ -204,7 +204,7 @@ const SolanaPreview = () => (
         <span className="text-xs font-medium">3,400</span>
       </div>
     </div>
-    <div className="bg-white/30 rounded-md py-1 px-3 text-xs font-medium w-full text-center">
+    <div className="bg-background/30 rounded-md py-1 px-3 text-xs font-medium w-full text-center">
       Connect to Solana
     </div>
   </div>
@@ -214,24 +214,24 @@ const DashboardPreview = () => (
   <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-3 rounded-md flex flex-col items-center justify-center w-full h-full text-white">
     <div className="text-sm font-medium mb-2">Dashboard</div>
     <div className="grid grid-cols-2 gap-1.5 w-full mb-2">
-      <div className="bg-white/10 rounded-md p-1.5 text-[10px] flex flex-col">
+      <div className="bg-background/10 rounded-md p-1.5 text-[10px] flex flex-col">
         <span className="text-gray-300">Assets</span>
         <span>2.45 SOL</span>
       </div>
-      <div className="bg-white/10 rounded-md p-1.5 text-[10px] flex flex-col">
+      <div className="bg-background/10 rounded-md p-1.5 text-[10px] flex flex-col">
         <span className="text-gray-300">Value</span>
         <span>$223.80</span>
       </div>
-      <div className="bg-white/10 rounded-md p-1.5 text-[10px] flex flex-col">
+      <div className="bg-background/10 rounded-md p-1.5 text-[10px] flex flex-col">
         <span className="text-gray-300">Yield</span>
         <span>+5.2%</span>
       </div>
-      <div className="bg-white/10 rounded-md p-1.5 text-[10px] flex flex-col">
+      <div className="bg-background/10 rounded-md p-1.5 text-[10px] flex flex-col">
         <span className="text-gray-300">NFTs</span>
         <span>3</span>
       </div>
     </div>
-    <div className="bg-white/20 rounded-md py-1 px-3 text-xs font-medium w-full text-center">
+    <div className="bg-background/20 rounded-md py-1 px-3 text-xs font-medium w-full text-center">
       View Dashboard
     </div>
   </div>
@@ -240,19 +240,19 @@ const DashboardPreview = () => (
 const ReceivePreview = () => (
   <div className="bg-gradient-to-br from-green-600 to-emerald-500 p-3 rounded-md flex flex-col items-center justify-center w-full h-full text-white">
     <div className="text-sm font-medium mb-2">Receive</div>
-    <div className="bg-white/30 p-2 rounded-md mb-2 flex items-center justify-center w-full aspect-square">
-      <div className="w-3/4 h-3/4 bg-white grid grid-cols-4 grid-rows-4 gap-0.5">
+    <div className="bg-background/30 p-2 rounded-md mb-2 flex items-center justify-center w-full aspect-square">
+      <div className="w-3/4 h-3/4 bg-background grid grid-cols-4 grid-rows-4 gap-0.5">
         {/* Simple QR code representation */}
         <div className="bg-black" />
         <div className="bg-black" />
         <div className="bg-black" />
         <div className="bg-black" />
         <div className="bg-black" />
-        <div className="bg-white" />
-        <div className="bg-white" />
+        <div className="bg-background" />
+        <div className="bg-background" />
         <div className="bg-black" />
         <div className="bg-black" />
-        <div className="bg-white" />
+        <div className="bg-background" />
         <div className="bg-black" />
         <div className="bg-black" />
         <div className="bg-black" />
@@ -264,7 +264,7 @@ const ReceivePreview = () => (
     <div className="text-xs text-center text-white/80 mb-2 w-full overflow-hidden whitespace-nowrap">
       3Fg...k7RX
     </div>
-    <div className="bg-white/20 rounded-md py-1 px-3 text-xs font-medium w-full text-center">
+    <div className="bg-background/20 rounded-md py-1 px-3 text-xs font-medium w-full text-center">
       Copy Address
     </div>
   </div>
@@ -273,19 +273,19 @@ const ReceivePreview = () => (
 const FramePreview = () => (
   <div className="bg-gradient-to-br from-amber-500 to-orange-600 p-3 rounded-md flex flex-col items-center justify-center w-full h-full text-white">
     <div className="text-sm font-medium mb-2">Frame</div>
-    <div className="bg-white/20 rounded-md p-2 w-full mb-2 flex flex-col items-center gap-1">
-      <div className="w-full h-3 bg-white/20 rounded" />
-      <div className="w-3/4 h-2 bg-white/20 rounded" />
+    <div className="bg-background/20 rounded-md p-2 w-full mb-2 flex flex-col items-center gap-1">
+      <div className="w-full h-3 bg-background/20 rounded" />
+      <div className="w-3/4 h-2 bg-background/20 rounded" />
     </div>
     <div className="flex w-full gap-1.5 mb-2">
-      <div className="bg-white/30 rounded-md py-1 px-2 text-xs font-medium flex-1 text-center" />
+      <div className="bg-background/30 rounded-md py-1 px-2 text-xs font-medium flex-1 text-center" />
       ❤️
-      <div className="bg-white/30 rounded-md py-1 px-2 text-xs font-medium flex-1 text-center" />
+      <div className="bg-background/30 rounded-md py-1 px-2 text-xs font-medium flex-1 text-center" />
       🔄
-      <div className="bg-white/30 rounded-md py-1 px-2 text-xs font-medium flex-1 text-center" />
+      <div className="bg-background/30 rounded-md py-1 px-2 text-xs font-medium flex-1 text-center" />
       💬
     </div>
-    <div className="bg-white/20 rounded-md py-1 px-3 text-xs font-medium w-full text-center">
+    <div className="bg-background/20 rounded-md py-1 px-3 text-xs font-medium w-full text-center">
       Create Frame
     </div>
   </div>
@@ -294,7 +294,7 @@ const FramePreview = () => (
 const BlankPreview = () => (
   <div className="bg-gradient-to-br from-gray-700 to-gray-800 p-3 rounded-md flex flex-col items-center justify-center w-full h-full text-white">
     <div className="text-sm font-medium mb-2">Empty Block</div>
-    <div className="bg-white/10 rounded-md p-4 w-full mb-2 flex flex-col items-center">
+    <div className="bg-background/10 rounded-md p-4 w-full mb-2 flex flex-col items-center">
       <svg
         width="24"
         height="24"
@@ -312,7 +312,7 @@ const BlankPreview = () => (
         />
       </svg>
     </div>
-    <div className="bg-white/20 rounded-md py-1 px-3 text-xs font-medium w-full text-center">
+    <div className="bg-background/20 rounded-md py-1 px-3 text-xs font-medium w-full text-center">
       Add Content
     </div>
   </div>
@@ -363,7 +363,7 @@ const WalletPreview = () => (
       </svg>
       Wallet
     </div>
-    <div className="w-full bg-white/10 rounded-md p-2 mb-2">
+    <div className="w-full bg-background/10 rounded-md p-2 mb-2">
       <div className="flex justify-between items-center mb-1">
         <span className="text-xs text-white/80">Balance</span>
         <span className="text-xs font-medium">1.45 SOL</span>
@@ -374,7 +374,7 @@ const WalletPreview = () => (
       </div>
     </div>
     <div className="grid grid-cols-3 gap-1 w-full mb-1">
-      <div className="bg-white/20 rounded-md p-1 flex flex-col items-center justify-center">
+      <div className="bg-background/20 rounded-md p-1 flex flex-col items-center justify-center">
         <svg
           width="14"
           height="14"
@@ -393,7 +393,7 @@ const WalletPreview = () => (
         </svg>
         <span className="text-[10px] mt-0.5">Send</span>
       </div>
-      <div className="bg-white/20 rounded-md p-1 flex flex-col items-center justify-center">
+      <div className="bg-background/20 rounded-md p-1 flex flex-col items-center justify-center">
         <svg
           width="14"
           height="14"
@@ -413,7 +413,7 @@ const WalletPreview = () => (
         </svg>
         <span className="text-[10px] mt-0.5">Receive</span>
       </div>
-      <div className="bg-white/20 rounded-md p-1 flex flex-col items-center justify-center">
+      <div className="bg-background/20 rounded-md p-1 flex flex-col items-center justify-center">
         <svg
           width="14"
           height="14"
@@ -439,11 +439,11 @@ const WalletPreview = () => (
 const StakePreview = () => (
   <div className="bg-gradient-to-r from-[#9945FF] to-[#14F195] p-3 rounded-md flex flex-col items-center justify-center w-full h-full text-white">
     <div className="text-sm font-bold mb-2">Stake</div>
-    <div className="bg-white/20 rounded-md p-1.5 text-xs w-full mb-2 flex justify-between">
+    <div className="bg-background/20 rounded-md p-1.5 text-xs w-full mb-2 flex justify-between">
       <span>APY:</span>
       <span>5.2%</span>
     </div>
-    <div className="bg-white/30 rounded-md py-1 px-3 text-xs font-bold">
+    <div className="bg-background/30 rounded-md py-1 px-3 text-xs font-bold">
       Stake SOL
     </div>
   </div>
@@ -476,10 +476,10 @@ const HeroPreview = () => (
     <div className="text-sm font-bold mb-1">Hero Title</div>
     <div className="text-xs mb-2 text-center">Subtitle text goes here</div>
     <div className="flex gap-1">
-      <div className="bg-white/30 rounded-md py-0.5 px-2 text-xs font-medium">
+      <div className="bg-background/30 rounded-md py-0.5 px-2 text-xs font-medium">
         Button 1
       </div>
-      <div className="bg-white rounded-md py-0.5 px-2 text-xs font-medium text-[#9945FF]">
+      <div className="bg-background rounded-md py-0.5 px-2 text-xs font-medium text-[#9945FF]">
         Button 2
       </div>
     </div>
@@ -507,10 +507,10 @@ const LendPreview = () => (
       </svg>
       Lend
     </div>
-    <div className="w-full bg-white/20 rounded-md p-2 mb-3">
+    <div className="w-full bg-background/20 rounded-md p-2 mb-3">
       <div className="flex justify-between items-center mb-1">
         <div className="flex items-center">
-          <div className="w-3 h-3 rounded-full bg-white mr-1.5" />
+          <div className="w-3 h-3 rounded-full bg-background mr-1.5" />
           <span className="text-xs">SOL</span>
         </div>
         <div className="flex flex-col items-end">
@@ -524,10 +524,10 @@ const LendPreview = () => (
       </div>
     </div>
     <div className="mt-auto flex gap-1 w-full">
-      <div className="bg-white/30 rounded-md py-1 flex-1 flex items-center justify-center">
+      <div className="bg-background/30 rounded-md py-1 flex-1 flex items-center justify-center">
         <span className="text-xs font-medium">Supply</span>
       </div>
-      <div className="bg-white/10 rounded-md py-1 flex-1 flex items-center justify-center">
+      <div className="bg-background/10 rounded-md py-1 flex-1 flex items-center justify-center">
         <span className="text-xs font-medium">Withdraw</span>
       </div>
     </div>
@@ -551,10 +551,10 @@ export const previewRegistry: Record<string, React.ReactNode> = {
   transferDemo: (
     <div className="bg-gradient-to-r from-green-500 to-blue-500 p-3 rounded-md flex flex-col items-center justify-center w-full h-full text-white">
       <div className="text-sm font-medium mb-2">Transfer</div>
-      <div className="bg-white/20 rounded-md p-1.5 text-xs w-full text-center mb-2">
+      <div className="bg-background/20 rounded-md p-1.5 text-xs w-full text-center mb-2">
         SOL
       </div>
-      <div className="bg-white/30 rounded-md py-1 px-3 text-xs font-medium">
+      <div className="bg-background/30 rounded-md py-1 px-3 text-xs font-medium">
         Send
       </div>
     </div>
@@ -562,10 +562,10 @@ export const previewRegistry: Record<string, React.ReactNode> = {
   borrowDemo: (
     <div className="bg-gradient-to-r from-orange-500 to-red-500 p-3 rounded-md flex flex-col items-center justify-center w-full h-full text-white">
       <div className="text-sm font-medium mb-2">Borrow</div>
-      <div className="bg-white/20 rounded-md p-1.5 text-xs w-full text-center mb-2">
+      <div className="bg-background/20 rounded-md p-1.5 text-xs w-full text-center mb-2">
         1.5 SOL
       </div>
-      <div className="bg-white/30 rounded-md py-1 px-3 text-xs font-medium">
+      <div className="bg-background/30 rounded-md py-1 px-3 text-xs font-medium">
         Borrow
       </div>
     </div>
@@ -576,7 +576,7 @@ export const previewRegistry: Record<string, React.ReactNode> = {
   card: <CardPreview />,
   accordion: <AccordionPreview />,
   dialog: (
-    <div className="border border-gray-200 dark:border-gray-700 rounded-md p-2 bg-white dark:bg-gray-900 shadow-md w-32 h-24 flex flex-col justify-between">
+    <div className="border border-gray-200 dark:border-gray-700 rounded-md p-2 bg-background dark:bg-gray-900 shadow-md w-32 h-24 flex flex-col justify-between">
       <div className="text-xs font-medium">Dialog Title</div>
       <div className="text-[10px]">Dialog content...</div>
       <div className="flex justify-end gap-1">

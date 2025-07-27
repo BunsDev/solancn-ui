@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import {
   MobileSidebarTrigger,
   RegistrySidebar,
-} from "@/components/docs/docs-sidebar";
+} from "@/components/docs/registry-sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -25,7 +25,6 @@ export default function BlocksLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -46,6 +45,5 @@ export default function BlocksLayout({
           </SidebarProvider>
         </ThemeProvider>
       </body>
-    </html>
-  );
+    );
 }

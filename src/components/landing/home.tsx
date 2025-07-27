@@ -28,18 +28,19 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { SiteHeader } from "./site-header";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 export default function SolancnHome() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen w-full flex flex-col bg-background">
       {/* Header */}
       {/* <SiteHeader page="Home" /> */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="flex h-14 items-center">
           <div className="mr-4 hidden md:flex">
-            <Link className="mr-6 flex items-center space-x-2" href="/">
-              <div className="h-6 w-6 bg-primary rounded-sm flex items-center justify-center">
+            <Link className="mr-6 flex items-center space-x-2 sm:mr-12" href="/">
+              <SidebarTrigger />
+              {/* <div className="h-6 w-6 bg-primary rounded-sm flex items-center justify-center">
                 <span className="text-primary-foreground text-xs font-bold">
                   <Image
                     src="/logo-round.png"
@@ -48,12 +49,12 @@ export default function SolancnHome() {
                     height={20}
                   />
                 </span>
-              </div>
+              </div> */}
               <span className="hidden font-bold sm:inline-block text-base">
                 Solancn
               </span>
             </Link>
-            <nav className="flex items-center space-x-6 text-sm font-medium">
+            <nav className="flex items-center space-x-8 text-sm font-medium mx-auto min-w-full">
               <Link
                 href="/docs"
                 className="transition-colors hover:text-foreground/80 text-foreground/60"
@@ -155,35 +156,35 @@ export default function SolancnHome() {
       <section className="relative">
         <Tabs defaultValue="wallet" className="relative mt-6 w-full">
           <div className="flex items-center justify-between pb-3">
-            <TabsList className="w-full justify-start rounded-none border-b bg-transparent p-0">
+            <TabsList className="w-full justify-start border-b bg-transparent p-0">
               <TabsTrigger
                 value="wallet"
-                className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+                className="relative h-9 rounded-md border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
               >
                 Wallet
               </TabsTrigger>
               <TabsTrigger
                 value="defi"
-                className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+                className="relative h-9 rounded-md border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
               >
                 DeFi
               </TabsTrigger>
               <TabsTrigger
                 value="nft"
-                className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+                className="relative h-9 rounded-md border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
               >
                 NFT
               </TabsTrigger>
               <TabsTrigger
                 value="trading"
-                className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+                className="relative h-9 rounded-md border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
               >
                 Trading
               </TabsTrigger>
             </TabsList>
-            <div className="ml-auto flex items-center gap-2">
+            {/* <div className="ml-auto flex items-center gap-2">
               <Badge variant="outline">Theme: Default</Badge>
-            </div>
+            </div> */}
           </div>
 
           <TabsContent value="wallet" className="relative rounded-md border">

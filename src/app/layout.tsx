@@ -3,17 +3,20 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Montserrat } from "next/font/google";
 import type { ReactNode } from "react";
-import { ThemeProvider } from "@/components/theme-provider";
-
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
+import { GlobalSidebarTrigger } from "@/components/global-sidebar-trigger";
+import {
+  MobileSidebarTrigger,
+  RegistrySidebar,
+} from "@/components/docs/registry-sidebar";
 
 import "@/app/tokens.css";
 import "@/app/tailwind.css";
 
-
 export const metadata: Metadata = {
-  title: "Registry Starter",
-  description: "Starter to help build a Shadcn Registry using Tailwind v4",
+  title: "Solancn UI",
+  description: "Solancn UI - A collection of components for building modern web applications on Solana.",
   icons: [{ rel: "icon", url: "/favicon.svg", type: "image/svg+xml" }],
 };
 
@@ -46,25 +49,23 @@ export default function RootLayout({
         MontserratSerif.variable,
         "bg-background text-foreground",
       )}
-      suppressHydrationWarning
     >
       <meta
         name="robots"
         content="noindex, nofollow, noarchive, nosnippet, noimageindex"
       />
-      <body className="flex flex-col w-full h-dvh p-4 md:p-6 lg:p-8">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          forcedTheme="dark"
-          enableSystem={false}
-          storageKey="solancn-ui-theme"
-        >
+      <SidebarProvider>
+        <GlobalSidebarTrigger />
+        <MobileSidebarTrigger />
+        <RegistrySidebar />
+      <body className="flex grow">
+        <div className="flex flex-col h-screen w-full bg-black px-4 md:px-6 py-6 justify-center items-center mx-auto">
           {children}
-        </ThemeProvider>
+        </div>
         <Analytics />
         <SpeedInsights />
       </body>
+      </SidebarProvider>
     </html>
   );
 }

@@ -1,7 +1,8 @@
 "use client";
 
-import { Check, Copy } from "lucide-react";
-import { useState } from "react";
+import { Check, Copy, ClipboardCopy } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { OpenInV0Button } from "@/components/docs/open-in-v0";
 import { Button } from "@/components/ui/button";
@@ -28,6 +29,7 @@ interface BlockCardProps {
 
 export function BlockCard({ block, baseUrl, prompt }: BlockCardProps) {
   const [copied, setCopied] = useState(false);
+  const [tooltipVisible, setTooltipVisible] = useState(false);
 
   const registryUrl = `https://${baseUrl}/r/${block.name}.json`;
   const npxCommand = `npx shadcn@latest add ${registryUrl}`;
@@ -36,11 +38,21 @@ export function BlockCard({ block, baseUrl, prompt }: BlockCardProps) {
     try {
       await navigator.clipboard.writeText(npxCommand);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      // Show tooltip on success
+      setTooltipVisible(true);
+      // Hide the success state after 2 seconds
+      setTimeout(() => setCopied(false), 1500);
+      // Hide the tooltip after a bit longer
+      setTimeout(() => setTooltipVisible(false), 2000);
     } catch (err) {
       console.error("Failed to copy text: ", err);
     }
   };
+  
+  // Reset tooltip visibility when user moves away
+  useEffect(() => {
+    return () => setTooltipVisible(false);
+  }, []);
 
   return (
     <div className="flex flex-col justify-center h-dvh gap-4">
@@ -54,23 +66,63 @@ export function BlockCard({ block, baseUrl, prompt }: BlockCardProps) {
 
               <div className="flex items-center gap-1 sm:ml-auto">
                 <TooltipProvider>
-                  <Tooltip>
-                    <TooltipContent className="font-mono">
-                      Copy npx command
+                  <Tooltip open={tooltipVisible} onOpenChange={setTooltipVisible}>
+                    <TooltipContent 
+                      side="bottom"
+                      className="font-mono bg-black/90 text-white backdrop-blur-lg border border-primary/20 px-3 py-2"
+                      sideOffset={5}
+                    >
+                      {copied ? "Copied!" : "Copy CLI command"}
                     </TooltipContent>
                     <TooltipTrigger asChild>
-                      <Button
-                        onClick={copyToClipboard}
-                        variant="outline"
-                        className="p-4"
-                        aria-label="Copy npx command to clipboard"
-                      >
-                        {copied ? (
-                          <Check className="size-4" />
-                        ) : (
-                          <Copy className="size-4" />
-                        )}
-                      </Button>
+                      <div className="relative">
+                        <motion.div
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="relative"
+                        >
+                          <Button
+                            onClick={copyToClipboard}
+                            variant="outline"
+                            className={`relative overflow-hidden p-4 border-2 transition-all duration-300 ${copied ? 'border-[#14F195] bg-[#14F195]/10' : 'border-[#9945FF]/40 hover:border-[#9945FF] hover:bg-[#9945FF]/10'}`}
+                            aria-label="Copy npx command to clipboard"
+                          >
+                            <AnimatePresence mode="wait" initial={false}>
+                              {copied ? (
+                                <motion.div
+                                  key="check"
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  exit={{ opacity: 0, y: -10 }}
+                                  transition={{ duration: 0.15 }}
+                                >
+                                  <Check className="size-4 text-[#14F195]" />
+                                </motion.div>
+                              ) : (
+                                <motion.div
+                                  key="copy"
+                                  initial={{ opacity: 0, y: -10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  exit={{ opacity: 0, y: 10 }}
+                                  transition={{ duration: 0.15 }}
+                                >
+                                  <ClipboardCopy className="size-4 text-[#9945FF]" />
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </Button>
+                          
+                          {/* Ripple effect when clicked */}
+                          {copied && (
+                            <motion.div
+                              initial={{ scale: 0, opacity: 0.75 }}
+                              animate={{ scale: 1.5, opacity: 0 }}
+                              transition={{ duration: 0.5 }}
+                              className="absolute inset-0 rounded-md bg-[#14F195]/20"
+                            />
+                          )}
+                        </motion.div>
+                      </div>
                     </TooltipTrigger>
                   </Tooltip>
                 </TooltipProvider>

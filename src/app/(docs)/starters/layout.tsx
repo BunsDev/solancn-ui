@@ -6,7 +6,6 @@ import {
   RegistrySidebar,
 } from "@/components/docs/registry-sidebar";
 import { Toaster } from "@/components/ui/sonner";
-import { ThemeProvider } from "@/components/theme-provider";
 
 export default function StartersLayout({
   children,
@@ -14,23 +13,11 @@ export default function StartersLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          forcedTheme="dark"
-          enableSystem={false}
-          storageKey="solancn-ui-theme"
-        >
           <SidebarProvider>
             <MobileSidebarTrigger />
             <RegistrySidebar />
-            <main className="flex w-full justify-center">{children}</main>
+            <div className="flex w-full justify-center">{children}</div>
             <Toaster />
           </SidebarProvider>
-        </ThemeProvider>
-      </body>
-    </html>
   );
 }

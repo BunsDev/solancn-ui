@@ -31,15 +31,6 @@ export default function ShellLayout({
   children: ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={cn(
-        GeistSans.variable,
-        GeistMono.variable,
-        MontserratSerif.variable,
-        "bg-background text-foreground",
-      )}
-    >
       <body>
         <SidebarProvider>
           <BrandHeader />
@@ -50,6 +41,5 @@ export default function ShellLayout({
           <Toaster />
         </SidebarProvider>
       </body>
-    </html>
   );
 }
