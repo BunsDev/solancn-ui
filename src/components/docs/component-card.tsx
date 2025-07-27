@@ -132,13 +132,16 @@ export function ComponentCard({
             {previewUrl && (
               <div
                 className={
-                  "flex flex-col h-dvh w-dvw overflow-hidden justify-center items-center rounded-md border border-border mx-auto"
+                  "flex flex-col w-full overflow-hidden rounded-lg border border-primary/20 bg-black shadow-lg shadow-primary/5 mx-auto transition-all duration-300 hover:border-primary/40 aspect-video"
                 }
               >
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 z-10"></div>
                 <iframe
                   src={previewUrl}
-                  className="h-dvh w-dvw mx-auto justify-center items-center flex"
-                  title="Page Preview"
+                  className="w-full h-full object-cover"
+                  title={`${title || name} Preview`}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 />
               </div>
             )}

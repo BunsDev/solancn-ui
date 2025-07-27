@@ -1,10 +1,5 @@
 import { SidebarProvider } from "@/components/ui/sidebar";
 import type { ReactNode } from "react";
-
-import {
-  MobileSidebarTrigger,
-  RegistrySidebar,
-} from "@/components/docs/registry-sidebar";
 import { Toaster } from "@/components/ui/sonner";
 
 export default function StartersLayout({
@@ -13,9 +8,11 @@ export default function StartersLayout({
   children: ReactNode;
 }>) {
   return (
-          <div className="flex flex-col w-fit justify-center items-center overflow-x-hidden h-dvh mx-auto max-w-fit">
-            {children}
-            <Toaster />
-          </div>
+    <div className="flex flex-col w-full max-w-[100vw] mx-auto justify-center items-center overflow-hidden min-h-[100dvh] relative">
+      <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        {children}
+        <Toaster position="top-right" />
+      </div>
+    </div>
   );
 }

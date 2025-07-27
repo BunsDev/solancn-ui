@@ -24,7 +24,7 @@ const blockItems = [
   { name: "Product Grid", path: "/blocks/product-grid" },
 ];
 
-export default function Home() {
+export default function Docs() {
   return (
     <main className="container mt-4 p-5 md:mt-8 md:p-10">
       <div className="mb-8">
