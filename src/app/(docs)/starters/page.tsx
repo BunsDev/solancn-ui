@@ -17,126 +17,145 @@ interface Starter {
   name: string;
   url: string;
   description?: string;
-  category?: "ui" | "app" | "tools" | "wallet";
+  category?: "ui" | "app" | "tools" | "wallet" | "blank" | "dashboard" | "borrow" | "bridge" | "defi" | "frame" | "lend" | "nft" | "portfolio" | "receive" | "solana" | "stake" | "trading" | "transfer";
   tags?: string[];
   featured?: boolean;
 }
 
 const starters: Starter[] = [
   {
-    title: "Blog",
-    name: "blog",
-    url: "/starters/blog",
-    description: "A beautiful, responsive blog starter with rich content support.",
-    category: "app",
-    tags: ["content", "markdown", "responsive"],
+    title: "Blank",
+    name: "blank",
+    url: "/starters/blank",
+    description: "A blank starter with essential components and styling.",
+    category: "blank",
+    tags: ["blank", "solana", "crypto"],
+    featured: true,
   },
   {
     title: "Dashboard",
     name: "dashboard",
     url: "/starters/dashboard",
-    description: "Modern analytics dashboard with charts, tables and interactive widgets.",
-    category: "app",
-    tags: ["charts", "analytics", "tables"],
+    description: "A dashboard starter with essential components and styling.",
+    category: "dashboard",
+    tags: ["dashboard", "solana", "crypto"],
     featured: true,
   },
   {
-    title: "DevTools",
-    name: "devtools",
-    url: "/starters/devtools",
-    description: "Developer tools and utilities for efficient workflow.",
-    category: "tools",
-    tags: ["development", "utilities", "productivity"],
-  },
-  {
-    title: "DiceBear",
-    name: "dicebear",
-    url: "/starters/dicebear",
-    description: "Avatar generation and customization using DiceBear.",
-    category: "tools",
-    tags: ["avatars", "images", "generation"],
-  },
-  {
-    title: "Docs",
-    name: "docs",
-    url: "/starters/docs",
-    description: "Documentation site template with search and versioning support.",
-    category: "app",
-    tags: ["documentation", "search", "mdx"],
-  },
-  {
-    title: "Editor",
-    name: "editor",
-    url: "/starters/editor",
-    description: "Rich text editor with collaborative editing features.",
-    category: "tools",
-    tags: ["editor", "content", "collaboration"],
-  },
-  {
-    title: "Forms",
-    name: "forms",
-    url: "/starters/forms",
-    description: "Comprehensive form components with validation and submission handling.",
-    category: "ui",
-    tags: ["forms", "validation", "inputs"],
-  },
-  {
-    title: "Landing",
-    name: "landing",
-    url: "/starters/landing",
-    description: "Stunning landing page template with modern animations and CTAs.",
-    category: "ui",
-    tags: ["marketing", "hero", "animations"],
+    title: "Borrow",
+    name: "borrow",
+    url: "/starters/borrow",
+    description: "A borrow starter with essential components and styling.",
+    category: "borrow",
+    tags: ["borrow", "solana", "crypto"],
     featured: true,
   },
   {
-    title: "Minimal",
-    name: "minimal",
-    url: "/starters/minimal",
-    description: "Clean, minimal starter with essential components and styling.",
-    category: "ui",
-    tags: ["minimal", "lightweight", "starter"],
+    title: "Bridge",
+    name: "bridge",
+    url: "/starters/bridge",
+    description: "A bridge starter with essential components and styling.",
+    category: "bridge",
+    tags: ["bridge", "solana", "crypto"],
+    featured: true,
   },
   {
-    title: "Music",
-    name: "music",
-    url: "/starters/music",
-    description: "Music player interface with playlist management and visualizations.",
-    category: "app",
-    tags: ["audio", "player", "media"],
+    title: "Defi",
+    name: "defi",
+    url: "/starters/defi",
+    description: "A defi starter with essential components and styling.",
+    category: "defi",
+    tags: ["defi", "solana", "crypto"],
+    featured: true,
   },
   {
-    title: "Photos",
-    name: "photos",
-    url: "/starters/photos",
-    description: "Photo gallery with masonry layout and lightbox viewing.",
-    category: "app",
-    tags: ["gallery", "images", "lightbox"],
+    title: "Frame",
+    name: "frame",
+    url: "/starters/frame",
+    description: "A frame starter with essential components and styling.",
+    category: "frame",
+    tags: ["frame", "solana", "crypto"],
+    featured: true,
   },
   {
-    title: "Playground",
-    name: "playground",
-    url: "/starters/playground",
-    description: "Interactive playground for testing components and code snippets.",
-    category: "tools",
-    tags: ["testing", "interactive", "development"],
+    title: "Lend",
+    name: "lend",
+    url: "/starters/lend",
+    description: "A lend starter with essential components and styling.",
+    category: "lend",
+    tags: ["lend", "solana", "crypto"],
+    featured: true,
   },
   {
-    title: "Store",
-    name: "store",
-    url: "/starters/store",
-    description: "E-commerce store template with product listings and cart functionality.",
-    category: "app",
-    tags: ["ecommerce", "products", "checkout"],
+    title: "NFT",
+    name: "nft",
+    url: "/starters/nft",
+    description: "A nft starter with essential components and styling.",
+    category: "nft",
+    tags: ["nft", "solana", "crypto"],
+    featured: true,
+  },
+  {
+    title: "Portfolio",
+    name: "portfolio",
+    url: "/starters/portfolio",
+    description: "A portfolio starter with essential components and styling.",
+    category: "portfolio",
+    tags: ["portfolio", "solana", "crypto"],
+    featured: true,
+  },
+  {
+    title: "Receive",
+    name: "receive",
+    url: "/starters/receive",
+    description: "A receive starter with essential components and styling.",
+    category: "receive",
+    tags: ["receive", "solana", "crypto"],
+    featured: true,
+  },
+  {
+    title: "Solana",
+    name: "solana",
+    url: "/starters/solana",
+    description: "A solana starter with essential components and styling.",
+    category: "solana",
+    tags: ["solana", "solana", "crypto"],
+    featured: true,
+  },
+  {
+    title: "Stake",
+    name: "stake",
+    url: "/starters/stake",
+    description: "A stake starter with essential components and styling.",
+    category: "stake",
+    tags: ["stake", "solana", "crypto"],
+    featured: true,
+  },
+  {
+    title: "Trading",
+    name: "trading",
+    url: "/starters/trading",
+    description: "A trading starter with essential components and styling.",
+    category: "trading",
+    tags: ["trading", "solana", "crypto"],
+    featured: true,
+  },
+  {
+    title: "Transfer",
+    name: "transfer",
+    url: "/starters/transfer",
+    description: "A transfer starter with essential components and styling.",
+    category: "transfer",
+    tags: ["transfer", "solana", "crypto"],
     featured: true,
   },
   {
     title: "Wallet",
     name: "wallet",
     url: "/starters/wallet",
-    description: "Solana wallet interface with transaction history and asset management.",
+    description: "A wallet starter with essential components and styling.",
     category: "wallet",
-    tags: ["crypto", "blockchain", "solana"],
+    tags: ["wallet", "solana", "crypto"],
     featured: true,
   },
 ];
@@ -145,13 +164,29 @@ const categoryIcons = {
   ui: <Layout className="w-4 h-4" />,
   app: <Globe className="w-4 h-4" />,
   tools: <Code className="w-4 h-4" />,
-  wallet: <Wallet className="w-4 h-4" />,
+  blank: <Layout className="w-4 h-4" />,
+  dashboard: <Globe className="w-4 h-4" />,
+  borrow: <Code className="w-4 h-4" />,
+  bridge: <Layout className="w-4 h-4" />,
+  defi: <Globe className="w-4 h-4" />,
+  frame: <Code className="w-4 h-4" />,
+  lend: <Layout className="w-4 h-4" />,
+  nft: <Globe className="w-4 h-4" />,
+  portfolio: <Code className="w-4 h-4" />,
+  receive: <Layout className="w-4 h-4" />,
+  solana: <Globe className="w-4 h-4" />,
+  stake: <Code className="w-4 h-4" />,
+  trading: <Layout className="w-4 h-4" />,
+  transfer: <Globe className="w-4 h-4" />,
+  wallet: <Code className="w-4 h-4" />,
 };
 
 export default function StartersPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("all");
-  const [filteredStarters, setFilteredStarters] = useState<Starter[]>(starters);
+  const [filteredStarters, setFilteredStarters] = useState<Starter[]>(
+    starters,
+  );
   const [mounted, setMounted] = useState(false);
   
   // Prevent hydration mismatch
@@ -283,7 +318,7 @@ export default function StartersPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+          <div className="flex flex-col w-full bg-background sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
             <h2 className="text-2xl font-bold">{searchQuery ? 'Search Results' : 'All Starters'}</h2>
             
             <Tabs
@@ -317,7 +352,7 @@ export default function StartersPage() {
               </Button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-2 w-full h-full">
               {filteredStarters.map((starter, index) => (
                 <motion.div
                   key={starter.name}

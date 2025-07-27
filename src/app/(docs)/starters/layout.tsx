@@ -13,11 +13,9 @@ export default function StartersLayout({
   children: ReactNode;
 }>) {
   return (
-          <SidebarProvider>
-            <MobileSidebarTrigger />
-            <RegistrySidebar />
-            <div className="flex w-full justify-center">{children}</div>
+          <div className="flex flex-col w-fit justify-center items-center overflow-x-hidden h-dvh mx-auto max-w-fit">
+            {children}
             <Toaster />
-          </SidebarProvider>
+          </div>
   );
 }
