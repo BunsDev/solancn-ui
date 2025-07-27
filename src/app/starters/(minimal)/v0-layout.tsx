@@ -1,19 +1,10 @@
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import type { Metadata } from "next";
 import { Geist, Geist_Mono, Montserrat } from "next/font/google";
-import type { ReactNode } from "react";
+import React, { type ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
 import "@/app/tokens.css";
-import "@/app/tailwind.css";
-
-export const metadata: Metadata = {
-  title: "Registry Starter",
-  description: "Starter to help build a Shadcn Registry using Tailwind v4",
-  icons: [{ rel: "icon", url: "/favicon.svg", type: "image/svg+xml" }],
-};
+import "@/app/globals.css";
 
 const GeistSans = Geist({
   subsets: ["latin"],
@@ -45,14 +36,10 @@ export default function RootLayout({
         "bg-background text-foreground",
       )}
     >
-      <meta
-        name="robots"
-        content="noindex, nofollow, noarchive, nosnippet, noimageindex"
-      />
-      <body className="flex grow">
-        {children}
-        <Analytics />
-        <SpeedInsights />
+      <body>
+        <main className="mt-16 flex w-full justify-center">
+          <div className="container">{children}</div>
+        </main>
       </body>
     </html>
   );

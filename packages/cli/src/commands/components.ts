@@ -246,8 +246,8 @@ components
 
     try {
       const registry = await fetchRegistryItems({ type: "registry:component" }) as unknown as Record<string, RegistryItem>;
-      const allComponents = registry;
-
+      const allComponents = registry?.items as unknown as any[];
+      console.log({ allComponents });
       // Simple search implementation
       const results = Object.values(allComponents).filter(
         (item: any) =>

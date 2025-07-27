@@ -1,8 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import HeaderLogo from "../../assets/vibes-guide.svg";
-import RoundLogo from "../../assets/logo.svg";
+// import HeaderLogo from "../../assets/solancn.svg";
+
 import Image from "next/image";
 
 const pathVariants = {
@@ -54,7 +54,8 @@ export function Logo({
   return (
 <div className={cn("relative", containerClassName)}>
       <Image
-        src={header ? HeaderLogo : RoundLogo}
+        // src={header ? }
+        src="/logo-round.png"
         alt="Logo"
         width={2400}
         height={1200}
