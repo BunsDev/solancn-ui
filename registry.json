@@ -187,6 +187,30 @@
       ]
     },
     {
+      "name": "portfolio",
+      "type": "registry:block",
+      "title": "Portfolio Starter",
+      "description": "A portfolio application with all brand components and code",
+      "registryDependencies": [
+        "https://ui.vibes.guide/r/brand-header.json",
+        "https://ui.vibes.guide/r/brand-sidebar.json",
+        "https://ui.vibes.guide/r/product-grid.json",
+        "https://ui.vibes.guide/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/app/starters/(minimal)/v0-layout.tsx",
+          "type": "registry:file",
+          "target": "app/layout.tsx"
+        },
+        {
+          "path": "src/app/starters/(minimal)/portfolio/page.tsx",
+          "type": "registry:page",
+          "target": "app/page.tsx"
+        }
+      ]
+    },
+    {
       "name": "receive",
       "type": "registry:block",
       "title": "Receive Starter",
@@ -205,6 +229,30 @@
         },
         {
           "path": "src/app/starters/(minimal)/receive/page.tsx",
+          "type": "registry:page",
+          "target": "app/page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "portfolio",
+      "type": "registry:block",
+      "title": "Portfolio Starter",
+      "description": "A portfolio tracking application with all brand components and code",
+      "registryDependencies": [
+        "https://ui.vibes.guide/r/brand-header.json",
+        "https://ui.vibes.guide/r/brand-sidebar.json",
+        "https://ui.vibes.guide/r/product-grid.json",
+        "https://ui.vibes.guide/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/app/starters/(minimal)/v0-layout.tsx",
+          "type": "registry:file",
+          "target": "app/layout.tsx"
+        },
+        {
+          "path": "src/app/starters/(minimal)/portfolio/page.tsx",
           "type": "registry:page",
           "target": "app/page.tsx"
         }
