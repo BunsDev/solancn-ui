@@ -16,26 +16,12 @@ export function ModeToggle() {
     const newTheme = !isDark;
     setIsDark(newTheme);
 
-    const themeStr = newTheme ? "dark" : "light";
-
     if (newTheme) {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
     } else {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
-    }
-
-    // change theme inside iframe
-    const iframe = document.getElementById(
-      "iframe",
-    ) as HTMLIFrameElement | null;
-
-    if (iframe?.contentWindow) {
-      iframe.contentWindow.postMessage(
-        { type: "theme", theme: themeStr },
-        window.location.origin,
-      );
     }
   };
 
