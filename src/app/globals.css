@@ -248,8 +248,8 @@
   --sidebar-foreground: oklch(0.1884 0.0128 248.5103);
   --sidebar-primary: oklch(0.8597 0.1547 162.2575);
   --sidebar-primary-foreground: oklch(1.0 0 0);
-  --sidebar-accent: oklch(0.9392 0.0166 250.8453);
-  --sidebar-accent-foreground: oklch(0.886 0.1598 158.2656);
+  --sidebar-accent: oklch(0.5982 0.2564 298.8623);
+  --sidebar-accent-foreground: oklch(1.0 0 0);
   --sidebar-border: oklch(0.9271 0.0101 238.5177);
   --sidebar-ring: oklch(0.8725 0.1587 162.1544);
   --font-sans: Open Sans, sans-serif;
@@ -302,8 +302,10 @@
   --sidebar-foreground: oklch(0.8853 0 0);
   --sidebar-primary: oklch(0.8597 0.1547 162.2575);
   --sidebar-primary-foreground: oklch(1.0 0 0);
-  --sidebar-accent: oklch(0.1928 0.0331 242.5459);
-  --sidebar-accent-foreground: oklch(0.886 0.1598 158.2656);
+  /* Sidebar Button Background (Active) */
+  --sidebar-accent: oklch(0.5982 0.2564 298.8623);
+  /* Sidebar Button Foreground (Active) */
+  --sidebar-accent-foreground: oklch(1.0 0 0);
   --sidebar-border: oklch(0.3795 0.022 240.5943);
   --sidebar-ring: oklch(0.8725 0.1587 162.1544);
   --font-sans: Open Sans, sans-serif;

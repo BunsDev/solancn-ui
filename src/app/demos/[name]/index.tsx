@@ -21,7 +21,6 @@ import { hero } from "@/app/demos/[name]/components/hero";
 import { login } from "@/app/demos/[name]/components/login";
 import { logo } from "@/app/demos/[name]/components/logo";
 import { productGrid } from "@/app/demos/[name]/components/product-grid";
-import { promo } from "@/app/demos/[name]/components/promo";
 
 // solana
 import { borrow } from "@/app/demos/[name]/solana/borrow";
@@ -89,7 +88,6 @@ export const demos: { [name: string]: Demo } = {
   // components
   hero,
   login,
-  promo,
   logo,
   "brand-header": brandHeader,
   "brand-sidebar": brandSidebar,
