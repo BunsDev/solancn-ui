@@ -57,7 +57,6 @@ export default function RootLayout({
       <body className="flex grow">
         <SidebarProvider>
           <GlobalSidebarTrigger />
-          <MobileSidebarTrigger />
           <RegistrySidebar />
           <main className="flex flex-col h-screen w-full bg-black px-4 md:px-6 py-6 justify-center items-center mx-auto">
             {children}
