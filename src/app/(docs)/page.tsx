@@ -21,7 +21,6 @@ const componentItems = [
 const blockItems = [
   { name: "Hero", path: "/blocks/hero" },
   { name: "Login", path: "/blocks/login" },
-  { name: "Promo", path: "/blocks/promo" },
   { name: "Product Grid", path: "/blocks/product-grid" },
 ];
 
