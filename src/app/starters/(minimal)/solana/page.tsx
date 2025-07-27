@@ -156,6 +156,6 @@ const SolanaContent: React.FC = () => {
 }
 
 // Export a wrapper component that provides the wallet context
-export function SolanaDemo() {
+export default function SolanaDemo() {
   return (<SolanaContent />);
 }
