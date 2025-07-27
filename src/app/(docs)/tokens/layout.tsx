@@ -23,7 +23,6 @@ export default function TokensLayout({
           storageKey="solancn-ui-theme"
         >
           <SidebarProvider>
-            <MobileSidebarTrigger />
             <RegistrySidebar />
             <main className="flex w-full justify-center">{children}</main>
             <Toaster />
