@@ -76,7 +76,7 @@ export function ComponentCard({
   }
 
   return (
-    <div className="flex flex-col w-full gap-2">
+    <div className="flex flex-col h-full w-full gap-2">
       <Card id="starting-kit" className="border-foreground/25">
         <CardHeader>
           <div className="flex flex-col gap-4">
@@ -132,12 +132,12 @@ export function ComponentCard({
             {previewUrl && (
               <div
                 className={
-                  "flex flex-col h-full w-full overflow-hidden rounded-md border border-border"
+                  "flex flex-col h-dvh w-dvw overflow-hidden justify-center items-center rounded-md border border-border mx-auto"
                 }
               >
                 <iframe
                   src={previewUrl}
-                  className="h-full w-full"
+                  className="h-dvh w-dvw mx-auto justify-center items-center flex"
                   title="Page Preview"
                 />
               </div>
