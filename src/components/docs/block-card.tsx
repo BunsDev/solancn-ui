@@ -93,7 +93,7 @@ export function BlockCard({ block, baseUrl, prompt }: BlockCardProps) {
           >
             <iframe
               id="iframe"
-              src={`/demos/${block.name}`}
+              src={`/starters/${block.name}`}
               className="h-full w-full"
               title="Page Preview"
             />

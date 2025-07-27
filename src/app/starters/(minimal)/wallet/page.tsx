@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import SolanaWalletProvider from "@/app/demos/[name]/context/wallet-provider";
+import SolanaWalletProvider from "@/lib/context/wallet-provider";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { Wallet as WalletIcon } from "lucide-react";
 import StyledWalletButton from "@/components/wallet/wallet-button";

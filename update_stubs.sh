@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Update all Solana components in the src/app/demos/[name]/solana/ directory to use placeholders
+# Update all Solana components in the src/app/starters/[name]/solana/ directory to use placeholders
 
-cd /Users/buns/Documents/GitHub/BunsDev/solancn-ui/src/app/demos/\[name\]/solana/
+cd /Users/buns/Documents/GitHub/BunsDev/solancn-ui/src/app/starters/\[name\]/solana/
 
 # Process each .tsx file except index.tsx
 for file in *.tsx; do

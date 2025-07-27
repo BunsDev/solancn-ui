@@ -73,7 +73,7 @@ export default function SolancnHome() {
                 Blocks
               </Link>
               <Link
-                href="/demos"
+                href="/starters"
                 className="transition-colors hover:text-foreground/80 text-foreground/60"
               >
                 Demos

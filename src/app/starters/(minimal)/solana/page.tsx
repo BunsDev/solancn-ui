@@ -30,7 +30,7 @@ import {
   Download,
   FrameIcon,
 } from "lucide-react";
-import SolanaWalletProvider from "@/app/demos/[name]/context/wallet-provider";
+import SolanaWalletProvider from "@/lib/context/wallet-provider";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const tabs = [
