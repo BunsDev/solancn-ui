@@ -41,98 +41,7 @@ import {
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
-
-// Token interface
-interface Token {
-  symbol: string;
-  name: string;
-  logo: string;
-  balance: number;
-  decimals: number;
-  address: string;
-  network: "solana" | "ethereum" | "bitcoin" | "polygon" | "avalanche" | "optimism";
-}
-
-// Network interface
-interface Network {
-  name: string;
-  chainId: string;
-  logo: string;
-  nativeCurrency: string;
-  isTestnet: boolean;
-  blockExplorerUrl: string;
-}
-
-// Preset amounts for quick selection
-const PRESET_AMOUNTS = [0.1, 1, 10, 100];
-
-// Sample networks
-const NETWORKS: Record<string, Network> = {
-  solana: {
-    name: "Solana",
-    chainId: "solana",
-    logo: "https://phantom.app/img/chains/solana.png",
-    nativeCurrency: "SOL",
-    isTestnet: false,
-    blockExplorerUrl: "https://explorer.solana.com",
-  },
-  ethereum: {
-    name: "Ethereum",
-    chainId: "1",
-    logo: "https://phantom.app/img/chains/ethereum.png",
-    nativeCurrency: "ETH",
-    isTestnet: false,
-    blockExplorerUrl: "https://etherscan.io",
-  },
-  polygon: {
-    name: "Polygon",
-    chainId: "137",
-    logo: "https://phantom.app/img/chains/polygon.png",
-    nativeCurrency: "MATIC",
-    isTestnet: false,
-    blockExplorerUrl: "https://polygonscan.com",
-  },
-};
-
-// Sample tokens
-const SAMPLE_TOKENS: Token[] = [
-  {
-    symbol: "SOL",
-    name: "Solana",
-    logo: "https://phantom.app/img/chains/solana.png",
-    balance: 10.5,
-    decimals: 9,
-    address: "native",
-    network: "solana",
-  },
-  {
-    symbol: "USDC",
-    name: "USD Coin",
-    logo: "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v/logo.png",
-    balance: 250.75,
-    decimals: 6,
-    address: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-    network: "solana",
-  },
-  {
-    symbol: "ETH",
-    name: "Ethereum",
-    logo: "https://phantom.app/img/chains/ethereum.png",
-    balance: 1.2,
-    decimals: 18,
-    address: "native",
-    network: "ethereum",
-  },
-  {
-    symbol: "MATIC",
-    name: "Polygon",
-    logo: "https://phantom.app/img/chains/polygon.png",
-    balance: 100,
-    decimals: 18,
-    address: "native",
-    network: "polygon",
-  },
-];
+import { BRIDGE_SAMPLE_TOKENS, BRIDGE_NETWORKS, BRIDGE_PRESET_AMOUNTS, BridgeToken, BridgeNetwork } from "@/lib/constants/bridge";
 
 // Bridge fee estimation interface
 interface FeeEstimate {
@@ -150,9 +59,9 @@ function TokenSelector({
   label,
   disabled = false,
 }: {
-  selectedToken: Token | null;
-  onTokenChange: (token: Token) => void;
-  tokens: Token[];
+  selectedToken: BridgeToken | null;
+  onTokenChange: (token: BridgeToken) => void;
+  tokens: BridgeToken[];
   label: string;
   disabled?: boolean;
 }) {
@@ -239,9 +148,9 @@ function NetworkSelector({
   label,
   disabled = false,
 }: {
-  selectedNetwork: Network | null;
-  onNetworkChange: (network: Network) => void;
-  networks: Record<string, Network>;
+  selectedNetwork: BridgeNetwork | null;
+  onNetworkChange: (network: BridgeNetwork) => void;
+  networks: Record<string, BridgeNetwork>;
   label: string;
   disabled?: boolean;
 }) {
@@ -330,10 +239,10 @@ export function BridgeComponent() {
   const { connection } = { connection: null };
   
   // States
-  const [sourceNetwork, setSourceNetwork] = useState<Network | null>(NETWORKS.solana);
-  const [targetNetwork, setTargetNetwork] = useState<Network | null>(NETWORKS.ethereum);
-  const [sourceToken, setSourceToken] = useState<Token | null>(SAMPLE_TOKENS[0]);
-  const [targetToken, setTargetToken] = useState<Token | null>(SAMPLE_TOKENS[2]);
+  const [sourceNetwork, setSourceNetwork] = useState<BridgeNetwork | null>(BRIDGE_NETWORKS.solana);
+  const [targetNetwork, setTargetNetwork] = useState<BridgeNetwork | null>(BRIDGE_NETWORKS.ethereum);
+  const [sourceToken, setSourceToken] = useState<BridgeToken | null>(BRIDGE_SAMPLE_TOKENS[0]);
+  const [targetToken, setTargetToken] = useState<BridgeToken | null>(BRIDGE_SAMPLE_TOKENS[2]);
   const [amount, setAmount] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<string>("bridge");
@@ -382,10 +291,10 @@ export function BridgeComponent() {
     setTargetNetwork(tempNetwork);
 
     // Find appropriate tokens for the swapped networks
-    const sourceTokensForNetwork = SAMPLE_TOKENS.filter(
+    const sourceTokensForNetwork = BRIDGE_SAMPLE_TOKENS.filter(
       (t) => t.network === targetNetwork?.chainId
     );
-    const targetTokensForNetwork = SAMPLE_TOKENS.filter(
+    const targetTokensForNetwork = BRIDGE_SAMPLE_TOKENS.filter(
       (t) => t.network === sourceNetwork?.chainId
     );
 
@@ -465,10 +374,10 @@ export function BridgeComponent() {
   };
 
   // Filter available tokens based on selected network
-  const sourceTokens = SAMPLE_TOKENS.filter(
+  const sourceTokens = BRIDGE_SAMPLE_TOKENS.filter(
     (token) => token.network === sourceNetwork?.chainId
   );
-  const targetTokens = SAMPLE_TOKENS.filter(
+  const targetTokens = BRIDGE_SAMPLE_TOKENS.filter(
     (token) => token.network === targetNetwork?.chainId
   );
 
@@ -490,11 +399,12 @@ export function BridgeComponent() {
               Transfer assets across blockchains
             </CardDescription>
           </div>
-          <Tabs
-            value={activeTab}
-            onValueChange={setActiveTab}
-            className="w-auto"
-          >
+        </div>
+      </CardHeader>
+
+      <CardContent className="pb-6">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <div className="flex justify-end mb-4">
             <TabsList className="bg-background/50 border border-[#9945FF]/20 p-1">
               <TabsTrigger
                 value="bridge"
@@ -509,12 +419,9 @@ export function BridgeComponent() {
                 History
               </TabsTrigger>
             </TabsList>
-          </Tabs>
-        </div>
-      </CardHeader>
-
-      <CardContent className="pb-6">
-        <TabsContent value="bridge" className="mt-0 space-y-4">
+          </div>
+          
+          <TabsContent value="bridge" className="mt-0 space-y-4">
           <div className="flex flex-col space-y-4">
             {/* From section */}
             <div className="flex flex-col space-y-3">
@@ -522,7 +429,7 @@ export function BridgeComponent() {
                 <NetworkSelector
                   selectedNetwork={sourceNetwork}
                   onNetworkChange={setSourceNetwork}
-                  networks={NETWORKS}
+                  networks={BRIDGE_NETWORKS}
                   label="From"
                 />
               </div>
@@ -567,7 +474,7 @@ export function BridgeComponent() {
 
                   {/* Preset amounts */}
                   <div className="flex justify-between gap-2 mt-2">
-                    {PRESET_AMOUNTS.map((preset) => (
+                    {BRIDGE_PRESET_AMOUNTS.map((preset) => (
                       <Button
                         key={preset}
                         type="button"
@@ -604,7 +511,7 @@ export function BridgeComponent() {
                 <NetworkSelector
                   selectedNetwork={targetNetwork}
                   onNetworkChange={setTargetNetwork}
-                  networks={NETWORKS}
+                  networks={BRIDGE_NETWORKS}
                   label="To"
                 />
               </div>
@@ -760,6 +667,7 @@ export function BridgeComponent() {
             )}
           </div>
         </TabsContent>
+        </Tabs>
       </CardContent>
 
       <CardFooter className="flex justify-between pt-0">

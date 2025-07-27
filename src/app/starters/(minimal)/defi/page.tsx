@@ -21,8 +21,6 @@ function DeFiContent() {
     );
 }
 
-export default function DeFiDemo() {
-    return (
-        <DeFiContent />
-    );
+export default function DeFiPage() {
+    return <DeFiContent />
 }

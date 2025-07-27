@@ -43,6 +43,78 @@
       ]
     },
     {
+      "name": "borrow",
+      "type": "registry:block",
+      "title": "Borrow Starter",
+      "description": "A borrow application with all brand components and code",
+      "registryDependencies": [
+        "https://ui.vibes.guide/r/brand-header.json",
+        "https://ui.vibes.guide/r/brand-sidebar.json",
+        "https://ui.vibes.guide/r/product-grid.json",
+        "https://ui.vibes.guide/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/app/starters/(minimal)/v0-layout.tsx",
+          "type": "registry:file",
+          "target": "app/layout.tsx"
+        },
+        {
+          "path": "src/app/starters/(minimal)/borrow/page.tsx",
+          "type": "registry:page",
+          "target": "app/page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bridge",
+      "type": "registry:block",
+      "title": "Bridge Starter",
+      "description": "A bridge application with all brand components and code",
+      "registryDependencies": [
+        "https://ui.vibes.guide/r/brand-header.json",
+        "https://ui.vibes.guide/r/brand-sidebar.json",
+        "https://ui.vibes.guide/r/product-grid.json",
+        "https://ui.vibes.guide/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/app/starters/(minimal)/v0-layout.tsx",
+          "type": "registry:file",
+          "target": "app/layout.tsx"
+        },
+        {
+          "path": "src/app/starters/(minimal)/bridge/page.tsx",
+          "type": "registry:page",
+          "target": "app/page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "defi",
+      "type": "registry:block",
+      "title": "Defi Starter",
+      "description": "A defi application with all brand components and code",
+      "registryDependencies": [
+        "https://ui.vibes.guide/r/brand-header.json",
+        "https://ui.vibes.guide/r/brand-sidebar.json",
+        "https://ui.vibes.guide/r/product-grid.json",
+        "https://ui.vibes.guide/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/app/starters/(minimal)/v0-layout.tsx",
+          "type": "registry:file",
+          "target": "app/layout.tsx"
+        },
+        {
+          "path": "src/app/starters/(minimal)/defi/page.tsx",
+          "type": "registry:page",
+          "target": "app/page.tsx"
+        }
+      ]
+    },
+    {
       "name": "blank",
       "type": "registry:block",
       "title": "Blank Starter",

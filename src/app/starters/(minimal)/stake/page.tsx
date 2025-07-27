@@ -20,6 +20,6 @@ function StakeContent() {
   );
 }
 
-export default function StakeDemo() {
+export default function StakePage() {
   return <StakeContent />;
 }

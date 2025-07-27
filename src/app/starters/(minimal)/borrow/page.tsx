@@ -25,7 +25,7 @@ function BorrowContent() {
   );
 }
 
-export default function BorrowDemo() {
+export default function BorrowPage() {
   return <BorrowContent />;
 }
 

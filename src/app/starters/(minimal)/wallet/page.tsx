@@ -68,7 +68,7 @@ function WalletContent() {
   );
 }
 
-export default function WalletDemo() {
+export default function WalletPage() {
   return (
     <SolanaWalletProvider>
       <WalletContent />

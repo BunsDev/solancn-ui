@@ -46,7 +46,7 @@ export default async function UIPrimitiveItemPage({
       <UIPrimitiveCard
         primitive={primitive}
         baseUrl={process.env.VERCEL_PROJECT_PRODUCTION_URL ?? ""}
-        prompt={getPrompt()}
+        prompt={await getPrompt()}
       />
     </div>
   );

@@ -20,6 +20,6 @@ function LendContent() {
   );
 }
 
-export default function LendDemo() {
+export default function LendPage() {
   return <LendContent />;
 }

@@ -31,6 +31,6 @@ function NFTContent() {
   );
 }
 
-export default function NFTDemo() {
+export default function NFTPage() {
   return <NFTContent />;
 }

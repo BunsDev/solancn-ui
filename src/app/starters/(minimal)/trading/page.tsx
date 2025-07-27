@@ -20,6 +20,6 @@ function TradingContent() {
   );
 }
 
-export default function TradingDemo() {
+export default function TradingPage() {
   return <TradingContent />;
 }

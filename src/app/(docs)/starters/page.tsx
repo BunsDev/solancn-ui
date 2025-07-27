@@ -15,19 +15,16 @@ const starters = [
     name: "dashboard",
     url: "/starters/dashboard",
   },
-  // √
   {
     title: "Borrow",
     name: "borrow",
     url: "/starters/borrow",
   },
-  // √
   {
     title: "Bridge",
     name: "bridge",
     url: "/starters/bridge",
   },
-  // √
   {
     title: "Defi",
     name: "defi",
@@ -41,7 +38,7 @@ const starters = [
   {
     title: "Lend",
     name: "lend",
-    url: "/starters/lend",
+    url: "lend",
   },
   {
     title: "NFT",

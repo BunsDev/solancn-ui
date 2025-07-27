@@ -22,7 +22,7 @@ function ReceiveContent() {
   );
 }
 
-export default function ReceiveDemo() {
+export default function ReceivePage() {
   return (
     <ReceiveContent />
   );

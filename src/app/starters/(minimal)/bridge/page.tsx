@@ -17,6 +17,6 @@ function BridgeContent() {
 }
 
 // Export the component directly
-export default function BridgeDemo() {
+export default function BridgePage() {
   return <BridgeContent />;
 }

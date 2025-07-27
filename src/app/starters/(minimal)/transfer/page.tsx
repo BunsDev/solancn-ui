@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { TransferComponent } from "@/components/transfer/transfer-component";
 
-export function TransferDemo() {
+export default function TransferPage() {
     const { connected } = useWallet();
     const [recipient, setRecipient] = useState<string>("");
     const [amount, setAmount] = useState<string>("");

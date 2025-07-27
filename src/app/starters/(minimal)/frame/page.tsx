@@ -21,8 +21,6 @@ function FrameContent() {
     );
 }
 
-export default function FrameDemo() {
-    return (
-        <FrameContent />
-    );
+export default function FramePage() {
+    return <FrameContent />
 }
