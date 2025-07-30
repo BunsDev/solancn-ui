@@ -221,7 +221,7 @@ export default function Loaders() {
 			<div className="max-w-full mx-auto p-4 sm:p-6 lg:p-8">
 				<header className="text-center mb-10">
 					<h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight">
-						Component Loaders
+						Loaders
 					</h1>
 					<p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
 						A collection of {loaders.length} pure CSS & SVG loaders for your

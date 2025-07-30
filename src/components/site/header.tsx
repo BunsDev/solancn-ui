@@ -8,160 +8,21 @@ import { Logo } from "@/assets/icons/logo";
 import { SearchModal } from "./search-modal";
 import { SidebarMobile } from "./sidebar-mobile";
 import { ThemeSwitcher } from "./theme";
-
-// Support Alert Banner Component
-// const SupportAlertBanner = () => {
-//   const [isVisible, setIsVisible] = useState(() => {
-//     // Check if user has previously dismissed the banner
-//     if (typeof window !== "undefined") {
-//       const dismissed = localStorage.getItem(
-//         "solancn-ui-support-banner-dismissed"
-//       );
-//       return !dismissed;
-//     }
-//     return true;
-//   });
-
-//   const handleClose = () => {
-//     setIsVisible(false);
-//     if (typeof window !== "undefined") {
-//       localStorage.setItem("solancn-ui-support-banner-dismissed", "true");
-//     }
-//   };
-
-//   if (!isVisible) return null;
-
-//   return (
-//     <div className="w-full bg-gradient-to-r from-rose-500 to-pink-600 text-white relative z-[9999]">
-//       <div className="mx-auto max-w-[1536px] px-4 md:px-6 py-2">
-//         <div className="flex items-center justify-between gap-4">
-//           <div className="flex items-center gap-2 text-sm">
-//             <Heart className="h-4 w-4 fill-current animate-pulse" />
-//             <span className="font-medium">
-//               Love This UI? Help It Grow and Reach More Developers Worldwide
-//             </span>
-//           </div>
-//           <div className="flex items-center gap-3">
-//             <Link
-//               href="/sponsor"
-//               className="flex items-center gap-1 px-3 py-1 bg-white/20 hover:bg-white/30 rounded-full text-xs font-medium transition-colors duration-200"
-//             >
-//               <Heart className="h-3 w-3" />
-//               Sponsor
-//               <ExternalLink className="h-3 w-3" />
-//             </Link>
-//             <button
-//               onClick={handleClose}
-//               className="p-1 hover:bg-white/20 rounded-full transition-colors duration-200"
-//               aria-label="Close banner"
-//             >
-//               <X className="h-4 w-4" />
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// GitHub Star Badge Component with Caching
-// const GitHubStarBadge = ({ repo }: { repo: string }) => {
-// 	// const [stars, setStars] = useState<number | null>(null);
-// 	// const [loading, setLoading] = useState(true);
-
-// 	// useEffect(() => {
-// 	// 	const fetchStars = async () => {
-// 	// 		try {
-// 	// 			const now = Date.now();
-// 	// 			const cacheKey = `github-stars-${repo}`;
-// 	// 			const cacheTimeKey = `github-stars-time-${repo}`;
-
-// 	// 			// Check cache first (cache for 1 hour = 3600000ms)
-// 	// 			if (typeof window !== "undefined") {
-// 	// 				const cached = localStorage.getItem(cacheKey);
-// 	// 				const cacheTime = localStorage.getItem(cacheTimeKey);
-
-// 	// 				if (cached && cacheTime && now - parseInt(cacheTime) < 3600000) {
-// 	// 					setStars(parseInt(cached));
-// 	// 					setLoading(false);
-// 	// 					return;
-// 	// 				}
-// 	// 			}
-
-// 	// 			console.log("Fetching stars for repo:", repo);
-// 	// 			const response = await fetch(`https://api.github.com/repos/${repo}`);
-// 	// 			console.log("Response status:", response.status);
-
-// 	// 			if (response.ok) {
-// 	// 				const data = await response.json();
-// 	// 				console.log("Star count:", data.stargazers_count);
-// 	// 				setStars(data.stargazers_count);
-
-// 	// 				// Cache the result
-// 	// 				if (typeof window !== "undefined") {
-// 	// 					localStorage.setItem(cacheKey, data.stargazers_count.toString());
-// 	// 					localStorage.setItem(cacheTimeKey, now.toString());
-// 	// 				}
-// 	// 			} else {
-// 	// 				console.error("Failed to fetch stars, status:", response.status);
-// 	// 				setStars(0);
-// 	// 			}
-// 	// 		} catch (error) {
-// 	// 			console.error("Failed to fetch GitHub stars:", error);
-// 	// 			setStars(0);
-// 	// 		} finally {
-// 	// 			setLoading(false);
-// 	// 		}
-// 	// 	};
-
-// 	// 	fetchStars();
-// 	// }, [repo]);
-
-// 	const formatStars = (count: number) => {
-// 		if (count >= 1000) {
-// 			return `${(count / 1000).toFixed(1)}k`;
-// 		}
-// 		return count.toString();
-// 	};
-
-// 	// if (loading) {
-// 	// 	return (
-// 	// 		<Link
-// 	// 			href="https://github.com/BunsDev/solancn-ui"
-// 	// 			target="_blank"
-// 	// 			rel="noopener noreferrer"
-// 	// 			className="flex items-center gap-2 px-3 h-9 rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors duration-200"
-// 	// 			aria-label="GitHub"
-// 	// 		>
-// 	// 			<span className="text-xs font-medium text-zinc-600 dark:text-zinc-400 animate-pulse">
-// 	// 				...
-// 	// 			</span>
-// 	// 			<Icon icon="radix-icons:github-logo" className="h-5 w-5 fill-zinc-950 dark:fill-zinc-50" />
-// 	// 		</Link>
-// 	// 	);
-// 	// }
-
-// 	return (
-// 		<Link
-// 			href="https://github.com/BunsDev/solancn-ui"
-// 			target="_blank"
-// 			rel="noopener noreferrer"
-// 			className="flex items-center gap-2 px-3 h-9 rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors duration-200"
-// 			aria-label="GitHub"
-// 		>
-// 			{/* <span className="text-xs font-medium text-zinc-600 dark:text-zinc-400">
-// 				{stars !== null ? formatStars(stars) : "N/A"}
-// 			</span> */}
-// 			<Icon icon="radix-icons:github-logo" className="h-5 w-5 fill-zinc-950 dark:fill-zinc-50" />
-// 		</Link>
-// 	);
-// };
+import { Button } from "../ui/button";
+import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
 	const [sidebarOpen, setSidebarOpen] = useState(false);
 	const [searchOpen, setSearchOpen] = useState(false);
+	const pathname = usePathname();
 
 	const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+	const isComponents = pathname.includes("components");
+	const isDocs = pathname.includes("docs");
+	const isTools = pathname.includes("tools");
+	// const isHome = pathname === "/";
+
 
 	// Keyboard shortcut for search (Cmd+K on Mac, Ctrl+K on Windows/Linux)
 	useEffect(() => {
@@ -178,7 +39,6 @@ const Header = () => {
 
 	return (
 		<>
-			{/* <SupportAlertBanner /> */}
 			<AnimatePresence>
 				{sidebarOpen && (
 					<motion.div
@@ -195,7 +55,7 @@ const Header = () => {
 				initial={{ x: "-100%" }}
 				animate={{ x: sidebarOpen ? "0%" : "-100%" }}
 				transition={{ duration: 0.3, ease: "easeInOut" }}
-				className="fixed top-0 left-0 z-40 h-full w-4/5 bg-zinc-50 dark:bg-zinc-950 md:hidden"
+				className="fixed top-0 left-0 z-40 h-full w-4/5 sm:w-1/2 md:hidden bg-zinc-50 dark:bg-zinc-950"
 			>
 				<div className="w-full px-6 py-4 flex items-center justify-between border-b border-gray-200 dark:border-zinc-800">
 					<Link href="/" className="flex items-center">
@@ -204,12 +64,13 @@ const Header = () => {
 						</div>
 					</Link>
 
-					<button
+					<Button
 						onClick={() => setSidebarOpen(false)}
+						variant="ghost"
 						className="text-zinc-900 dark:text-zinc-100"
 					>
 						<Icon icon="tabler:x" className="size-5" />
-					</button>
+					</Button>
 				</div>
 				<SidebarMobile onClose={() => setSidebarOpen(false)} />
 			</motion.div>
@@ -245,20 +106,60 @@ const Header = () => {
 						</div>
 						<nav className=" hidden md:flex items-center gap-6 text-base font-medium text-zinc-800 dark:text-zinc-200">
 							<Link
-								className="flex items-center gap-2 hover:text-zinc-900 dark:hover:text-zinc-50"
+								className="flex items-center gap-2 "
 								href="/docs"
 							>
-								<Icon icon="tabler:book" className="h-6 w-6" />
-								Docs
+								<Button
+									variant="default"
+									className={cn(
+										"text-zinc-900 dark:text-zinc-100 border-2 bg-zinc-200 dark:bg-zinc-950 hover:bg-zinc-200 dark:hover:bg-zinc-800",
+										isDocs && "dark:border-purple-600",
+										!isDocs && "dark:border-zinc-700 hover:border-purple-600",
+									)}
+								>
+									<Icon icon="tabler:book" className="h-6 w-6" />
+									Docs
+								</Button>
 							</Link>
 							<Link
-								className="flex items-center gap-2 hover:text-zinc-900 dark:hover:text-zinc-50"
-								href="https://ai.solancn.com/"
-								target="_blank"
-								rel="noopener noreferrer"
+								className={cn(
+									"flex items-center gap-2 hover:text-zinc-900 dark:hover:text-zinc-50",
+								)
+								}
+								href="/components"
 							>
-								<Icon icon="tabler:components" className="h-6 w-6" />
-								Components
+								<Button
+									variant="default"
+									className={cn(
+										"text-zinc-900 dark:text-zinc-100 border-2 bg-zinc-200 dark:bg-zinc-950 hover:bg-zinc-200 dark:hover:bg-zinc-800",
+										isComponents && "dark:border-purple-600",
+										!isComponents && "dark:border-zinc-700 hover:border-purple-600",
+									)
+									}
+								>
+									<Icon icon="tabler:components" className="h-6 w-6" />
+									Components
+								</Button>
+							</Link>
+							<Link
+								className={cn(
+									"flex items-center gap-2 hover:text-zinc-900 dark:hover:text-zinc-50",
+								)
+								}
+								href="/tools"
+							>
+								<Button
+									variant="default"
+									className={cn(
+										"text-zinc-900 dark:text-zinc-100 border-2 bg-zinc-200 dark:bg-zinc-950 hover:bg-zinc-200 dark:hover:bg-zinc-800",
+										isTools && "dark:border-purple-600",
+										!isTools && "dark:border-zinc-700 hover:border-purple-600",
+									)
+									}
+								>
+									<Icon icon="tabler:components" className="h-6 w-6" />
+									Tools
+								</Button>
 							</Link>
 						</nav>
 					</div>
@@ -304,7 +205,7 @@ const Header = () => {
 							aria-label="X"
 						>
 							<Icon
-								icon="meteor-icons:x-alt"
+								icon="fa7-brands:x-twitter"
 								className="h-6 w-6 fill-zinc-950 dark:fill-zinc-50"
 							/>
 						</Link>
@@ -316,10 +217,11 @@ const Header = () => {
 							aria-label="GitHub"
 						>
 							<Icon
-								icon="radix-icons:github-logo"
+								icon="fa7-brands:github"
 								className="h-6 w-6 fill-zinc-950 dark:fill-zinc-50"
 							/>
 						</Link>
+
 						{/* <GitHubStarBadge repo="BunsDev/solancn-ui" /> */}
 						<ThemeSwitcher />
 					</nav>

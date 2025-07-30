@@ -19,7 +19,7 @@ export function getLink(item: RegistryItem): string {
 		item.type === "registry:block"
 			? "blocks"
 			: item.type === "registry:component"
-				? "docs"
+				? "components"
 				: item.type === "registry:ui"
 					? "ui"
 					: "";

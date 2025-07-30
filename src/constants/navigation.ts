@@ -19,20 +19,19 @@ export const navigation: NavigationItem[] = [
 	{
 		label: "Design Tools",
 		children: [
-			{ label: "Component Loaders", href: "/components/loaders" },
-			{ label: "Pattern Library", href: "/components/pattern" },
-			{ label: "Color Palette", href: "/components/colorpalette" },
-			{ label: "Gradient Generator", href: "/components/gradientgen" },
-			{ label: "Icon Finder", href: "/components/svg-icons" },
+			{ label: "Loaders", href: "/components/loaders" },
+			{ label: "Patterns", href: "/components/pattern" },
+			{ label: "Palettes", href: "/components/colorpalette" },
+			{ label: "Gradients", href: "/components/gradientgen" },
+			{ label: "Icons", href: "/components/svg-icons" },
 		],
 	},
 	{
 		label: "Components",
 		children: [
 			{ label: "Marquee", href: "/components/marquee" },
-			{ label: "Code Profile", href: "/components/codeprofile" },
-			{ label: "Portfolio", href: "/components/portfolio" },
-			{ label: "Orbiting Circles", href: "/components/integrations" },
+			{ label: "Portfolio", href: "/components/portfolio" }, 			// √
+			{ label: "Integrations", href: "/components/integrations" },
 			{ label: "Network", href: "/components/network" },
 			{ label: "Video Text", href: "/components/video-text" },
 			{ label: "Image Swiper", href: "/components/imageswiper" },

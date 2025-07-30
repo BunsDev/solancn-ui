@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { FaDiscord, FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export const Footer = () => {
 	return (
@@ -33,15 +33,6 @@ export const Footer = () => {
 						className="hover:text-blue-600 dark:hover:text-blue-400"
 					>
 						<FaLinkedin />
-					</a>
-					<a
-						href="https://discord.gg/whEJ7K8de"
-						target="_blank"
-						rel="noopener noreferrer"
-						aria-label="Discord"
-						className="hover:text-indigo-600 dark:hover:text-indigo-400"
-					>
-						<FaDiscord />
 					</a>
 				</div>
 

@@ -87,13 +87,6 @@ export const components: ComponentType[] = [
     dependencies: [],
   },
   {
-    name: "codeprofile",
-    title: "Codeprofile",
-    description: "A minimalistic codeprofile component designed with React and Tailwind CSS.",
-    path: "../app/components/codeprofile",
-    dependencies: [],
-  },
-  {
     name: "colorpalette",
     title: "Colorpalette",
     description: "A minimalistic colorpalette component designed with React and Tailwind CSS.",
