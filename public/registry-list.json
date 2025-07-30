@@ -1,108 +1,352 @@
 {
-	"lastUpdated": "2025-08-27T07:10:12.122Z",
-	"totalFiles": 18,
-	"files": [
-		{
-			"name": "accordion",
-			"filename": "accordion.json",
-			"path": "/registry/accordion.json",
-			"size": 3875
-		},
-		{
-			"name": "button",
-			"filename": "button.json",
-			"path": "/registry/button.json",
-			"size": 6487
-		},
-		{
-			"name": "tabs-classic",
-			"filename": "tabs-classic.json",
-			"path": "/registry/tabs-classic.json",
-			"size": 5689
-		},
-		{
-			"name": "tabs-fancy",
-			"filename": "tabs-fancy.json",
-			"path": "/registry/tabs-fancy.json",
-			"size": 6530
-		},
-		{
-			"name": "tabs",
-			"filename": "tabs.json",
-			"path": "/registry/tabs.json",
-			"size": 3691
-		},
-		{
-			"name": "card",
-			"filename": "card.json",
-			"path": "/registry/card.json",
-			"size": 3691
-		},
-		{
-			"name": "login",
-			"filename": "login.json",
-			"path": "/registry/login.json",
-			"size": 3691
-		},
-		{
-			"name": "twostep",
-			"filename": "twostep.json",
-			"path": "/registry/twostep.json",
-			"size": 3691
-		},
-		{
-			"name": "search",
-			"filename": "search.json",
-			"path": "/registry/search.json",
-			"size": 3691
-		},
-		{
-			"name": "prompt",
-			"filename": "prompt.json",
-			"path": "/registry/prompt.json",
-			"size": 3691
-		},
-		{
-			"name": "password",
-			"filename": "password.json",
-			"path": "/registry/password.json",
-			"size": 3691
-		},
-		{
-			"name": "strongPassword",
-			"filename": "strongPassword.json",
-			"path": "/registry/strongPassword.json",
-			"size": 3691
-		},
-		{
-			"name": "fuzzy",
-			"filename": "fuzzy.json",
-			"path": "/registry/fuzzy.json",
-			"size": 3691
-		},
-		{
-			"name": "dock",
-			"filename": "dock.json",
-			"path": "/registry/dock.json",
-			"size": 3691
-		},
-		{
-			"name": "amazongift",
-			"filename": "amazongift.json",
-			"path": "/registry/amazongift.json",
-			"size": 3691
-		},
-		{
-			"name": "flipwords",
-			"filename": "flipwords.json",
-			"path": "/registry/flipwords.json",
-			"size": 3691
-		},
-		{
-			"name": "textreveal",
-			"filename": "textreveal.json",
-			"path": "/registry/textreveal.json",
-			"size": 3691
-		}
-	]
+  "_components": {
+    "name": "_components",
+    "description": "A minimalistic _components component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "accordion": {
+    "name": "accordion",
+    "description": "A minimalistic accordion component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "accordion-last": {
+    "name": "accordion-last",
+    "description": "A minimalistic accordion component with last item styling designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "amazongift": {
+    "name": "amazongift",
+    "description": "A minimalistic Amazon gift card component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "animatedbadge": {
+    "name": "animatedbadge",
+    "description": "A minimalistic animatedbadge component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "aurora": {
+    "name": "aurora",
+    "description": "A minimalistic aurora component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "badge": {
+    "name": "badge",
+    "description": "A minimalistic badge component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "bento-grid": {
+    "name": "bento-grid",
+    "description": "A minimalistic bento grid component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "button": {
+    "name": "button",
+    "description": "A minimalistic button component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "card": {
+    "name": "card",
+    "description": "A minimalistic card component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "carousel": {
+    "name": "carousel",
+    "description": "A minimalistic carousel component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "codeprofile": {
+    "name": "codeprofile",
+    "description": "A minimalistic codeprofile component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "colorpalette": {
+    "name": "colorpalette",
+    "description": "A minimalistic colorpalette component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "copybutton": {
+    "name": "copybutton",
+    "description": "A minimalistic copybutton component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "decrypting": {
+    "name": "decrypting",
+    "description": "A minimalistic decrypting component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "divider": {
+    "name": "divider",
+    "description": "A minimalistic divider component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "dock": {
+    "name": "dock",
+    "description": "A minimalistic dock component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "doctabs": {
+    "name": "doctabs",
+    "description": "A minimalistic doctabs component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "drawer": {
+    "name": "drawer",
+    "description": "A minimalistic drawer component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "dropdown": {
+    "name": "dropdown",
+    "description": "A minimalistic dropdown component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "falling-glitch": {
+    "name": "falling-glitch",
+    "description": "A minimalistic falling glitch component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "filetree": {
+    "name": "filetree",
+    "description": "A minimalistic filetree component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "flipwords": {
+    "name": "flipwords",
+    "description": "A minimalistic flip words animation component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "forgotpassword": {
+    "name": "forgotpassword",
+    "description": "A minimalistic forgotpassword component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "fuzzy": {
+    "name": "fuzzy",
+    "description": "A minimalistic fuzzy search component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "glitchvault": {
+    "name": "glitchvault",
+    "description": "A minimalistic glitchvault component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "glow-button": {
+    "name": "glow-button",
+    "description": "A minimalistic glow button component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "gradient": {
+    "name": "gradient",
+    "description": "A minimalistic gradient component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "gradient-accordion": {
+    "name": "gradient-accordion",
+    "description": "A minimalistic gradient accordion component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "gradientgen": {
+    "name": "gradientgen",
+    "description": "A minimalistic gradientgen component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "hero": {
+    "name": "hero",
+    "description": "A minimalistic hero component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "imageswiper": {
+    "name": "imageswiper",
+    "description": "A minimalistic imageswiper component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "integrations": {
+    "name": "integrations",
+    "description": "A minimalistic integrations component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "letter-glitch": {
+    "name": "letter-glitch",
+    "description": "A minimalistic letter glitch component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "loaders": {
+    "name": "loaders",
+    "description": "A minimalistic loaders component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "login": {
+    "name": "login",
+    "description": "A minimalistic login component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "magic": {
+    "name": "magic",
+    "description": "A minimalistic magic component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "marquee": {
+    "name": "marquee",
+    "description": "A minimalistic marquee component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "masonary": {
+    "name": "masonary",
+    "description": "A minimalistic masonary component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "modern-button": {
+    "name": "modern-button",
+    "description": "A minimalistic modern button component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "moving-grid": {
+    "name": "moving-grid",
+    "description": "A minimalistic moving grid component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "multiselector": {
+    "name": "multiselector",
+    "description": "A minimalistic multiselector component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "navbar": {
+    "name": "navbar",
+    "description": "A minimalistic navbar component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "network": {
+    "name": "network",
+    "description": "A minimalistic network component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "nftmarketplace": {
+    "name": "nftmarketplace",
+    "description": "A minimalistic nftmarketplace component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "noise": {
+    "name": "noise",
+    "description": "A minimalistic noise component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "password": {
+    "name": "password",
+    "description": "A minimalistic password input component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "pattern": {
+    "name": "pattern",
+    "description": "A collection of beautiful background patterns designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "portfolio": {
+    "name": "portfolio",
+    "description": "A minimalistic portfolio component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "pricing": {
+    "name": "pricing",
+    "description": "A minimalistic pricing component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "prompt": {
+    "name": "prompt",
+    "description": "A minimalistic prompt component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "resize-handle": {
+    "name": "resize-handle",
+    "description": "A minimalistic resize handle component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "search": {
+    "name": "search",
+    "description": "A minimalistic search component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "shimmer": {
+    "name": "shimmer",
+    "description": "A minimalistic shimmer component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "signin": {
+    "name": "signin",
+    "description": "A minimalistic signin component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "sparklestext": {
+    "name": "sparklestext",
+    "description": "A minimalistic sparklestext component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "spotlightcard": {
+    "name": "spotlightcard",
+    "description": "A minimalistic spotlightcard component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "svg-icons": {
+    "name": "svg-icons",
+    "description": "A minimalistic svg icons component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "tabs": {
+    "name": "tabs",
+    "description": "A minimalistic tab component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "tabs-classic": {
+    "name": "tabs-classic",
+    "description": "A minimalistic tabs classic component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "tabs-fancy": {
+    "name": "tabs-fancy",
+    "description": "A minimalistic tabs fancy component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "teammember": {
+    "name": "teammember",
+    "description": "A minimalistic teammember component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "testimonial": {
+    "name": "testimonial",
+    "description": "A minimalistic testimonial component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "text": {
+    "name": "text",
+    "description": "A minimalistic text component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "textreveal": {
+    "name": "textreveal",
+    "description": "A minimalistic textreveal component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "ticker": {
+    "name": "ticker",
+    "description": "A minimalistic ticker component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "toast": {
+    "name": "toast",
+    "description": "A minimalistic toast component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "twostep": {
+    "name": "twostep",
+    "description": "A minimalistic two-step verification component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "video-text": {
+    "name": "video-text",
+    "description": "A minimalistic video text component designed with React and Tailwind CSS.",
+    "component": null
+  },
+  "waitlist": {
+    "name": "waitlist",
+    "description": "A minimalistic waitlist component designed with React and Tailwind CSS.",
+    "component": null
+  }
 }

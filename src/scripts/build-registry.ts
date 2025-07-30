@@ -3,10 +3,11 @@ import path from "path";
 import { components } from "./components";
 import type { RegistryItemSchema, RegistryType } from "./types";
 
-const registryPath = path.join(__dirname, "../../public/registry");
+const registryDirPath = path.join(__dirname, "../../public/registry");
+const registryListPath = path.join(__dirname, "../../public/registry-list.json");
 
-if (!fs.existsSync(registryPath)) {
-	fs.mkdirSync(registryPath);
+if (!fs.existsSync(registryDirPath)) {
+	fs.mkdirSync(registryDirPath);
 }
 
 console.log(`Building component registry...`);
@@ -148,11 +149,28 @@ for (const component of components) {
 	} satisfies RegistryItemSchema;
 
 	fs.writeFileSync(
-		path.join(registryPath, `${component.name}.json`),
+		path.join(registryDirPath, `${component.name}.json`),
 		JSON.stringify(componentSchema, null, 2),
 	);
 
 	console.log(`✅ Built registry for component: ${component.name}`);
 }
+
+// Create a registry list with all components
+const registryList = components.reduce((acc, component) => {
+	if (!component.name) return acc;
+	acc[component.name] = {
+		name: component.name,
+		description: component.description || "",
+		component: null
+	};
+	return acc;
+}, {} as Record<string, any>);
+
+// Write the registry list to a JSON file
+fs.writeFileSync(
+	registryListPath,
+	JSON.stringify(registryList, null, 2)
+);
 
 console.log("🎉 Component Registry built successfully!");
