@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
 	/* config options here */
 	// Temporarily disable static export to allow builds to complete during development
 	// output: "export", // Force static export - no server functions
-	// trailingSlash: true,
+	trailingSlash: false,
 	reactStrictMode: true,
 	pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
 
