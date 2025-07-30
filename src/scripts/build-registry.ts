@@ -3,6 +3,13 @@ import path from "path";
 import { components } from "./components";
 import type { RegistryItemSchema, RegistryType } from "./types";
 
+// Local interface for registry list items
+interface RegistryListItem {
+  name: string;
+  description: string;
+  component: any;
+}
+
 const registryDirPath = path.join(__dirname, "../../public/registry");
 const registryListPath = path.join(__dirname, "../../public/registry-list.json");
 
@@ -160,12 +167,12 @@ for (const component of components) {
 const registryList = components.reduce((acc, component) => {
 	if (!component.name) return acc;
 	acc[component.name] = {
-		name: component.name,
-		description: component.description || "",
-		component: null
-	};
+		name: component?.name as string || "",
+		description: component?.description || "",
+		component: component?.type ?? "registry:ui" as any,
+	} as RegistryListItem;
 	return acc;
-}, {} as Record<string, ComponentEntry>);
+}, {} as Record<string, RegistryListItem>);
 
 // Write the registry list to a JSON file
 fs.writeFileSync(

@@ -19,7 +19,7 @@ import {
   stylesSchema,
 } from "./schema"
 
-const REGISTRY_URL = process.env.REGISTRY_URL ?? "https://ui.solancn.com/registry"
+const REGISTRY_URL = process.env.REGISTRY_URL ?? "https://ui.shadcn.com/r"
 
 const agent = process.env.https_proxy
   ? new HttpsProxyAgent(process.env.https_proxy)
