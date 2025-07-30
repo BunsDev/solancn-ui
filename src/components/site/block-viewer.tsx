@@ -24,8 +24,8 @@ import { trackEvent } from "@/lib/events"
 import { createFileTreeForRegistryItemFiles, FileTree } from "@/lib/registry"
 import { cn } from "@/lib/utils"
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
-import { getIconForLanguageExtension } from "@/components/solancn/icons"
-import { OpenInV0Button } from "@/components/buttons/v0-button"
+// import {getIconForLanguageExtension} from "@/components/solancn/icons"
+import { V0Button } from "@/components/buttons/v0-button"
 import { Button } from "@/components/ui/button"
 import {
   Collapsible,
@@ -216,7 +216,7 @@ function BlockViewerToolbar() {
           <span>npx shadcn add {item.name}</span>
         </Button>
         <Separator orientation="vertical" className="mx-1 !h-4" />
-        <OpenInV0Button name={item.name} />
+        <V0Button name={item.name} />
       </div>
     </div>
   )
@@ -331,7 +331,7 @@ function BlockViewerCode() {
           className="text-code-foreground [&_svg]:text-code-foreground flex h-12 shrink-0 items-center gap-2 border-b px-4 py-2 [&_svg]:size-4 [&_svg]:opacity-70"
           data-language={language}
         >
-          {getIconForLanguageExtension(language)}
+          {/* {getIconForLanguageExtension(language)} */}
           {file.target}
           <div className="ml-auto flex items-center gap-2">
             <BlockCopyCodeButton />

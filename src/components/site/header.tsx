@@ -1,6 +1,5 @@
 "use client";
 import { Icon } from "@iconify/react";
-import { X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";

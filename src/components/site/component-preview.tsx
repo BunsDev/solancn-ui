@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Image from "next/image"
+import { motion } from "framer-motion"
 
 import { cn } from "@/lib/utils"
 import { useConfig } from "@/hooks/use-config"
@@ -17,7 +18,7 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 import { styles } from "@/components/solancn/registry/registry-styles"
-import { Index } from "solancn/registry"
+import { Index } from "@/lib/registry"
 
 interface CodeBlockProps {
   "data-rehype-pretty-code-fragment": string
@@ -37,6 +38,9 @@ interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
   description?: string
   hideCode?: boolean
   type?: "block" | "component" | "example"
+  showAnimations?: boolean
+  controls?: React.ReactNode
+  aspectRatio?: string
 }
 
 export function ComponentPreview({
@@ -49,7 +53,9 @@ export function ComponentPreview({
   align = "center",
   description,
   hideCode = false,
-  ...props
+  showAnimations = false,
+  controls,
+  aspectRatio = "4/3",
 }: ComponentPreviewProps) {
   const [config] = useConfig()
   const index = styles.findIndex((style) => style.name === config.style)
@@ -58,22 +64,41 @@ export function ComponentPreview({
   const Code = Codes[index]
 
   const Preview = React.useMemo(() => {
-    const Component = Index[config.style][name]?.component
+    const Component = Index[config.style]?.[name]?.component
 
     if (!Component) {
       return (
-        <p className="text-sm text-muted-foreground">
-          Component{" "}
-          <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">
-            {name}
-          </code>{" "}
-          not found in registry.
-        </p>
+        <div className="flex flex-col items-center justify-center gap-2 p-4 text-center">
+          <Icons.warning className="h-8 w-8 text-amber-500" />
+          <p className="text-sm text-muted-foreground">
+            Component{" "}
+            <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">
+              {name}
+            </code>{" "}
+            not found in registry.
+          </p>
+          <p className="text-xs text-muted-foreground">
+            Did you add it to the {config.style} registry?
+          </p>
+        </div>
       )
     }
 
-    return <Component />
-  }, [name, config.style])
+    const PreviewComponent = () => <Component />
+    
+    return showAnimations ? (
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="w-full"
+      >
+        <PreviewComponent />
+      </motion.div>
+    ) : (
+      <PreviewComponent />
+    )
+  }, [name, config.style, showAnimations])
 
   const codeString = React.useMemo(() => {
     const codeElement = Code as React.ReactElement<CodeBlockProps> | undefined;
@@ -90,7 +115,8 @@ export function ComponentPreview({
 
   if (type === "block") {
     return (
-      <div className="relative aspect-[4/2.5] w-full overflow-hidden rounded-md border">
+      <div className={cn(`aspect-[${aspectRatio}] w-full overflow-hidden rounded-md border`, className)}
+      >
         <Image
           src={`/registry/styles/${config.style}/${name}-light.png`}
           alt={name || "Component preview"}
@@ -118,7 +144,6 @@ export function ComponentPreview({
   return (
     <div
       className={cn("group relative my-4 flex flex-col space-y-2", className)}
-      {...props}
     >
       <Tabs defaultValue="preview" className="relative mr-auto w-full">
         <div className="flex items-center justify-between pb-3">
@@ -152,15 +177,19 @@ export function ComponentPreview({
             </div>
           </div>
           <ThemeWrapper defaultTheme="zinc">
+            {controls && (
+              <div className="border-t bg-muted/50 px-4 py-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  {controls}
+                </div>
+              </div>
+            )}
             <div
               className={cn(
                 "preview flex min-h-[350px] w-full justify-center p-10",
                 {
-                  // @ts-ignore
                   "items-center": align === "center",
-                  // @ts-ignore
                   "items-start": align === "start",
-                  // @ts-ignore
                   "items-end": align === "end",
                 }
               )}
@@ -181,7 +210,11 @@ export function ComponentPreview({
         <TabsContent value="code">
           <div className="flex flex-col space-y-4">
             <div className="w-full rounded-md [&_pre]:my-0 [&_pre]:max-h-[350px] [&_pre]:overflow-auto">
-              {Code}
+              {Code || (
+                <div className="flex h-[350px] w-full items-center justify-center text-sm text-muted-foreground">
+                  <p>No code example available for this component.</p>
+                </div>
+              )}
             </div>
           </div>
         </TabsContent>

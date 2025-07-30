@@ -12,7 +12,6 @@ interface ComponentSourceProps extends React.HTMLAttributes<HTMLDivElement> {
 export function ComponentSource({
   children,
   className,
-  ...props
 }: ComponentSourceProps) {
   return (
     <CodeBlockWrapper

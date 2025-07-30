@@ -1,268 +1,240 @@
-import fs from "fs"
-import { tmpdir } from "os"
 import path from "path"
-import { Index } from "solancn/registry"
-import { registryItemFileSchema, registryItemSchema } from "solancn/registry"
 import { Project, ScriptKind, SourceFile, SyntaxKind } from "ts-morph"
 import { z } from "zod"
 
 import { Style } from "@/components/solancn/registry/registry-styles"
+import { ComponentEntry, Registry, StyleRegistry } from "./registry-types"
+
+// Import the registry index
+import * as DefaultRegistry from "./registry/default"
+import * as NewYorkRegistry from "./registry/new-york"
+
+// Process registry components to ensure they match ComponentEntry type
+function processRegistry(registry: any): Registry {
+  const processed: Registry = {}
+
+  // Process each exported component
+  Object.entries(registry).forEach(([name, component]: [string, any]) => {
+    if (component && typeof component === 'object' && component.component) {
+      processed[name] = {
+        component: component.component,
+        type: component.type || 'component',
+        files: component.files || [],
+        dependencies: component.dependencies || [],
+      }
+    }
+  })
+
+  return processed
+}
+
+// Create a unified registry index with properly typed components
+export const Index: StyleRegistry = {
+  "default": processRegistry(DefaultRegistry),
+  "new-york": processRegistry(NewYorkRegistry)
+}
+
+// Registry schema definitions
+export const registryItemFileSchema = z.object({
+  path: z.string(),
+  type: z.enum([
+    "registry:component",
+    "registry:ui",
+    "registry:example",
+    "registry:block",
+    "registry:hook",
+    "registry:lib",
+    "registry:page"
+  ]),
+  target: z.string().optional(),
+  content: z.string().optional(),
+})
+
+export const registryItemSchema = z.object({
+  name: z.string(),
+  description: z.string().optional(),
+  component: z.any(),
+  files: z.array(registryItemFileSchema),
+  dependencies: z.array(z.string()).optional(),
+  type: z.enum(["components", "blocks"]).optional(),
+  meta: z.any().optional(),
+})
 
 export const DEFAULT_REGISTRY_STYLE: Style["name"] = "new-york"
 
-const memoizedIndex: typeof Index = Object.fromEntries(
-  Object.entries(Index || {}).map(([style, items]) => [style, { ...(items as object) }])
+// Create a memoized version of the registry index for better performance
+const memoizedIndex: StyleRegistry = Object.fromEntries(
+  Object.entries(Index || {}).map(([style, items]) => [style, { ...items }])
 )
 
-export function getRegistryComponent(
-  name: string,
-  style: Style["name"] = DEFAULT_REGISTRY_STYLE
-): unknown {
-  return memoizedIndex[style]?.[name]?.component
+/**
+ * Get a component from the registry by name and style
+ */
+export function getRegistryEntry(name: string, style: Style["name"]): ComponentEntry | null {
+  return Index[style]?.[name] ?? null
 }
 
+/**
+ * Get detailed information about a registry item by name and style
+ */
 export async function getRegistryItem(
   name: string,
   style: Style["name"] = DEFAULT_REGISTRY_STYLE
 ): Promise<z.infer<typeof registryItemSchema> | null> {
-  const item = memoizedIndex[style][name]
+  const item = memoizedIndex[style]?.[name]
 
   if (!item) {
     return null
   }
 
-  // Convert all file paths to object.
-  // TODO: remove when we migrate to new registry.
-  item.files = item.files.map((file: unknown) =>
-    typeof file === "string" ? { path: file } : file
-  )
+  // Create files array from item files or empty array if not present
+  const files = item.files ? (Array.isArray(item.files) ?
+    item.files.map((file) => typeof file === "string" ?
+      { path: file, type: "registry:component" as const } :
+      { ...file, type: file.type || "registry:component" as const }) :
+    []) : []
 
-  // Fail early before doing expensive file operations.
-  const result = registryItemSchema.safeParse(item)
-  if (!result.success) {
-    return null
-  }
-
-  let files: z.infer<typeof registryItemSchema>["files"] = []
-  for (const file of item.files) {
-    const content = await getFileContent(file)
-    const relativePath = path.relative(process.cwd(), file.path)
-
-    files.push({
-      ...(file as object),
-      path: relativePath,
-      content,
-    })
-  }
-
-  // Get meta.
-  // Assume the first file is the main file.
-  // const meta = await getFileMeta(files[0].path)
-
-  // Fix file paths.
-  files = fixFilePaths(files)
-
-  const parsed = registryItemSchema.safeParse({
-    ...result.data,
+  // Validate the item structure
+  const result = registryItemSchema.safeParse({
+    name,
+    component: item.component,
     files,
-    // meta,
+    dependencies: item.dependencies || [],
+    type: item.type || "component"
   })
 
-  if (!parsed.success) {
-    console.error(parsed.error.message)
+  if (!result.success) {
+    console.error("Registry item validation failed:", result.error.message)
     return null
   }
 
-  return parsed.data
+  return result.data
 }
 
-async function getFileContent(
-  file: z.infer<typeof registryItemFileSchema>
-): Promise<string> {
-  const raw = await fs.readFile(file.path, "utf-8")
-
-  const project = new Project({
-    compilerOptions: {},
-  })
-
-  const tempFile = await createTempSourceFile(file.path)
-  const sourceFile = project.createSourceFile(tempFile, raw, {
-    scriptKind: ScriptKind.TSX,
-  })
-
-  // Remove meta variables.
-  removeVariable(sourceFile, "iframeHeight")
-  removeVariable(sourceFile, "containerClassName")
-  removeVariable(sourceFile, "description")
-
-  let code = sourceFile.getFullText()
-
-  // Some registry items uses default export.
-  // We want to use named export instead.
-  // TODO: do we really need this? - @shadcn.
-  if (file.type !== "registry:page") {
-    code = code.replaceAll("export default", "export")
-  }
-
-  // Fix imports.
-  code = fixImport(code)
-
-  return code
-}
-
-async function getFileMeta(filePath: string): Promise<unknown> {
-  const raw = await fs.readFile(filePath, "utf-8")
-
-  const project = new Project({
-    compilerOptions: {},
-  })
-
-  const tempFile = await createTempSourceFile(filePath)
-  const sourceFile = project.createSourceFile(tempFile, raw, {
-    scriptKind: ScriptKind.TSX,
-  })
-
-  const iframeHeight = extractVariable(sourceFile, "iframeHeight")
-  const containerClassName = extractVariable(sourceFile, "containerClassName")
-  const description = extractVariable(sourceFile, "description")
-
-  return {
-    iframeHeight,
-    containerClassName,
-    description,
+/**
+ * Helper function to get the content of a file
+ */
+export async function getFileContent(filePath: string): Promise<string> {
+  try {
+    // Using the imported fs module at the top of the file
+    return await fs.readFile(filePath, 'utf-8')
+  } catch (error) {
+    console.error(`Error reading file ${filePath}:`, error)
+    return ''
   }
 }
 
-function getFileTarget(file: z.infer<typeof registryItemFileSchema>): string {
-  let target = file.target
+/**
+ * Get the target path for a registry file
+ */
+export function getFileTarget(filePath: string, fileType: string): string {
+  // Extract filename from path
+  const fileName = filePath.split("/").pop() || ''
 
-  if (!target || target === "") {
-    const fileName = file.path.split("/").pop()
-    if (
-      file.type === "registry:block" ||
-      file.type === "registry:component" ||
-      file.type === "registry:example"
-    ) {
-      target = `components/${fileName}`
-    }
-
-    if (file.type === "registry:ui") {
-      target = `components/ui/${fileName}`
-    }
-
-    if (file.type === "registry:hook") {
-      target = `hooks/${fileName}`
-    }
-
-    if (file.type === "registry:lib") {
-      target = `lib/${fileName}`
-    }
+  // Determine target directory based on file type
+  if (fileType.includes('component') || fileType.includes('block') || fileType.includes('example')) {
+    return `components/${fileName}`
   }
 
-  return target ?? ""
-}
-
-async function createTempSourceFile(filename: string): Promise<string> {
-  const dir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-"))
-  return path.join(dir, filename)
-}
-
-function removeVariable(sourceFile: SourceFile, name: string): void {
-  sourceFile.getVariableDeclaration(name)?.remove()
-}
-
-function extractVariable(sourceFile: SourceFile, name: string): string | null {
-  const variable = sourceFile.getVariableDeclaration(name)
-  if (!variable) {
-    return null
+  if (fileType.includes('ui')) {
+    return `components/ui/${fileName}`
   }
 
-  const value = variable
-    .getInitializerIfKindOrThrow(SyntaxKind.StringLiteral)
-    .getLiteralValue()
+  if (fileType.includes('hook')) {
+    return `hooks/${fileName}`
+  }
 
-  variable.remove()
+  if (fileType.includes('lib')) {
+    return `lib/${fileName}`
+  }
 
-  return value
+  return fileName
 }
 
-function fixFilePaths(
-  files: z.infer<typeof registryItemSchema>["files"]
-): z.infer<typeof registryItemSchema>["files"] {
-  if (!files) {
+/**
+ * Fix relative paths for files in a registry item
+ */
+export function fixFilePaths(files: Array<{ path: string; type: string }>): Array<{ path: string; type: string; target: string }> {
+  if (!files || !files.length) {
     return []
   }
 
-  // Resolve all paths relative to the first file's directory.
+  // Get the directory of the first file to use as reference point
   const firstFilePath = files[0].path
   const firstFilePathDir = path.dirname(firstFilePath)
 
-  return files.map((file: z.infer<typeof registryItemFileSchema>) => {
+  return files.map(file => {
     return {
-      ...file as object,
+      ...file,
       path: path.relative(firstFilePathDir, file.path),
-      target: getFileTarget(file),
+      target: getFileTarget(file.path, file.type),
     }
   })
 }
 
+/**
+ * Fix import paths in content to use standard format
+ */
 export function fixImport(content: string): string {
-  const regex = /@\/(.+?)\/((?:.*?\/)?(?:components|ui|hooks|lib))\/([\w-]+)/g
+  // Regex to match various import paths
+  const regex = /@\/(.+?)\/(?:(?:.*?\/)(?:components|ui|hooks|lib))\/([\w-]+)/g
 
-  const replacement = (
-    match: string,
-    path: string,
-    type: string,
-    component: string
-  ) => {
-    if (type.endsWith("components")) {
+  return content.replace(regex, (match, _, component) => {
+    // Extract the component type from the match
+    if (match.includes('/components/')) {
       return `@/components/${component}`
-    } else if (type.endsWith("ui")) {
+    } else if (match.includes('/ui/')) {
       return `@/components/ui/${component}`
-    } else if (type.endsWith("hooks")) {
+    } else if (match.includes('/hooks/')) {
       return `@/hooks/${component}`
-    } else if (type.endsWith("lib")) {
+    } else if (match.includes('/lib/')) {
       return `@/lib/${component}`
     }
 
     return match
-  }
-
-  return content.replace(regex, replacement)
+  })
 }
 
+/**
+ * FileTree type for creating a directory tree structure
+ */
 export type FileTree = {
   name: string
   path?: string
   children?: FileTree[]
 }
 
+/**
+ * Convert a flat list of files into a hierarchical file tree
+ */
 export function createFileTreeForRegistryItemFiles(
   files: Array<{ path: string; target?: string }>
-) {
+): FileTree[] {
   const root: FileTree[] = []
 
+  // Loop through each file and build tree structure
   for (const file of files) {
-    const path = file.target ?? file.path
-    const parts = path.split("/")
+    const filePath = file.target ?? file.path
+    const parts = filePath.split("/")
     let currentLevel = root
 
+    // Build tree structure by traversing path parts
     for (let i = 0; i < parts.length; i++) {
       const part = parts[i]
       const isFile = i === parts.length - 1
       const existingNode = currentLevel.find((node) => node.name === part)
 
       if (existingNode) {
+        // If node exists, update or traverse
         if (isFile) {
-          // Update existing file node with full path
-          existingNode.path = path
+          existingNode.path = filePath
         } else {
-          // Move to next level in the tree
           currentLevel = existingNode.children!
         }
       } else {
+        // If node doesn't exist, create it
         const newNode: FileTree = isFile
-          ? { name: part, path }
+          ? { name: part, path: filePath }
           : { name: part, children: [] }
 
         currentLevel.push(newNode)

@@ -165,7 +165,7 @@ const registryList = components.reduce((acc, component) => {
 		component: null
 	};
 	return acc;
-}, {} as Record<string, any>);
+}, {} as Record<string, ComponentEntry>);
 
 // Write the registry list to a JSON file
 fs.writeFileSync(
