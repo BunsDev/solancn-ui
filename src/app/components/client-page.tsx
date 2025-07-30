@@ -340,18 +340,28 @@ function ComponentCard({
 export function ComponentsClientPage({
   components,
 }: { components: Component[] }) {
+  const [isPending, startTransition] = useTransition();
   const [searchTerm, setSearchTerm] = useState("");
+  const [viewMode, setViewMode] = useState<"grid" | "row">("grid");
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const [viewMode, setViewMode] = useState("grid");
-  const debouncedSearchTerm = useDebounce(searchTerm, 300);
-  const filteredComponents = components.filter(component => {
-    const lowerCaseSearchTerm = debouncedSearchTerm.toLowerCase();
-    return component.name.toLowerCase().includes(lowerCaseSearchTerm) ||
-           component.title.toLowerCase().includes(lowerCaseSearchTerm) ||
-           component.description?.toLowerCase().includes(lowerCaseSearchTerm) ||
-           component.tags?.some(tag => tag.toLowerCase().includes(lowerCaseSearchTerm));
-  });
   
+  // Debounce search term to avoid excessive filtering
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+  
+  // Filter components based on search term
+  const filteredComponents = debouncedSearchTerm
+    ? components.filter((component) => {
+        const searchString = debouncedSearchTerm.toLowerCase();
+        return (
+          component.name?.toLowerCase().includes(searchString) ||
+          component.title?.toLowerCase().includes(searchString) ||
+          component.description?.toLowerCase().includes(searchString) ||
+          component.category?.toLowerCase().includes(searchString) ||
+          component.tags?.some((tag) => tag.toLowerCase().includes(searchString))
+        );
+      })
+    : components;
+
   // Handle search input change
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -384,42 +394,43 @@ export function ComponentsClientPage({
   }, []);
 
   return (
-    <div className="container py-8">
-      {/* Header section with search and view toggle */}
-      <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h1 className="font-heading text-3xl">Solana UI Components</h1>
-          <p className="mt-2 text-muted-foreground">
-            Browse and explore our collection of Solana UI components
-          </p>
-        </div>
-        
-        {/* Search and filters */}
-        <div className="flex flex-col gap-4 md:flex-row md:items-center">
-          <div className="relative w-full md:w-64">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input
-              ref={searchInputRef}
-              type="search"
-              placeholder="Search components..."
-              className="pl-9"
-              value={searchTerm}
-              onChange={handleSearchChange}
-            />
-            {searchTerm && (
-              <Button
-                variant="ghost"
-                size="icon"
-                className="absolute right-0 top-0 h-9 w-9"
-                onClick={handleClearSearch}
-              >
-                <X className="h-4 w-4" />
-                <span className="sr-only">Clear search</span>
-              </Button>
-            )}
+    <div className="container mx-auto py-6 lg:py-10">
+      {/* Page header with search and view toggle */}
+      <div className="space-y-6">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Components Library</h1>
+            <p className="mt-2 text-lg text-muted-foreground">
+              Explore our collection of responsive and accessible UI components.
+            </p>
           </div>
-          
-          <div className="flex items-center gap-2">
+        
+          {/* Search and view toggle */}
+          <div className="flex flex-col gap-3 md:flex-row md:items-center">
+            <div className="relative w-full md:w-64">
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Input
+                ref={searchInputRef}
+                type="search"
+                placeholder="Search components... (Ctrl+K)"
+                className="w-full py-2 pl-8 pr-12"
+                value={searchTerm}
+                onChange={handleSearchChange}
+              />
+              {searchTerm && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-0 top-0 h-9 w-9"
+                  onClick={handleClearSearch}
+                >
+                  <X className="h-4 w-4" />
+                  <span className="sr-only">Clear search</span>
+                </Button>
+              )}
+            </div>
+            
+            <div className="flex items-center gap-2">
             <Label htmlFor="view-toggle" className="sr-only">
               Toggle view
             </Label>
@@ -449,6 +460,7 @@ export function ComponentsClientPage({
               <LayoutList className="h-4 w-4" />
               <span className="sr-only">List view</span>
             </Button>
+            </div>
           </div>
         </div>
       </div>
