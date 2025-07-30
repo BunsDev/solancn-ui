@@ -24,7 +24,7 @@ export const navigation: NavigationItem[] = [
       { label: "Color Palette", href: "/docs/colorpalette" },
       { label: "Gradient", href: "/docs/gradientgen" },
       { label: "SVG Icons", href: "/docs/svg-icons" },
-      { label: "marquee", href: "/docs/marquee" },
+      { label: "Marquee", href: "/docs/marquee" },
       { label: "Code Profile", href: "/docs/codeprofile" },
       { label: "Portfolio", href: "/docs/portfolio" },
       { label: "Orbiting Circles", href: "/docs/integrations" },

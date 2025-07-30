@@ -8,70 +8,67 @@ import { AnimatePresence, motion } from "motion/react";
 import { SidebarMobile } from "./sidebar-mobile";
 import {
   X,
-  LinkedinIcon,
   BookOpen,
   MessageCircle,
-  Heart,
-  ExternalLink,
 } from "lucide-react";
 import { Logo } from "@/assets/icons/logo";
 import { SearchModal } from "./search-modal";
 import { Icon } from "@iconify/react";
 
 // Support Alert Banner Component
-const SupportAlertBanner = () => {
-  const [isVisible, setIsVisible] = useState(() => {
-    // Check if user has previously dismissed the banner
-    if (typeof window !== "undefined") {
-      const dismissed = localStorage.getItem(
-        "solancn-ui-support-banner-dismissed"
-      );
-      return !dismissed;
-    }
-    return true;
-  });
+// const SupportAlertBanner = () => {
+//   const [isVisible, setIsVisible] = useState(() => {
+//     // Check if user has previously dismissed the banner
+//     if (typeof window !== "undefined") {
+//       const dismissed = localStorage.getItem(
+//         "solancn-ui-support-banner-dismissed"
+//       );
+//       return !dismissed;
+//     }
+//     return true;
+//   });
 
-  const handleClose = () => {
-    setIsVisible(false);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("solancn-ui-support-banner-dismissed", "true");
-    }
-  };
+//   const handleClose = () => {
+//     setIsVisible(false);
+//     if (typeof window !== "undefined") {
+//       localStorage.setItem("solancn-ui-support-banner-dismissed", "true");
+//     }
+//   };
 
-  if (!isVisible) return null;
+//   if (!isVisible) return null;
 
-  return (
-    <div className="w-full bg-gradient-to-r from-rose-500 to-pink-600 text-white relative z-[9999]">
-      <div className="mx-auto max-w-[1536px] px-4 md:px-6 py-2">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-sm">
-            <Heart className="h-4 w-4 fill-current animate-pulse" />
-            <span className="font-medium">
-              Love This UI? Help It Grow and Reach More Developers Worldwide
-            </span>
-          </div>
-          <div className="flex items-center gap-3">
-            <Link
-              href="/sponsor"
-              className="flex items-center gap-1 px-3 py-1 bg-white/20 hover:bg-white/30 rounded-full text-xs font-medium transition-colors duration-200"
-            >
-              <Heart className="h-3 w-3" />
-              Sponsor
-              <ExternalLink className="h-3 w-3" />
-            </Link>
-            <button
-              onClick={handleClose}
-              className="p-1 hover:bg-white/20 rounded-full transition-colors duration-200"
-              aria-label="Close banner"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+//   return (
+//     <div className="w-full bg-gradient-to-r from-rose-500 to-pink-600 text-white relative z-[9999]">
+//       <div className="mx-auto max-w-[1536px] px-4 md:px-6 py-2">
+//         <div className="flex items-center justify-between gap-4">
+//           <div className="flex items-center gap-2 text-sm">
+//             <Heart className="h-4 w-4 fill-current animate-pulse" />
+//             <span className="font-medium">
+//               Love This UI? Help It Grow and Reach More Developers Worldwide
+//             </span>
+//           </div>
+//           <div className="flex items-center gap-3">
+//             <Link
+//               href="/sponsor"
+//               className="flex items-center gap-1 px-3 py-1 bg-white/20 hover:bg-white/30 rounded-full text-xs font-medium transition-colors duration-200"
+//             >
+//               <Heart className="h-3 w-3" />
+//               Sponsor
+//               <ExternalLink className="h-3 w-3" />
+//             </Link>
+//             <button
+//               onClick={handleClose}
+//               className="p-1 hover:bg-white/20 rounded-full transition-colors duration-200"
+//               aria-label="Close banner"
+//             >
+//               <X className="h-4 w-4" />
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
 
 // GitHub Star Badge Component with Caching
 const GitHubStarBadge = ({ repo }: { repo: string }) => {
@@ -208,7 +205,9 @@ const Header = () => {
       >
         <div className="w-full px-6 py-4 flex items-center justify-between border-b border-gray-200 dark:border-zinc-800">
           <Link href="/" className="flex items-center">
-            <Logo className="size-6 fill-rose-500" />
+            <div className="h-8 w-8 max-h-8 max-w-8">
+              <Logo />
+            </div>
           </Link>
 
           <button
@@ -237,14 +236,16 @@ const Header = () => {
               }
 
               <Link href="/" className="flex items-center gap-2">
-                <Logo className="size-6 fill-rose-500" />
+                <div className="h-8 w-8 max-h-8 max-w-8">
+                  <Logo />
+                </div>
                 <div className="hidden md:flex items-center gap-2">
                   <span className="font-semibold text-lg text-zinc-900 dark:text-zinc-100">
                     Solancn&nbsp;UI
                   </span>
-                  <span className="px-2 py-0.5 text-xs font-medium bg-white/20 dark:bg-white/10 backdrop-blur-sm border border-white/30 dark:border-white/20 rounded-full text-zinc-700 dark:text-zinc-300">
+                  {/* <span className="px-2 py-0.5 text-xs font-medium bg-white/20 dark:bg-white/10 backdrop-blur-sm border border-white/30 dark:border-white/20 rounded-full text-zinc-700 dark:text-zinc-300">
                     1.0
-                  </span>
+                  </span> */}
                 </div>
               </Link>
             </div>
@@ -256,7 +257,7 @@ const Header = () => {
                 <BookOpen className="h-4 w-4" />
                 Docs
               </Link>
-              <Link
+              {/* <Link
                 className="flex items-center gap-2 hover:text-zinc-900 dark:hover:text-zinc-50"
                 href="https://ai.solancn.com/"
                 target="_blank"
@@ -264,7 +265,7 @@ const Header = () => {
               >
                 <MessageCircle className="h-4 w-4" />
                 Solancn Chat
-              </Link>
+              </Link> */}
             </nav>
           </div>
           <nav className="flex items-center space-x-3">
