@@ -1,19 +1,19 @@
-'use client';
-import { FC, CSSProperties } from "react";
+"use client";
+import type { CSSProperties, FC } from "react";
 
 interface GlitchTextProps {
-  children: string;
-  speed?: number;
-  enableShadows?: boolean;
-  enableOnHover?: boolean;
-  className?: string;
+	children: string;
+	speed?: number;
+	enableShadows?: boolean;
+	enableOnHover?: boolean;
+	className?: string;
 }
 
 interface CustomCSSProperties extends CSSProperties {
-  "--after-duration": string;
-  "--before-duration": string;
-  "--after-shadow": string;
-  "--before-shadow": string;
+	"--after-duration": string;
+	"--before-duration": string;
+	"--after-shadow": string;
+	"--before-shadow": string;
 }
 
 // CSS styles as a string
@@ -99,60 +99,50 @@ const glitchStyles = `
 `;
 
 const GlitchText: FC<GlitchTextProps> = ({
-  children,
-  speed = 0.5,
-  enableShadows = true,
-  enableOnHover = false,
-  className = "",
+	children,
+	speed = 0.5,
+	enableShadows = true,
+	enableOnHover = false,
+	className = "",
 }) => {
-  const inlineStyles: CustomCSSProperties = {
-    "--after-duration": `${speed * 3}s`,
-    "--before-duration": `${speed * 2}s`,
-    "--after-shadow": enableShadows ? "-5px 0 red" : "none",
-    "--before-shadow": enableShadows ? "5px 0 cyan" : "none",
-  };
+	const inlineStyles: CustomCSSProperties = {
+		"--after-duration": `${speed * 3}s`,
+		"--before-duration": `${speed * 2}s`,
+		"--after-shadow": enableShadows ? "-5px 0 red" : "none",
+		"--before-shadow": enableShadows ? "5px 0 cyan" : "none",
+	};
 
-  const hoverClass = enableOnHover ? "enable-on-hover" : "";
+	const hoverClass = enableOnHover ? "enable-on-hover" : "";
 
-  return (
-    <>
-      {/* Inject CSS styles */}
-      <style dangerouslySetInnerHTML={{ __html: glitchStyles }} />
-      <div
-        className={`glitch ${hoverClass} ${className}`}
-        style={inlineStyles}
-        data-text={children}
-      >
-        {children}
-      </div>
-    </>
-  );
+	return (
+		<>
+			{/* Inject CSS styles */}
+			<style dangerouslySetInnerHTML={{ __html: glitchStyles }} />
+			<div
+				className={`glitch ${hoverClass} ${className}`}
+				style={inlineStyles}
+				data-text={children}
+			>
+				{children}
+			</div>
+		</>
+	);
 };
 
 const GlitchView = () => {
-  return (
-    <div className="font-sans p-4 space-y-8 overflow-hidden">
-      <GlitchText speed={3.4}>
-        GLITCH EFFECT
-      </GlitchText>
-      
-      <GlitchText 
-        speed={0.3}
-        enableOnHover={true}
-        className="text-2xl"
-      >
-        HOVER ME
-      </GlitchText>
-      
-      <GlitchText 
-        speed={0.8}
-        enableShadows={false}
-        className="text-xl"
-      >
-        NO SHADOWS
-      </GlitchText>
-    </div>
-  );
+	return (
+		<div className="font-sans p-4 space-y-8 overflow-hidden">
+			<GlitchText speed={3.4}>GLITCH EFFECT</GlitchText>
+
+			<GlitchText speed={0.3} enableOnHover={true} className="text-2xl">
+				HOVER ME
+			</GlitchText>
+
+			<GlitchText speed={0.8} enableShadows={false} className="text-xl">
+				NO SHADOWS
+			</GlitchText>
+		</div>
+	);
 };
 
 export default GlitchView;

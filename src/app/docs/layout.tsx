@@ -1,14 +1,14 @@
-import { ReactNode } from "react";
-import { TOCProvider } from "@/contexts/toc-context";
+import type { ReactNode } from "react";
 import { DocsLayoutContent } from "@/components/site/docs-layout-content";
+import { TOCProvider } from "@/contexts/toc-context";
 
 // Force static generation for all docs pages
 export const dynamic = "force-static";
 
 export default function DocsLayout({ children }: { children: ReactNode }) {
-  return (
-    <TOCProvider>
-      <DocsLayoutContent>{children}</DocsLayoutContent>
-    </TOCProvider>
-  );
+	return (
+		<TOCProvider>
+			<DocsLayoutContent>{children}</DocsLayoutContent>
+		</TOCProvider>
+	);
 }

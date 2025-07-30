@@ -1,34 +1,34 @@
 import type { Metadata } from "next";
-import { Inter, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { PackageManagerProvider } from "@/contexts/package-manager-context";
 import "@/app/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+	variable: "--font-geist-mono",
+	subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Solancn UI - Standalone Component Viewer",
-  description: "View Solancn UI components in standalone mode",
+	title: "Solancn UI - Standalone Component Viewer",
+	description: "View Solancn UI components in standalone mode",
 };
 
 export default function StandaloneLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  return (
-    <html lang="en" className="dark">
-      <body
-        className={`${inter.className} ${geistMono.variable} antialiased min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100`}
-      >
-        <ThemeProvider attribute="class" defaultTheme="dark">
-          <PackageManagerProvider>{children}</PackageManagerProvider>
-        </ThemeProvider>
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en" className="dark">
+			<body
+				className={`${inter.className} ${geistMono.variable} antialiased min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100`}
+			>
+				<ThemeProvider attribute="class" defaultTheme="dark">
+					<PackageManagerProvider>{children}</PackageManagerProvider>
+				</ThemeProvider>
+			</body>
+		</html>
+	);
 }

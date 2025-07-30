@@ -1,22 +1,22 @@
 {
-  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "moving-grid",
-  "title": "Moving Grid",
-  "description": "A minimalistic moving grid component designed with React and Tailwind CSS.",
-  "author": "Reche Soares",
-  "type": "registry:ui",
-  "dependencies": [],
-  "devDependencies": [],
-  "registryDependencies": [],
-  "cssVars": {
-    "dark": {},
-    "light": {}
-  },
-  "files": [
-    {
-      "path": "moving-grid.tsx",
-      "content": "\"use client\";\nimport React, { useState, useEffect } from \"react\";\n\n// Grid Background Component\nconst GridBackground = () => {\n  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });\n\n  useEffect(() => {\n    const handleMouseMove = (event: MouseEvent) => {\n      // Get mouse position relative to the viewport\n      const { clientX, clientY } = event;\n      // Calculate position from the center of the screen\n      const x = clientX - window.innerWidth / 2;\n      const y = clientY - window.innerHeight / 2;\n      setMousePosition({ x, y });\n    };\n\n    window.addEventListener(\"mousemove\", handleMouseMove);\n\n    // Cleanup function to remove the event listener\n    return () => {\n      window.removeEventListener(\"mousemove\", handleMouseMove);\n    };\n  }, []);\n\n  return (\n    <div\n      className=\"absolute inset-0 w-full h-full overflow-hidden transition-transform duration-300 ease-out\"\n      style={{\n        backgroundImage: `\n          linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),\n          linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px)\n        `,\n        backgroundSize: \"40px 40px\",\n        animation: \"moveGrid 20s linear infinite\",\n        // Apply a subtle transform based on mouse position for a parallax effect\n        transform: `translate(${mousePosition.x / 30}px, ${mousePosition.y / 30}px)`,\n      }}\n    >\n      {/* Glow effect */}\n      <div className=\"absolute top-1/2 left-1/2 w-[60vmin] h-[60vmin] bg-cyan-500/20 rounded-full blur-[150px] -translate-x-1/2 -translate-y-1/2\" />\n      {/* Keyframes for the animation */}\n      <style>\n        {`\n          @keyframes moveGrid {\n            0% { background-position: 0 0; }\n            100% { background-position: 80px 80px; }\n          }\n        `}\n      </style>\n    </div>\n  );\n};\n\n// Main App Component\nexport default function GridBackgroundView() {\n  return (\n    <div className=\"relative w-full h-screen bg-slate-950 overflow-hidden\">\n      <GridBackground />\n      <div className=\"relative z-10 flex items-center justify-center h-full\">\n        <div className=\"text-center px-4\">\n          <h1 className=\"text-4xl font-bold text-white md:text-6xl lg:text-8xl\">\n            Smooth Moving Grid\n          </h1>\n          <p className=\"mt-4 text-lg text-slate-300 md:text-xl\">\n            A dynamic background with mouse-aware parallax effect.\n          </p>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
-      "type": "registry:ui"
-    }
-  ]
+	"$schema": "https://ui.shadcn.com/schema/registry-item.json",
+	"name": "moving-grid",
+	"title": "Moving Grid",
+	"description": "A minimalistic moving grid component designed with React and Tailwind CSS.",
+	"author": "Reche Soares",
+	"type": "registry:ui",
+	"dependencies": [],
+	"devDependencies": [],
+	"registryDependencies": [],
+	"cssVars": {
+		"dark": {},
+		"light": {}
+	},
+	"files": [
+		{
+			"path": "moving-grid.tsx",
+			"content": "\"use client\";\nimport React, { useState, useEffect } from \"react\";\n\n// Grid Background Component\nconst GridBackground = () => {\n  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });\n\n  useEffect(() => {\n    const handleMouseMove = (event: MouseEvent) => {\n      // Get mouse position relative to the viewport\n      const { clientX, clientY } = event;\n      // Calculate position from the center of the screen\n      const x = clientX - window.innerWidth / 2;\n      const y = clientY - window.innerHeight / 2;\n      setMousePosition({ x, y });\n    };\n\n    window.addEventListener(\"mousemove\", handleMouseMove);\n\n    // Cleanup function to remove the event listener\n    return () => {\n      window.removeEventListener(\"mousemove\", handleMouseMove);\n    };\n  }, []);\n\n  return (\n    <div\n      className=\"absolute inset-0 w-full h-full overflow-hidden transition-transform duration-300 ease-out\"\n      style={{\n        backgroundImage: `\n          linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),\n          linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px)\n        `,\n        backgroundSize: \"40px 40px\",\n        animation: \"moveGrid 20s linear infinite\",\n        // Apply a subtle transform based on mouse position for a parallax effect\n        transform: `translate(${mousePosition.x / 30}px, ${mousePosition.y / 30}px)`,\n      }}\n    >\n      {/* Glow effect */}\n      <div className=\"absolute top-1/2 left-1/2 w-[60vmin] h-[60vmin] bg-cyan-500/20 rounded-full blur-[150px] -translate-x-1/2 -translate-y-1/2\" />\n      {/* Keyframes for the animation */}\n      <style>\n        {`\n          @keyframes moveGrid {\n            0% { background-position: 0 0; }\n            100% { background-position: 80px 80px; }\n          }\n        `}\n      </style>\n    </div>\n  );\n};\n\n// Main App Component\nexport default function GridBackgroundView() {\n  return (\n    <div className=\"relative w-full h-screen bg-slate-950 overflow-hidden\">\n      <GridBackground />\n      <div className=\"relative z-10 flex items-center justify-center h-full\">\n        <div className=\"text-center px-4\">\n          <h1 className=\"text-4xl font-bold text-white md:text-6xl lg:text-8xl\">\n            Smooth Moving Grid\n          </h1>\n          <p className=\"mt-4 text-lg text-slate-300 md:text-xl\">\n            A dynamic background with mouse-aware parallax effect.\n          </p>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+			"type": "registry:ui"
+		}
+	]
 }

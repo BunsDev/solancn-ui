@@ -1,15 +1,15 @@
-"use client"
+"use client";
 import React from "react";
-import NumberTicker from "./ticker"
+import NumberTicker from "./ticker";
 
 export default function Tickerview() {
-    return (
-        <NumberTicker
-            value={100}
-            duration={2500}
-            className="text-9xl font-bold text-white transition-all"
-            prefix="$"
-            decimalPlaces={2}
-        />
-    )
+	return (
+		<NumberTicker
+			value={100}
+			duration={2500}
+			className="text-9xl font-bold text-white transition-all"
+			prefix="$"
+			decimalPlaces={2}
+		/>
+	);
 }

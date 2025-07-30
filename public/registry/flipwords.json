@@ -1,27 +1,27 @@
 {
-  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "flipwords",
-  "title": "Flipwords",
-  "description": "A minimalistic flip words animation component designed with React and Tailwind CSS.",
-  "author": "Reche Soares",
-  "type": "registry:ui",
-  "dependencies": [],
-  "devDependencies": [],
-  "registryDependencies": [],
-  "cssVars": {
-    "dark": {},
-    "light": {}
-  },
-  "files": [
-    {
-      "path": "flipwords.tsx",
-      "content": "import { FlipWords } from \"./flipwords\"\n\nexport default function FlipwordsView() {\n  return (\n    <div className=\"w-full max-w-4xl mx-auto p-8\">\n      {/* Hero Section */}\n      <div className=\"text-center space-y-6\">\n        <h1 className=\"text-4xl md:text-6xl font-bold text-gray-900 dark:text-white\">\n          I love{\" \"}\n          <FlipWords\n            words={[\"creating\", \"building\", \"designing\", \"crafting\", \"developing\", \"coding\"]}\n            className=\"text-blue-600 dark:text-blue-400\"\n            duration={2500}\n          />\n          <br />\n          amazing experiences\n        </h1>\n        <p className=\"text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto\">\n          A powerful and customizable text animation component with smooth transitions\n        </p>\n      </div>\n    </div>\n  )\n}\n",
-      "type": "registry:ui"
-    },
-    {
-      "path": "flipwords.tsx",
-      "content": "\"use client\";\nimport React, { useCallback, useEffect, useState } from \"react\";\nimport { AnimatePresence, motion } from \"framer-motion\";\nimport { cn } from \"@/lib/utils\";\n\nexport const FlipWords = ({\n  words,\n  duration = 3000,\n  className,\n}: {\n  words: string[];\n  duration?: number;\n  className?: string;\n}) => {\n  const [currentWord, setCurrentWord] = useState(words[0]);\n  const [isAnimating, setIsAnimating] = useState<boolean>(false);\n\n  const startAnimation = useCallback(() => {\n    const word = words[words.indexOf(currentWord) + 1] || words[0];\n    setCurrentWord(word);\n    setIsAnimating(true);\n  }, [currentWord, words]);\n\n  useEffect(() => {\n    if (!isAnimating)\n      setTimeout(() => {\n        startAnimation();\n      }, duration);\n  }, [isAnimating, duration, startAnimation]);\n\n  return (\n    <AnimatePresence\n      onExitComplete={() => {\n        setIsAnimating(false);\n      }}\n    >\n      <motion.div\n        initial={{\n          opacity: 0,\n          y: 10,\n        }}\n        animate={{\n          opacity: 1,\n          y: 0,\n        }}\n        transition={{\n          type: \"spring\",\n          stiffness: 150,\n          damping: 15,\n          mass: 0.8,\n        }}\n        exit={{\n          opacity: 0,\n          y: -40,\n          x: 40,\n          filter: \"blur(8px)\",\n          scale: 2,\n          position: \"absolute\",\n          transition: {\n            type: \"spring\",\n            stiffness: 200,\n            damping: 20,\n            duration: 0.4,\n          },\n        }}\n        className={cn(\n          \"z-10 inline-block relative text-left text-neutral-900 dark:text-neutral-100 px-2\",\n          className\n        )}\n        key={currentWord}\n      >\n        {currentWord.split(\" \").map((word, wordIndex) => (\n          <motion.span\n            key={word + wordIndex}\n            initial={{ opacity: 0, y: 10, filter: \"blur(8px)\" }}\n            animate={{ opacity: 1, y: 0, filter: \"blur(0px)\" }}\n            transition={{\n              delay: wordIndex * 0.3,\n              duration: 0.4,\n              type: \"spring\",\n              stiffness: 120,\n              damping: 12,\n            }}\n            className=\"inline-block whitespace-nowrap\"\n          >\n            {word.split(\"\").map((letter, letterIndex) => (\n              <motion.span\n                key={word + letterIndex}\n                initial={{ opacity: 0, y: 10, filter: \"blur(8px)\" }}\n                animate={{ opacity: 1, y: 0, filter: \"blur(0px)\" }}\n                transition={{\n                  delay: wordIndex * 0.3 + letterIndex * 0.05,\n                  duration: 0.3,\n                  type: \"spring\",\n                  stiffness: 140,\n                  damping: 14,\n                  ease: [0.25, 0.46, 0.45, 0.94],\n                }}\n                className=\"inline-block\"\n              >\n                {letter}\n              </motion.span>\n            ))}\n            <span className=\"inline-block\">&nbsp;</span>\n          </motion.span>\n        ))}\n      </motion.div>\n    </AnimatePresence>\n  );\n};\n",
-      "type": "registry:ui"
-    }
-  ]
+	"$schema": "https://ui.shadcn.com/schema/registry-item.json",
+	"name": "flipwords",
+	"title": "Flipwords",
+	"description": "A minimalistic flip words animation component designed with React and Tailwind CSS.",
+	"author": "Reche Soares",
+	"type": "registry:ui",
+	"dependencies": [],
+	"devDependencies": [],
+	"registryDependencies": [],
+	"cssVars": {
+		"dark": {},
+		"light": {}
+	},
+	"files": [
+		{
+			"path": "flipwords.tsx",
+			"content": "import { FlipWords } from \"./flipwords\"\n\nexport default function FlipwordsView() {\n  return (\n    <div className=\"w-full max-w-4xl mx-auto p-8\">\n      {/* Hero Section */}\n      <div className=\"text-center space-y-6\">\n        <h1 className=\"text-4xl md:text-6xl font-bold text-gray-900 dark:text-white\">\n          I love{\" \"}\n          <FlipWords\n            words={[\"creating\", \"building\", \"designing\", \"crafting\", \"developing\", \"coding\"]}\n            className=\"text-blue-600 dark:text-blue-400\"\n            duration={2500}\n          />\n          <br />\n          amazing experiences\n        </h1>\n        <p className=\"text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto\">\n          A powerful and customizable text animation component with smooth transitions\n        </p>\n      </div>\n    </div>\n  )\n}\n",
+			"type": "registry:ui"
+		},
+		{
+			"path": "flipwords.tsx",
+			"content": "\"use client\";\nimport React, { useCallback, useEffect, useState } from \"react\";\nimport { AnimatePresence, motion } from \"framer-motion\";\nimport { cn } from \"@/lib/utils\";\n\nexport const FlipWords = ({\n  words,\n  duration = 3000,\n  className,\n}: {\n  words: string[];\n  duration?: number;\n  className?: string;\n}) => {\n  const [currentWord, setCurrentWord] = useState(words[0]);\n  const [isAnimating, setIsAnimating] = useState<boolean>(false);\n\n  const startAnimation = useCallback(() => {\n    const word = words[words.indexOf(currentWord) + 1] || words[0];\n    setCurrentWord(word);\n    setIsAnimating(true);\n  }, [currentWord, words]);\n\n  useEffect(() => {\n    if (!isAnimating)\n      setTimeout(() => {\n        startAnimation();\n      }, duration);\n  }, [isAnimating, duration, startAnimation]);\n\n  return (\n    <AnimatePresence\n      onExitComplete={() => {\n        setIsAnimating(false);\n      }}\n    >\n      <motion.div\n        initial={{\n          opacity: 0,\n          y: 10,\n        }}\n        animate={{\n          opacity: 1,\n          y: 0,\n        }}\n        transition={{\n          type: \"spring\",\n          stiffness: 150,\n          damping: 15,\n          mass: 0.8,\n        }}\n        exit={{\n          opacity: 0,\n          y: -40,\n          x: 40,\n          filter: \"blur(8px)\",\n          scale: 2,\n          position: \"absolute\",\n          transition: {\n            type: \"spring\",\n            stiffness: 200,\n            damping: 20,\n            duration: 0.4,\n          },\n        }}\n        className={cn(\n          \"z-10 inline-block relative text-left text-neutral-900 dark:text-neutral-100 px-2\",\n          className\n        )}\n        key={currentWord}\n      >\n        {currentWord.split(\" \").map((word, wordIndex) => (\n          <motion.span\n            key={word + wordIndex}\n            initial={{ opacity: 0, y: 10, filter: \"blur(8px)\" }}\n            animate={{ opacity: 1, y: 0, filter: \"blur(0px)\" }}\n            transition={{\n              delay: wordIndex * 0.3,\n              duration: 0.4,\n              type: \"spring\",\n              stiffness: 120,\n              damping: 12,\n            }}\n            className=\"inline-block whitespace-nowrap\"\n          >\n            {word.split(\"\").map((letter, letterIndex) => (\n              <motion.span\n                key={word + letterIndex}\n                initial={{ opacity: 0, y: 10, filter: \"blur(8px)\" }}\n                animate={{ opacity: 1, y: 0, filter: \"blur(0px)\" }}\n                transition={{\n                  delay: wordIndex * 0.3 + letterIndex * 0.05,\n                  duration: 0.3,\n                  type: \"spring\",\n                  stiffness: 140,\n                  damping: 14,\n                  ease: [0.25, 0.46, 0.45, 0.94],\n                }}\n                className=\"inline-block\"\n              >\n                {letter}\n              </motion.span>\n            ))}\n            <span className=\"inline-block\">&nbsp;</span>\n          </motion.span>\n        ))}\n      </motion.div>\n    </AnimatePresence>\n  );\n};\n",
+			"type": "registry:ui"
+		}
+	]
 }

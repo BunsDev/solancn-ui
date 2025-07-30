@@ -10,90 +10,105 @@ import path from "path";
 
 // Define the component type for generation
 interface ComponentData {
-  name: string;
-  title: string;
-  description: string;
-  path: string;
-  dependencies: string[];
+	name: string;
+	title: string;
+	description: string;
+	path: string;
+	dependencies: string[];
 }
 
 // Function to automatically generate components from docs directory
 function generateComponentsFromDocs() {
-  const docsPath = path.join(__dirname, "../app/docs");
-  const components: ComponentData[] = [];
+	const docsPath = path.join(__dirname, "../app/docs");
+	const components: ComponentData[] = [];
 
-  // Add the core tabs component manually since it's in a different location
-  components.push({
-    name: "tabs",
-    title: "Tabs",
-    description: "A minimalistic tab component designed with React and Tailwind CSS.",
-    path: "../components/core/tabs.tsx",
-    dependencies: [],
-  });
+	// Add the core tabs component manually since it's in a different location
+	components.push({
+		name: "tabs",
+		title: "Tabs",
+		description:
+			"A minimalistic tab component designed with React and Tailwind CSS.",
+		path: "../components/core/tabs.tsx",
+		dependencies: [],
+	});
 
-  try {
-    // Read all directories in the docs folder
-    const entries = fs.readdirSync(docsPath, { withFileTypes: true });
-    
-    for (const entry of entries) {
-      if (entry.isDirectory()) {
-        const componentName = entry.name;
-        
-        // Skip certain directories that aren't components or already handled
-        if (componentName === "installation" || componentName === "hide-toc-example" || componentName === "tabs") {
-          continue;
-        }
+	try {
+		// Read all directories in the docs folder
+		const entries = fs.readdirSync(docsPath, { withFileTypes: true });
 
-        // Convert kebab-case to Title Case
-        const title = componentName
-          .split('-')
-          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(' ');
+		for (const entry of entries) {
+			if (entry.isDirectory()) {
+				const componentName = entry.name;
 
-        // Generate description based on component name
-        let description = `A minimalistic ${componentName.replace('-', ' ')} component designed with React and Tailwind CSS.`;
-        
-        // Custom descriptions for specific components
-        const customDescriptions: Record<string, string> = {
-          "amazongift": "A minimalistic Amazon gift card component designed with React and Tailwind CSS.",
-          "twostep": "A minimalistic two-step verification component designed with React and Tailwind CSS.",
-          "flipwords": "A minimalistic flip words animation component designed with React and Tailwind CSS.",
-          "pattern": "A collection of beautiful background patterns designed with React and Tailwind CSS.",
-          "accordion": "A minimalistic accordion component designed with React and Tailwind CSS.",
-          "accordion-last": "A minimalistic accordion component with last item styling designed with React and Tailwind CSS.",
-          "dropdown": "A minimalistic dropdown component designed with React and Tailwind CSS.",
-          "dock": "A minimalistic dock component designed with React and Tailwind CSS.",
-          "fuzzy": "A minimalistic fuzzy search component designed with React and Tailwind CSS.",
-          "password": "A minimalistic password input component designed with React and Tailwind CSS.",
-          "prompt": "A minimalistic prompt component designed with React and Tailwind CSS.",
-        };
+				// Skip certain directories that aren't components or already handled
+				if (
+					componentName === "installation" ||
+					componentName === "hide-toc-example" ||
+					componentName === "tabs"
+				) {
+					continue;
+				}
 
-        if (customDescriptions[componentName]) {
-          description = customDescriptions[componentName];
-        }
+				// Convert kebab-case to Title Case
+				const title = componentName
+					.split("-")
+					.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+					.join(" ");
 
-        components.push({
-          name: componentName,
-          title: title,
-          description: description,
-          path: `../app/docs/${componentName}`,
-          dependencies: [],
-        });
-      }
-    }
-  } catch (error) {
-    console.error("Error reading docs directory:", error);
-    process.exit(1);
-  }
+				// Generate description based on component name
+				let description = `A minimalistic ${componentName.replace("-", " ")} component designed with React and Tailwind CSS.`;
 
-  return components.sort((a, b) => a.name.localeCompare(b.name));
+				// Custom descriptions for specific components
+				const customDescriptions: Record<string, string> = {
+					amazongift:
+						"A minimalistic Amazon gift card component designed with React and Tailwind CSS.",
+					twostep:
+						"A minimalistic two-step verification component designed with React and Tailwind CSS.",
+					flipwords:
+						"A minimalistic flip words animation component designed with React and Tailwind CSS.",
+					pattern:
+						"A collection of beautiful background patterns designed with React and Tailwind CSS.",
+					accordion:
+						"A minimalistic accordion component designed with React and Tailwind CSS.",
+					"accordion-last":
+						"A minimalistic accordion component with last item styling designed with React and Tailwind CSS.",
+					dropdown:
+						"A minimalistic dropdown component designed with React and Tailwind CSS.",
+					dock: "A minimalistic dock component designed with React and Tailwind CSS.",
+					fuzzy:
+						"A minimalistic fuzzy search component designed with React and Tailwind CSS.",
+					password:
+						"A minimalistic password input component designed with React and Tailwind CSS.",
+					prompt:
+						"A minimalistic prompt component designed with React and Tailwind CSS.",
+				};
+
+				if (customDescriptions[componentName]) {
+					description = customDescriptions[componentName];
+				}
+
+				components.push({
+					name: componentName,
+					title: title,
+					description: description,
+					path: `../app/docs/${componentName}`,
+					dependencies: [],
+				});
+			}
+		}
+	} catch (error) {
+		console.error("Error reading docs directory:", error);
+		process.exit(1);
+	}
+
+	return components.sort((a, b) => a.name.localeCompare(b.name));
 }
 
 // Generate the components.ts file content
 function generateComponentsFile() {
-  const components = generateComponentsFromDocs();
-  
-  const fileContent = `import { RegistryItemSchema, RegistryType } from "./types";
+	const components = generateComponentsFromDocs();
+
+	const fileContent = `import { RegistryItemSchema, RegistryType } from "./types";
 
 type ComponentType = Omit<
   RegistryItemSchema,
@@ -111,32 +126,35 @@ type ComponentType = Omit<
 
 // Static component list - this is auto-generated by the build script
 export const components: ComponentType[] = [
-${components.map(component => `  {
+${components
+	.map(
+		(component) => `  {
     name: "${component.name}",
     title: "${component.title}",
     description: "${component.description}",
     path: "${component.path}",
     dependencies: [],
-  }`).join(',\n')}
+  }`,
+	)
+	.join(",\n")}
 ];
 `;
 
-  return fileContent;
+	return fileContent;
 }
 
 // Main execution
 console.log("🔄 Auto-generating components.ts file...");
 
 try {
-  const newContent = generateComponentsFile();
-  const componentsFilePath = path.join(__dirname, "components.ts");
-  
-  fs.writeFileSync(componentsFilePath, newContent);
-  
-  console.log("✅ components.ts file updated successfully!");
-  console.log(`📁 Updated: ${componentsFilePath}`);
-  
+	const newContent = generateComponentsFile();
+	const componentsFilePath = path.join(__dirname, "components.ts");
+
+	fs.writeFileSync(componentsFilePath, newContent);
+
+	console.log("✅ components.ts file updated successfully!");
+	console.log(`📁 Updated: ${componentsFilePath}`);
 } catch (error) {
-  console.error("❌ Error generating components.ts:", error);
-  process.exit(1);
+	console.error("❌ Error generating components.ts:", error);
+	process.exit(1);
 }
