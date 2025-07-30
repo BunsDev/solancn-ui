@@ -429,7 +429,7 @@ export default function RootLayout({
 							operatingSystem: "Web",
 							browserRequirements: "Requires JavaScript. Requires HTML5.",
 							softwareVersion: "1.0.0",
-							datePublished: "2024-01-01",
+							datePublished: "2025-01-01",
 							dateModified: new Date().toISOString(),
 							offers: {
 								"@type": "Offer",
@@ -440,7 +440,7 @@ export default function RootLayout({
 							author: {
 								"@type": "Organization",
 								name: "Solancn UI Team",
-								url: "https://github.com/solancn",
+								url: "https://github.com/BunsDev",
 							},
 							creator: {
 								"@type": "Organization",
