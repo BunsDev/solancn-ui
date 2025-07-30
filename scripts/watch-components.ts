@@ -9,7 +9,7 @@ import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
 
-const docsPath = path.join(__dirname, "../app/docs");
+const docsPath = path.join(__dirname, "./app/docs");
 
 console.log("👀 Watching for new components in docs directory...");
 console.log(`📁 Watching: ${docsPath}`);

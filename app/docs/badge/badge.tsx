@@ -13,7 +13,6 @@ import {
     HTMLAttributes,
     CSSProperties
 } from 'react';
-import { motion } from 'framer-motion';
 
 // Enhanced Icons
 const XIcon = ({ className = "w-4 h-4" }: { className?: string }) => (

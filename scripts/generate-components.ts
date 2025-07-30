@@ -12,7 +12,7 @@ console.log("🔄 Regenerating components registry...");
 
 try {
   // Change to the project root directory
-  const projectRoot = path.join(__dirname, "../..");
+  const projectRoot = path.join(__dirname, "..");
   process.chdir(projectRoot);
 
   // Run the build registry script
