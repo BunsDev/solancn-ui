@@ -29,25 +29,34 @@ import {
 // This is sample data.
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "Solancn",
+    email: "admin@solancn.com",
+    avatar: "/logo.png",
   },
   teams: [
     {
-      name: "Acme Inc",
+      name: "Documentation",
       logo: GalleryVerticalEnd,
-      plan: "Enterprise",
+      plan: "Installation",
+      path: "/docs"
     },
     {
-      name: "Acme Corp.",
+      name: "Designs",
       logo: AudioWaveform,
-      plan: "Startup",
+      plan: "Get Started",
+      path: "/designs"
     },
     {
-      name: "Evil Corp.",
+      name: "Components",
       logo: Command,
-      plan: "Free",
+      plan: "UI Legos",
+      path: "/components"
+    },
+    {
+      name: "Blocks",
+      logo: Command,
+      plan: "Comprehensive Elements",
+      path: "/blocks"
     },
   ],
   navMain: [
@@ -86,30 +95,38 @@ const data = {
         },
         {
           title: "Quantum",
-          url: "/designs/quantum",
+          url: "/designs/quantum",  
         },
       ],
     },
     {
-      title: "Docs",
-      url: "/docs",
+      title: "Blocks",
+      url: "/blocks",
       icon: BookOpen,
       items: [
         {
-          title: "Introduction",
-          url: "/docs/introduction",
+          title: "Dashboard",
+          url: "/blocks/dashboard",
         },
         {
-          title: "Get Started",
-          url: "/docs/installation",
+          title: "Staking",
+          url: "/blocks/staking",
         },
         {
-          title: "Tutorials",
-          url: "/docs/tutorials",
+          title: "Staking Interface",
+          url: "/blocks/staking-interface",
         },
         {
-          title: "Changelog",
-          url: "/docs/changelog",
+          title: "Swap",
+          url: "/blocks/swap",
+        },
+        {
+          title: "Swap Interface",
+          url: "/blocks/swap-interface",
+        },
+        {
+          title: "Swap Interface",
+          url: "/blocks/swap-interface",
         },
       ],
     },

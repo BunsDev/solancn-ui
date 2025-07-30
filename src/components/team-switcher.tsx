@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { ChevronsUpDown, Plus } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 import {
   DropdownMenu,
@@ -19,17 +20,28 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 
+interface Team {
+  name: string
+  logo: React.ElementType
+  plan: string
+  path?: string
+}
+
 export function TeamSwitcher({
   teams,
 }: {
-  teams: {
-    name: string
-    logo: React.ElementType
-    plan: string
-  }[]
+  teams: Team[]
 }) {
+  const router = useRouter()
   const { isMobile } = useSidebar()
   const [activeTeam, setActiveTeam] = React.useState(teams[0])
+
+  const handleTeamSelect = (team: Team) => {
+    setActiveTeam(team)
+    if (team.path) {
+      router.push(team.path)
+    }
+  }
 
   if (!activeTeam) {
     return null
@@ -66,7 +78,7 @@ export function TeamSwitcher({
             {teams.map((team, index) => (
               <DropdownMenuItem
                 key={team.name}
-                onClick={() => setActiveTeam(team)}
+                onClick={() => handleTeamSelect(team)}
                 className="gap-2 p-2"
               >
                 <div className="flex size-6 items-center justify-center rounded-md border">
