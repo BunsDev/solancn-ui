@@ -7,7 +7,7 @@ import { useFormStatus } from "react-dom"
 import { toast } from "sonner"
 
 import { cn } from "@/lib/utils"
-import { Button, ButtonProps } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import {
   Tooltip,
   TooltipContent,
@@ -50,14 +50,12 @@ function V0Tooltip({
 export function V0Button({
   name,
   size = "default",
-  disabled,
-  className,
   ...props
 }: {
   name: string
   size?: Size
-} & ButtonProps) {
-  const [url, setUrl] = React.useState("https://ui.shadcn.com")
+}) {
+  const [url, setUrl] = React.useState("https://ui.solancn.com")
 
   React.useEffect(() => {
     setUrl(window.location.href)
@@ -93,15 +91,13 @@ export function V0Button({
         }
       }}
     >
-      <Form size={size} className={className} disabled={disabled} {...props} />
+      <Form size={size} {...props} />
     </form>
   )
 }
 
 function Form({
-  disabled,
   size = "default",
-  className,
   ...props
 }: Omit<React.ComponentProps<typeof V0Button>, "name">) {
   const { pending } = useFormStatus()
@@ -110,12 +106,6 @@ function Form({
     <V0Tooltip size={size}>
       <Button
         aria-label="Open in v0"
-        className={cn(
-          "z-50 h-[calc(theme(spacing.7)_-_1px)] gap-1 rounded-[6px] bg-black px-3 text-xs text-white hover:bg-black hover:text-white dark:bg-white dark:text-black",
-          size === "icon" && "h-7 w-7 p-0",
-          className
-        )}
-        disabled={disabled || pending}
         {...props}
       >
         {size === "icon" ? (

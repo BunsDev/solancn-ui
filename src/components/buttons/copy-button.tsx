@@ -7,7 +7,7 @@ import { NpmCommands } from "@/types/unist"
 
 import { Event, trackEvent } from "@/lib/events"
 import { cn } from "@/lib/utils"
-import { Button, ButtonProps } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,7 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-interface CopyButtonProps extends ButtonProps {
+interface CopyButtonProps {
   value: string
   src?: string
   event?: Event["name"]
@@ -30,9 +30,9 @@ export async function copyToClipboardWithMeta(value: string, event?: Event) {
 
 export function CopyButton({
   value,
-  className,
+  // className,
   src,
-  variant = "ghost",
+  // variant = "ghost",
   event,
   ...props
 }: CopyButtonProps) {
@@ -47,15 +47,14 @@ export function CopyButton({
   return (
     <Button
       size="icon"
-      variant={variant}
+      variant="ghost"
       className={cn(
         "relative z-10 h-6 w-6 text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 [&_svg]:h-3 [&_svg]:w-3",
-        className
       )}
       onClick={() => {
         copyToClipboardWithMeta(
-          value,
-          event
+            value,
+            event
             ? {
                 name: event,
                 properties: {
