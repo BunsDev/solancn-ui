@@ -12,6 +12,7 @@ import {
   PieChart,
   Settings2,
   SquareTerminal,
+  type LucideIcon,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -25,7 +26,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-
+import { docsNavigation, componentsNavigation, templatesNavigation, designsNavigation } from "@/constants/navigation"
 // Define team type for better type safety
 interface Team {
   name: string
@@ -40,13 +41,16 @@ interface NavItem {
   title: string
   url: string
   teamContext: string // Array of team IDs this item belongs to
-  icon?: React.ElementType
+  icon?: LucideIcon
   isActive?: boolean
   items?: {
     title: string
     url: string
+    icon?: LucideIcon
   }[]
 }
+
+const allNavigation = [...docsNavigation, ...componentsNavigation, ...templatesNavigation, ...designsNavigation]; 
 
 // This is sample data.
 const data = {
@@ -101,263 +105,10 @@ const data = {
     },
   ],
   navMain: [
-    {
-      title: "Overview",
-      url: "/components",
-      icon: SquareTerminal,
-      isActive: true,
-      teamContext: "components",
-      items: [
-        {
-          title: "Introduction",
-          url: "/components/introduction",
-        },
-        {
-          title: "Getting Started",
-          url: "/components/getting-started",
-        }
-      ],
-    },
-    {
-      title: "Layout",
-      url: "/components/layout",
-      icon: Frame,
-      teamContext: "components",
-      items: [
-        {
-          title: "Accordion",
-          url: "/components/accordion",
-        },
-        {
-          title: "Card",
-          url: "/components/card",
-        },
-        {
-          title: "Collapsible",
-          url: "/components/collapsible",
-        },
-        {
-          title: "Resizable",
-          url: "/components/resizable",
-        },
-        {
-          title: "Scroll Area",
-          url: "/components/scroll-area",
-        },
-        {
-          title: "Separator",
-          url: "/components/separator",
-        },
-        {
-          title: "Sheet",
-          url: "/components/sheet",
-        },
-        {
-          title: "Sidebar",
-          url: "/components/sidebar",
-        },
-        {
-          title: "Tabs",
-          url: "/components/tabs",
-        },
-      ],
-    },
-    {
-      title: "Data Display",
-      url: "/components/data-display",
-      icon: PieChart,
-      teamContext: "components",
-      items: [
-        {
-          title: "Avatar",
-          url: "/components/avatar",
-        },
-        {
-          title: "Badge",
-          url: "/components/badge",
-        },
-        {
-          title: "Code Block",
-          url: "/components/code-block",
-        },
-        {
-          title: "Table",
-          url: "/components/table",
-        },
-        {
-          title: "Vitepress Table",
-          url: "/components/vitepress-table",
-        },
-      ],
-    },
-    {
-      title: "Inputs & Forms",
-      url: "/components/inputs",
-      icon: Settings2,
-      teamContext: "components",
-      items: [
-        {
-          title: "Button",
-          url: "/components/button",
-        },
-        {
-          title: "Input",
-          url: "/components/input",
-        },
-        {
-          title: "Label",
-          url: "/components/label",
-        },
-        {
-          title: "Select",
-          url: "/components/select",
-        },
-        {
-          title: "Switch",
-          url: "/components/switch",
-        },
-        {
-          title: "Toggle",
-          url: "/components/toggle",
-        },
-        {
-          title: "Toggle Group",
-          url: "/components/toggle-group",
-        },
-      ],
-    },
-    {
-      title: "Feedback & Overlay",
-      url: "/components/feedback",
-      icon: AudioWaveform,
-      teamContext: "components",
-      items: [
-        {
-          title: "Dropdown Menu",
-          url: "/components/dropdown-menu",
-        },
-        {
-          title: "Skeleton",
-          url: "/components/skeleton",
-        },
-        {
-          title: "Sonner",
-          url: "/components/sonner",
-        },
-        {
-          title: "Tooltip",
-          url: "/components/tooltip",
-        },
-        {
-          title: "Border Beam",
-          url: "/components/border-beam",
-        },
-      ],
-    },
-    {
-      title: "Navigation",
-      url: "/components/navigation",
-      icon: Map,
-      teamContext: "components",
-      items: [
-        {
-          title: "Breadcrumb",
-          url: "/components/breadcrumb",
-        }
-      ],
-    },
-    {
-      title: "Utility",
-      url: "/components/utility",
-      icon: Command,
-      teamContext: "components",
-      items: [
-        {
-          title: "History",
-          url: "/components/history",
-        },
-        {
-          title: "Starred",
-          url: "/components/starred",
-        },
-        {
-          title: "Settings",
-          url: "/components/settings",
-        },
-      ],
-    },
-    {
-      title: "Designs",
-      url: "/designs",
-      icon: Bot,
-      teamContext: "designs", // This item is shown when Designs team is active
-      items: [
-        {
-          title: "Genesis",
-          url: "/designs/genesis",
-        },
-        {
-          title: "Explorer",
-          url: "/designs/explorer",
-        },
-        {
-          title: "Quantum",
-          url: "/designs/quantum",  
-        },
-      ],
-    },
-    {
-      title: "Templates",
-      url: "/templates",
-      icon: BookOpen,
-      teamContext: "templates", // This item is shown when Templates team is active
-      items: [
-        {
-          title: "Dashboard",
-          url: "/templates/dashboard",
-        },
-        {
-          title: "Staking",
-          url: "/templates/staking",
-        },
-        {
-          title: "Staking Interface",
-          url: "/templates/staking-interface",
-        },
-        {
-          title: "Swap",
-          url: "/templates/swap",
-        },
-        {
-          title: "Swap Interface",
-          url: "/templates/swap-interface",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "/docs",
-      icon: Settings2,
-      teamContext: "docs", // This item is shown when Documentation team is active
-      items: [
-        {
-          title: "Introduction",
-          url: "/docs",
-        },
-        {
-          title: "Get Started",
-          url: "/docs/installation",
-        },
-        // {
-        //   title: "Tutorials",
-        //   url: "/docs/tutorials",
-        // },
-        // {
-        //   title: "Changelog",
-        //   url: "/docs/changelog",
-        // },
-      ],
-    },
+    ...docsNavigation,
+    ...componentsNavigation,
+    ...templatesNavigation,
+    ...designsNavigation,
   ],
   projects: [
     {
@@ -410,15 +161,67 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   // State for tracking active team, initialized with the first team
   const [activeTeam, setActiveTeam] = React.useState<Team>(data.teams[0]);
 
-  // Filter navigation items based on active team
+  // Filter navigation items based on active team and map them to the NavItem interface
   const filteredNavItems = React.useMemo(() => {
-    return data.navMain.filter(item => {
-      // If no teamContext is specified, show in all contexts
-      if (!item.teamContext || item.teamContext.length === 0) {
+    // First, filter the navigation items based on active team
+    const filteredItems = data.navMain.filter(item => {
+      // If no children property or empty children array, show in all contexts
+      if (!item.children || item.children.length === 0) {
         return true;
       }
-      // Show items that include the active team in their context
-      return item.teamContext.includes(activeTeam.teamContext);
+      
+      // Check if there's a matching navigation item based on first child's href
+      return allNavigation.some(navItem => {
+        // Make sure both items have children arrays with at least one child
+        if (!navItem.children?.length || !item.children?.length) {
+          return false;
+        }
+        
+        // Get the first child from each to compare hrefs
+        const navItemFirstChild = navItem.children[0];
+        const itemFirstChild = item.children[0];
+        
+        // For navigation items, we can determine their category based on which array they belong to
+        const belongsToActiveTeam = 
+          (activeTeam.teamContext === "docs" && docsNavigation.includes(navItem)) ||
+          (activeTeam.teamContext === "components" && componentsNavigation.includes(navItem)) ||
+          (activeTeam.teamContext === "templates" && templatesNavigation.includes(navItem)) ||
+          (activeTeam.teamContext === "designs" && designsNavigation.includes(navItem));
+        
+        // Compare the hrefs if they exist and check if this belongs to the active team
+        return navItemFirstChild.href === itemFirstChild?.href && belongsToActiveTeam;
+      });
+    });
+    
+    // Convert filtered items to NavItem type
+    return filteredItems.map(item => {
+      // Check if the item has most NavItem properties
+      if ('title' in item && 'url' in item) {
+        // Ensure teamContext property exists
+        const navItem = item as any;
+        if (!('teamContext' in item)) {
+          navItem.teamContext = activeTeam.teamContext;
+        }
+        return navItem as NavItem;
+      }
+      
+      // Convert NavigationItem to NavItem
+      return {
+        title: 'title' in item ? item.title : item.label || '',
+        url: 'url' in item ? item.url : (item.children?.[0]?.href || ''),
+        teamContext: 'teamContext' in item ? item.teamContext : activeTeam.teamContext,
+        // Only use the icon if it's a LucideIcon
+        icon: 'icon' in item && item.icon ? 
+          (typeof item.icon === 'function' && 'displayName' in item.icon ? item.icon as LucideIcon : undefined) 
+          : undefined,
+        isActive: 'isActive' in item ? item.isActive : undefined,
+        items: 'items' in item ? item.items : item.children?.map(child => ({
+          title: child.label || '',
+          url: child.href || '',
+          // No icons for child items when converting from NavigationItem
+          icon: undefined
+        }))
+      } as NavItem;
     });
   }, [activeTeam]);
 
