@@ -1,6 +1,8 @@
 "use client"
 
 import { ChevronRight, type LucideIcon } from "lucide-react"
+import { usePathname } from "next/navigation"
+import * as React from "react"
 
 import {
   Collapsible,
@@ -17,6 +19,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
+import { useTeamContext } from "./app-sidebar"
 
 export function NavMain({
   items,
@@ -29,18 +32,27 @@ export function NavMain({
     items?: {
       title: string
       url: string
+      icon?: LucideIcon
     }[]
   }[]
 }) {
+  const pathname = usePathname()
+  const { platformTitle = "Platform" } = useTeamContext()
+  
+  // Determine if a section should be open based on the current path
+  const isSectionActive = (item: { url: string }) => {
+    return pathname.startsWith(item.url)
+  }
+
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      <SidebarGroupLabel>{platformTitle}</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible
             key={item.title}
             asChild
-            defaultOpen={item.isActive}
+            defaultOpen={isSectionActive(item)}
             className="group/collapsible"
           >
             <SidebarMenuItem>
@@ -56,7 +68,10 @@ export function NavMain({
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
                       <SidebarMenuSubButton asChild>
-                        <a href={subItem.url}>
+                        <a 
+                          href={subItem.url} 
+                          className={pathname === subItem.url ? "bg-accent text-accent-foreground" : ""}>
+                          {subItem.icon && <subItem.icon />}
                           <span>{subItem.title}</span>
                         </a>
                       </SidebarMenuSubButton>

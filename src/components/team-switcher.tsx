@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { ChevronsUpDown, Plus } from "lucide-react"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 
 import {
   DropdownMenu,
@@ -19,12 +19,15 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { Icon } from "@iconify/react"
+import { useTeamContext } from "./app-sidebar" // Import the TeamContext hook
 
 interface Team {
   name: string
   logo: React.ElementType
   plan: string
-  path?: string
+  path: string
+  teamContext: string
 }
 
 export function TeamSwitcher({
@@ -33,11 +36,31 @@ export function TeamSwitcher({
   teams: Team[]
 }) {
   const router = useRouter()
+  const pathname = usePathname()
   const { isMobile } = useSidebar()
-  const [activeTeam, setActiveTeam] = React.useState(teams[0])
+  
+  // Get active team and setter from context
+  const { activeTeam, setActiveTeam } = useTeamContext()
+  
+  // Update active team based on URL path if it changes
+  React.useEffect(() => {
+    // Determine which team should be active based on the current path
+    const pathTeam = teams.find(team => {
+      const teamPath = team.path.split('/')[1] // e.g., 'components' from '/components'
+      return pathname.startsWith(`/${teamPath}`)
+    })
+    
+    // Update active team if the path indicates a different team
+    if (pathTeam && pathTeam.teamContext !== activeTeam.teamContext) {
+      setActiveTeam(pathTeam)
+    }
+  }, [pathname, teams, activeTeam, setActiveTeam])
 
-  const handleTeamSelect = (team: Team) => {
+  const handleTeamSelect = async (team: Team) => {
+    // Update the team in context
     setActiveTeam(team)
+    
+    // Navigate to the team's path if available
     if (team.path) {
       router.push(team.path)
     }
@@ -45,6 +68,17 @@ export function TeamSwitcher({
 
   if (!activeTeam) {
     return null
+  }
+
+  // Get the icon for each team context
+  const getTeamIcon = (context: string) => {
+    switch(context) {
+      case "components": return "lucide:terminal-square"
+      case "designs": return "lucide:bot"
+      case "blocks": return "lucide:book-open"
+      case "docs": return "lucide:gallery-vertical-end"
+      default: return "fa7-solid:gem"
+    }
   }
 
   return (
@@ -57,7 +91,10 @@ export function TeamSwitcher({
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                <activeTeam.logo className="size-4" />
+                <Icon 
+                  icon={getTeamIcon(activeTeam.teamContext)} 
+                  className="size-4" 
+                />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{activeTeam.name}</span>
@@ -79,10 +116,14 @@ export function TeamSwitcher({
               <DropdownMenuItem
                 key={team.name}
                 onClick={() => handleTeamSelect(team)}
-                className="gap-2 p-2"
+                // Highlight the active team
+                className={`gap-2 p-2 ${team.teamContext === activeTeam.teamContext ? 'bg-accent text-accent-foreground' : ''}`}
               >
                 <div className="flex size-6 items-center justify-center rounded-md border">
-                  <team.logo className="size-3.5 shrink-0" />
+                  <Icon 
+                    icon={getTeamIcon(team.teamContext)} 
+                    className="size-3.5 shrink-0" 
+                  />
                 </div>
                 {team.name}
                 <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>

@@ -24,6 +24,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { useTeamContext } from "./app-sidebar"
 
 export function NavProjects({
   projects,
@@ -32,15 +33,30 @@ export function NavProjects({
     name: string
     url: string
     icon: LucideIcon
+    teamContext?: string
   }[]
 }) {
   const { isMobile } = useSidebar()
+  const { activeTeam } = useTeamContext()
+  
+  // Filter projects based on active team context
+  const filteredProjects = projects.filter(project => {
+    if (!project.teamContext) {
+      return true // Show projects without a team context in all contexts
+    }
+    return project.teamContext === activeTeam.teamContext
+  })
+  
+  // Don't render if there are no projects for this team
+  if (filteredProjects.length === 0) {
+    return null
+  }
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
       <SidebarGroupLabel>Projects</SidebarGroupLabel>
       <SidebarMenu>
-        {projects.map((item) => (
+        {filteredProjects.map((item) => (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
               <a href={item.url}>
