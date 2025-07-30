@@ -166,7 +166,7 @@ const Header = () => {
 									"flex items-center gap-2 hover:text-zinc-900 dark:hover:text-zinc-50",
 								)
 								}
-								href="/design"
+								href="/designs"
 							>
 								<Button
 									variant="default"

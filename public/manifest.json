@@ -74,10 +74,10 @@
 			]
 		},
 		{
-			"name": "Design",
-			"short_name": "Design",
+			"name": "Designs",
+			"short_name": "Designs",
 			"description": "Design tools and utilities",
-			"url": "/design",
+			"url": "/designs",
 			"icons": [
 				{
 					"src": "/icon-tools.png",

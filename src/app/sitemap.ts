@@ -119,7 +119,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 	// Tools and utilities
 	const designPages = [
 		{
-			url: `${baseUrl}/design`,
+			url: `${baseUrl}/designs`,
 			lastModified: currentDate,
 			changeFrequency: "monthly" as const,
 			priority: 0.6,
