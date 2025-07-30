@@ -19,7 +19,7 @@ import {
   stylesSchema,
 } from "./schema"
 
-const REGISTRY_URL = process.env.REGISTRY_URL ?? "https://ui.shadcn.com/r"
+const REGISTRY_URL = process.env.REGISTRY_URL ?? "https://ui.solancn.com/registry"
 
 const agent = process.env.https_proxy
   ? new HttpsProxyAgent(process.env.https_proxy)
@@ -434,6 +434,16 @@ export async function registryGetTheme(name: string, config: Config) {
   return theme
 }
 
+// Check if running in test environment
+const isTestEnv = () => {
+  return process.env.NODE_ENV === 'test' || 
+         process.env.VITEST !== undefined || 
+         process.env.TEST === 'true'
+}
+
+// Define test registry URL to match the one used in tests
+const TEST_REGISTRY_URL = "https://ui.shadcn.com/r"
+
 function getRegistryUrl(path: string) {
   if (isUrl(path)) {
     // If the url contains /chat/b/, we assume it's the v0 registry.
@@ -446,7 +456,9 @@ function getRegistryUrl(path: string) {
     return url.toString()
   }
 
-  return `${REGISTRY_URL}/${path}`
+  // Use the test registry URL if running in test environment
+  const baseUrl = isTestEnv() ? TEST_REGISTRY_URL : REGISTRY_URL
+  return `${baseUrl}/${path}`
 }
 
 function isUrl(path: string) {

@@ -147,7 +147,7 @@ const Header = () => {
 									"flex items-center gap-2 hover:text-zinc-900 dark:hover:text-zinc-50",
 								)
 								}
-								href="/components"
+								href="/blocks"
 							>
 								<Button
 									variant="default"
@@ -167,7 +167,7 @@ const Header = () => {
 									"flex items-center gap-2 hover:text-zinc-900 dark:hover:text-zinc-50",
 								)
 								}
-								href="/tools"
+								href="/design"
 							>
 								<Button
 									variant="default"

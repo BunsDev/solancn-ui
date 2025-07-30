@@ -135,14 +135,14 @@ export async function migrateIconsFile(
   const sourceLibraryImport = ICON_LIBRARIES[sourceLibrary]?.import
   const targetLibraryImport = ICON_LIBRARIES[targetLibrary]?.import
 
-  const dir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-"))
+  const dir = await fs.mkdtemp(path.join(tmpdir(), "solancn-"))
   const project = new Project({
     compilerOptions: {},
   })
 
   const tempFile = path.join(
     dir,
-    `shadcn-icons-${randomBytes(4).toString("hex")}.tsx`
+    `solancn-icons-${randomBytes(4).toString("hex")}.tsx`
   )
   const sourceFile = project.createSourceFile(tempFile, content, {
     scriptKind: ScriptKind.TSX,

@@ -10,6 +10,7 @@
 		"export": "next build",
 		"lint": "next lint",
 		"lint:fix": "biome check --write",
+		"test:cli": "pnpm --filter solancn test",
 		"build:registry": "tsx src/scripts/auto-generate-components.ts && tsx src/scripts/build-registry.ts",
 		"generate:components": "tsx src/scripts/auto-generate-components.ts",
 		"watch:components": "tsx src/scripts/watch-components.ts"
