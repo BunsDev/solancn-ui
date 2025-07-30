@@ -150,7 +150,7 @@ importers:
         specifier: ^4.0.3
         version: 4.0.3
       solancn:
-        specifier: workspace:*
+        specifier: latest
         version: link:packages/solancn
       sonner:
         specifier: ^2.0.6
