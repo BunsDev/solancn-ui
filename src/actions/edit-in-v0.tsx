@@ -4,7 +4,6 @@ import { track } from "@vercel/analytics/server"
 import { capitalCase } from "change-case"
 
 import { getRegistryItem } from "@/lib/registry"
-import { Style } from "@/components/solancn/registry/registry-styles"
 
 export async function editInV0({
     name,
@@ -12,7 +11,7 @@ export async function editInV0({
     url,
 }: {
     name: string
-    style?: Style["name"]
+    style?: string
     url: string
 }) {
     style = style ?? "new-york"

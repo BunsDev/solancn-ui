@@ -1,5 +1,4 @@
 import { clsx, type ClassValue } from "clsx"
-// import { RegistryItem } from "solancn/registry"
 import { type ClassNameValue, twMerge } from "tailwind-merge";
 import { components } from "@/scripts/components";
 import type { RegistryItem } from "@/types/registry";

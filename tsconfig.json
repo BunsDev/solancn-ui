@@ -31,5 +31,5 @@
 		"src/app/components/decrypting/page.mdx",
 		"src/app/components/divider/page.mdx"
 	],
-	"exclude": ["node_modules", "packages/solancn"]
+	"exclude": ["node_modules"]
 }
