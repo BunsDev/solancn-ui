@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "noise",
+  "title": "Noise",
+  "description": "A minimalistic noise component designed with React and Tailwind CSS.",
+  "author": "Reche Soares",
+  "type": "registry:ui",
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "cssVars": {
+    "dark": {},
+    "light": {}
+  },
+  "files": [
+    {
+      "path": "noise.tsx",
+      "content": "\"use client\";\nimport React, { FC } from \"react\";\nimport DeepOceanCard from \"./cards/deep-ocean-card\";\nimport ElectricPurpleCard from \"./cards/electric-purple-card\";\nimport ForestGreenCard from \"./cards/forest-green-card\";\nimport ClassicBlackCard from \"./cards/classic-black-card\";\nimport CrimsonRedCard from \"./cards/crimson-red-card\";\nimport VibrantOrangeCard from \"./cards/vibrant-orange-card\";\n\n// The main App component demonstrates a gallery of NoiseCards with different colors.\nconst App: FC = () => {\n  return (\n    <div className=\"min-h-screen w-full bg-gray-800 flex items-center justify-center p-8 font-sans\">\n      <div className=\"flex flex-wrap gap-8 justify-center\">\n        <DeepOceanCard />\n        <ElectricPurpleCard />\n        <ForestGreenCard />\n        <ClassicBlackCard />\n        <CrimsonRedCard />\n        <VibrantOrangeCard />\n      </div>\n    </div>\n  );\n};\n\nexport default App;\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "noise-card.tsx",
+      "content": "\"use client\";\nimport React, { useEffect, useRef, FC, ReactNode } from \"react\";\n\ninterface NoiseCardProps {\n  width?: string;\n  height?: string;\n  children: ReactNode;\n  className?: string;\n  animated?: boolean;\n  noiseOpacity?: number;\n  grainSize?: number;\n  bgColor?: string;\n}\n\nconst NoiseCard: FC<NoiseCardProps> = ({\n  width = \"w-96\",\n  height = \"h-72\",\n  children,\n  className = \"\",\n  animated = true,\n  noiseOpacity = 0.1,\n  grainSize = 1,\n  bgColor = \"bg-[#0014FF]\",\n}) => {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n  const containerRef = useRef<HTMLDivElement>(null);\n\n  useEffect(() => {\n    const canvas = canvasRef.current;\n    const container = containerRef.current;\n    if (!canvas || !container) return;\n\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    let animationFrameId: number;\n\n    const drawNoise = () => {\n      const { width, height } = canvas;\n      if (width === 0 || height === 0) return;\n\n      if (grainSize === 1) {\n        const imageData = ctx.createImageData(width, height);\n        const data = imageData.data;\n        const opacity = Math.floor(noiseOpacity * 255);\n\n        for (let i = 0; i < data.length; i += 4) {\n          const randomValue = Math.floor(Math.random() * 255);\n          data[i] = randomValue;\n          data[i + 1] = randomValue;\n          data[i + 2] = randomValue;\n          data[i + 3] = opacity;\n        }\n\n        ctx.putImageData(imageData, 0, 0);\n      } else {\n        ctx.clearRect(0, 0, width, height);\n        for (let y = 0; y < height; y += grainSize) {\n          for (let x = 0; x < width; x += grainSize) {\n            const randomValue = Math.floor(Math.random() * 255);\n            ctx.fillStyle = `rgba(${randomValue}, ${randomValue}, ${randomValue}, ${noiseOpacity})`;\n            ctx.fillRect(x, y, grainSize, grainSize);\n          }\n        }\n      }\n    };\n\n    const loop = () => {\n      drawNoise();\n      animationFrameId = requestAnimationFrame(loop);\n    };\n\n    const resizeObserver = new ResizeObserver((entries) => {\n      for (const entry of entries) {\n        const { width, height } = entry.contentRect;\n        canvas.width = width;\n        canvas.height = height;\n        drawNoise();\n      }\n    });\n\n    resizeObserver.observe(container);\n\n    if (animated) {\n      loop();\n    } else {\n      drawNoise();\n    }\n\n    return () => {\n      if (animated) {\n        cancelAnimationFrame(animationFrameId);\n      }\n      resizeObserver.disconnect();\n    };\n  }, [animated, noiseOpacity, grainSize]);\n\n  return (\n    <div\n      ref={containerRef}\n      className={`${width} ${height} ${bgColor} rounded-xl p-8 relative overflow-hidden ${className}`}\n    >\n      <canvas\n        ref={canvasRef}\n        className=\"absolute inset-0 w-full h-full pointer-events-none\"\n      />\n      <div className=\"relative z-10 text-white h-full flex flex-col\">\n        {children}\n      </div>\n    </div>\n  );\n};\n\nexport default NoiseCard;\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+import { CodeBlock } from "@/components/site/code-block";
+import { ComponentRenderer } from "@/components/site/component-renderer";
+import { Cli } from "@/components/site/cli";
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@/components/site/tabs.tsx";
+import { HideTOC } from "@/components/site/hide-toc";
+import GridBackgroundView from "./moving-grid"
+
+<HideTOC />
+
+
+# Smooth Moving Grid
+A dynamic background with mouse-aware parallax effect.
+
+
+
+<Tabs defaultValue="preview" className="">
+  <TabsList>
+    <TabsTrigger value="preview">Preview</TabsTrigger>
+    <TabsTrigger value="code">Code</TabsTrigger>
+  </TabsList>
+
+  {/* Preview tab renders the interactive CopyButtonView component */}
+  <TabsContent value="preview">
+    <ComponentRenderer component={<GridBackgroundView />} />
+  </TabsContent>
+
+  {/* Code tab displays the source code of the CopyButtonView component */}
+  <TabsContent value="code">
+    <CodeBlock filePath="app/docs/moving-grid/moving-grid.tsx" />
+  </TabsContent>
+</Tabs>

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "resize-handle",
+  "title": "Resize Handle",
+  "description": "A minimalistic resize handle component designed with React and Tailwind CSS.",
+  "author": "Reche Soares",
+  "type": "registry:ui",
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "cssVars": {
+    "dark": {},
+    "light": {}
+  },
+  "files": [
+    {
+      "path": "resize-handle.tsx",
+      "content": "\"use client\";\nimport React, { useState, useEffect } from \"react\";\nimport { motion, AnimatePresence, type Variants } from \"framer-motion\";\n\ninterface SelectionHandleProps {\n  position: string;\n}\n\nconst SelectionHandle = ({ position }: SelectionHandleProps) => {\n  return (\n    <div\n      className={`absolute w-4 h-4 bg-white dark:bg-gray-800 border-2 border-blue-500 dark:border-blue-400 rounded-sm ${position}`}\n    ></div>\n  );\n};\n\ninterface FlipWordsProps {\n  words: string[];\n  duration?: number;\n  className?: string;\n}\n\nexport const FlipWords = ({\n  words,\n  duration = 3000,\n  className,\n}: FlipWordsProps) => {\n  const [index, setIndex] = useState(0);\n\n  useEffect(() => {\n    const intervalId = setInterval(() => {\n      setIndex((prevIndex) => (prevIndex + 1) % words.length);\n    }, duration);\n\n    return () => clearInterval(intervalId);\n  }, [words, duration]);\n\n  const wordContainerVariants: Variants = {\n    hidden: {},\n    visible: {\n      transition: {\n        staggerChildren: 0.08,\n      },\n    },\n    exit: {\n      transition: {\n        staggerChildren: 0.05,\n        staggerDirection: -1,\n      },\n    },\n  };\n\n  const letterVariants: Variants = {\n    hidden: {\n      opacity: 0,\n      y: 10,\n      filter: \"blur(8px)\",\n    },\n    visible: {\n      opacity: 1,\n      y: 0,\n      filter: \"blur(0px)\",\n      transition: {\n        type: \"tween\" as const,\n        ease: [0.25, 0.1, 0.25, 1],\n        duration: 0.4,\n      },\n    },\n    exit: {\n      opacity: 0,\n      y: -10,\n      filter: \"blur(8px)\",\n      transition: {\n        type: \"tween\" as const,\n        ease: [0.4, 0, 0.6, 1],\n        duration: 0.4,\n      },\n    },\n  };\n\n  const currentWord = words[index];\n\n  return (\n    <div\n      className={`inline-block align-middle overflow-hidden h-[1.2em] leading-none ${className}`}\n    >\n      <AnimatePresence mode=\"wait\">\n        <motion.div\n          key={currentWord}\n          variants={wordContainerVariants}\n          initial=\"hidden\"\n          animate=\"visible\"\n          exit=\"exit\"\n          className=\"inline-block whitespace-nowrap\"\n        >\n          {currentWord.split(\"\").map((char, i) => (\n            <motion.span\n              key={`${char}-${i}`}\n              variants={letterVariants}\n              className=\"inline-block\"\n            >\n              {char}\n            </motion.span>\n          ))}\n        </motion.div>\n      </AnimatePresence>\n    </div>\n  );\n};\n\nconst ResizeHandle = () => {\n  const phrases = [\n    \"AWESOME\",\n    \"BEAUTIFUL\",\n    \"STUNNING\",\n    \"COOL\",\n    \"ELEGANT\",\n    \"AMAZING\",\n    \"VIBRANT\",\n    \"DYNAMIC\",\n  ];\n\n  return (\n    <>\n      <style>\n        {`\n          @import url('https://fonts.googleapis.com/css2?family=Phudu:wght@700&display=swap');\n          .font-phudu {\n            font-family: 'Phudu', cursive;\n          }\n        `}\n      </style>\n      <div className=\"flex flex-col items-center justify-center font-sans p-4 text-center overflow-hidden\">\n        <motion.div\n          layout\n          transition={{ type: \"spring\", stiffness: 400, damping: 30 }}\n          className=\"relative inline-block my-2\"\n        >\n          <div className=\"font-phudu text-5xl md:text-7xl font-bold tracking-tight text-gray-800 dark:text-gray-200 py-1 px-4 flex items-center justify-center uppercase relative\">\n            <FlipWords words={phrases} duration={3000} />\n          </div>\n\n          <div className=\"absolute inset-0 border-2 border-blue-500 dark:border-blue-400 rounded-lg pointer-events-none\"></div>\n\n          <SelectionHandle position=\"-top-2 -left-2\" />\n          <SelectionHandle position=\"-top-2 -right-2\" />\n          <SelectionHandle position=\"-bottom-2 -left-2\" />\n          <SelectionHandle position=\"-bottom-2 -right-2\" />\n        </motion.div>\n      </div>\n    </>\n  );\n};\n\nexport default ResizeHandle;\n",
+      "type": "registry:ui"
+    }
+  ]
+}

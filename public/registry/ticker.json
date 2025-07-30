@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ticker",
+  "title": "Ticker",
+  "description": "A minimalistic ticker component designed with React and Tailwind CSS.",
+  "author": "Reche Soares",
+  "type": "registry:ui",
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "cssVars": {
+    "dark": {},
+    "light": {}
+  },
+  "files": [
+    {
+      "path": "ticker.tsx",
+      "content": "\"use client\"\nimport React from \"react\";\nimport NumberTicker from \"./ticker\"\n\nexport default function Tickerview() {\n    return (\n        <NumberTicker\n            value={100}\n            duration={2500}\n            className=\"text-9xl font-bold text-white transition-all\"\n            prefix=\"$\"\n            decimalPlaces={2}\n        />\n    )\n}\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "ticker.tsx",
+      "content": "'use client'\nimport React, { useEffect, useState } from 'react';\n\ninterface NumberTickerProps {\n    value: number;\n    duration?: number;\n    delay?: number;\n    decimalPlaces?: number;\n    prefix?: string;\n    suffix?: string;\n    className?: string;\n    onComplete?: () => void;\n}\n\nconst NumberTicker: React.FC<NumberTickerProps> = ({\n    value,\n    duration = 2000,\n    delay = 0,\n    decimalPlaces = 0,\n    prefix = '',\n    suffix = '',\n    className = '',\n    onComplete\n}) => {\n    const [displayValue, setDisplayValue] = useState(0);\n\n    useEffect(() => {\n        let animationId: number;\n\n        const startAnimation = () => {\n            const startTime = performance.now();\n            const startValue = 0; // Always start from 0\n\n            const animate = (currentTime: number) => {\n                const elapsed = currentTime - startTime;\n                const progress = Math.min(elapsed / duration, 1);\n\n                // Smooth easing function\n                const easeOutQuart = 1 - Math.pow(1 - progress, 4);\n                const currentValue = startValue + (value - startValue) * easeOutQuart;\n\n                setDisplayValue(currentValue);\n\n                if (progress < 1) {\n                    animationId = requestAnimationFrame(animate);\n                } else {\n                    onComplete?.();\n                }\n            };\n\n            animationId = requestAnimationFrame(animate);\n        };\n\n        const timeoutId: number = window.setTimeout(startAnimation, delay);\n\n        return () => {\n            if (animationId) cancelAnimationFrame(animationId);\n            if (timeoutId) clearTimeout(timeoutId);\n        };\n    }, [value, duration, delay, onComplete]);\n\n    const formatNumber = (num: number): string => {\n        return num.toFixed(decimalPlaces).replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',');\n    };\n\n    return (\n        <span className={`inline-block ${className}`}>\n            {prefix}\n            {formatNumber(displayValue)}\n            {suffix}\n        </span>\n    );\n};\n\nexport default NumberTicker;",
+      "type": "registry:ui"
+    }
+  ]
+}
