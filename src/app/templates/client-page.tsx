@@ -56,7 +56,10 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { componentsNavigation, templatesNavigation } from "@/constants/navigation";
+import {
+	componentsNavigation,
+	templatesNavigation,
+} from "@/constants/navigation";
 // Types
 import type { Component } from "@/lib/types";
 // Utils
@@ -449,15 +452,15 @@ export function ComponentsClientPage({
 			component.name
 				?.toLowerCase()
 				.includes(debouncedSearchTerm.toLowerCase()) ||
-				component.title
-					?.toLowerCase()
-					.includes(debouncedSearchTerm.toLowerCase()) ||
-				component.description
-					?.toLowerCase()
-					.includes(debouncedSearchTerm.toLowerCase()) ||
-				component.category
-					?.toLowerCase()
-					.includes(debouncedSearchTerm.toLowerCase()) ||
+			component.title
+				?.toLowerCase()
+				.includes(debouncedSearchTerm.toLowerCase()) ||
+			component.description
+				?.toLowerCase()
+				.includes(debouncedSearchTerm.toLowerCase()) ||
+			component.category
+				?.toLowerCase()
+				.includes(debouncedSearchTerm.toLowerCase()) ||
 			component.tags?.some((tag) =>
 				tag.toLowerCase().includes(debouncedSearchTerm.toLowerCase()),
 			);
@@ -589,14 +592,17 @@ export function ComponentsClientPage({
 				<div className="flex items-center gap-2">
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
-							<Button 
-								variant="outline" 
+							<Button
+								variant="outline"
 								className="w-full sm:w-auto flex items-center justify-between gap-2 px-4 border-[#9945FF]/20 hover:border-[#9945FF]/40"
 							>
 								<div className="flex items-center gap-2">
 									<Filter className="h-4 w-4 text-[#9945FF]" />
 									<span className="flex items-center gap-1.5">
-										Filter by: <span className="font-semibold text-[#9945FF]">{selectedCategory}</span>
+										Filter by:{" "}
+										<span className="font-semibold text-[#9945FF]">
+											{selectedCategory}
+										</span>
 									</span>
 								</div>
 								<ChevronDown className="h-4 w-4 opacity-50" />
@@ -608,15 +614,17 @@ export function ComponentsClientPage({
 								const count =
 									category === "All"
 										? processedComponents.length
-										: processedComponents.filter((c) => c.category === category).length;
+										: processedComponents.filter((c) => c.category === category)
+												.length;
 
 								return (
-									<DropdownMenuItem 
+									<DropdownMenuItem
 										key={category}
 										onClick={() => handleCategoryChange(category)}
 										className={cn(
 											"flex items-center justify-between cursor-pointer",
-											selectedCategory === category && "bg-[#9945FF]/10 text-[#9945FF] font-medium"
+											selectedCategory === category &&
+												"bg-[#9945FF]/10 text-[#9945FF] font-medium",
 										)}
 									>
 										<span className="flex items-center gap-2">
@@ -634,9 +642,9 @@ export function ComponentsClientPage({
 
 					{/* Current category display - mobile only */}
 					{selectedCategory !== "All" && (
-						<Button 
-							size="sm" 
-							variant="ghost" 
+						<Button
+							size="sm"
+							variant="ghost"
 							className="hidden sm:flex items-center gap-1 h-9 px-2 hover:bg-transparent hover:text-[#9945FF]"
 							onClick={() => handleCategoryChange("All")}
 						>
@@ -650,9 +658,9 @@ export function ComponentsClientPage({
 				{selectedCategory !== "All" && (
 					<Badge className="hidden sm:flex bg-[#9945FF]/10 text-[#9945FF] hover:bg-[#9945FF]/20 px-3 py-1">
 						{selectedCategory}
-						<Button 
-							size="sm" 
-							variant="ghost" 
+						<Button
+							size="sm"
+							variant="ghost"
 							className="h-auto p-0 ml-1 hover:bg-transparent"
 							onClick={() => handleCategoryChange("All")}
 						>
@@ -679,14 +687,18 @@ export function ComponentsClientPage({
 								<>
 									{" "}
 									for{" "}
-									<span className="font-medium">&quot;{debouncedSearchTerm}&quot;</span>
+									<span className="font-medium">
+										&quot;{debouncedSearchTerm}&quot;
+									</span>
 								</>
 							)}
 						</>
 					) : (
 						<>
 							No components found for{" "}
-							<span className="font-medium">&quot;{debouncedSearchTerm}&quot;</span>
+							<span className="font-medium">
+								&quot;{debouncedSearchTerm}&quot;
+							</span>
 						</>
 					)}
 				</p>

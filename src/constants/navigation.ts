@@ -22,7 +22,7 @@ export const componentsNavigation: NavigationItem[] = [
 		label: "Components",
 		children: [
 			{ label: "Marquee", href: "/components/marquee" },
-			{ label: "Portfolio", href: "/components/portfolio" }, 			// √
+			{ label: "Portfolio", href: "/components/portfolio" }, // √
 			{ label: "Integrations", href: "/components/integrations" },
 			{ label: "Network", href: "/components/network" },
 			{ label: "Image Swiper", href: "/components/imageswiper" },

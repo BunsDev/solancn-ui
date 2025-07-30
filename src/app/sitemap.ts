@@ -116,7 +116,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 					: 0.7,
 		}));
 
-
 	// Additional important pages
 	const additionalPages = [
 		{
@@ -124,7 +123,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 			lastModified: currentDate,
 			changeFrequency: "monthly" as const,
 			priority: 0.6,
-		}
+		},
 	];
 
 	return [...corePages, ...componentPages, ...additionalPages];

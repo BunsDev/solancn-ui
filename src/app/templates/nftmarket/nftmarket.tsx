@@ -1,10 +1,9 @@
 "use client";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import type React from "react";
-import { useWallet } from '@solana/wallet-adapter-react';
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
-import { useConnection } from '@solana/wallet-adapter-react';
 import { toast } from "sonner";
-import WalletStatus from '@/components/solana/wallet-status';
+import WalletStatus from "@/components/solana/wallet-status";
 
 // TypeScript interface for the props of each NFT card
 interface NftCardProps {
@@ -27,7 +26,7 @@ const nftData: NftCardProps[] = [
 		creator: "Solana Artist",
 		price: "1.2 SOL",
 		timeLeft: "08:10:00",
-		mintAddress: "9xszp3bPJP5XUHzBqEHmJcU1i3LpGJBZCYW3BEXoHagF"
+		mintAddress: "9xszp3bPJP5XUHzBqEHmJcU1i3LpGJBZCYW3BEXoHagF",
 	},
 	{
 		id: "crystal-harmony-002",
@@ -37,7 +36,7 @@ const nftData: NftCardProps[] = [
 		creator: "SolFlare Studio",
 		price: "0.8 SOL",
 		timeLeft: "10:40:00",
-		mintAddress: "HNooSrJHAg1CcPdxLDhQL7hmwUYDxWg6FiMQU8ZYQgFE"
+		mintAddress: "HNooSrJHAg1CcPdxLDhQL7hmwUYDxWg6FiMQU8ZYQgFE",
 	},
 	{
 		id: "celestial-arch-003",
@@ -47,7 +46,7 @@ const nftData: NftCardProps[] = [
 		creator: "DegenApe",
 		price: "0.9 SOL",
 		timeLeft: "03:45:00",
-		mintAddress: "2a2n7PJgvRQEoA5MT6HwbNsrk1Ger4bozPL5tq5V48T2"
+		mintAddress: "2a2n7PJgvRQEoA5MT6HwbNsrk1Ger4bozPL5tq5V48T2",
 	},
 	{
 		id: "quantum-sphere-004",
@@ -57,7 +56,7 @@ const nftData: NftCardProps[] = [
 		creator: "Metaplex Creator",
 		price: "1.1 SOL",
 		timeLeft: "02:30:00",
-		mintAddress: "FRkNDaZEVMxRMqNTNdLNuZXJA5hXvrHqvp2hAMuBaLs1"
+		mintAddress: "FRkNDaZEVMxRMqNTNdLNuZXJA5hXvrHqvp2hAMuBaLs1",
 	},
 	{
 		id: "digital-nexus-005",
@@ -67,7 +66,7 @@ const nftData: NftCardProps[] = [
 		creator: "MemeLab",
 		price: "2.0 SOL",
 		timeLeft: "",
-		mintAddress: "GHRoqDZAT7zJgx4KYCbMM7munGBJoQXdKMj2CxKHnYms"
+		mintAddress: "GHRoqDZAT7zJgx4KYCbMM7munGBJoQXdKMj2CxKHnYms",
 	},
 	{
 		id: "cosmic-voyage-006",
@@ -77,7 +76,7 @@ const nftData: NftCardProps[] = [
 		creator: "Phantom Gallery",
 		price: "4.2 SOL",
 		timeLeft: "22:05:00",
-		mintAddress: "9n4nbM75f5Ui33ZbPYXn59EwSgE8CGsHtAeTH5YFeJ9E"
+		mintAddress: "9n4nbM75f5Ui33ZbPYXn59EwSgE8CGsHtAeTH5YFeJ9E",
 	},
 	{
 		id: "future-vision-007",
@@ -87,7 +86,7 @@ const nftData: NftCardProps[] = [
 		creator: "SolSea Collective",
 		price: "2.3 SOL",
 		timeLeft: "15:30:00",
-		mintAddress: "So11111111111111111111111111111111111111112"
+		mintAddress: "So11111111111111111111111111111111111111112",
 	},
 	{
 		id: "neo-genesis-008",
@@ -97,7 +96,7 @@ const nftData: NftCardProps[] = [
 		creator: "Magic Eden Arts",
 		price: "5.5 SOL",
 		timeLeft: "01:15:00",
-		mintAddress: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+		mintAddress: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
 	},
 	{
 		id: "neon-warrior-009",
@@ -107,7 +106,7 @@ const nftData: NftCardProps[] = [
 		creator: "Solport",
 		price: "3.1 SOL",
 		timeLeft: "07:55:00",
-		mintAddress: "kinXdEcpDQeHPEuQnqmUgtYykqKGVFq6CeVX5iAHJq6"
+		mintAddress: "kinXdEcpDQeHPEuQnqmUgtYykqKGVFq6CeVX5iAHJq6",
 	},
 	{
 		id: "stellar-guardian-010",
@@ -117,7 +116,7 @@ const nftData: NftCardProps[] = [
 		creator: "Solanart",
 		price: "9.5 SOL",
 		timeLeft: "18:00:00",
-		mintAddress: "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R"
+		mintAddress: "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
 	},
 	{
 		id: "dimensional-gate-011",
@@ -127,7 +126,7 @@ const nftData: NftCardProps[] = [
 		creator: "DeGods",
 		price: "11.4 SOL",
 		timeLeft: "11:20:00",
-		mintAddress: "7i5KKsX2weiTkry7jA4ZwSd4dprreFGGFf8RNyGqfvhU"
+		mintAddress: "7i5KKsX2weiTkry7jA4ZwSd4dprreFGGFf8RNyGqfvhU",
 	},
 	{
 		id: "auric-flow-012",
@@ -137,7 +136,7 @@ const nftData: NftCardProps[] = [
 		creator: "Candy Machine",
 		price: "13.5 SOL",
 		timeLeft: "04:45:00",
-		mintAddress: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263"
+		mintAddress: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
 	},
 ];
 
@@ -205,7 +204,7 @@ const SolIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
 			fill="currentColor"
 			fillOpacity="0.8"
 		/>
-		<path 
+		<path
 			d="M4.00055 5.00012L6.50055 5.30012L18.5995 14.3001L16.4995 16.6001L4.29953 7.50012L4.00055 5.00012Z"
 			fill="currentColor"
 			fillOpacity="0.6"
@@ -283,8 +282,8 @@ const NftCard: React.FC<NftCardProps> = ({
 							{price}
 						</p>
 					</div>
-					
-					<button 
+
+					<button
 						onClick={handleBuy}
 						className="mt-3 w-full py-1.5 sm:py-2 bg-[#9945FF] hover:bg-[#8035e0] text-white text-sm sm:text-base font-semibold rounded-lg transition-colors"
 					>
@@ -300,14 +299,12 @@ const NftCard: React.FC<NftCardProps> = ({
 const NftMarket: React.FC = () => {
 	const { publicKey, connecting, connected } = useWallet();
 	const { connection } = useConnection();
-	
+
 	return (
 		<div className="relative p-4 sm:p-6 lg:p-8 overflow-hidden">
 			{/* Import wallet adapter styles */}
-			<style>{
-				`@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
-				 @import url('https://cdnjs.cloudflare.com/ajax/libs/sol-wallet-adapter/0.1.5/styles.min.css');`
-			}</style>
+			<style>{`@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
+				 @import url('https://cdnjs.cloudflare.com/ajax/libs/sol-wallet-adapter/0.1.5/styles.min.css');`}</style>
 
 			<div className="relative z-10 w-full max-w-[1600px] mx-auto">
 				{/* Header Section with Wallet Button */}
@@ -327,7 +324,6 @@ const NftMarket: React.FC = () => {
 						<p className="text-sm sm:text-base lg:text-lg text-gray-600 dark:text-slate-400 max-w-2xl px-4 md:px-0">
 							Discover, collect, and trade unique digital assets on Solana
 						</p>
-						
 					</div>
 				</div>
 
@@ -335,7 +331,9 @@ const NftMarket: React.FC = () => {
 				<div className="mb-8 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl border border-gray-200 dark:border-gray-800">
 					<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
 						<div className="text-center">
-							<p className="text-sm text-gray-500 dark:text-gray-400">Floor Price</p>
+							<p className="text-sm text-gray-500 dark:text-gray-400">
+								Floor Price
+							</p>
 							<p className="text-2xl font-bold text-[#9945FF]">0.8 SOL</p>
 						</div>
 						<div className="text-center">
@@ -360,12 +358,12 @@ const NftMarket: React.FC = () => {
 					))}
 				</div>
 			</div>
-			
+
 			{/* Solana-themed gradient background */}
 			<div className="fixed inset-0 z-0 opacity-20">
 				<div className="absolute inset-0 bg-gradient-to-br from-[#9945FF]/30 to-[#14F195]/30 animate-aurora"></div>
 			</div>
-			
+
 			{/* Add keyframes for animation and font-family */}
 			<style>{`
 				@keyframes aurora {

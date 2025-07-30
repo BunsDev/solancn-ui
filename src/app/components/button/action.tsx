@@ -1,8 +1,8 @@
 import Button from "./button";
 import {
+	AppleIcon,
 	DownloadIcon,
 	HeartIcon,
-	AppleIcon,
 	ShareIcon,
 	StarIcon,
 } from "./icons";

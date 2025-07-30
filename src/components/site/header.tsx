@@ -2,14 +2,14 @@
 import { Icon } from "@iconify/react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Logo } from "@/assets/icons/logo";
+import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
 import { SearchModal } from "./search-modal";
 import { SidebarMobile } from "./sidebar-mobile";
 import { ThemeSwitcher } from "./theme";
-import { Button } from "../ui/button";
-import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
 
 const Header = () => {
 	const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -21,7 +21,6 @@ const Header = () => {
 	const isDocs = pathname.includes("docs");
 	const isTemplates = pathname.includes("templates");
 	// const isHome = pathname === "/";
-
 
 	// Keyboard shortcut for search (Cmd+K on Mac, Ctrl+K on Windows/Linux)
 	useEffect(() => {
@@ -104,10 +103,7 @@ const Header = () => {
 							</Link>
 						</div>
 						<nav className=" hidden md:flex items-center gap-6 text-base font-medium text-zinc-800 dark:text-zinc-200">
-							<Link
-								className="flex items-center gap-2 "
-								href="/docs"
-							>
+							<Link className="flex items-center gap-2 " href="/docs">
 								<Button
 									variant="default"
 									className={cn(
@@ -123,8 +119,7 @@ const Header = () => {
 							<Link
 								className={cn(
 									"flex items-center gap-2 hover:text-zinc-900 dark:hover:text-zinc-50",
-								)
-								}
+								)}
 								href="/components"
 							>
 								<Button
@@ -132,9 +127,9 @@ const Header = () => {
 									className={cn(
 										"text-zinc-900 dark:text-zinc-100 border-2 bg-zinc-200 dark:bg-zinc-950 hover:bg-zinc-200 dark:hover:bg-zinc-800",
 										isComponents && "dark:border-purple-600",
-										!isComponents && "dark:border-zinc-700 hover:border-purple-600",
-									)
-									}
+										!isComponents &&
+											"dark:border-zinc-700 hover:border-purple-600",
+									)}
 								>
 									<Icon icon="tabler:components" className="h-6 w-6" />
 									Components
@@ -143,8 +138,7 @@ const Header = () => {
 							<Link
 								className={cn(
 									"flex items-center gap-2 hover:text-zinc-900 dark:hover:text-zinc-50",
-								)
-								}
+								)}
 								href="/templates"
 							>
 								<Button
@@ -152,9 +146,9 @@ const Header = () => {
 									className={cn(
 										"text-zinc-900 dark:text-zinc-100 border-2 bg-zinc-200 dark:bg-zinc-950 hover:bg-zinc-200 dark:hover:bg-zinc-800",
 										isTemplates && "dark:border-purple-600",
-										!isTemplates && "dark:border-zinc-700 hover:border-purple-600",
-									)
-									}
+										!isTemplates &&
+											"dark:border-zinc-700 hover:border-purple-600",
+									)}
 								>
 									<Icon icon="tabler:template-filled" className="h-6 w-6" />
 									Templates

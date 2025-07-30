@@ -1,6 +1,10 @@
-import { docsNavigation, componentsNavigation, templatesNavigation } from "@/constants/navigation";
+import {
+	componentsNavigation,
+	docsNavigation,
+	templatesNavigation,
+} from "@/constants/navigation";
 import { components } from "@/scripts/components";
-import { NavigationItem, NavigationChild } from "@/types/navigation";
+import type { NavigationChild, NavigationItem } from "@/types/navigation";
 
 export interface SearchableItem {
 	id: string;
@@ -15,7 +19,11 @@ export interface SearchableItem {
 function getNavigationItems(): SearchableItem[] {
 	const items: SearchableItem[] = [];
 
-	const allNavigation = [...componentsNavigation, ...docsNavigation, ...templatesNavigation];
+	const allNavigation = [
+		...componentsNavigation,
+		...docsNavigation,
+		...templatesNavigation,
+	];
 	allNavigation.forEach((section: NavigationItem) => {
 		if (section.children) {
 			section.children.forEach((child: NavigationChild) => {

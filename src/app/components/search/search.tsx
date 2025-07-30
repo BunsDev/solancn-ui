@@ -1,8 +1,9 @@
 "use client";
 import { Search as SearchIcon } from "lucide-react";
+import Image from "next/image";
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+
 const SolanaLogo = "/svgs/solana-logo.svg";
 
 // --- SVG ICONS ---
@@ -64,13 +65,8 @@ const BinanceIcon = () => (
 );
 
 const SolanaIcon = () => (
-	<Image
-		width={24}
-		height={24}
-		alt="Solana Logo"
-		src={SolanaLogo}
-	/>
-)
+	<Image width={24} height={24} alt="Solana Logo" src={SolanaLogo} />
+);
 
 const DribbbleIcon = () => (
 	<svg

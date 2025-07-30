@@ -5,13 +5,16 @@ import type { RegistryItemSchema, RegistryType } from "./types";
 
 // Local interface for registry list items
 interface RegistryListItem {
-  name: string;
-  description: string;
-  component: any;
+	name: string;
+	description: string;
+	component: any;
 }
 
 const registryDirPath = path.join(__dirname, "../../public/registry");
-const registryListPath = path.join(__dirname, "../../public/registry-list.json");
+const registryListPath = path.join(
+	__dirname,
+	"../../public/registry-list.json",
+);
 
 if (!fs.existsSync(registryDirPath)) {
 	fs.mkdirSync(registryDirPath);
@@ -164,20 +167,20 @@ for (const component of components) {
 }
 
 // Create a registry list with all components
-const registryList = components.reduce((acc, component) => {
-	if (!component.name) return acc;
-	acc[component.name] = {
-		name: component?.name as string || "",
-		description: component?.description || "",
-		component: component?.type ?? "registry:ui" as any,
-	} as RegistryListItem;
-	return acc;
-}, {} as Record<string, RegistryListItem>);
+const registryList = components.reduce(
+	(acc, component) => {
+		if (!component.name) return acc;
+		acc[component.name] = {
+			name: (component?.name as string) || "",
+			description: component?.description || "",
+			component: component?.type ?? ("registry:ui" as any),
+		} as RegistryListItem;
+		return acc;
+	},
+	{} as Record<string, RegistryListItem>,
+);
 
 // Write the registry list to a JSON file
-fs.writeFileSync(
-	registryListPath,
-	JSON.stringify(registryList, null, 2)
-);
+fs.writeFileSync(registryListPath, JSON.stringify(registryList, null, 2));
 
 console.log("🎉 Component Registry built successfully!");

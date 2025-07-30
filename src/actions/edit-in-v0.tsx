@@ -1,96 +1,99 @@
-"use server"
+"use server";
 
-import { track } from "@vercel/analytics/server"
-import { capitalCase } from "change-case"
+import { track } from "@vercel/analytics/server";
+import { capitalCase } from "change-case";
 
-import { getRegistryItem } from "@/lib/registry"
+import { getRegistryItem } from "@/lib/registry";
 
 export async function editInV0({
-    name,
-    style,
-    url,
+	name,
+	style,
+	url,
 }: {
-    name: string
-    style?: string
-    url: string
+	name: string;
+	style?: string;
+	url: string;
 }) {
-    style = style ?? "new-york"
-    try {
-        const registryItem = await getRegistryItem(name, style)
+	style = style ?? "new-york";
+	try {
+		const registryItem = await getRegistryItem(name, style);
 
-        if (!registryItem) {
-            return { error: "Something went wrong. Please try again later." }
-        }
+		if (!registryItem) {
+			return { error: "Something went wrong. Please try again later." };
+		}
 
-        await track("edit_in_v0", {
-            name,
-            title: registryItem.name,
-            description: registryItem.description ?? registryItem.name,
-            style,
-            url,
-        })
+		await track("edit_in_v0", {
+			name,
+			title: registryItem.name,
+			description: registryItem.description ?? registryItem.name,
+			style,
+			url,
+		});
 
-        // Remove v0 prefix from the name
-        registryItem.name = registryItem.name.replace(/^v0-/, "")
+		// Remove v0 prefix from the name
+		registryItem.name = registryItem.name.replace(/^v0-/, "");
 
-        const projectName = capitalCase(name.replace(/\d+/g, ""))
-        registryItem.description = registryItem.description || projectName
+		const projectName = capitalCase(name.replace(/\d+/g, ""));
+		registryItem.description = registryItem.description || projectName;
 
-        // Replace `@/registry/new-york/` in files.
-        registryItem.files = registryItem.files?.map((file: any) => {
-              if (file.content?.includes("@/registry/new-york/ui")) {
-                file.content = file.content?.replaceAll(
-                  "@/registry/new-york/ui",
-                  "@/components/ui"
-                )
-              }
-            return file
-        })
+		// Replace `@/registry/new-york/` in files.
+		registryItem.files = registryItem.files?.map((file: any) => {
+			if (file.content?.includes("@/registry/new-york/ui")) {
+				file.content = file.content?.replaceAll(
+					"@/registry/new-york/ui",
+					"@/components/ui",
+				);
+			}
+			return file;
+		});
 
-        const payload = {
-            version: 2,
-            payload: registryItem,
-            source: {
-                title: "shadcn/ui",
-                url,
-            },
-            meta: {
-                project: projectName,
-                file: `${name}.tsx`,
-            },
-        }
+		const payload = {
+			version: 2,
+			payload: registryItem,
+			source: {
+				title: "shadcn/ui",
+				url,
+			},
+			meta: {
+				project: projectName,
+				file: `${name}.tsx`,
+			},
+		};
 
-        const response = await fetch(`${process.env.V0_URL || "https://v0.com"}/chat/api/open-in-v0`, {
-            method: "POST",
-            body: JSON.stringify(payload),
-            headers: {
-                "x-v0-edit-secret": process.env.V0_EDIT_SECRET!,
-                "x-vercel-protection-bypass":
-                    process.env.DEPLOYMENT_PROTECTION_BYPASS || "not-set",
-                "Content-Type": "application/json",
-            },
-        })
+		const response = await fetch(
+			`${process.env.V0_URL || "https://v0.com"}/chat/api/open-in-v0`,
+			{
+				method: "POST",
+				body: JSON.stringify(payload),
+				headers: {
+					"x-v0-edit-secret": process.env.V0_EDIT_SECRET!,
+					"x-vercel-protection-bypass":
+						process.env.DEPLOYMENT_PROTECTION_BYPASS || "not-set",
+					"Content-Type": "application/json",
+				},
+			},
+		);
 
-        if (!response.ok) {
-            if (response.status === 403) {
-                throw new Error("Unauthorized")
-            }
+		if (!response.ok) {
+			if (response.status === 403) {
+				throw new Error("Unauthorized");
+			}
 
-            console.error(response.statusText)
+			console.error(response.statusText);
 
-            throw new Error("Something went wrong. Please try again later.")
-        }
+			throw new Error("Something went wrong. Please try again later.");
+		}
 
-        const result = await response.json()
+		const result = await response.json();
 
-        return {
-            ...result,
-            url: `${process.env.V0_URL || "https://v0.com"}/chat/api/open-in-v0/${result.id}`,
-        }
-    } catch (error) {
-        console.error(error)
-        if (error instanceof Error) {
-            return { error: error.message }
-        }
-    }
+		return {
+			...result,
+			url: `${process.env.V0_URL || "https://v0.com"}/chat/api/open-in-v0/${result.id}`,
+		};
+	} catch (error) {
+		console.error(error);
+		if (error instanceof Error) {
+			return { error: error.message };
+		}
+	}
 }
