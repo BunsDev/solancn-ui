@@ -8,9 +8,9 @@ interface ComponentSEOProps {
   relatedComponents?: string[]
 }
 
-export function ComponentSEO({ 
-  componentName, 
-  description, 
+export function ComponentSEO({
+  componentName,
+  description,
   category = 'UI Components',
   relatedComponents = []
 }: ComponentSEOProps) {
@@ -64,7 +64,7 @@ export function ComponentSEO({
           __html: JSON.stringify(structuredData.component)
         }}
       />
-      
+
       {/* Breadcrumb Schema */}
       <script
         type="application/ld+json"
@@ -72,7 +72,7 @@ export function ComponentSEO({
           __html: JSON.stringify(structuredData.breadcrumb)
         }}
       />
-      
+
       {/* FAQ Schema */}
       <script
         type="application/ld+json"

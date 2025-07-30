@@ -6,7 +6,7 @@ import { geistMono } from "@/assets/fonts";
 import { Analytics } from "@vercel/analytics/next";
 import { PackageManagerProvider } from "@/contexts/package-manager-context";
 import { Inter } from "next/font/google";
-import { PerformanceMonitor } from "@/components/performance/PerformanceMonitor";
+import { PerformanceMonitor } from "@/components/performance/performance-monitor";
 
 const inter = Inter({
   subsets: ["latin"],

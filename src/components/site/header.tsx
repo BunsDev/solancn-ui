@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Logo } from "@/assets/icons/logo";
 import { SearchModal } from "./search-modal";
+import { Icon } from "@iconify/react";
 
 // Support Alert Banner Component
 const SupportAlertBanner = () => {
@@ -186,7 +187,7 @@ const Header = () => {
 
   return (
     <>
-      <SupportAlertBanner />
+      {/* <SupportAlertBanner /> */}
       <AnimatePresence>
         {sidebarOpen && (
           <motion.div
@@ -301,13 +302,13 @@ const Header = () => {
               </div>
             </button>
             <Link
-              href="https://www.linkedin.com/in/buns/"
+              href="https://x.com/bunsdev"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center h-9 w-9 rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors duration-200"
-              aria-label="Linkedin"
+              aria-label="X"
             >
-              <LinkedinIcon className="h-4 w-4 fill-zinc-950 dark:fill-zinc-50" />
+              <Icon icon="meteor-icons:x-alt" className="h-4 w-4 fill-zinc-950 dark:fill-zinc-50" />
             </Link>
             <GitHubStarBadge repo="BunsDev/solancn-ui" />
             <ThemeSwitcher />

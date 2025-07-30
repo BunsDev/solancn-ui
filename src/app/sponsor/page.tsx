@@ -54,12 +54,12 @@ const sponsorshipPlans = [
 ];
 
 const contactLinks = [
-  {
-    platform: "LinkedIn",
-    url: "https://www.linkedin.com/in/buns/",
-    icon: "💼",
-    description: "Professional networking and career updates",
-  },
+  // {
+  //   platform: "LinkedIn",
+  //   url: "https://www.linkedin.com/in/buns/",
+  //   icon: "💼",
+  //   description: "Professional networking and career updates",
+  // },
   {
     platform: "X (Twitter)",
     url: "https://x.com/bunsdev",
