@@ -116,15 +116,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 					: 0.7,
 		}));
 
-	// Tools and utilities
-	const designPages = [
-		{
-			url: `${baseUrl}/designs`,
-			lastModified: currentDate,
-			changeFrequency: "monthly" as const,
-			priority: 0.6,
-		},
-	];
 
 	// Additional important pages
 	const additionalPages = [
@@ -148,5 +139,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		},
 	];
 
-	return [...corePages, ...componentPages, ...designPages, ...additionalPages];
+	return [...corePages, ...componentPages, ...additionalPages];
 }

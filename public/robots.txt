@@ -61,7 +61,6 @@ Allow: /docs/
 Allow: /components/
 Allow: /examples/
 Allow: /templates/
-Allow: /designs/
 Allow: /standalone/
 Allow: /public/
 Allow: /images/

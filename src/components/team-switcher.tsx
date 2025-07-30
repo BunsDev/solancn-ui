@@ -74,7 +74,6 @@ export function TeamSwitcher({
   const getTeamIcon = (context: string) => {
     switch(context) {
       case "components": return "lucide:terminal-square"
-      case "designs": return "lucide:bot"
       case "templates": return "lucide:book-open"
       case "docs": return "lucide:gallery-vertical-end"
       default: return "fa7-solid:gem"

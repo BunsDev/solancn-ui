@@ -161,26 +161,6 @@ const Header = () => {
 									Templates
 								</Button>
 							</Link>
-							<Link
-								className={cn(
-									"flex items-center gap-2 hover:text-zinc-900 dark:hover:text-zinc-50",
-								)
-								}
-								href="/designs"
-							>
-								<Button
-									variant="default"
-									className={cn(
-										"text-zinc-900 dark:text-zinc-100 border-2 bg-zinc-200 dark:bg-zinc-950 hover:bg-zinc-200 dark:hover:bg-zinc-800",
-										isDesign && "dark:border-purple-600",
-										!isDesign && "dark:border-zinc-700 hover:border-purple-600",
-									)
-									}
-								>
-									<Icon icon="streamline-ultimate:design-tool-compass-bold" className="h-6 w-6" />
-									Design
-								</Button>
-							</Link>
 						</nav>
 					</div>
 					<nav className="flex items-center space-x-3">

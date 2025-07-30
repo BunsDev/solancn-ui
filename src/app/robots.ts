@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
 		rules: {
 			userAgent: "*",
 			allow: "/",
-			disallow: ["/_next/", "/designs/react-code-runner", "/standalone/"],
+			disallow: ["/_next/", "/standalone/"],
 		},
 		sitemap: "https://ui.solancn.com/sitemap.xml",
 	};

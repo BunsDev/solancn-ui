@@ -26,7 +26,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { docsNavigation, componentsNavigation, templatesNavigation, designsNavigation } from "@/constants/navigation"
+import { docsNavigation, componentsNavigation, templatesNavigation } from "@/constants/navigation"
 // Define team type for better type safety
 interface Team {
   name: string
@@ -50,7 +50,7 @@ interface NavItem {
   }[]
 }
 
-const allNavigation = [...docsNavigation, ...componentsNavigation, ...templatesNavigation, ...designsNavigation]; 
+const allNavigation = [...docsNavigation, ...componentsNavigation, ...templatesNavigation]; 
 
 // This is sample data.
 const data = {
@@ -83,13 +83,6 @@ const data = {
       teamContext: "docs"
     },
     {
-      name: "Designs",
-      logo: AudioWaveform,
-      plan: "Get Started",
-      path: "/designs",
-      teamContext: "designs"
-    },
-    {
       name: "Components",
       logo: Command,
       plan: "UI Legos",
@@ -108,28 +101,21 @@ const data = {
     ...docsNavigation,
     ...componentsNavigation,
     ...templatesNavigation,
-    ...designsNavigation,
   ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-      teamContext: "designs", // This item is shown when Designs team is active
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-      teamContext: "components", // This item is shown when Components team is active
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-      teamContext: "templates", // This item is shown when Templates team is active
-    },
-  ],
+  // projects: [
+  //   {
+  //     name: "Sales & Marketing",
+  //     url: "#",
+  //     icon: PieChart,
+  //     teamContext: "components", // This item is shown when Components team is active
+  //   },
+  //   {
+  //     name: "Travel",
+  //     url: "#",
+  //     icon: Map,
+  //     teamContext: "templates", // This item is shown when Templates team is active
+  //   },
+  // ],
 }
 
 const activeTeam = data.teams.find(team => team.teamContext === "components")
@@ -142,7 +128,7 @@ export interface TeamContextType {
   activeTeam: Team;
   setActiveTeam: React.Dispatch<React.SetStateAction<Team>>;
   filteredNavItems: NavItem[];
-  filteredProjects: typeof data.projects;
+  filteredProjects?: any[]; // typeof data.projects;
   platformTitle?: string;
 }
 
@@ -185,8 +171,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         const belongsToActiveTeam = 
           (activeTeam.teamContext === "docs" && docsNavigation.includes(navItem)) ||
           (activeTeam.teamContext === "components" && componentsNavigation.includes(navItem)) ||
-          (activeTeam.teamContext === "templates" && templatesNavigation.includes(navItem)) ||
-          (activeTeam.teamContext === "designs" && designsNavigation.includes(navItem));
+          (activeTeam.teamContext === "templates" && templatesNavigation.includes(navItem));
         
         // Compare the hrefs if they exist and check if this belongs to the active team
         return navItemFirstChild.href === itemFirstChild?.href && belongsToActiveTeam;
@@ -226,22 +211,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   }, [activeTeam]);
 
   // Filter projects based on active team
-  const filteredProjects = React.useMemo(() => {
-    return data.projects.filter(project => {
-      // If no teamContext is specified, show in all contexts
-      if (!project.teamContext || project.teamContext.length === 0) {
-        return true;
-      }
-      // Show projects that include the active team in their context
-      return project.teamContext.includes(activeTeam.teamContext);
-    });
-  }, [activeTeam]);
+  // const filteredProjects = React.useMemo(() => {
+  //   return data.projects.filter(project => {
+  //     // If no teamContext is specified, show in all contexts
+  //     if (!project.teamContext || project.teamContext.length === 0) {
+  //       return true;
+  //     }
+  //     // Show projects that include the active team in their context
+  //     return project.teamContext.includes(activeTeam.teamContext);
+  //   });
+  // }, [activeTeam]);
 
   // Calculate platform title based on active team
   const getPlatformTitle = () => {
     switch(activeTeam.teamContext) {
       case "components": return "Components";
-      case "designs": return "Designs";
       case "templates": return "Templates";
       case "docs": return "Documentation";
       default: return "Platform";
@@ -252,7 +236,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const getBrandColor = () => {
     switch(activeTeam.teamContext) {
       case "components": return "#9945FF"; // Solana Purple
-      case "designs": return "#14F195"; // Solana Green
       case "templates": return "#9945FF"; // Solana Purple
       case "docs": return "#14F195"; // Solana Green
       default: return "#9945FF"; // Default to Solana Purple
@@ -271,7 +254,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         activeTeam, 
         setActiveTeam,
         filteredNavItems,
-        filteredProjects,
+        // filteredProjects,
         platformTitle: getPlatformTitle()
       }}
     >

@@ -13,7 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export function StakeComponent() {
   return (
-    <Card className="w-[600px] bg-black text-text border border-[#9945FF]/20">
+    <Card className="w-[600px] md:w-full bg-black text-text border border-[#9945FF]/20">
       <CardHeader className="border-b border-[#9945FF]/20">
         <CardTitle className="text-[#14F195]">Stake SOL</CardTitle>
         <CardDescription className="text-gray-400">

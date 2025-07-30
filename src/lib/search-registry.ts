@@ -1,4 +1,4 @@
-import { docsNavigation, componentsNavigation, designsNavigation, templatesNavigation } from "@/constants/navigation";
+import { docsNavigation, componentsNavigation, templatesNavigation } from "@/constants/navigation";
 import { components } from "@/scripts/components";
 import { NavigationItem, NavigationChild } from "@/types/navigation";
 
@@ -15,7 +15,7 @@ export interface SearchableItem {
 function getNavigationItems(): SearchableItem[] {
 	const items: SearchableItem[] = [];
 
-	const allNavigation = [...docsNavigation, ...componentsNavigation, ...designsNavigation, ...templatesNavigation];
+	const allNavigation = [...componentsNavigation, ...docsNavigation, ...templatesNavigation];
 	allNavigation.forEach((section: NavigationItem) => {
 		if (section.children) {
 			section.children.forEach((child: NavigationChild) => {

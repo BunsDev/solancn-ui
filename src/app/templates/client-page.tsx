@@ -56,7 +56,7 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { componentsNavigation, designsNavigation, templatesNavigation } from "@/constants/navigation";
+import { componentsNavigation, templatesNavigation } from "@/constants/navigation";
 // Types
 import type { Component } from "@/lib/types";
 // Utils
@@ -165,7 +165,7 @@ function TemplateCard({
 					onFocus={() => setIsHovered(true)}
 					onBlur={() => setIsHovered(false)}
 				>
-					<div className="grid grid-cols-[180px_1fr] md:grid-cols-[250px_1fr]">
+					<div className="grid grid-cols-[180px_1fr] md:grid-cols-[20px_1fr]">
 						{/* Preview section */}
 						<div className="relative border-r">
 							<div className="flex h-full items-center justify-center p-4">
@@ -397,7 +397,7 @@ function TemplateCard({
  * Main client page component for browsing components
  */
 // Get categories from navigation for filtering
-const allNavigation = [...componentsNavigation, ...designsNavigation, ...templatesNavigation];
+const allNavigation = [...componentsNavigation, ...templatesNavigation];
 const categories = ["All", ...allNavigation.map((item) => item.label)];
 
 // Interface for the processed component with guaranteed category

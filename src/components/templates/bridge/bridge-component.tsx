@@ -30,18 +30,17 @@ import {
 
 export function BridgeComponent() {
   return (
-    <div className="max-w-[500px] mx-auto">
-      <Card className="bg-black text-text border border-[#9945FF]/20">
-        <CardHeader className="border-b border-[#9945FF]/20">
-          <CardTitle className="text-[#14F195] flex items-center">
-            <ArrowLeftRight className="mr-2 h-5 w-5" /> Cross-Chain Bridge
-          </CardTitle>
-          <CardDescription className="text-gray-400">
-            Transfer assets between Solana and other blockchains
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="pt-6">
-          <Tabs defaultValue="deposit" className="w-full">
+    <Card className="w-[600px] md:w-full bg-black text-text border border-[#9945FF]/20">
+      <CardHeader className="border-b border-[#9945FF]/20">
+        <CardTitle className="text-[#14F195] flex items-center">
+          <ArrowLeftRight className="mr-2 h-5 w-5" /> Cross-Chain Bridge
+        </CardTitle>
+        <CardDescription className="text-gray-400">
+          Transfer assets between Solana and other blockchains
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="pt-6">
+        <Tabs defaultValue="deposit" className="w-full">
             <TabsList className="grid w-full grid-cols-2 bg-black border border-[#9945FF]/30">
               <TabsTrigger
                 value="deposit"
@@ -447,7 +446,6 @@ export function BridgeComponent() {
           </div>
         </CardFooter>
       </Card>
-    </div>
   );
 }
 

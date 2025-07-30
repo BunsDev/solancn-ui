@@ -112,7 +112,20 @@ export const componentsNavigation: NavigationItem[] = [
 			{ label: "Gradient", href: "/components/gradient" },
 			{ label: "Spotlight Card", href: "/components/spotlightcard" },
 			{ label: "Multi Select", href: "/components/multiselector" },
-			// { label: "NFT Marketplace", href: "/templates/nftmarket" },
+		],
+	},
+	{
+		label: "Designs",
+		children: [
+			{ label: "Marquee", href: "/components/marquee" },
+			{ label: "Portfolio", href: "/components/portfolio" },
+			{ label: "Integrations", href: "/components/integrations" },
+			{ label: "Network", href: "/components/network" },
+			{ label: "Video Text", href: "/components/video-text" },
+			{ label: "Image Swiper", href: "/components/imageswiper" },
+			{ label: "Divider", href: "/components/divider" },
+			{ label: "Noise", href: "/components/noise" },
+			{ label: "GlitchVault Card", href: "/components/glitchvault" },
 		],
 	},
 	{
@@ -142,40 +155,23 @@ export const componentsNavigation: NavigationItem[] = [
 	},
 ];
 
-export const designsNavigation: NavigationItem[] = [
-	{
-		label: "Designs",
-		children: [
-			{ label: "Marquee", href: "/designs/marquee" },
-			{ label: "Portfolio", href: "/designs/portfolio" },
-			{ label: "Integrations", href: "/designs/integrations" },
-			{ label: "Network", href: "/designs/network" },
-			{ label: "Video Text", href: "/designs/video-text" },
-			{ label: "Image Swiper", href: "/designs/imageswiper" },
-			{ label: "Divider", href: "/designs/divider" },
-			{ label: "Noise", href: "/designs/noise" },
-			{ label: "GlitchVault Card", href: "/designs/glitchvault" },
-		],
-	},
-];
-
 export const templatesNavigation: NavigationItem[] = [
 	{
 		label: "Templates",
 		children: [
-			{ label: "Swap", href: "/templates/swap" },
-			{ label: "Staking", href: "/templates/staking" },
-			{ label: "Wallet", href: "/templates/wallet" },
-			{ label: "Trading View", href: "/templates/tradingview" },
-			{ label: "Portfolio View", href: "/templates/portfolio-view" },
-
-			{ label: "Lending Market", href: "/templates/lendingmarket" },
-			{ label: "DeFi Dashboard", href: "/templates/defidashboard" },
-			{ label: "DeFi Portfolio", href: "/templates/defiportfolio" },
-
-			{ label: "NFT Gallery", href: "/templates/nftgallery" },
-			{ label: "NFT Collection", href: "/templates/nftcollection" },
 			{ label: "NFT Market", href: "/templates/nftmarket" },
+			{ label: "Bridge", href: "/templates/bridge" },
+			{ label: "Staking", href: "/templates/staking" },
+			// { label: "Wallet", href: "/templates/wallet" },
+			// { label: "Trading View", href: "/templates/tradingview" },
+			// { label: "Portfolio View", href: "/templates/portfolio-view" },
+
+			// { label: "Lending Market", href: "/templates/lendingmarket" },
+			{ label: "DeFi Dashboard", href: "/templates/defi-dashboard" },
+			// { label: "DeFi Portfolio", href: "/templates/defiportfolio" },
+
+			// { label: "NFT Gallery", href: "/templates/nftgallery" },
+			// { label: "NFT Collection", href: "/templates/nftcollection" },
 		],
 	},
 ];

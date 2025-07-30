@@ -15,7 +15,6 @@
     "utils": "@/lib/utils",
     "ui": "@/ui",
     "templates": "@/templates",
-    "designs": "@/designs",
     "docs": "@/docs",
     "lib": "@/lib",
     "hooks": "@/hooks"

@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
 		return [
 			{
 				source: "/templates",
-				destination: "/templates/defi-dashboard",
+				destination: "/templates/nftmarket",
 				permanent: true,
 			},
 			{
