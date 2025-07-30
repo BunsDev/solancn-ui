@@ -2,8 +2,8 @@ import Button from "./button";
 import {
 	DownloadIcon,
 	HeartIcon,
+	AppleIcon,
 	ShareIcon,
-	ShoppingCartIcon,
 	StarIcon,
 } from "./icons";
 
@@ -14,16 +14,16 @@ const ActionButton = () => {
 			<div className="flex flex-col gap-4">
 				<div className="flex flex-wrap items-center justify-center gap-4">
 					<Button variant="default" iconLeft={<DownloadIcon />}>
-						Download
+						Save
 					</Button>
-					<Button variant="default" iconLeft={<ShoppingCartIcon />}>
-						Add to Cart
+					<Button variant="default" iconLeft={<AppleIcon />}>
+						Apply Pay
 					</Button>
 					<Button variant="outline" iconLeft={<HeartIcon />}>
-						Add to Wishlist
+						Favorite
 					</Button>
 					<Button variant="secondary" iconLeft={<StarIcon />}>
-						Rate Product
+						Rate
 					</Button>
 					<Button variant="ghost" iconLeft={<ShareIcon />}>
 						Share

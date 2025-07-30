@@ -119,11 +119,6 @@
     "description": "A minimalistic fuzzy search component designed with React and Tailwind CSS.",
     "component": "registry:ui"
   },
-  "glitchvault": {
-    "name": "glitchvault",
-    "description": "A minimalistic glitchvault component designed with React and Tailwind CSS.",
-    "component": "registry:ui"
-  },
   "glow-button": {
     "name": "glow-button",
     "description": "A minimalistic glow button component designed with React and Tailwind CSS.",
@@ -332,11 +327,6 @@
   "twostep": {
     "name": "twostep",
     "description": "A minimalistic two-step verification component designed with React and Tailwind CSS.",
-    "component": "registry:ui"
-  },
-  "video-text": {
-    "name": "video-text",
-    "description": "A minimalistic video text component designed with React and Tailwind CSS.",
     "component": "registry:ui"
   },
   "waitlist": {

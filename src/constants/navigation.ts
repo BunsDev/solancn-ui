@@ -25,11 +25,9 @@ export const componentsNavigation: NavigationItem[] = [
 			{ label: "Portfolio", href: "/components/portfolio" }, 			// √
 			{ label: "Integrations", href: "/components/integrations" },
 			{ label: "Network", href: "/components/network" },
-			{ label: "Video Text", href: "/components/video-text" },
 			{ label: "Image Swiper", href: "/components/imageswiper" },
 			{ label: "Divider", href: "/components/divider" },
 			{ label: "Noise", href: "/components/noise" },
-			{ label: "GlitchVault Card", href: "/components/glitchvault" },
 		],
 	},
 	{
@@ -121,11 +119,9 @@ export const componentsNavigation: NavigationItem[] = [
 			{ label: "Portfolio", href: "/components/portfolio" },
 			{ label: "Integrations", href: "/components/integrations" },
 			{ label: "Network", href: "/components/network" },
-			{ label: "Video Text", href: "/components/video-text" },
 			{ label: "Image Swiper", href: "/components/imageswiper" },
 			{ label: "Divider", href: "/components/divider" },
 			{ label: "Noise", href: "/components/noise" },
-			{ label: "GlitchVault Card", href: "/components/glitchvault" },
 		],
 	},
 	{

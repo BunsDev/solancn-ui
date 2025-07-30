@@ -17,7 +17,6 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { styles } from "@/components/solancn/registry/registry-styles"
 import { Index } from "@/lib/registry"
 
 interface CodeBlockProps {
@@ -58,10 +57,10 @@ export function ComponentPreview({
   aspectRatio = "4/3",
 }: ComponentPreviewProps) {
   const [config] = useConfig()
-  const index = styles.findIndex((style) => style.name === config.style)
+  // const index = styles.findIndex((style) => style.name === config.style)
 
   const Codes = React.Children.toArray(children) as React.ReactElement[]
-  const Code = Codes[index]
+  const Code = Codes[0]
 
   const Preview = React.useMemo(() => {
     const Component = Index[config.style]?.[name]?.component

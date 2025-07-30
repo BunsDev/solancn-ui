@@ -5,7 +5,7 @@ import { Footer } from "./_components/footer";
 import SolancnHome from "./_components/solancn-home";
 
 // Force static generation for landing page
-// export const dynamic = "";
+export const dynamic = "force-static";
 // Force static generation for landing page
 export const metadata: Metadata = {
 	title: "Solancn UI - Modern React Component Library",
