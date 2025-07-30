@@ -75,10 +75,10 @@ importers:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       react:
-        specifier: ^19.1.0
+        specifier: ^19.1.1
         version: 19.1.1
       react-dom:
-        specifier: ^19.1.0
+        specifier: ^19.1.1
         version: 19.1.1(react@19.1.1)
       react-icons:
         specifier: ^4.12.0
@@ -124,10 +124,10 @@ importers:
         specifier: ^22
         version: 22.17.0
       '@types/react':
-        specifier: ^19.1.0
+        specifier: ^19.1.1
         version: 19.1.9
       '@types/react-dom':
-        specifier: ^19.1.0
+        specifier: ^19.1.1
         version: 19.1.7(@types/react@19.1.9)
       '@types/tinycolor2':
         specifier: ^1.4.6

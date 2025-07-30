@@ -1,29 +1,28 @@
 {
-  "compilerOptions": {
-    "target": "es2024",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "jsx": "preserve",
-    "jsxImportSource": "react",
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "paths": {
-      "@/*": ["./*"]
-    }
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/components/page.mdx", "app/docs/decrypting/page.mdx", "app/docs/divider/page.mdx"],
-  "exclude": ["node_modules"]
-}
+	"compilerOptions": {
+	  "target": "ES2017",
+	  "lib": ["dom", "dom.iterable", "esnext"],
+	  "allowJs": true,
+	  "skipLibCheck": true,
+	  "strict": true,
+	  "noEmit": true,
+	  "esModuleInterop": true,
+	  "module": "esnext",
+	  "moduleResolution": "bundler",
+	  "resolveJsonModule": true,
+	  "isolatedModules": true,
+	  "jsx": "preserve",
+	  "incremental": true,
+	  "plugins": [
+		{
+		  "name": "next"
+		}
+	  ],
+	  "paths": {
+		"@/*": ["./src/*"]
+	  }
+	},
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/components/page.mdx", "src/app/docs/decrypting/page.mdx", "src/app/docs/divider/page.mdx"],
+	"exclude": ["node_modules"]
+  }
+  
