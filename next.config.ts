@@ -13,25 +13,6 @@ const nextConfig: NextConfig = {
 	compress: true,
 	poweredByHeader: false,
 
-	async redirects() {
-		return [
-			{
-				source: "/templates",
-				destination: "/templates/nftmarket",
-				permanent: true,
-			},
-			{
-				source: "/blocks",
-				destination: "/components/accordion",
-				permanent: true,
-			},
-			{
-				source: "/components",
-				destination: "/components/accordion",
-				permanent: true,
-			},
-		];
-	},
 	// Image optimization disabled for static export
 	images: {
 		unoptimized: true, // Required for static export
