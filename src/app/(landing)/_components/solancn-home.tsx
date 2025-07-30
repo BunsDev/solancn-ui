@@ -189,7 +189,7 @@ export default function SolancnHome() {
                             Get Started
                             <ChevronRight className="h-4 w-4" />
                         </Button>
-                        <Button variant="outline" size="default" onClick={() => router.push("/docs/components")} className="cursor-pointer">
+                        <Button variant="outline" size="default" onClick={() => router.push("/components")} className="cursor-pointer">
                             <Code className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
                             Browse Components
                         </Button>
