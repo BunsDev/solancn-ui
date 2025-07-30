@@ -1,4 +1,4 @@
-import { Registry } from "../../../../packages/solancn/dist/registry";
+import { Registry } from "solancn/registry";
 
 export const lib: Registry["items"] = [
   {

@@ -113,11 +113,18 @@ export async function getRegistryItem(
 
 /**
  * Helper function to get the content of a file
+ * This uses fetch API for compatibility with Next.js
  */
 export async function getFileContent(filePath: string): Promise<string> {
   try {
-    // Using the imported fs module at the top of the file
-    return await fs.readFile(filePath, 'utf-8')
+    // Use fetch API instead of fs for client-side compatibility
+    const response = await fetch(`/api/files?path=${encodeURIComponent(filePath)}`)
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch file: ${response.statusText}`)
+    }
+    
+    return await response.text()
   } catch (error) {
     console.error(`Error reading file ${filePath}:`, error)
     return ''
