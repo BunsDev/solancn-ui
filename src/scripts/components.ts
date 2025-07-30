@@ -171,13 +171,6 @@ export const components: ComponentType[] = [
     dependencies: [],
   },
   {
-    name: "footer",
-    title: "Footer",
-    description: "A minimalistic footer component designed with React and Tailwind CSS.",
-    path: "../app/docs/footer",
-    dependencies: [],
-  },
-  {
     name: "forgotpassword",
     title: "Forgotpassword",
     description: "A minimalistic forgotpassword component designed with React and Tailwind CSS.",
@@ -378,20 +371,6 @@ export const components: ComponentType[] = [
     title: "Resize Handle",
     description: "A minimalistic resize handle component designed with React and Tailwind CSS.",
     path: "../app/docs/resize-handle",
-    dependencies: [],
-  },
-  {
-    name: "retro-button",
-    title: "Retro Button",
-    description: "A minimalistic retro button component designed with React and Tailwind CSS.",
-    path: "../app/docs/retro-button",
-    dependencies: [],
-  },
-  {
-    name: "retro-card",
-    title: "Retro Card",
-    description: "A minimalistic retro card component designed with React and Tailwind CSS.",
-    path: "../app/docs/retro-card",
     dependencies: [],
   },
   {

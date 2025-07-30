@@ -133,20 +133,12 @@ export const navigation: NavigationItem[] = [
     ],
   },
   {
-    label: "Retro",
-    children: [
-      { label: "Retro Button", href: "/docs/retro-button" },
-      { label: "Retro Card", href: "/docs/retro-card" },
-    ],
-  },
-  {
     label: "Websites Blocks",
     children: [
       { label: "Hero", href: "/docs/hero" },
       { label: "Header", href: "/docs/navbar" },
       { label: "Pricing", href: "/docs/pricing" },
       { label: "Testimonial", href: "/docs/testimonial" },
-      { label: "Footer", href: "/docs/footer" },
       { label: "Forgot Password", href: "/docs/forgotpassword" },
       { label: "Team Member", href: "/docs/teammember" },
     ],

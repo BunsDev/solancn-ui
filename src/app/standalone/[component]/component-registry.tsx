@@ -42,8 +42,6 @@ import EnhancedCarousel from "@/app/docs/carousel/enhanced-carousel";
 import CustomAccordion from "@/app/docs/accordion/customAccordion";
 import Testimonial from "@/app/docs/testimonial/testimonial";
 import Testimonial2 from "@/app/docs/testimonial/testimonial2";
-import Footer from "@/app/docs/footer/footer";
-import Footer2 from "@/app/docs/footer/footer2";
 import ToastView from "@/app/docs/toast/toast-view";
 import BadgeView from "@/app/docs/badge/badge-view";
 import CopyButton from "@/app/docs/copybutton/copybutton";
@@ -130,8 +128,6 @@ export const ComponentRegistry: Record<string, React.ComponentType> = {
   customAccordion: CustomAccordion,
   testimonial: Testimonial,
   "testimonial-2": Testimonial2,
-  footer: Footer,
-  "footer-2": Footer2,
   toast: ToastView,
   badge: BadgeView,
   "copy-button": CopyButton,

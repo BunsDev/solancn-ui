@@ -17,7 +17,6 @@ const componentCategories = {
     "modal",
     "tooltip",
     "navbar",
-    "footer",
     "dock",
     "marquee",
   ],
