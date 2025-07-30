@@ -1,4 +1,4 @@
-import { RegistryItem } from "@/types/registry";
+import type { RegistryItem } from "@/types/registry";
 import type React from "react";
 
 export interface Component extends RegistryItem {

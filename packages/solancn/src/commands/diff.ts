@@ -5,13 +5,13 @@ import {
   getItemTargetPath,
   getRegistryBaseColor,
   getRegistryIndex,
-} from "@/src/registry/api"
-import { registryIndexSchema } from "@/src/registry/schema"
-import { Config, getConfig } from "@/src/utils/get-config"
-import { handleError } from "@/src/utils/handle-error"
-import { highlighter } from "@/src/utils/highlighter"
-import { logger } from "@/src/utils/logger"
-import { transform } from "@/src/utils/transformers"
+} from "../registry/api"
+import { registryIndexSchema } from "../registry/schema"
+import { Config, getConfig } from "../utils/get-config"
+import { handleError } from "../utils/handle-error"
+import { highlighter } from "../utils/highlighter"
+import { logger } from "../utils/logger"
+import { transform } from "../utils/transformers"
 import { Command } from "commander"
 import { diffLines, type Change } from "diff"
 import { z } from "zod"

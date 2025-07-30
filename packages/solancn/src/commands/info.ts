@@ -1,6 +1,6 @@
-import { getConfig } from "@/src/utils/get-config"
-import { getProjectInfo } from "@/src/utils/get-project-info"
-import { logger } from "@/src/utils/logger"
+import { getConfig } from "../utils/get-config"
+import { getProjectInfo } from "../utils/get-project-info"
+import { logger } from "../utils/logger"
 import { Command } from "commander"
 
 export const info = new Command()

@@ -1,10 +1,10 @@
 import { promises as fs } from "fs"
 import path from "path"
-import { preFlightInit } from "@/src/preflights/preflight-init"
-import { getRegistryBaseColors, getRegistryStyles } from "@/src/registry/api"
-import { addComponents } from "@/src/utils/add-components"
-import { createProject } from "@/src/utils/create-project"
-import * as ERRORS from "@/src/utils/errors"
+import { preFlightInit } from "../preflights/preflight-init"
+import { getRegistryBaseColors, getRegistryStyles } from "../registry/api"
+import { addComponents } from "../utils/add-components"
+import { createProject } from "../utils/create-project"
+import * as ERRORS from "../utils/errors"
 import {
   DEFAULT_COMPONENTS,
   DEFAULT_TAILWIND_CONFIG,
@@ -14,17 +14,17 @@ import {
   rawConfigSchema,
   resolveConfigPaths,
   type Config,
-} from "@/src/utils/get-config"
+} from "../utils/get-config"
 import {
   getProjectConfig,
   getProjectInfo,
   getProjectTailwindVersionFromConfig,
-} from "@/src/utils/get-project-info"
-import { handleError } from "@/src/utils/handle-error"
-import { highlighter } from "@/src/utils/highlighter"
-import { logger } from "@/src/utils/logger"
-import { spinner } from "@/src/utils/spinner"
-import { updateTailwindContent } from "@/src/utils/updaters/update-tailwind-content"
+} from "../utils/get-project-info"
+import { handleError } from "../utils/handle-error"
+import { highlighter } from "../utils/highlighter"
+import { logger } from "../utils/logger"
+import { spinner } from "../utils/spinner"
+import { updateTailwindContent } from "../utils/updaters/update-tailwind-content"
 import { Command } from "commander"
 import prompts from "prompts"
 import { z } from "zod"

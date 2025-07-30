@@ -1,5 +1,5 @@
-import { type Config } from "@/src/utils/get-config"
-import { transformIcons } from "@/src/utils/transformers/transform-icons"
+import { type Config } from "../get-config"
+import { transformIcons } from "./transform-icons"
 import { describe, expect, test, vi } from "vitest"
 
 import { transform } from "."

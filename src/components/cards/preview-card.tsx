@@ -1,6 +1,6 @@
 "use client";
 
-import type { RegistryItem } from "@/lib/types";
+import type { RegistryItem } from "@/types/registry";
 
 interface PreviewProps {
 	item: RegistryItem;
