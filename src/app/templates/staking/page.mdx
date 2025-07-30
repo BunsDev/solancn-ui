@@ -1,0 +1,32 @@
+import { CodeBlock } from "@/components/site/code-block";
+import { ComponentRenderer } from "@/components/site/component-renderer";
+import { Cli } from "@/components/site/cli";
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@/components/site/tabs.tsx";
+import { HideTOC } from "@/components/site/hide-toc";
+import NftMarket from "./nftmarket"
+
+<HideTOC />
+
+# NFT Marketplace
+A fully responsive NFT marketplace component with a clean design.
+
+
+
+<Tabs defaultValue="preview" className="">
+  <TabsList>
+    <TabsTrigger value="preview">Preview</TabsTrigger>
+    <TabsTrigger value="code">Code</TabsTrigger>
+  </TabsList>
+  <TabsContent value="preview">
+    <ComponentRenderer component={<NftMarket />} componentName="NftMarket" />
+  </TabsContent>
+  <TabsContent value="code">
+    <CodeBlock filePath="src/app/templates/nftmarket/nftmarket.tsx" />
+  </TabsContent>
+</Tabs>
+

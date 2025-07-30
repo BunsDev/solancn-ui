@@ -410,13 +410,13 @@ const getComponentCategory = (componentName: string): string => {
 	for (const section of allNavigation) {
 		const found = section.children.some(
 			(child) =>
-				child.href.includes(`/components/${componentName}`) ||
+				child.href.includes(`/designs/${componentName}`) ||
 				child.label.toLowerCase() === componentName.toLowerCase(),
 		);
 
 		if (found) return section.label;
 	}
-	return "Components"; // Default category
+	return "Designs"; // Default category
 };
 
 export function ComponentsClientPage({
@@ -438,7 +438,7 @@ export function ComponentsClientPage({
 		...component,
 		category: component.category || getComponentCategory(component.name),
 		// Ensure the required 'type' property is set for all components
-		type: component.type || ("registry:component" as const),
+		type: component.type || ("registry:design" as const),
 	})) as ProcessedComponent[];
 
 	// Filter components based on search term and selected category
