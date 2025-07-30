@@ -20,7 +20,8 @@ const Header = () => {
 	const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 	const isComponents = pathname.includes("components");
 	const isDocs = pathname.includes("docs");
-	const isTools = pathname.includes("tools");
+	const isDesign = pathname.includes("design");
+	const isBlocks = pathname.includes("blocks");
 	// const isHome = pathname === "/";
 
 
@@ -146,19 +147,39 @@ const Header = () => {
 									"flex items-center gap-2 hover:text-zinc-900 dark:hover:text-zinc-50",
 								)
 								}
+								href="/components"
+							>
+								<Button
+									variant="default"
+									className={cn(
+										"text-zinc-900 dark:text-zinc-100 border-2 bg-zinc-200 dark:bg-zinc-950 hover:bg-zinc-200 dark:hover:bg-zinc-800",
+										isBlocks && "dark:border-purple-600",
+										!isBlocks && "dark:border-zinc-700 hover:border-purple-600",
+									)
+									}
+								>
+									<Icon icon="tabler:blocks" className="h-6 w-6" />
+									Blocks
+								</Button>
+							</Link>
+							<Link
+								className={cn(
+									"flex items-center gap-2 hover:text-zinc-900 dark:hover:text-zinc-50",
+								)
+								}
 								href="/tools"
 							>
 								<Button
 									variant="default"
 									className={cn(
 										"text-zinc-900 dark:text-zinc-100 border-2 bg-zinc-200 dark:bg-zinc-950 hover:bg-zinc-200 dark:hover:bg-zinc-800",
-										isTools && "dark:border-purple-600",
-										!isTools && "dark:border-zinc-700 hover:border-purple-600",
+										isDesign && "dark:border-purple-600",
+										!isDesign && "dark:border-zinc-700 hover:border-purple-600",
 									)
 									}
 								>
-									<Icon icon="tabler:components" className="h-6 w-6" />
-									Tools
+									<Icon icon="streamline-ultimate:design-tool-compass-bold" className="h-6 w-6" />
+									Design
 								</Button>
 							</Link>
 						</nav>

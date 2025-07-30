@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { type ClassNameValue, twMerge } from "tailwind-merge";
 import { components } from "@/scripts/components";
-import type { RegistryItem } from "./types";
+import type { RegistryItem } from "@/types/registry";
 
 export const cn = (...classNames: ClassNameValue[]) => {
 	return twMerge(clsx(...classNames));

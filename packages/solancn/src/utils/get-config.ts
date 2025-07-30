@@ -131,18 +131,25 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 
 export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
   try {
-    const configResult = await explorer.search(cwd)
+    // Check if components.json exists in the exact directory (without searching up)
+    const componentPath = `${cwd}/components.json`
+    const configResult = await explorer.load(componentPath)
 
     if (!configResult) {
       return null
     }
-
+    
     return rawConfigSchema.parse(configResult.config)
   } catch (error) {
-    const componentPath = `${cwd}/components.json`
-    throw new Error(
-      `Invalid configuration found in ${highlighter.info(componentPath)}.`
-    )
+    // Only throw if it's a parsing error, not a file not found error
+    if (error instanceof SyntaxError || error instanceof z.ZodError) {
+      const componentPath = `${cwd}/components.json`
+      throw new Error(
+        `Invalid configuration found in ${highlighter.info(componentPath)}.`
+      )
+    }
+    // If file doesn't exist, return null
+    return null
   }
 }
 
