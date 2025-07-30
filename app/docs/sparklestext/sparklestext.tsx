@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from 'react';
 import {
     useState,
     useEffect,
@@ -12,6 +11,7 @@ import {
     ElementType,
     ComponentProps,
     CSSProperties,
+    memo,
 } from 'react';
 import { motion } from 'framer-motion';
 
@@ -113,7 +113,7 @@ const SparklesContext = createContext<SparklesContextType | null>(null);
  * SparkleInstance Component
  * Renders a single animated sparkle using an SVG shape.
  */
-const SparkleInstance: FC<SparkleInstanceProps> = React.memo(({ size, color, style }) => {
+const SparkleInstance: FC<SparkleInstanceProps> = memo(({ size, color, style }) => {
     const path = "M120 80L100 0 80 80 0 100l80 20 20 80 20-80 80-20-80-20z";
 
     return (
@@ -148,7 +148,7 @@ SparkleInstance.displayName = 'SparkleInstance';
  * SparklesWrapper Component
  * Consumes the sparkles context and renders the SparkleInstance components.
  */
-const SparklesWrapper: FC = React.memo(() => {
+const SparklesWrapper: FC = memo(() => {
     const context = useContext(SparklesContext);
     if (!context) {
         // This should not happen if the component is used correctly.

@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, type ReactNode, MouseEvent, forwardRef, ButtonHTMLAttributes, FC } from "react";
 import { cn } from "@/lib/utils";
 
-const Loader2: React.FC<{ className?: string }> = ({ className }) => (
+const Loader2: FC<{ className?: string }> = ({ className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -30,15 +30,15 @@ type ButtonVariant =
 type ButtonSize = "default" | "sm" | "lg";
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   loading?: boolean;
-  iconLeft?: React.ReactNode;
-  iconRight?: React.ReactNode;
+  iconLeft?: ReactNode;
+  iconRight?: ReactNode;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       className,
@@ -81,7 +81,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       document.head.appendChild(style);
     }, []);
 
-    const createRipple = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const createRipple = (event: MouseEvent<HTMLButtonElement>) => {
       if (loading) return;
 
       const button = event.currentTarget;

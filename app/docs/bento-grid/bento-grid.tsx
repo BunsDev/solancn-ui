@@ -1,9 +1,10 @@
 "use client";
-import React, {
+import {
   ComponentPropsWithoutRef,
   ReactNode,
   FC,
   SVGProps,
+  ElementType,
 } from "react";
 
 const cn = (...inputs: (string | boolean | undefined | null)[]) => {
@@ -48,7 +49,7 @@ interface BentoCardProps extends ComponentPropsWithoutRef<"div"> {
   name: string;
   className: string;
   background: ReactNode;
-  Icon: React.ElementType;
+  Icon: ElementType;
   description: string;
   href: string;
   cta: string;

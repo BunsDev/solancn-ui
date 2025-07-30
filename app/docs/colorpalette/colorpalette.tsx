@@ -1,5 +1,8 @@
 'use client'
-import React, { useState, useCallback, useEffect, createContext, useContext } from 'react';
+import { useState, useCallback, useEffect, createContext, FC, useContext, ReactNode, ButtonHTMLAttributes, 
+    SelectHTMLAttributes, HTMLAttributes, InputHTMLAttributes, ChangeEvent, 
+    cloneElement, MouseEvent as ReactMouseEvent,
+    ReactElement} from 'react';
 import tinycolor from 'tinycolor2';
 
 // TypeScript interfaces
@@ -32,56 +35,56 @@ interface DialogContextType {
 
 // Component prop types
 interface IconProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 
 
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
+interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
   className?: string;
 }
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
   className?: string;
   variant?: 'primary' | 'outline' | 'destructive';
   size?: 'md' | 'icon';
 }
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
 }
 
-interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
-  children: React.ReactNode;
+interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+  children: ReactNode;
   className?: string;
 }
 
 interface BadgeProps {
-  children: React.ReactNode;
+  children: ReactNode;
   variant?: 'default' | 'secondary' | 'destructive';
   className?: string;
 }
 
 interface DialogProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 interface DialogContentProps {
-  children: React.ReactNode;
+  children: ReactNode;
   title: string;
 }
 
 interface ToastProviderProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 // --- Helper Components & Icons ---
 // These are simple functional components to replace shadcn/ui and lucide-react for a self-contained file.
 
-const Icon: React.FC<IconProps> = ({ children, className = "w-4 h-4" }) => <div className={className}>{children}</div>;
+const Icon: FC<IconProps> = ({ children, className = "w-4 h-4" }) => <div className={className}>{children}</div>;
 
 const ShuffleIcon = () => <Icon><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m18 14 4 4-4 4"></path><path d="m18 2 4 4-4 4"></path><path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22"></path><path d="M2 6h1.972a4 4 0 0 1 3.6 2.2"></path><path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45"></path></svg></Icon>;
 const DownloadIcon = () => <Icon><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></Icon>;
@@ -90,9 +93,9 @@ const EyeIcon = () => <Icon className="w-3 h-3 mr-1"><svg xmlns="http://www.w3.o
 const ZapIcon = () => <Icon><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></Icon>;
 const FileDownIcon = () => <Icon className="w-4 h-4 mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></Icon>;
 
-const Card: React.FC<CardProps> = ({ children, className = '', ...props }) => <div className={`bg-white dark:bg-black rounded-lg ${className}`} {...props}>{children}</div>;
+const Card: FC<CardProps> = ({ children, className = '', ...props }) => <div className={`bg-white dark:bg-black rounded-lg ${className}`} {...props}>{children}</div>;
 
-const Button: React.FC<ButtonProps> = ({ children, className = '', variant = 'primary', size = 'md', ...props }) => {
+const Button: FC<ButtonProps> = ({ children, className = '', variant = 'primary', size = 'md', ...props }) => {
     const baseClasses = "inline-flex items-center justify-center rounded-md font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-black";
     const variantClasses: Record<string, string> = {
         primary: "bg-purple-600 text-white hover:bg-purple-700 focus:ring-purple-500 dark:bg-purple-500 dark:hover:bg-purple-600",
@@ -106,11 +109,11 @@ const Button: React.FC<ButtonProps> = ({ children, className = '', variant = 'pr
     return <button className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`} {...props}>{children}</button>;
 };
 
-const Input: React.FC<InputProps> = ({ className = '', ...props }) => <input className={`flex-1 h-12 px-3 rounded-md border border-gray-300 font-mono focus:ring-2 focus:ring-purple-500 focus:border-purple-500 bg-white dark:bg-black dark:border-gray-600 dark:text-white ${className}`} {...props} />;
+const Input: FC<InputProps> = ({ className = '', ...props }) => <input className={`flex-1 h-12 px-3 rounded-md border border-gray-300 font-mono focus:ring-2 focus:ring-purple-500 focus:border-purple-500 bg-white dark:bg-black dark:border-gray-600 dark:text-white ${className}`} {...props} />;
 
-const Select: React.FC<SelectProps> = ({ children, className = '', ...props }) => <select className={`w-full h-12 px-3 rounded-md border border-gray-300 bg-white focus:ring-2 focus:ring-purple-500 focus:border-purple-500 dark:bg-black dark:border-gray-600 dark:text-white ${className}`} {...props}>{children}</select>;
+const Select: FC<SelectProps> = ({ children, className = '', ...props }) => <select className={`w-full h-12 px-3 rounded-md border border-gray-300 bg-white focus:ring-2 focus:ring-purple-500 focus:border-purple-500 dark:bg-black dark:border-gray-600 dark:text-white ${className}`} {...props}>{children}</select>;
 
-const Badge: React.FC<BadgeProps> = ({ children, variant = "default", className = '' }) => {
+const Badge: FC<BadgeProps> = ({ children, variant = "default", className = '' }) => {
     const variantClasses: Record<string, string> = {
         default: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
         secondary: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200",
@@ -128,7 +131,7 @@ const useToast = (): ToastContextType => {
     return context;
 };
 
-const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
+const ToastProvider: FC<ToastProviderProps> = ({ children }) => {
     const [toasts, setToasts] = useState<ToastData[]>([]);
 
     const toast = useCallback(({ title, description, variant = 'default' }: { title: string; description?: string; variant?: string }) => {
@@ -157,21 +160,21 @@ const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
 // --- Dialog Component ---
 const DialogContext = createContext<DialogContextType | null>(null);
 
-const Dialog: React.FC<DialogProps> = ({ children }) => {
+const Dialog: FC<DialogProps> = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
     return <DialogContext.Provider value={{ isOpen, setIsOpen }}>{children}</DialogContext.Provider>;
 }
 
-const DialogTrigger: React.FC<DialogProps> = ({ children }) => {
+const DialogTrigger: FC<DialogProps> = ({ children }) => {
     const context = useContext(DialogContext);
     if (!context) throw new Error("DialogTrigger must be used within a Dialog");
     const { setIsOpen } = context;
-    return React.cloneElement(children as React.ReactElement<React.HTMLAttributes<HTMLElement>>, {
+    return cloneElement(children as ReactElement<HTMLAttributes<HTMLElement>>, {
         onClick: () => setIsOpen(true)
     });
 }
 
-const DialogContent: React.FC<DialogContentProps> = ({ children, title }) => {
+const DialogContent: FC<DialogContentProps> = ({ children, title }) => {
     const context = useContext(DialogContext);
     if (!context) throw new Error("DialogContent must be used within a Dialog");
     const { isOpen, setIsOpen } = context;
@@ -179,7 +182,10 @@ const DialogContent: React.FC<DialogContentProps> = ({ children, title }) => {
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-40 flex items-center justify-center" onClick={() => setIsOpen(false)}>
-            <div className="bg-white dark:bg-black rounded-lg shadow-xl p-6 w-full max-w-sm m-4 animate-scale-in" onClick={(e: React.MouseEvent) => e.stopPropagation()}>
+            <div className="bg-white dark:bg-black rounded-lg shadow-xl p-6 w-full max-w-sm m-4 animate-scale-in" 
+                onClick={(e: ReactMouseEvent) => e.stopPropagation()}
+                
+            >
                 <div className="flex justify-between items-center mb-4">
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
                     <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">&times;</button>
@@ -191,7 +197,7 @@ const DialogContent: React.FC<DialogContentProps> = ({ children, title }) => {
 }
 
 // --- Main Application Component ---
-const ColorPaletteGenerator: React.FC = () => {
+const ColorPaletteGenerator: FC = () => {
     const [baseColor, setBaseColor] = useState<string>('#8B5CF6');
     const [palette, setPalette] = useState<ColorShade[]>([]);
     const [colorFormat, setColorFormat] = useState<'hex' | 'rgb' | 'hsl'>('hex');
@@ -298,14 +304,14 @@ const ColorPaletteGenerator: React.FC = () => {
                         <div className="space-y-2">
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Base Color</label>
                             <div className="flex items-center gap-2">
-                                <input type="color" value={baseColor} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setBaseColor(e.target.value)} className="w-12 h-12 rounded-lg border-2 border-gray-200 dark:border-gray-600 cursor-pointer p-0" />
-                                <Input type="text" value={baseColor} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setBaseColor(e.target.value)} />
+                                <input type="color" value={baseColor} onChange={(e: ChangeEvent<HTMLInputElement>) => setBaseColor(e.target.value)} className="w-12 h-12 rounded-lg border-2 border-gray-200 dark:border-gray-600 cursor-pointer p-0" />
+                                <Input type="text" value={baseColor} onChange={(e: ChangeEvent<HTMLInputElement>) => setBaseColor(e.target.value)} />
                                 <Button variant="outline" size="icon" onClick={randomizeColor}><ShuffleIcon /></Button>
                             </div>
                         </div>
                         <div className="space-y-2">
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Color Harmony</label>
-                            <Select value={harmonyMode} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setHarmonyMode(e.target.value)}>
+                            <Select value={harmonyMode} onChange={(e: ChangeEvent<HTMLSelectElement>) => setHarmonyMode(e.target.value)}>
                                 <option value="shades">Shades</option>
                                 <option value="complementary">Complementary</option>
                                 <option value="triadic">Triadic</option>
@@ -315,7 +321,7 @@ const ColorPaletteGenerator: React.FC = () => {
                         <div className="space-y-2">
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Actions</label>
                             <div className="flex items-center gap-2">
-                                <Select value={colorFormat} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setColorFormat(e.target.value as 'hex' | 'rgb' | 'hsl')} className="w-24">
+                                <Select value={colorFormat} onChange={(e: ChangeEvent<HTMLSelectElement>) => setColorFormat(e.target.value as 'hex' | 'rgb' | 'hsl')} className="w-24">
                                     <option value="hex">HEX</option>
                                     <option value="rgb">RGB</option>
                                     <option value="hsl">HSL</option>

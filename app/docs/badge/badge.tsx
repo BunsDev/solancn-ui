@@ -1,5 +1,19 @@
 'use client'
-import React, { MouseEvent, ReactNode, ReactElement, useState } from 'react';
+import {
+    MouseEvent,
+    ReactNode,
+    ReactElement,
+    useState,
+    cloneElement,
+    forwardRef,
+    FocusEvent,
+    Ref,
+    ButtonHTMLAttributes,
+    AnchorHTMLAttributes,
+    HTMLAttributes,
+    CSSProperties
+} from 'react';
+import { motion } from 'framer-motion';
 
 // Enhanced Icons
 const XIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
@@ -37,7 +51,7 @@ interface BadgeBaseProps {
 
   // Styling
   className?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 
   // Glass/Blur Effects
   blur?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
@@ -57,7 +71,7 @@ interface BadgeBaseProps {
   // Events
   onDismiss?: (event: MouseEvent<HTMLButtonElement>) => void;
   onHover?: (event: MouseEvent<HTMLElement>) => void;
-  onFocus?: (event: React.FocusEvent<HTMLElement>) => void;
+  onFocus?: (event: FocusEvent<HTMLElement>) => void;
 
   // Accessibility
   'aria-label'?: string;
@@ -74,15 +88,15 @@ interface BadgeBaseProps {
 
 
 type BadgeActionProps = 
-  | ({ onClick: (event: MouseEvent<HTMLButtonElement>) => void; href?: never; } & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>)
-  | ({ href: string; onClick?: never; } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>)
-  | ({ href?: undefined; onClick?: undefined } & React.HTMLAttributes<HTMLDivElement>);
+  | ({ onClick: (event: MouseEvent<HTMLButtonElement>) => void; href?: never; } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>)
+  | ({ href: string; onClick?: never; } & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>)
+  | ({ href?: undefined; onClick?: undefined } & HTMLAttributes<HTMLDivElement>);
 
 
 export type BadgeProps = BadgeBaseProps & BadgeActionProps;
 
 
-export const Badge = React.forwardRef<HTMLElement, BadgeProps>(({
+export const Badge = forwardRef<HTMLElement, BadgeProps>(({
   children,
   size = 'md',
   shape = 'rounded',
@@ -227,7 +241,7 @@ export const Badge = React.forwardRef<HTMLElement, BadgeProps>(({
   ].filter(Boolean).join(' ');
 
   // Add positioning styles if needed
-  const positioningStyles: React.CSSProperties = {
+  const positioningStyles: CSSProperties = {
     ...style,
     ...(top !== undefined && { top }),
     ...(right !== undefined && { right }),
@@ -244,21 +258,21 @@ export const Badge = React.forwardRef<HTMLElement, BadgeProps>(({
   if (href) {
     return (
       <a
-        ref={ref as React.Ref<HTMLAnchorElement>}
+        ref={ref as Ref<HTMLAnchorElement>}
         href={href}
         className={finalClassName}
         style={finalStyle}
         onMouseEnter={onHover}
         onFocus={onFocus}
-        {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+        {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
         {loading ? (
           <LoadingIcon className={iconSize} />
         ) : (
-          iconLeft && <span className="mr-1.5">{React.cloneElement(iconLeft, { className: iconSize } as React.HTMLAttributes<HTMLElement>)}</span>
+          iconLeft && <span className="mr-1.5">{cloneElement(iconLeft, { className: iconSize } as HTMLAttributes<HTMLElement>)}</span>
         )}
         <span className="truncate">{children}</span>
-        {!loading && iconRight && <span className="ml-1.5">{React.cloneElement(iconRight, { className: iconSize } as React.HTMLAttributes<HTMLElement>)}</span>}
+        {!loading && iconRight && <span className="ml-1.5">{cloneElement(iconRight, { className: iconSize } as HTMLAttributes<HTMLElement>)}</span>}
         {badge && (
           <span className="ml-1.5 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-white bg-red-500 rounded-full">
             {badge}
@@ -281,22 +295,22 @@ export const Badge = React.forwardRef<HTMLElement, BadgeProps>(({
   if (onClick) {
     return (
       <button
-        ref={ref as React.Ref<HTMLButtonElement>}
+        ref={ref as Ref<HTMLButtonElement>}
         onClick={onClick}
         className={finalClassName}
         style={finalStyle}
         onMouseEnter={onHover}
         onFocus={onFocus}
         disabled={disabled || loading}
-        {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+        {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
       >
         {loading ? (
           <LoadingIcon className={iconSize} />
         ) : (
-          iconLeft && <span className="mr-1.5">{React.cloneElement(iconLeft, { className: iconSize } as React.HTMLAttributes<HTMLElement>)}</span>
+          iconLeft && <span className="mr-1.5">{cloneElement(iconLeft, { className: iconSize } as HTMLAttributes<HTMLElement>)}</span>
         )}
         <span className="truncate">{children}</span>
-        {!loading && iconRight && <span className="ml-1.5">{React.cloneElement(iconRight, { className: iconSize } as React.HTMLAttributes<HTMLElement>)}</span>}
+        {!loading && iconRight && <span className="ml-1.5">{cloneElement(iconRight, { className: iconSize } as HTMLAttributes<HTMLElement>)}</span>}
         {badge && (
           <span className="ml-1.5 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-white bg-red-500 rounded-full">
             {badge}
@@ -318,20 +332,20 @@ export const Badge = React.forwardRef<HTMLElement, BadgeProps>(({
 
   return (
     <div
-      ref={ref as React.Ref<HTMLDivElement>}
+      ref={ref as Ref<HTMLDivElement>}
       className={finalClassName}
       style={finalStyle}
       onMouseEnter={onHover}
       onFocus={onFocus}
-      {...(props as React.HTMLAttributes<HTMLDivElement>)}
+      {...(props as HTMLAttributes<HTMLDivElement>)}
     >
       {loading ? (
         <LoadingIcon className={iconSize} />
       ) : (
-        iconLeft && <span className="mr-1.5">{React.cloneElement(iconLeft, { className: iconSize } as React.HTMLAttributes<HTMLElement>)}</span>
+        iconLeft && <span className="mr-1.5">{cloneElement(iconLeft, { className: iconSize } as HTMLAttributes<HTMLElement>)}</span>
       )}
       <span className="truncate">{children}</span>
-      {!loading && iconRight && <span className="ml-1.5">{React.cloneElement(iconRight, { className: iconSize } as React.HTMLAttributes<HTMLElement>)}</span>}
+      {!loading && iconRight && <span className="ml-1.5">{cloneElement(iconRight, { className: iconSize } as HTMLAttributes<HTMLElement>)}</span>}
       {badge && (
         <span className="ml-1.5 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-white bg-red-500 rounded-full">
           {badge}

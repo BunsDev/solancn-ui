@@ -1,5 +1,3 @@
-"use client";
-
 import Button from "@/app/docs/button/button";
 
 const GoogleIcon = () => (

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, FC, ReactNode } from "react";
 import { motion, PanInfo } from "framer-motion";
 
 interface CardData {
@@ -14,7 +14,7 @@ interface IconProps {
 }
 
 interface BadgeProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 
@@ -25,7 +25,7 @@ interface CardProps {
   totalCards: number;
 }
 
-const SparklesIcon: React.FC<IconProps> = ({ className }) => (
+const SparklesIcon: FC<IconProps> = ({ className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -42,7 +42,7 @@ const SparklesIcon: React.FC<IconProps> = ({ className }) => (
   </svg>
 );
 
-const ChevronLeftIcon: React.FC<IconProps> = ({ className }) => (
+const ChevronLeftIcon: FC<IconProps> = ({ className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -59,7 +59,7 @@ const ChevronLeftIcon: React.FC<IconProps> = ({ className }) => (
   </svg>
 );
 
-const ChevronRightIcon: React.FC<IconProps> = ({ className }) => (
+const ChevronRightIcon: FC<IconProps> = ({ className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -76,7 +76,7 @@ const ChevronRightIcon: React.FC<IconProps> = ({ className }) => (
   </svg>
 );
 
-const Badge: React.FC<BadgeProps> = ({ children, className }) => (
+const Badge: FC<BadgeProps> = ({ children, className }) => (
   <div
     className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium ${className}`}
   >

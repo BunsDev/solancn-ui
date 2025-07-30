@@ -1,10 +1,12 @@
 "use client";
-import React, {
+import {
   useEffect,
   createContext,
   useContext,
   HTMLAttributes,
   ReactNode,
+  forwardRef,
+  ButtonHTMLAttributes,
 } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -57,7 +59,7 @@ const Drawer: React.FC<DrawerProps> = ({
   );
 };
 
-const DrawerOverlay = React.forwardRef<
+const DrawerOverlay = forwardRef<
   HTMLDivElement,
   Omit<
     HTMLAttributes<HTMLDivElement>,
@@ -85,7 +87,7 @@ const DrawerOverlay = React.forwardRef<
 });
 DrawerOverlay.displayName = "DrawerOverlay";
 
-const DrawerContent = React.forwardRef<
+const DrawerContent = forwardRef<
   HTMLDivElement,
   Omit<
     HTMLAttributes<HTMLDivElement>,
@@ -198,7 +200,7 @@ const DrawerFooter = ({
 );
 DrawerFooter.displayName = "DrawerFooter";
 
-const DrawerTitle = React.forwardRef<
+const DrawerTitle = forwardRef<
   HTMLHeadingElement,
   HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
@@ -210,7 +212,7 @@ const DrawerTitle = React.forwardRef<
 ));
 DrawerTitle.displayName = "DrawerTitle";
 
-const DrawerDescription = React.forwardRef<
+const DrawerDescription = forwardRef<
   HTMLParagraphElement,
   HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
@@ -222,11 +224,11 @@ const DrawerDescription = React.forwardRef<
 ));
 DrawerDescription.displayName = "DrawerDescription";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "default" | "outline";
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "default", ...props }, ref) => (
     <button
       ref={ref}

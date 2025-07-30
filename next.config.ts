@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true, // Required for static export
   },
+
   // Static export doesn't support headers() or redirects()
   // These will be handled by your hosting provider (Vercel)
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 export type PackageManager = "npm" | "pnpm" | "yarn" | "bun";
 
@@ -34,7 +34,7 @@ interface PackageManagerContextType {
 const PackageManagerContext = createContext<PackageManagerContextType | undefined>(undefined);
 
 interface PackageManagerProviderProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export function PackageManagerProvider({ children }: PackageManagerProviderProps) {
