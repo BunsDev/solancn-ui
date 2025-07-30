@@ -52,108 +52,108 @@ const data = {
   ],
   navMain: [
     {
-      title: "Playground",
-      url: "#",
+      title: "Components",
+      url: "/components",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
           title: "History",
-          url: "#",
+          url: "/components/history",
         },
         {
           title: "Starred",
-          url: "#",
+          url: "/components/starred",
         },
         {
           title: "Settings",
-          url: "#",
+          url: "/components/settings",
         },
       ],
     },
     {
-      title: "Models",
-      url: "#",
+      title: "Designs",
+      url: "/designs",
       icon: Bot,
       items: [
         {
           title: "Genesis",
-          url: "#",
+          url: "/designs/genesis",
         },
         {
           title: "Explorer",
-          url: "#",
+          url: "/designs/explorer",
         },
         {
           title: "Quantum",
-          url: "#",
+          url: "/designs/quantum",
         },
       ],
     },
     {
-      title: "Documentation",
-      url: "#",
+      title: "Docs",
+      url: "/docs",
       icon: BookOpen,
       items: [
         {
           title: "Introduction",
-          url: "#",
+          url: "/docs/introduction",
         },
         {
           title: "Get Started",
-          url: "#",
+          url: "/docs/installation",
         },
         {
           title: "Tutorials",
-          url: "#",
+          url: "/docs/tutorials",
         },
         {
           title: "Changelog",
-          url: "#",
+          url: "/docs/changelog",
         },
       ],
     },
     {
-      title: "Settings",
-      url: "#",
+      title: "Blocks",
+      url: "/blocks",
       icon: Settings2,
       items: [
         {
           title: "General",
-          url: "#",
+          url: "/blocks/general",
         },
         {
           title: "Team",
-          url: "#",
+          url: "/blocks/team",
         },
         {
           title: "Billing",
-          url: "#",
+          url: "/blocks/billing",
         },
         {
           title: "Limits",
-          url: "#",
+          url: "/blocks/limits",
         },
       ],
     },
   ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
-  ],
+  // projects: [
+  //   {
+  //     name: "Design Engineering",
+  //     url: "#",
+  //     icon: Frame,
+  //   },
+  //   {
+  //     name: "Sales & Marketing",
+  //     url: "#",
+  //     icon: PieChart,
+  //   },
+  //   {
+  //     name: "Travel",
+  //     url: "#",
+  //     icon: Map,
+  //   },
+  // ],
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -164,10 +164,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        {/* <NavUser user={data.user} /> */}
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
