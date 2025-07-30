@@ -1,168 +1,182 @@
-# Architecture
+# Solancn UI - Architecture Documentation
 
-This document provides a comprehensive overview of the solancn architecture, explaining its core components, design patterns, and how the various parts of the system work together.
+This document provides a comprehensive architectural breakdown of the Solancn UI project tailored for different audiences.
 
-## System Overview
+## For Technical Engineers
 
-solancn is a design system registry built with Next.js, Shadcn/ui, and Tailwind CSS. It functions as a central repository for UI components, blocks, and design tokens that can be used across multiple Solana-related applications to ensure consistency and accelerate development.
+### Technical Architecture
 
-## Core Technologies
+#### Core Technology Stack
+- **Frontend Framework**: Next.js 15.x with App Router
+- **UI Component Library**: Custom components built on top of Radix UI primitives
+- **Styling**: Tailwind CSS with custom configuration
+- **State Management**: React Context API
+- **Animation**: Framer Motion
+- **TypeScript**: Strictly typed codebase
+- **Package Manager**: PNPM
 
-- **Next.js 15**: App Router architecture for routing and server components
-- **React 19**: Frontend component library
-- **Shadcn/ui**: Component primitives and UI foundation
-- **Tailwind CSS**: Utility-first CSS framework for styling
-- **TypeScript**: Static type checking
-- **PNPM**: Package management
-
-## Directory Structure
-
+#### Project Structure
 ```
-/
-├── app/                     # Next.js App Router routes
-│   ├── docs/          # Documentation application routes
-│   ├── demos/                # Component demonstration routes
-│   └── r/                   # API routes for registry endpoints
-├── components/              # React components
-│   ├── ui/                  # Shadcn/ui primitives
-│   └── docs/            # Documentation-specific components
-├── hooks/                   # React hooks
-├── lib/                     # Utility functions and business logic
-├── v0/                      # v0.dev integration files
-├── public/                  # Static assets
-└── docs/                    # Documentation files
+solancn-ui/
+├── src/
+│   ├── app/                  # Next.js App Router routes
+│   │   ├── (landing)/        # Public landing pages
+│   │   ├── components/       # Route-specific components
+│   │   └── layout.tsx        # Root layout with providers
+│   ├── assets/               # Static assets and fonts
+│   ├── components/           # Reusable UI components
+│   │   ├── analytics/        # Analytics components
+│   │   ├── cards/            # Card components
+│   │   ├── site/             # Site-specific components
+│   │   └── ui/               # Core UI components (buttons, forms, etc.)
+│   ├── contexts/             # React Context providers
+│   ├── hooks/                # Custom React hooks
+│   └── lib/                  # Utility functions and helpers
+├── public/                   # Static files
+└── docs/                     # Documentation
 ```
 
-## Registry Pattern
+#### Component Architecture
+- **Component Composition**: Uses a compositional pattern with smaller, focused components
+- **Styling Strategy**: Utility-first with Tailwind CSS
+- **State Management**: Context API for wallet connection, package management, and UI state
+- **Rendering Strategy**: Hybrid approach with Server and Client Components
 
-The core architectural pattern is the "Registry Pattern" which centralizes component definitions in a structured JSON format:
+#### Integration Points
+- **Solana Blockchain**: Integration via `@solana/wallet-adapter-react` for wallet connectivity
+- **Data Flow**: Unidirectional data flow with React Context for state management
+- **API Structure**: Modular API integration points with separation of concerns
 
-### Registry Items
+#### Key Technical Implementations
+1. **Wallet Integration**: Implements wallet connection functionality with real wallet status display and SOL balance
+2. **Staking System**: Provides both native and liquid staking options with validator selection
+3. **UI Component Library**: Custom implementation following Shadcn UI patterns
+4. **Performance Optimization**: Includes performance monitoring and optimized rendering
 
-Components in the registry are organized into three main categories:
+#### Build and Deployment
+- **Build Process**: Next.js build with optimization for production
+- **Bundle Analysis**: Configuration for bundle size optimization
+- **Deployment Target**: Vercel-optimized deployment
 
-1. **UI Primitives**: Basic building blocks (e.g., buttons, inputs, form elements)
-2. **Components**: Higher-level components built using UI primitives
-3. **Blocks**: Pre-built starter kits that combine components into application patterns
+## For Project Managers
 
-Each registry item defines:
-- Metadata (name, title, description)
-- Type (ui, component, block, etc.)
-- Dependencies on other registry items
-- File paths and their targets when installed
+### Project Overview
 
-## Integration Points
+#### Project Purpose
+Solancn UI is a modern React component library designed specifically for Solana blockchain applications, offering a comprehensive set of UI components that are both functional and aesthetically pleasing.
 
-### MCP (Model Context Protocol)
+#### Core Functionality
+- **Wallet Integration**: Seamless connection to Solana wallets
+- **Staking Interface**: User-friendly staking capabilities
+- **Portfolio Management**: Tools for tracking assets and investments
+- **Transfer & Receive**: Streamlined transaction experience
+- **Component Library**: 500+ reusable animated components
 
-The registry integrates with AI IDEs using Model Context Protocol, allowing AI tools to access and understand the registry's components and design tokens. This enables AI-assisted development with accurate knowledge of the design system.
+#### Project Timeline and Resources
 
-### v0.dev Integration
+| Phase | Timeline | Key Deliverables | Resources Required |
+|-------|----------|------------------|-------------------|
+| Foundation | Week 1-2 | Project setup, core components | 2 Frontend Engineers |
+| Wallet Integration | Week 3 | Wallet connectivity, balance display | 1 Frontend + 1 Blockchain Engineer |
+| Staking Features | Week 4-5 | Validator selection, staking interface | 2 Frontend + 1 Blockchain Engineer |
+| Portfolio & Transfer | Week 6-7 | Asset tracking, transaction UI | 2 Frontend Engineers |
+| Testing & Optimization | Week 8 | Performance tuning, cross-browser testing | 1 QA + 1 Frontend Engineer |
 
-"Open in v0" buttons provide deep linking to v0.dev with component context, allowing designers and developers to quickly prototype using the design system components in an AI-assisted environment.
+#### Key Performance Indicators
+- Component reusability rate (target: 80%+)
+- UI performance metrics (target: <1s interaction time)
+- Wallet connection success rate (target: 99%+)
+- Staking transaction success rate (target: 99.5%+)
 
-## Theming System
+#### Risk Assessment
+- **Integration Challenges**: Potential issues with wallet providers or blockchain RPC endpoints
+- **UI Performance**: Heavy animations may impact performance on lower-end devices
+- **Cross-browser Compatibility**: Ensuring consistent functionality across browsers
+- **Blockchain Network Changes**: Adaptability to Solana network upgrades
 
-The theming system consists of:
+#### Project Dependencies
+- External wallet providers (Phantom, Solflare, etc.)
+- Solana blockchain RPC service availability
+- Third-party libraries and their update cycles
 
-1. **Token Definition**: Design tokens defined in `tokens.css` using CSS variables
-2. **Theme Provider**: Integration with `next-themes` for light/dark mode support
-3. **Registry Style Tokens**: Design tokens exposed through the registry API for AI tools
+#### Success Metrics
+- User engagement with wallet features
+- Successful staking transactions
+- Component library adoption rate
+- Performance metrics compared to industry standards
 
-## Data Flow
+## For System Integrators
 
-1. **Component Registration**: Components are registered in `registry.json`
-2. **Build Process**: The registry is built using `shadcn/ui` tooling
-3. **API Endpoints**: Components are exposed via JSON endpoints at `/r/${component_name}.json`
-4. **Consumption**: Components can be consumed by other projects or by AI tools
+### Integration Guide
 
-## Extensibility
+#### System Architecture Overview
+Solancn UI is built as a modular system with clear integration points for connecting with existing applications and services, particularly those in the Solana ecosystem.
 
-The architecture is designed to be extensible in several ways:
+#### Integration Points
 
-1. **Adding Components**: New components can be added to the registry by updating `registry.json`
-2. **Theming**: The design system can be themed by modifying `tokens.css`
-3. **Custom Components**: Custom components can be added to extend the base shadcn/ui primitives
+##### 1. Wallet Connection Layer
+- **Integration Method**: Standardized adapter pattern
+- **Connection Points**:
+  - `@solana/wallet-adapter-react` for wallet provider integration
+  - Custom hooks for wallet state management
+  - Event listeners for connection status changes
+- **Expected Input**: Wallet provider configuration
+- **Returned Output**: Wallet connection state, address, balance
 
-## Deployment Architecture
+##### 2. Blockchain Interaction Layer
+- **Integration Method**: Abstracted API services
+- **Connection Points**:
+  - Staking transaction endpoints
+  - Balance checking functions
+  - Token transfer services
+- **Expected Input**: Transaction parameters, wallet signatures
+- **Returned Output**: Transaction results, confirmations
 
-The application is designed to be deployed on Vercel, with:
+##### 3. UI Component Integration
+- **Integration Method**: Composition-based component system
+- **Connection Points**: 
+  - Component library exports
+  - Theme customization API
+  - Layout system integration
+- **Expected Input**: Configuration objects, theme variables
+- **Returned Output**: Rendered UI components
 
-- Static generation for most pages
-- Server-side rendering when needed
-- API routes for registry endpoints
-- Integration with Vercel analytics and speed insights
+#### Dependency Management
+- **Required Dependencies**:
+  - Solana Web3.js
+  - Wallet Adapter libraries
+  - React 19.x
+  - Next.js 15.x
+- **Optional Dependencies**:
+  - Framer Motion (for animations)
+  - Additional Solana ecosystem libraries
 
-## Solana Integration
+#### Configuration Options
+- **Theming**: Custom theme configuration with Solana brand colors
+- **Network Selection**: Mainnet, Testnet, Devnet configuration
+- **Feature Flags**: Ability to enable/disable specific features
+- **Caching Strategy**: Options for caching blockchain data
 
-### Wallet Architecture
+#### Error Handling and Fallbacks
+- Standardized error codes and messages
+- Graceful degradation for network issues
+- Fallback UI for connectivity problems
+- Retry strategies for blockchain transactions
 
-The system integrates with Solana wallets using:
+#### Performance Considerations
+- **Loading States**: Implementation of skeleton loaders and progress indicators
+- **Data Caching**: Strategic caching of blockchain data to reduce RPC calls
+- **Code Splitting**: Dynamic imports for optimal bundle size
+- **Server-side Rendering**: Optimization for initial load performance
 
-1. **Wallet Adapter**: Solana wallet adapter for connecting to browser wallets
-2. **Wallet Components**: Reusable components for wallet connection and status display
-   - `StyledWalletButton`: Custom-styled connect button component
-   - `WalletStatus`: Component to display connected wallet information
+#### Security Integration
+- **Wallet Connection Security**: Secure connection protocols
+- **Transaction Signing**: Safe transaction signing workflows
+- **Data Protection**: No storage of sensitive wallet information
+- **Permission Management**: Granular permission requests
 
-### Solana Page Structure
-
-The Solana dashboard uses a tab-based architecture:
-
-1. **Dynamic Tab System**: Configurable tabs array for rendering different sections
-2. **Content Pages**: Specialized pages for different Solana functionality:
-   - DeFi
-   - Trade
-   - Stake
-   - Frame
-   - Portfolio
-   - Bridge
-   - Receive
-   - Borrow
-   - Lend
-
-### DeFi Components
-
-#### Staking Interface
-
-The staking interface follows a modular architecture:
-
-1. **Tabbed Interface**: Stake, Unstake, and History tabs
-2. **Validator Selection**: Component for selecting validators with performance metrics
-3. **Staking Options**: Components for choosing between native and liquid staking
-4. **Transaction Summary**: Dynamic summary of staking actions and expected rewards
-5. **Network Statistics**: Display of relevant network metrics
-
-#### Swap Interface
-
-The swap functionality uses:
-
-1. **Tabbed Interface**: Swap, Limit, and TWAP tabs
-2. **Token Selection**: Components for selecting input and output tokens
-3. **Route Selection**: Components for choosing optimal swap routes
-4. **Settings Panel**: Interface for configuring slippage tolerance and other options
-5. **Price Chart**: Togglable price chart component
-
-### Type System
-
-The Solana components use a strong TypeScript typing system:
-
-1. **Token Interface**: Defines structure for token data including symbol, name, logo, and price
-2. **SwapRoute Interface**: Defines structure for swap routing options
-3. **Validator Interface**: Defines structure for validator information
-4. **Staking Types**: Interfaces for staking options, history, and actions
-
-### Constants and Mocks
-
-Mock data for development and testing is organized in:
-
-1. **Token Constants**: Predefined token definitions with logos and metadata
-2. **Swap Routes**: Mock swap route definitions with performance metrics
-3. **Validator Data**: Mock validator information with APY and commission details
-
-### Theming
-
-Solana-specific theming includes:
-
-1. **Brand Colors**: Integration of Solana brand colors (#9945FF purple and #14F195 green)
-2. **Consistent UI**: Unified design language across all Solana components
-3. **Dark/Light Mode**: Theme support for all Solana-specific components
+#### Testing and Validation
+- Integration test suite for external connections
+- Mock services for development and testing
+- Performance benchmark tools
+- Cross-browser compatibility testing

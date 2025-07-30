@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "decrypting",
+  "title": "Decrypting",
+  "description": "A minimalistic decrypting component designed with React and Tailwind CSS.",
+  "author": "Reche Soares",
+  "type": "registry:ui",
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "cssVars": {
+    "dark": {},
+    "light": {}
+  },
+  "files": [
+    {
+      "path": "decrypting.tsx",
+      "content": "\"use client\";\nimport { motion } from \"framer-motion\";\nimport type React from \"react\";\nimport { useEffect, useState } from \"react\";\n\nconst CHARACTERS =\n\t\"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()-+=[]{}|;:,.<>?\";\n\ninterface DecryptingTextProps {\n\ttargetText: string;\n\tspeed?: number;\n}\n\nconst DecryptingText: React.FC<DecryptingTextProps> = ({\n\ttargetText,\n\tspeed = 8,\n}) => {\n\tconst [currentText, setCurrentText] = useState<string>(\"\");\n\n\tuseEffect(() => {\n\t\tlet animationFrameId: number;\n\t\tlet iteration = 0;\n\t\tlet isMounted = true;\n\n\t\tconst animationSpeed = Math.max(1, speed);\n\n\t\tconst scramble = () => {\n\t\t\tif (!isMounted) return;\n\n\t\t\tconst newText = targetText\n\t\t\t\t.split(\"\")\n\t\t\t\t.map((char, index) => {\n\t\t\t\t\tif (iteration / animationSpeed > index) {\n\t\t\t\t\t\treturn targetText[index];\n\t\t\t\t\t}\n\t\t\t\t\tif (char === \" \") return \" \";\n\t\t\t\t\treturn CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];\n\t\t\t\t})\n\t\t\t\t.join(\"\");\n\n\t\t\tsetCurrentText(newText);\n\n\t\t\tif (iteration < targetText.length * animationSpeed) {\n\t\t\t\titeration += 1;\n\t\t\t\tanimationFrameId = requestAnimationFrame(scramble);\n\t\t\t} else {\n\t\t\t\tsetCurrentText(targetText);\n\t\t\t}\n\t\t};\n\n\t\tscramble();\n\n\t\treturn () => {\n\t\t\tisMounted = false;\n\t\t\tif (animationFrameId) {\n\t\t\t\tcancelAnimationFrame(animationFrameId);\n\t\t\t}\n\t\t};\n\t}, [targetText, speed]);\n\n\treturn (\n\t\t<motion.p\n\t\t\tclassName=\"text-2xl md:text-4xl lg:text-5xl font-bold text-center break-words z-10 text-gray-200\"\n\t\t\tinitial={{ opacity: 0 }}\n\t\t\tanimate={{ opacity: 1 }}\n\t\t\ttransition={{ duration: 0.5 }}\n\t\t>\n\t\t\t{currentText}\n\t\t</motion.p>\n\t);\n};\n\nconst DecryptingView: React.FC = () => {\n\tconst demoLines = \"In silence wakes the sleeping code\";\n\tconst demoLines2 = \"A whisper through the circuit flowed\";\n\n\treturn (\n\t\t<div className=\"flex flex-col items-center justify-center font-mono p-4 gap-2 overflow-hidden relative\">\n\t\t\t<div className=\"w-full max-w-4xl z-10 space-y-2\">\n\t\t\t\t<DecryptingText targetText={demoLines} speed={3} />\n\t\t\t\t<DecryptingText targetText={demoLines2} speed={3} />\n\t\t\t</div>\n\t\t</div>\n\t);\n};\n\nexport default DecryptingView;\n",
+      "type": "registry:ui"
+    }
+  ]
+}
