@@ -2,6 +2,8 @@
 import { Search as SearchIcon } from "lucide-react";
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+const SolanaLogo = "/svgs/solana-logo.svg";
 
 // --- SVG ICONS ---
 // Custom SVG icons for a more polished look.
@@ -60,6 +62,15 @@ const BinanceIcon = () => (
 		<path d="M12 3.375L16.347 7.722L20.625 12L16.347 16.278L12 20.625L7.653 16.278L3.375 12L7.653 7.722L12 3.375ZM9.849 9.849L7.722 12L9.849 14.151L12 12L9.849 9.849ZM16.347 7.722L14.151 9.849L12 12L14.151 14.151L16.347 16.278L18.474 14.151L20.625 12L18.474 9.849L16.347 7.722ZM12 7.653L9.849 9.849L7.722 12L5.526 9.849L7.653 7.722L9.849 5.526L12 7.653Z" />
 	</svg>
 );
+
+const SolanaIcon = () => (
+	<Image
+		width={24}
+		height={24}
+		alt="Solana Logo"
+		src={SolanaLogo}
+	/>
+)
 
 const DribbbleIcon = () => (
 	<svg
@@ -148,10 +159,11 @@ const recentSearches: SearchItemType[] = [
 	},
 	{
 		id: 2,
-		name: "Binance",
-		icon: <BinanceIcon />,
+		name: "Solana",
+		icon: <SolanaIcon />,
 		notification: "8 Updates",
-		color: "#F0B90B",
+		color: "#9945FF", // Solana Purple
+		// color: "#14F195" // Solana Green
 	},
 	{
 		id: 3,
