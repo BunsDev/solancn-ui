@@ -19,7 +19,6 @@ const Header = () => {
 	const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 	const isComponents = pathname.includes("components");
 	const isDocs = pathname.includes("docs");
-	const isDesign = pathname.includes("design");
 	const isTemplates = pathname.includes("templates");
 	// const isHome = pathname === "/";
 
