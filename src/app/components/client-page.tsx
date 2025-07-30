@@ -14,10 +14,12 @@ import { AnimatePresence, motion } from "framer-motion";
 // Icons
 import {
 	ArrowRight,
+	ChevronDown,
 	Code,
 	Cpu,
 	Download,
 	Eye,
+	Filter,
 	Grid,
 	LayoutList,
 	Search,
@@ -40,6 +42,12 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -401,7 +409,7 @@ const getComponentCategory = (componentName: string): string => {
 	for (const section of navigation) {
 		const found = section.children.some(
 			(child) =>
-				child.href.includes(`/docs/${componentName}`) ||
+				child.href.includes(`/components/${componentName}`) ||
 				child.label.toLowerCase() === componentName.toLowerCase(),
 		);
 
@@ -575,48 +583,82 @@ export function ComponentsClientPage({
 				</div>
 			</div>
 
-			{/* Category filter */}
-			<div className="mb-6 overflow-x-auto pb-2 -mx-1.5">
-				<div className="flex space-x-2 px-1.5 min-w-full">
-					{categories.map((category) => {
-						// Count components in this category
-						const count =
-							category === "All"
-								? processedComponents.length
-								: processedComponents.filter((c) => c.category === category)
-										.length;
-
-						return (
-							<Button
-								key={category}
-								onClick={() => handleCategoryChange(category)}
-								variant={selectedCategory === category ? "default" : "outline"}
-								size="sm"
-								className={cn(
-									"rounded-full transition-all",
-									selectedCategory === category
-										? "bg-[#9945FF] hover:bg-[#9945FF]/80 text-white shadow-sm shadow-[#9945FF]/30"
-										: "text-zinc-700 dark:text-zinc-200 hover:border-[#9945FF]/40 hover:text-[#9945FF]",
-								)}
+			{/* Category filter dropdown */}
+			<div className="mb-6 flex items-center justify-between">
+				<div className="flex items-center gap-2">
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
+							<Button 
+								variant="outline" 
+								className="w-full sm:w-auto flex items-center justify-between gap-2 px-4 border-[#9945FF]/20 hover:border-[#9945FF]/40"
 							>
-								<span className="flex items-center">
-									{category === "All" && <Grid className="mr-1.5 h-3 w-3" />}
-									{category}
-								</span>
-								<span
-									className={cn(
-										"ml-2 rounded-full px-1.5 py-0.5 text-xs font-medium",
-										selectedCategory === category
-											? "bg-white/20"
-											: "bg-zinc-100 dark:bg-zinc-800",
-									)}
-								>
-									{count}
-								</span>
+								<div className="flex items-center gap-2">
+									<Filter className="h-4 w-4 text-[#9945FF]" />
+									<span className="flex items-center gap-1.5">
+										Filter by: <span className="font-semibold text-[#9945FF]">{selectedCategory}</span>
+									</span>
+								</div>
+								<ChevronDown className="h-4 w-4 opacity-50" />
 							</Button>
-						);
-					})}
+						</DropdownMenuTrigger>
+						<DropdownMenuContent align="start" className="w-56">
+							{categories.map((category) => {
+								// Count components in this category
+								const count =
+									category === "All"
+										? processedComponents.length
+										: processedComponents.filter((c) => c.category === category).length;
+
+								return (
+									<DropdownMenuItem 
+										key={category}
+										onClick={() => handleCategoryChange(category)}
+										className={cn(
+											"flex items-center justify-between cursor-pointer",
+											selectedCategory === category && "bg-[#9945FF]/10 text-[#9945FF] font-medium"
+										)}
+									>
+										<span className="flex items-center gap-2">
+											{category === "All" && <Grid className="h-4 w-4" />}
+											{category}
+										</span>
+										<span className="ml-auto flex h-5 w-5 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 text-xs font-medium">
+											{count}
+										</span>
+									</DropdownMenuItem>
+								);
+							})}
+						</DropdownMenuContent>
+					</DropdownMenu>
+
+					{/* Current category display - mobile only */}
+					{selectedCategory !== "All" && (
+						<Button 
+							size="sm" 
+							variant="ghost" 
+							className="hidden sm:flex items-center gap-1 h-9 px-2 hover:bg-transparent hover:text-[#9945FF]"
+							onClick={() => handleCategoryChange("All")}
+						>
+							<X className="h-3.5 w-3.5" />
+							<span className="sr-only">Clear filter</span>
+						</Button>
+					)}
 				</div>
+
+				{/* Active category badge - larger screens */}
+				{selectedCategory !== "All" && (
+					<Badge className="hidden sm:flex bg-[#9945FF]/10 text-[#9945FF] hover:bg-[#9945FF]/20 px-3 py-1">
+						{selectedCategory}
+						<Button 
+							size="sm" 
+							variant="ghost" 
+							className="h-auto p-0 ml-1 hover:bg-transparent"
+							onClick={() => handleCategoryChange("All")}
+						>
+							<X className="h-3 w-3" />
+						</Button>
+					</Badge>
+				)}
 			</div>
 
 			{/* Component count and search info */}

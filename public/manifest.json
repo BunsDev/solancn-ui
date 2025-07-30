@@ -64,7 +64,7 @@
 			"name": "Components",
 			"short_name": "Components",
 			"description": "View all components",
-			"url": "/docs/button",
+			"url": "/components/button",
 			"icons": [
 				{
 					"src": "/icon-components.png",

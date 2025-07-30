@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Button from "@/app/docs/button/button";
+import Button from "@/app/components/button/button";
 import { BorderBeam } from "@/components/ui";
 
 export const Hero = () => {
@@ -135,7 +135,7 @@ export const Hero = () => {
 						transition={{ duration: 0.6, delay: 0.4, ease: "easeInOut" }}
 						className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center w-full sm:w-auto"
 					>
-						<Link href="/docs">
+						<Link href="/components">
 							<Button
 								size="lg"
 								variant="default"
@@ -146,7 +146,7 @@ export const Hero = () => {
 							</Button>
 						</Link>
 
-						<Link href="/docs/pattern">
+						<Link href="/components/pattern">
 							<Button
 								size="lg"
 								variant="outline"

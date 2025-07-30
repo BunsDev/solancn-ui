@@ -32,9 +32,10 @@ export function ComponentTemplate({
 	const breadcrumbItems = [
 		{ name: "Home", url: "/" },
 		{ name: "Documentation", url: "/docs" },
+		{ name: "Components", url: "/components" },
 		{
 			name: componentName,
-			url: `/docs/${componentName.toLowerCase()}`,
+			url: `/components/${componentName.toLowerCase()}`,
 			current: true,
 		},
 	];
@@ -167,7 +168,7 @@ export function ComponentTemplate({
 							{relatedComponents.map((component) => (
 								<a
 									key={component}
-									href={`/docs/${component.toLowerCase()}`}
+									href={`/components/${component.toLowerCase()}`}
 									className="block p-4 border border-zinc-200 dark:border-zinc-800 rounded-lg hover:border-blue-300 dark:hover:border-blue-700 transition-colors"
 								>
 									<h3 className="font-semibold text-blue-600 dark:text-blue-400">

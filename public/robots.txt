@@ -92,9 +92,9 @@ Disallow: /
 User-agent: Bytespider
 Disallow: /
 
-# Allow specific AI crawlers for documentation (optional)
+# Allow specific AI crawlers for components (optional)
 User-agent: Googlebot-AI
-Allow: /docs/
+Allow: /components/
 Disallow: /
 
 # Host directive for better crawling

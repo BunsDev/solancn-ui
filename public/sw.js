@@ -6,10 +6,11 @@ const STATIC_CACHE_NAME = "solancn-ui-static-v1.0.0";
 const STATIC_RESOURCES = [
 	"/",
 	"/docs",
+	"/components",
 	"/docs/installation",
-	"/docs/button",
-	"/docs/card",
-	"/docs/tabs",
+	"/components/button",
+	"/components/card",
+	"/components/tabs",
 	"/manifest.json",
 	"/logo.png",
 ];

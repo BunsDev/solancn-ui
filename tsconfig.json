@@ -28,8 +28,8 @@
 		"**/*.tsx",
 		".next/types/**/*.ts",
 		"src/app/components/page.mdx",
-		"src/app/docs/decrypting/page.mdx",
-		"src/app/docs/divider/page.mdx"
+		"src/app/components/decrypting/page.mdx",
+		"src/app/components/divider/page.mdx"
 	],
 	"exclude": ["node_modules"]
 }

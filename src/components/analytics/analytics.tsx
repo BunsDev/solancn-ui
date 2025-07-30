@@ -20,7 +20,7 @@ export function Analytics() {
 			});
 
 			// Enhanced tracking for component pages
-			if (pathname.startsWith("/docs/") && pathname !== "/docs") {
+			if (pathname.startsWith("/components/") && pathname !== "/components") {
 				const componentName = pathname.split("/").pop();
 				window.gtag("event", "component_view", {
 					component_name: componentName,

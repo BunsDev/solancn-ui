@@ -32,7 +32,7 @@ If you want to **add a new component** or **contribute to an existing one**:
 
 1. Navigate to the `app/` folder.
 
-2. Inside `app/`, go to the `docs/` folder. Every folder inside `docs/` is a component.
+2. Inside `app/`, go to the `components/` folder. Every folder inside `components/` is a component.
 
 3. Create a new folder for your component and add your files.
    ✅ **Make sure your component is unique** — do not copy others.

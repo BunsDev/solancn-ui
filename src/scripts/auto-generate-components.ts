@@ -18,8 +18,8 @@ interface ComponentData {
 }
 
 // Function to automatically generate components from docs directory
-function generateComponentsFromDocs() {
-	const docsPath = path.join(__dirname, "../app/docs");
+function generateComponentsFromDocs(basePath: string) {
+	const componentsPath = path.join(basePath, "../app/components");
 	const components: ComponentData[] = [];
 
 	// Add the core tabs component manually since it's in a different location
@@ -28,15 +28,17 @@ function generateComponentsFromDocs() {
 		title: "Tabs",
 		description:
 			"A minimalistic tab component designed with React and Tailwind CSS.",
-		path: "../components/core/tabs.tsx",
+		path: "../app/components/tabs",
 		dependencies: [],
 	});
 
 	try {
-		// Read all directories in the docs folder
-		const entries = fs.readdirSync(docsPath, { withFileTypes: true });
+		// Read all directories in the components folder
+		const componentsEntries = fs.readdirSync(componentsPath, {
+			withFileTypes: true,
+		});
 
-		for (const entry of entries) {
+		for (const entry of componentsEntries) {
 			if (entry.isDirectory()) {
 				const componentName = entry.name;
 
@@ -52,7 +54,7 @@ function generateComponentsFromDocs() {
 				// Convert kebab-case to Title Case
 				const title = componentName
 					.split("-")
-					.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+					.map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
 					.join(" ");
 
 				// Generate description based on component name
@@ -91,7 +93,7 @@ function generateComponentsFromDocs() {
 					name: componentName,
 					title: title,
 					description: description,
-					path: `../app/docs/${componentName}`,
+					path: `../app/components/${componentName}`,
 					dependencies: [],
 				});
 			}
@@ -105,8 +107,8 @@ function generateComponentsFromDocs() {
 }
 
 // Generate the components.ts file content
-function generateComponentsFile() {
-	const components = generateComponentsFromDocs();
+function generateComponentsFile(basePath: string) {
+	const components = generateComponentsFromDocs(basePath);
 
 	const fileContent = `import { RegistryItemSchema, RegistryType } from "./types";
 
@@ -147,7 +149,7 @@ ${components
 console.log("🔄 Auto-generating components.ts file...");
 
 try {
-	const newContent = generateComponentsFile();
+	const newContent = generateComponentsFile(__dirname);
 	const componentsFilePath = path.join(__dirname, "components.ts");
 
 	fs.writeFileSync(componentsFilePath, newContent);

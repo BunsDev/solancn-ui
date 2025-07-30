@@ -142,7 +142,7 @@ export function generateComponentMetadata(
 		title,
 		description: enhancedDescription,
 		keywords,
-		canonical: `/docs/${componentName.toLowerCase()}`,
+		canonical: `/components/${componentName.toLowerCase()}`,
 		category: "technology",
 		tags: [category, "React", "Tailwind CSS", "Components"],
 	});

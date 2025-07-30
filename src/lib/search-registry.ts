@@ -37,7 +37,7 @@ function getComponentItems(): SearchableItem[] {
 			id: `component-${component.name}`,
 			title: component.title || component.name,
 			description: component.description || `${component.name} component`,
-			href: `/docs/${component.name}`,
+			href: `/components/${component.name}`,
 			category: "Components",
 			keywords: [
 				component.name.toLowerCase(),

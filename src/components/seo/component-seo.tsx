@@ -17,7 +17,8 @@ export function ComponentSEO({
 	const breadcrumbs = [
 		{ name: "Home", url: "/" },
 		{ name: "Documentation", url: "/docs" },
-		{ name: componentName, url: `/docs/${componentName.toLowerCase()}` },
+		{ name: "Components", url: "/components" },
+		{ name: componentName, url: `/components/${componentName.toLowerCase()}` },
 	];
 
 	const structuredData = {
@@ -86,7 +87,7 @@ export function ComponentSEO({
 				<link
 					key={component}
 					rel="prefetch"
-					href={`/docs/${component.toLowerCase()}`}
+					href={`/components/${component.toLowerCase()}`}
 				/>
 			))}
 		</>

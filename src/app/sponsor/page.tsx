@@ -1,7 +1,7 @@
 "use client";
 
 import { ExternalLink, Mail, TrendingUp } from "lucide-react";
-import Button from "@/app/docs/button/button";
+import Button from "@/app/components/button/button";
 import {
 	Card,
 	CardContent,
