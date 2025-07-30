@@ -8,14 +8,12 @@ import {
   TabsContent,
 } from "@/components/site/tabs.tsx";
 import { HideTOC } from "@/components/site/hide-toc";
-import { StakeComponent } from "@/components/templates/stake/stake-component";
+import { BridgeComponent } from "@/components/templates/bridge/bridge-component";
 
 <HideTOC />
 
-# Solana Staking
-A responsive staking component for Solana with a clean, modern design that allows users to stake and unstake SOL tokens.
-
-
+# Solana Cross-Chain Bridge
+A responsive bridge interface for transferring assets between Solana and other blockchains with support for deposits, withdrawals, and transaction tracking.
 
 <Tabs defaultValue="preview" className="">
   <TabsList>
@@ -23,9 +21,9 @@ A responsive staking component for Solana with a clean, modern design that allow
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<StakeComponent />} componentName="StakeComponent" />
+    <ComponentRenderer component={<BridgeComponent />} componentName="BridgeComponent" />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/components/templates/stake/stake-component.tsx" />
+    <CodeBlock filePath="src/components/templates/bridge/bridge-component.tsx" />
   </TabsContent>
 </Tabs>

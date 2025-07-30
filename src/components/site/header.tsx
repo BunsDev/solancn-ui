@@ -157,8 +157,8 @@ const Header = () => {
 									)
 									}
 								>
-									<Icon icon="tabler:blocks" className="h-6 w-6" />
-									Blocks
+									<Icon icon="tabler:template-filled" className="h-6 w-6" />
+									Templates
 								</Button>
 							</Link>
 							<Link
