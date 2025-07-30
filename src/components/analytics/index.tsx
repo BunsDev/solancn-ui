@@ -11,7 +11,7 @@ export function Analytics() {
   useEffect(() => {
     // Track page views
     if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('config', 'G-KCJ7NVNQ62', {
+      window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || '', {
         page_path: pathname,
         custom_map: {
           custom_parameter_1: 'component_category',

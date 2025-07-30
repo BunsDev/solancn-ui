@@ -1,5 +1,5 @@
 import ComponentSEO from '@/components/seo/component-seo'
-import Breadcrumb from '@/components/seo/breadcrumb'
+import Breadcrumb from '@/components/seo/breadcrumb-seo'
 
 interface ComponentTemplateProps {
   componentName: string

@@ -187,8 +187,7 @@ export default function MagicCardView() {
               </div>
               <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">@BunsDev</p>
               <p className="text-gray-700 dark:text-gray-300 leading-snug mb-4">
-                I will inspire 10 million people to do what they love
-                the best they can!
+                Open Sorceress, Engineer, UI Designer, Founder @DeDevsClub | Formerly @Chainlink | #BuildInPublic | Making tools for #IndieHackers | Building #ForTheVibes ✌🏻
               </p>
               <div className="flex items-center gap-2 mb-6">
                 <div className="flex text-yellow-400">
