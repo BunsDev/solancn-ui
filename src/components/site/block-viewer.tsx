@@ -1,17 +1,24 @@
 "use client"
 
 import * as React from "react"
-import { registryItemFileSchema } from "solancn/registry"
 import { z } from "zod"
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
 import { CodeBlock } from "@/components/ui/code-block"
 
+// Define a simple file interface instead of using zod inference
+interface RegistryFile {
+  path: string;
+  type: string;
+  content?: string;
+  target?: string;
+}
+
 interface BlockViewerProps {
   item: {
     name: string
-    files?: Array<z.infer<typeof registryItemFileSchema>>
+    files?: RegistryFile[]
   }
   tree: any // File tree structure
   highlightedFiles: Record<string, string>
@@ -71,10 +78,10 @@ export function BlockViewer({
                         {activeFile ? (
                           <div className="mt-2 max-w-full overflow-hidden rounded-md border">
                             <CodeBlock
-                              value={highlightedFiles?.[activeFile] || ""}
-                              expandable={false}
                               className="!my-0 !overflow-x-hidden !px-0"
-                            />
+                            >
+                              {highlightedFiles?.[activeFile] || ""}
+                            </CodeBlock>
                           </div>
                         ) : null}
                       </div>
