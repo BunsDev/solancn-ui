@@ -120,7 +120,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 	// Additional important pages
 	const additionalPages = [
 		{
-			url: `${baseUrl}/templates/${template}`,
+			url: `${baseUrl}/templates`,
 			lastModified: currentDate,
 			changeFrequency: "monthly" as const,
 			priority: 0.6,
