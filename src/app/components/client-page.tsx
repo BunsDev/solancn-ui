@@ -3,18 +3,19 @@
 /**
  * Component Library Explorer - Solana UI
  * 
- * A simple responsive UI for exploring components
+ * A state-of-the-art UI for exploring components
  * in the Solana UI component library.
  * 
  * @author Solana UI Team
- * @version 1.0.0
+ * @version 2.0.0
  */
 
-import { useState } from "react";
+import { useState, useEffect, useRef, useTransition } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Icons
-import { Eye, Code } from "lucide-react";
+import { Eye, Code, Search, Grid, LayoutList, X, ArrowRight, Star, Zap, Download, Cpu } from "lucide-react";
 
 // UI Components
 import { Badge } from "@/components/ui/badge";
@@ -33,6 +34,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+import { Switch } from "@/components/ui/switch";
 
 // Types
 import { Component } from "@/lib/types";
@@ -40,99 +46,291 @@ import { Component } from "@/lib/types";
 // Utils
 import { cn, getLink } from "@/lib/utils";
 import MinimalPreview from "@/components/cards/preview-card";
-import { useDebounce } from "use-debounce";
-import { motion } from "framer-motion";
+
+// Custom hooks for debouncing search input
+function useDebounce<T>(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+
+// Component metrics for display
+interface ComponentMetric {
+  icon: React.ReactNode;
+  label: string;
+  value: string | number;
+  color?: string;
+}
 
 /**
  * ComponentCard - Card component for displaying a component with preview
  */
 function ComponentCard({
   component,
+  viewMode = "grid",
+  searchTerm = "",
 }: {
   component: Component;
+  viewMode: "grid" | "row";
+  searchTerm?: string;
 }) {
   const [isHovered, setIsHovered] = useState(false);
+  
+  // Define component metrics to highlight
+  const metrics: ComponentMetric[] = [
+    {
+      icon: <Download className="h-3 w-3" />,
+      label: "Files",
+      value: component.files?.length || 1,
+    },
+    {
+      icon: <Star className="h-3 w-3 text-amber-500" />,
+      label: "Status",
+      value: component.installed ? "Installed" : "Available",
+      color: component.installed ? "text-green-500" : "text-muted-foreground"
+    },
+    {
+      icon: <Cpu className="h-3 w-3 text-purple-500" />,
+      label: "Type",
+      value: component.category || "UI",
+    },
+  ];
 
-  return (
-    <Card
-      className={cn(
-        "group relative overflow-hidden transition-all h-[330px]",
-        isHovered && "ring-2 ring-primary ring-offset-2"
-      )}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onFocus={() => setIsHovered(true)}
-      onBlur={() => setIsHovered(false)}
-    >
-      {/* Preview overlay that shows on hover */}
-      <div
-        className={cn(
-          "absolute inset-0 z-10 flex items-center justify-center bg-background/80 opacity-0 backdrop-blur-sm transition-opacity",
-          isHovered && "opacity-100"
-        )}
+  // Highlight the search term in text
+  const highlightText = (text: string) => {
+    if (!searchTerm || !text) return text;
+    
+    const regex = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    const parts = text.split(regex);
+    
+    return parts.map((part, i) => 
+      regex.test(part) ? <span key={i} className="bg-yellow-100 dark:bg-yellow-900/50 text-yellow-900 dark:text-yellow-100">{part}</span> : part
+    );
+  };
+
+  // Card variant based on view mode
+  if (viewMode === "row") {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
+        className="w-full"
       >
-        <div className="space-x-2 text-center">
-          <Button asChild size="sm">
-            <Link href={`/docs/${component.name}`} className="flex items-center gap-2">
-              <Eye className="h-4 w-4" />
-              View Documentation
-            </Link>
-          </Button>
-          <Button asChild variant="outline" size="sm">
-            <Link href={getLink(component)} className="flex items-center gap-2">
-              <Code className="h-4 w-4" />
-              View Code
-            </Link>
-          </Button>
-        </div>
-      </div>
-
-      {/* Component preview */}
-      <div className="relative flex items-center justify-center overflow-hidden border-b p-6 h-40">
-        <MinimalPreview item={component} />
-      </div>
-
-      <div className="flex flex-col">
-        <CardHeader className="px-4 pb-2 pt-4">
-          <div className="flex items-center justify-between gap-2">
-            <CardTitle className="line-clamp-1 text-lg">
-              {component.title || component.name}
-            </CardTitle>
-            {component.category && (
-              <TooltipProvider delayDuration={300}>
+        <Card
+          className={cn(
+            "group relative overflow-hidden transition-all",
+            isHovered && "ring-1 ring-[#9945FF] shadow-lg"
+          )}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onFocus={() => setIsHovered(true)}
+          onBlur={() => setIsHovered(false)}
+        >
+          <div className="grid grid-cols-[180px_1fr] md:grid-cols-[250px_1fr]">
+            {/* Preview section */}
+            <div className="relative border-r">
+              <div className="flex h-full items-center justify-center p-4">
+                <MinimalPreview item={component} />
+              </div>
+              
+              {/* Hover overlay */}
+              <div
+                className={cn(
+                  "absolute inset-0 z-10 flex items-center justify-center bg-background/80 opacity-0 backdrop-blur-sm transition-opacity",
+                  isHovered && "opacity-100"
+                )}
+              >
+                <div className="flex flex-col gap-2">
+                  <Button asChild size="sm" className="bg-[#9945FF] hover:bg-[#9945FF]/80">
+                    <Link href={`/docs/${component.name}`}>
+                      <Eye className="mr-2 h-3 w-3" /> View
+                    </Link>
+                  </Button>
+                  <Button asChild size="sm" variant="outline">
+                    <Link href={getLink(component)}>
+                      <Code className="mr-2 h-3 w-3" /> Code
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+            
+            {/* Content section */}
+            <div className="flex flex-col p-4">
+              <div className="mb-2 flex items-center justify-between">
+                <Link href={`/docs/${component.name}`}>
+                  <h3 className="text-lg font-semibold hover:text-[#9945FF] hover:underline">
+                    {highlightText(component.title || component.name)}
+                  </h3>
+                </Link>
+                
+                {component.category && (
+                  <Badge variant="secondary" className="bg-[#9945FF]/10 text-[#9945FF] hover:bg-[#9945FF]/20">
+                    {component.category}
+                  </Badge>
+                )}
+              </div>
+              
+              <p className="line-clamp-2 text-sm text-muted-foreground mb-4">
+                {highlightText(component.description || '')}
+              </p>
+              
+              <div className="mt-auto flex items-center justify-between">
+                <div className="flex gap-4">
+                  {metrics.map((metric, i) => (
+                    <div key={i} className="flex items-center text-xs">
+                      <div className="mr-1">{metric.icon}</div>
+                      <span className={cn("font-medium", metric.color)}>{metric.value}</span>
+                    </div>
+                  ))}
+                </div>
+                
+                <Button asChild size="sm" variant="ghost" className="ml-auto gap-1">
+                  <Link href={getLink(component)}>
+                    Details <ArrowRight className="h-3 w-3" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </Card>
+      </motion.div>
+    );
+  }
+  
+  // Grid card variant
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.96 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+    >
+      <Card
+        className={cn(
+          "group relative overflow-hidden transition-all h-[320px]",
+          isHovered && "ring-2 ring-[#9945FF] ring-offset-2 shadow-lg"
+        )}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onFocus={() => setIsHovered(true)}
+        onBlur={() => setIsHovered(false)}
+      >
+        {/* Preview overlay that shows on hover */}
+        <div
+          className={cn(
+            "absolute inset-0 z-10 flex items-center justify-center bg-background/80 opacity-0 backdrop-blur-sm transition-opacity",
+            isHovered && "opacity-100"
+          )}
+        >
+          <div className="space-y-3 text-center">
+            <Button asChild size="sm" className="w-36 bg-[#9945FF] hover:bg-[#9945FF]/80">
+              <Link href={`/docs/${component.name}`} className="flex items-center justify-center gap-2">
+                <Eye className="h-4 w-4" />
+                View Demo
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="sm" className="w-36">
+              <Link href={getLink(component)} className="flex items-center justify-center gap-2">
+                <Code className="h-4 w-4" />
+                View Code
+              </Link>
+            </Button>
+            
+            {/* New interactive buttons */}
+            <div className="flex justify-center gap-2 pt-2">
+              <TooltipProvider delayDuration={200}>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Badge variant="secondary" className="flex items-center gap-1">
-                      {component.category}
-                    </Badge>
+                    <Button size="icon" variant="outline" className="h-8 w-8">
+                      <Star className="h-4 w-4 text-amber-500" />
+                      <span className="sr-only">Star component</span>
+                    </Button>
                   </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{component.category}</p>
-                  </TooltipContent>
+                  <TooltipContent>Star this component</TooltipContent>
                 </Tooltip>
               </TooltipProvider>
-            )}
-          </div>
-          <CardDescription className="line-clamp-2 text-sm text-muted-foreground">
-            {component.description}
-          </CardDescription>
-        </CardHeader>
-        <CardFooter className="border-t p-4">
-          <div className="flex w-full flex-col gap-2 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-1">
-              <span className="font-medium">{component.files?.length || 1}</span> file{(Number(component.files?.length) || 1) > 1 && "s"}
-            </div>
-            <div className="flex items-center gap-1">
-              {component.installed ? (
-                <span className="flex items-center gap-1 font-medium text-green-500">Installed</span>
-              ) : (
-                <span className="flex items-center gap-1 text-muted-foreground">Not installed</span>
-              )}
+              
+              <TooltipProvider delayDuration={200}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button size="icon" variant="outline" className="h-8 w-8">
+                      <Download className="h-4 w-4 text-[#14F195]" />
+                      <span className="sr-only">Install component</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Install this component</TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
           </div>
-        </CardFooter>
-      </div>
-    </Card>
+        </div>
+
+        {/* Component preview */}
+        <div className="relative flex items-center justify-center overflow-hidden border-b p-6 bg-slate-50 dark:bg-slate-900/50 h-40">
+          <MinimalPreview item={component} />
+          
+          {/* Category badge */}
+          {component.category && (
+            <Badge 
+              className="absolute top-2 right-2 bg-[#9945FF]/10 text-[#9945FF] hover:bg-[#9945FF]/20"
+              variant="secondary"
+            >
+              {component.category}
+            </Badge>
+          )}
+        </div>
+
+        <div className="flex flex-col">
+          <CardHeader className="px-4 py-3">
+            <Link href={`/docs/${component.name}`}>
+              <CardTitle className="line-clamp-1 text-lg hover:text-[#9945FF] hover:underline">
+                {highlightText(component.title || component.name)}
+              </CardTitle>
+            </Link>
+            <CardDescription className="line-clamp-2 text-sm text-muted-foreground mt-1">
+              {highlightText(component.description || '')}
+            </CardDescription>
+          </CardHeader>
+          
+          <CardFooter className="border-t mt-auto px-4 py-3">
+            <div className="flex w-full justify-between items-center text-xs">
+              <div className="flex gap-3">
+                {metrics.map((metric, i) => (
+                  <div key={i} className="flex items-center">
+                    <div className="mr-1.5">{metric.icon}</div>
+                    <span className={cn("font-medium", metric.color)}>{metric.value}</span>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Component status indicator */}
+              <div className="flex items-center">
+                <span className={cn(
+                  "inline-flex h-2 w-2 rounded-full mr-1.5",
+                  component.installed ? "bg-[#14F195]" : "bg-amber-500"  
+                )} />
+                <span className={component.installed ? "text-[#14F195]" : "text-amber-500"}>
+                  {component.installed ? "Ready" : "Available"}
+                </span>
+              </div>
+            </div>
+          </CardFooter>
+        </div>
+      </Card>
+    </motion.div>
   );
 }
 
@@ -142,68 +340,230 @@ function ComponentCard({
 export function ComponentsClientPage({
   components,
 }: { components: Component[] }) {
+  const [searchTerm, setSearchTerm] = useState("");
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const [viewMode, setViewMode] = useState("grid");
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+  const filteredComponents = components.filter(component => {
+    const lowerCaseSearchTerm = debouncedSearchTerm.toLowerCase();
+    return component.name.toLowerCase().includes(lowerCaseSearchTerm) ||
+           component.title.toLowerCase().includes(lowerCaseSearchTerm) ||
+           component.description?.toLowerCase().includes(lowerCaseSearchTerm) ||
+           component.tags?.some(tag => tag.toLowerCase().includes(lowerCaseSearchTerm));
+  });
+  
+  // Handle search input change
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+  
+  // Clear search
+  const handleClearSearch = () => {
+    setSearchTerm("");
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  };
+  
+  // Toggle view mode
+  const toggleViewMode = () => {
+    setViewMode((prev) => (prev === "grid" ? "row" : "grid"));
+  };
+  
+  // Focus search on key press (ctrl + k or cmd + k)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
-    <div className="container mx-auto py-6 lg:py-10">
-      {/* Page header */}
-      <div className="space-y-4">
-        <div className="flex flex-col justify-between gap-4 lg:flex-row">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight">Components Library</h1>
-            <p className="mt-2 text-lg text-muted-foreground">
-              Explore our collection of responsive and accessible UI components.
-            </p>
+    <div className="container py-8">
+      {/* Header section with search and view toggle */}
+      <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div>
+          <h1 className="font-heading text-3xl">Solana UI Components</h1>
+          <p className="mt-2 text-muted-foreground">
+            Browse and explore our collection of Solana UI components
+          </p>
+        </div>
+        
+        {/* Search and filters */}
+        <div className="flex flex-col gap-4 md:flex-row md:items-center">
+          <div className="relative w-full md:w-64">
+            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+            <Input
+              ref={searchInputRef}
+              type="search"
+              placeholder="Search components..."
+              className="pl-9"
+              value={searchTerm}
+              onChange={handleSearchChange}
+            />
+            {searchTerm && (
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute right-0 top-0 h-9 w-9"
+                onClick={handleClearSearch}
+              >
+                <X className="h-4 w-4" />
+                <span className="sr-only">Clear search</span>
+              </Button>
+            )}
+          </div>
+          
+          <div className="flex items-center gap-2">
+            <Label htmlFor="view-toggle" className="sr-only">
+              Toggle view
+            </Label>
+            
+            <Button
+              variant={viewMode === "grid" ? "default" : "outline"}
+              size="icon"
+              className={cn(
+                "h-9 w-9",
+                viewMode === "grid" && "bg-[#9945FF] hover:bg-[#9945FF]/80"
+              )}
+              onClick={() => setViewMode("grid")}
+            >
+              <Grid className="h-4 w-4" />
+              <span className="sr-only">Grid view</span>
+            </Button>
+            
+            <Button
+              variant={viewMode === "row" ? "default" : "outline"}
+              size="icon"
+              className={cn(
+                "h-9 w-9",
+                viewMode === "row" && "bg-[#9945FF] hover:bg-[#9945FF]/80"
+              )}
+              onClick={() => setViewMode("row")}
+            >
+              <LayoutList className="h-4 w-4" />
+              <span className="sr-only">List view</span>
+            </Button>
           </div>
         </div>
       </div>
-
-      {/* Components display */}
-      <div className="mt-8">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {components.map((component) => (
-            <ComponentCard
-              key={component.name}
-              component={component}
-            />
-          ))}
+      
+      {/* Component count and search info */}
+      <div className="mb-4 flex items-center justify-between text-sm">
+        <p>
+          {filteredComponents.length > 0 ? (
+            <>
+              Showing <span className="font-medium">{filteredComponents.length}</span> {filteredComponents.length === 1 ? "component" : "components"}
+              {debouncedSearchTerm && (
+                <> for <span className="font-medium">"{debouncedSearchTerm}"</span></>
+              )}
+            </>
+          ) : (
+            <>
+              No components found for <span className="font-medium">"{debouncedSearchTerm}"</span>
+            </>
+          )}
+        </p>
+        
+        <div className="flex items-center gap-2 text-muted-foreground">
+          <Zap className="h-3.5 w-3.5 text-[#14F195]" />
+          <span>Press <kbd className="rounded border px-1 py-0.5 text-xs">Ctrl/⌘ K</kbd> to search</span>
         </div>
       </div>
-
-      <hr className="my-12 border-t" />
+      
+      {/* Components grid or list */}
+      <AnimatePresence mode="wait">
+        {filteredComponents.length > 0 ? (
+          <motion.div
+            key={viewMode}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className={cn(
+              viewMode === "grid" 
+                ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+                : "flex flex-col gap-4"
+            )}
+          >
+            <AnimatePresence>
+              {filteredComponents.map((component) => (
+                <ComponentCard 
+                  key={component.name} 
+                  component={component} 
+                  viewMode={viewMode as "grid" | "row"} 
+                  searchTerm={debouncedSearchTerm}
+                />
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex flex-col items-center justify-center py-16 text-center"
+          >
+            <div className="mb-4 rounded-full bg-muted p-4">
+              <Search className="h-6 w-6 text-muted-foreground" />
+            </div>
+            <h3 className="mb-2 text-xl font-medium">No components found</h3>
+            <p className="mb-6 max-w-md text-muted-foreground">
+              We couldn't find any components matching your search. Try adjusting your search term or browse all components.
+            </p>
+            <Button onClick={handleClearSearch}>
+              Show all components
+            </Button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Documentation section */}
-      <div className="mb-16">
-        <h2 className="mb-6 text-2xl font-bold tracking-tight">Documentation</h2>
-        <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <Card>
+      <section className="mt-16 space-y-8">
+        <h2 className="font-heading text-2xl">Documentation</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <Card className="overflow-hidden">
+            <div className="bg-[#9945FF]/10 p-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#9945FF]">
+                <Eye className="h-4 w-4 text-white" />
+              </div>
+            </div>
             <CardHeader>
-              <CardTitle>Design Decisions</CardTitle>
+              <CardTitle>Design System</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="list-disc space-y-2 pl-5">
-                <li>Used Shadcn UI components for consistent design language</li>
-                <li>Implemented responsive grid layout for different screen sizes</li>
-                <li>Simple and focused component display</li>
-                <li>Clear visual hierarchy</li>
-              </ul>
+              <p className="text-muted-foreground">
+                Our components adhere to the Solana design system, ensuring
+                consistent aesthetics and interactions across the ecosystem.
+              </p>
             </CardContent>
           </Card>
-
-          <Card>
+          <Card className="overflow-hidden">
+            <div className="bg-[#14F195]/10 p-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#14F195]">
+                <Zap className="h-4 w-4 text-black" />
+              </div>
+            </div>
             <CardHeader>
-              <CardTitle>Accessibility Features</CardTitle>
+              <CardTitle>Accessibility</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="list-disc space-y-2 pl-5">
-                <li>Keyboard navigable interface</li>
-                <li>Proper ARIA labels on interactive elements</li>
-                <li>Sufficient color contrast for readability</li>
-                <li>Screen reader friendly component structure</li>
-                <li>Responsive design adapts to viewport sizes</li>
-              </ul>
+              <p className="text-muted-foreground">
+                All components are built with accessibility in mind, following
+                WAI-ARIA standards and providing keyboard navigation support.
+              </p>
             </CardContent>
           </Card>
-
-          <Card>
+          <Card className="overflow-hidden">
+            <div className="bg-amber-500/10 p-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500">
+                <Code className="h-4 w-4 text-white" />
+              </div>
+            </div>
             <CardHeader>
               <CardTitle>Technical Implementation</CardTitle>
             </CardHeader>
@@ -217,7 +577,7 @@ export function ComponentsClientPage({
             </CardContent>
           </Card>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
