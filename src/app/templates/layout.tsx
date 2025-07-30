@@ -7,18 +7,17 @@ import { AppSidebar } from "@/components/app-sidebar";
 // Force static generation for all docs pages
 export const dynamic = "force-static";
 
-export default function BlocksLayout({
+export default function TemplatesLayout({
 	children,
 }: {
 	children: ReactNode;
 }) {
 	return (
 		<TOCProvider>
-
 			<SidebarProvider>
 				<AppSidebar />
 				<SidebarInset>
-					<DocsLayoutContent section="Blocks" name="" description="">
+					<DocsLayoutContent section="Templates" name="" description="">
 						{children}
 					</DocsLayoutContent>
 				</SidebarInset>
