@@ -142,6 +142,23 @@ export const componentsNavigation: NavigationItem[] = [
 	},
 ];
 
+export const designsNavigation: NavigationItem[] = [
+	{
+		label: "Designs",
+		children: [
+			{ label: "Marquee", href: "/designs/marquee" },
+			{ label: "Portfolio", href: "/designs/portfolio" },
+			{ label: "Integrations", href: "/designs/integrations" },
+			{ label: "Network", href: "/designs/network" },
+			{ label: "Video Text", href: "/designs/video-text" },
+			{ label: "Image Swiper", href: "/designs/imageswiper" },
+			{ label: "Divider", href: "/designs/divider" },
+			{ label: "Noise", href: "/designs/noise" },
+			{ label: "GlitchVault Card", href: "/designs/glitchvault" },
+		],
+	},
+];
+
 export const templatesNavigation: NavigationItem[] = [
 	{
 		label: "Templates",

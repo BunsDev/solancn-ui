@@ -56,7 +56,8 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { navigation } from "@/constants/navigation";
+import { docsNavigation, componentsNavigation, designsNavigation, templatesNavigation } from "@/constants/navigation";
+
 // Types
 import type { Component } from "@/lib/types";
 // Utils
@@ -385,7 +386,8 @@ function ComponentCard({
  * Main client page component for browsing components
  */
 // Get categories from navigation for filtering
-const categories = ["All", ...navigation.map((item) => item.label)];
+const allNavigation = [...componentsNavigation, ...designsNavigation, ...templatesNavigation];
+const categories = ["All", ...allNavigation.map((item) => item.label)];
 
 // Interface for the processed component with guaranteed category
 interface ProcessedComponent extends Component {
@@ -394,7 +396,7 @@ interface ProcessedComponent extends Component {
 
 // Helper function to get component category from navigation structure
 const getComponentCategory = (componentName: string): string => {
-	for (const section of navigation) {
+	for (const section of allNavigation) {
 		const found = section.children.some(
 			(child) =>
 				child.href.includes(`/components/${componentName}`) ||
