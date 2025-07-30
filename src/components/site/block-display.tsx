@@ -8,13 +8,13 @@ import {
   getRegistryItem,
 } from "@/lib/registry"
 import { cn } from "@/lib/utils"
-import { BlockViewer } from "@/components/site/block-viewer"
 import { ComponentPreview } from "@/components/site/component-preview"
+import { BlockViewer } from "@/components/site/block-viewer"
 
 export async function BlockDisplay({ name }: { name: string }) {
   const item = await getCachedRegistryItem(name)
-
-  if (!item?.files) {
+  const files = item?.files
+  if (!files) {
     return null
   }
 
@@ -24,7 +24,22 @@ export async function BlockDisplay({ name }: { name: string }) {
   ])
 
   return (
-    <BlockViewer item={item} tree={tree} highlightedFiles={highlightedFiles}>
+    <BlockViewer
+      item={{
+        name: item.name,
+        files: item.files.map((file) => ({
+          ...file,
+          type: "registry:file",
+          target: file.path,
+          content: file.content,
+        })),
+      }}
+      tree={tree}
+      highlightedFiles={highlightedFiles.reduce((acc, file) => {
+        acc[file.path] = file.highlightedContent
+        return acc
+      }, {} as Record<string, string>)}
+    >
       <ComponentPreview
         name={item.name}
         hideCode
@@ -42,7 +57,7 @@ const getCachedRegistryItem = React.cache(async (name: string) => {
 })
 
 const getCachedFileTree = React.cache(
-  async (files: Array<{ path: string; target?: string }>) => {
+  async (files: Array<{ path: string; target?: string; content?: string }>) => {
     if (!files) {
       return null
     }
@@ -52,12 +67,12 @@ const getCachedFileTree = React.cache(
 )
 
 const getCachedHighlightedFiles = React.cache(
-  async (files: z.infer<typeof registryItemFileSchema>[]) => {
+  async (files: Array<{ path: string; content?: string }>) => {
     return await Promise.all(
       files.map(async (file) => ({
         ...file,
         highlightedContent: await highlightCode(file.content ?? ""),
       }))
-    )
+    ) 
   }
 )
