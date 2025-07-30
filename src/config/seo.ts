@@ -148,7 +148,7 @@ export const seoConfig = {
 		"Specialized Components": {
 			description: "Specialized components for specific use cases",
 			components: [
-				"nftmarketplace",
+				"nftmarket",
 				"amazongift",
 				"codeprofile",
 				"pattern",

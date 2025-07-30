@@ -269,7 +269,7 @@ const NftCard: React.FC<NftCardProps> = ({
 };
 
 // Main App Component to display the grid of NFT cards
-const NftMarketplace: React.FC = () => {
+const NftMarket: React.FC = () => {
 	return (
 		<div className="relative p-4 sm:p-6 lg:p-8 overflow-hidden">
 			{/* Google Font Import */}
@@ -312,4 +312,4 @@ const NftMarketplace: React.FC = () => {
 	);
 };
 
-export default NftMarketplace;
+export default NftMarket;

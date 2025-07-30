@@ -1,7 +1,7 @@
 // Component imports
 
 // √
-import NftMarketplace from "@/app/templates/nftmarketplace/nftmarketplace";
+import NftMarket from "@/app/templates/nftmarket/nftmarket";
 
 
 import AccordionPage from "@/app/components/accordion/accordion-view";
@@ -154,7 +154,7 @@ export const ComponentRegistry: Record<string, React.ComponentType> = {
 	"hero-2": Hero2,
 	CoderProfileCard: CoderProfileCard,
 	Portfolio2Page: Portfolio2Page,
-	NftMarketplace: NftMarketplace,
+	NftMarket: NftMarket,
 	ImageCarousel: ImageCarousel,
 	CarouselCards: CarouselCards,
 	AccordionSection: AccordionSection,

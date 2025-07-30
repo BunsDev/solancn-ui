@@ -8,7 +8,7 @@ import {
   TabsContent,
 } from "@/components/site/tabs.tsx";
 import { HideTOC } from "@/components/site/hide-toc";
-import NftMarketplace from "./nftmarketplace"
+import NftMarket from "./nftmarket"
 
 <HideTOC />
 
@@ -23,10 +23,10 @@ A fully responsive NFT marketplace component with a clean design.
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<NftMarketplace />} componentName="NftMarketplace" />
+    <ComponentRenderer component={<NftMarket />} componentName="NftMarket" />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/templates/nftmarketplace/nftmarketplace.tsx" />
+    <CodeBlock filePath="src/app/templates/nftmarket/nftmarket.tsx" />
   </TabsContent>
 </Tabs>
 
