@@ -17,13 +17,18 @@ export const navigation: NavigationItem[] = [
 		],
 	},
 	{
+		label: "Design Tools",
+		children: [
+			{ label: "Component Loaders", href: "/components/loaders" },
+			{ label: "Pattern Library", href: "/components/pattern" },
+			{ label: "Color Palette", href: "/components/colorpalette" },
+			{ label: "Gradient Generator", href: "/components/gradientgen" },
+			{ label: "Icon Finder", href: "/components/svg-icons" },
+		],
+	},
+	{
 		label: "Components",
 		children: [
-			{ label: "Loaders", href: "/components/loaders" },
-			{ label: "Patterns Collection", href: "/components/pattern" },
-			{ label: "Color Palette", href: "/components/colorpalette" },
-			{ label: "Gradient", href: "/components/gradientgen" },
-			{ label: "SVG Icons", href: "/components/svg-icons" },
 			{ label: "Marquee", href: "/components/marquee" },
 			{ label: "Code Profile", href: "/components/codeprofile" },
 			{ label: "Portfolio", href: "/components/portfolio" },
@@ -47,6 +52,7 @@ export const navigation: NavigationItem[] = [
 			{ label: "Drawer", href: "/components/drawer" },
 		],
 	},
+
 	{
 		label: "Badge & Toast",
 		children: [
