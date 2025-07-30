@@ -6,10 +6,8 @@ import {
 	ChevronRight,
 	Code,
 	Coins,
-	Copy,
 	CreditCard,
 	Download,
-	Github,
 	Shield,
 	Sparkles,
 	Star,
@@ -20,17 +18,13 @@ import {
 	Zap,
 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import { ThemeSwitcher } from "@/components/site/theme";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
 	CardContent,
 	CardDescription,
-	CardFooter,
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
@@ -98,55 +92,55 @@ const ProjectStats = () => (
 );
 
 // Testimonial component
-const Testimonial = ({
-	quote,
-	author,
-	role,
-	logo,
-}: {
-	quote: string;
-	author: string;
-	role: string;
-	logo: string;
-}) => (
-	<Card className="bg-card/50 backdrop-blur-sm">
-		<CardContent className="p-6">
-			<div className="flex items-center mb-4">
-				<div className="h-8 w-8 bg-muted rounded-full mr-3" />
-				<div>
-					<p className="font-medium">{author}</p>
-					<p className="text-sm text-muted-foreground">{role}</p>
-				</div>
-				<div className="ml-auto text-muted-foreground opacity-50">{logo}</div>
-			</div>
-			<p className="italic">"{quote}"</p>
-		</CardContent>
-	</Card>
-);
+// const Testimonial = ({
+// 	quote,
+// 	author,
+// 	role,
+// 	logo,
+// }: {
+// 	quote: string;
+// 	author: string;
+// 	role: string;
+// 	logo: string;
+// }) => (
+// 	<Card className="bg-card/50 backdrop-blur-sm">
+// 		<CardContent className="p-6">
+// 			<div className="flex items-center mb-4">
+// 				<div className="h-8 w-8 bg-muted rounded-full mr-3" />
+// 				<div>
+// 					<p className="font-medium">{author}</p>
+// 					<p className="text-sm text-muted-foreground">{role}</p>
+// 				</div>
+// 				<div className="ml-auto text-muted-foreground opacity-50">{logo}</div>
+// 			</div>
+// 			<p className="italic">&quot;{quote}&quot;</p>
+// 		</CardContent>
+// 	</Card>
+// );
 
 // Button with gradient hover effect
-const GradientButton = ({
-	children,
-	href,
-	className,
-}: {
-	children: React.ReactNode;
-	href: string;
-	className?: string;
-}) => (
-	<Link
-		href={href}
-		className={cn(
-			"relative inline-flex items-center justify-center overflow-hidden rounded-md bg-primary px-8 py-3 font-medium text-primary-foreground",
-			"transition-all duration-300 hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20",
-			"before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary/0 before:via-primary-foreground/10 before:to-primary/0 before:opacity-0 hover:before:opacity-100 before:transition-opacity",
-			"before:animate-[gradient_3s_ease_infinite]",
-			className,
-		)}
-	>
-		{children}
-	</Link>
-);
+// const GradientButton = ({
+// 	children,
+// 	href,
+// 	className,
+// }: {
+// 	children: React.ReactNode;
+// 	href: string;
+// 	className?: string;
+// }) => (
+// 	<Link
+// 		href={href}
+// 		className={cn(
+// 			"relative inline-flex items-center justify-center overflow-hidden rounded-md bg-primary px-8 py-3 font-medium text-primary-foreground",
+// 			"transition-all duration-300 hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20",
+// 			"before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary/0 before:via-primary-foreground/10 before:to-primary/0 before:opacity-0 hover:before:opacity-100 before:transition-opacity",
+// 			"before:animate-[gradient_3s_ease_infinite]",
+// 			className,
+// 		)}
+// 	>
+// 		{children}
+// 	</Link>
+// );
 
 export default function SolancnHome() {
 	const router = useRouter();

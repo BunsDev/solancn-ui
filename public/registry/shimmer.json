@@ -1,22 +1,22 @@
 {
-	"$schema": "https://ui.shadcn.com/schema/registry-item.json",
-	"name": "shimmer",
-	"title": "Shimmer",
-	"description": "A minimalistic shimmer component designed with React and Tailwind CSS.",
-	"author": "Reche Soares",
-	"type": "registry:ui",
-	"dependencies": [],
-	"devDependencies": [],
-	"registryDependencies": [],
-	"cssVars": {
-		"dark": {},
-		"light": {}
-	},
-	"files": [
-		{
-			"path": "shimmer.tsx",
-			"content": "'use client'\nimport React from 'react';\n\n// The main App component that renders our ShimmerButton\nexport default function ShimmerButton() {\n  const customCss = `\n    /* This is the key to the seamless animation.\n      The @property rule tells the browser that '--angle' is a custom property\n      of type <angle>. This allows the browser to smoothly interpolate it\n      during animations, preventing the \"jump\" at the end of the loop.\n    */\n    @property --angle {\n      syntax: '<angle>';\n      initial-value: 0deg;\n      inherits: false;\n    }\n\n    /* The keyframe animation simply transitions the --angle property\n      from its start (0deg) to its end (360deg).\n    */\n    @keyframes shimmer-spin {\n      to {\n        --angle: 360deg;\n      }\n    }\n  `;\n\n  return (\n    // Main container to center the button on the page\n    <div className=\"flex items-center justify-center font-sans\">\n      <style>{customCss}</style>\n      <button className=\"relative inline-flex items-center justify-center p-[1.5px] bg-gray-300 dark:bg-black rounded-full overflow-hidden group\">\n        <div \n          className=\"absolute inset-0\"\n          style={{\n            background: 'conic-gradient(from var(--angle), transparent 25%, #06b6d4, transparent 50%)',\n            animation: 'shimmer-spin 2.5s linear infinite',\n          }}\n        />\n        <span className=\"relative z-10 inline-flex items-center justify-center w-full h-full px-8 py-3 text-gray-900 dark:text-white bg-white dark:bg-gray-900 rounded-full group-hover:bg-gray-100 dark:group-hover:bg-gray-800 transition-colors duration-300\">\n          Shimmer Button\n        </span>\n      </button>\n    </div>\n  );\n}\n",
-			"type": "registry:ui"
-		}
-	]
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shimmer",
+  "title": "Shimmer",
+  "description": "A minimalistic shimmer component designed with React and Tailwind CSS.",
+  "author": "Reche Soares",
+  "type": "registry:ui",
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "cssVars": {
+    "dark": {},
+    "light": {}
+  },
+  "files": [
+    {
+      "path": "shimmer.tsx",
+      "content": "\"use client\";\nimport React from \"react\";\n\n// The main App component that renders our ShimmerButton\nexport default function ShimmerButton() {\n\tconst customCss = `\n    /* This is the key to the seamless animation.\n      The @property rule tells the browser that '--angle' is a custom property\n      of type <angle>. This allows the browser to smoothly interpolate it\n      during animations, preventing the \"jump\" at the end of the loop.\n    */\n    @property --angle {\n      syntax: '<angle>';\n      initial-value: 0deg;\n      inherits: false;\n    }\n\n    /* The keyframe animation simply transitions the --angle property\n      from its start (0deg) to its end (360deg).\n    */\n    @keyframes shimmer-spin {\n      to {\n        --angle: 360deg;\n      }\n    }\n  `;\n\n\treturn (\n\t\t// Main container to center the button on the page\n\t\t<div className=\"flex items-center justify-center font-sans\">\n\t\t\t<style>{customCss}</style>\n\t\t\t<button className=\"relative inline-flex items-center justify-center p-[1.5px] bg-gray-300 dark:bg-black rounded-full overflow-hidden group\">\n\t\t\t\t<div\n\t\t\t\t\tclassName=\"absolute inset-0\"\n\t\t\t\t\tstyle={{\n\t\t\t\t\t\tbackground:\n\t\t\t\t\t\t\t\"conic-gradient(from var(--angle), transparent 25%, #06b6d4, transparent 50%)\",\n\t\t\t\t\t\tanimation: \"shimmer-spin 2.5s linear infinite\",\n\t\t\t\t\t}}\n\t\t\t\t/>\n\t\t\t\t<span className=\"relative z-10 inline-flex items-center justify-center w-full h-full px-8 py-3 text-gray-900 dark:text-white bg-white dark:bg-gray-900 rounded-full group-hover:bg-gray-100 dark:group-hover:bg-gray-800 transition-colors duration-300\">\n\t\t\t\t\tShimmer Button\n\t\t\t\t</span>\n\t\t\t</button>\n\t\t</div>\n\t);\n}\n",
+      "type": "registry:ui"
+    }
+  ]
 }

@@ -1,22 +1,22 @@
 {
-	"$schema": "https://ui.shadcn.com/schema/registry-item.json",
-	"name": "gradient-accordion",
-	"title": "Gradient Accordion",
-	"description": "A minimalistic gradient accordion component designed with React and Tailwind CSS.",
-	"author": "Reche Soares",
-	"type": "registry:ui",
-	"dependencies": [],
-	"devDependencies": [],
-	"registryDependencies": [],
-	"cssVars": {
-		"dark": {},
-		"light": {}
-	},
-	"files": [
-		{
-			"path": "gradient-accordion.tsx",
-			"content": "\"use client\";\nimport React, { useState } from \"react\";\n\ninterface FAQItem {\n  question: string;\n  answer: string;\n}\n\ninterface AccordionItemProps {\n  question: string;\n  answer: string;\n}\n\nexport default function GradientAccordion() {\n  const faqData: FAQItem[] = [\n    {\n      question: \"Is it legal to download photos from Instagram using ..?\",\n      answer:\n        \"Yes, it is generally legal to download photos from Instagram for personal use. However, you should respect copyright and privacy. Do not use downloaded content for commercial purposes without permission from the owner.\",\n    },\n    {\n      question:\n        \"Do I need an Instagram account to download photos and pics using this tool?\",\n      answer:\n        \"No, you do not need an Instagram account to use this tool. You only need the public URL of the photo or video you wish to download.\",\n    },\n    {\n      question: \"Can I download the photos in high resolution?\",\n      answer:\n        \"Yes, our tool downloads photos in the highest resolution available on Instagram. The quality of the downloaded photo will be the same as the original upload.\",\n    },\n    {\n      question: \"Is it safe to use ..?\",\n      answer:\n        \"Absolutely. Our service is secure and respects your privacy. We do not store any of the photos you download or track your download history.\",\n    },\n  ];\n\n  return (\n    <div className=\"w-full max-w-2xl mx-auto\">\n      <h1 className=\"text-4xl font-bold text-gray-900 dark:text-white text-center mb-10\">\n        FAQ\n      </h1>\n      <div className=\"space-y-4\">\n        {faqData.map((item, index) => (\n          <AccordionItem\n            key={index}\n            question={item.question}\n            answer={item.answer}\n          />\n        ))}\n      </div>\n    </div>\n  );\n}\n\nfunction AccordionItem({ question, answer }: AccordionItemProps) {\n  const [isOpen, setIsOpen] = useState<boolean>(false);\n\n  return (\n    <div className=\"p-0.5 rounded-lg bg-gradient-to-r from-cyan-400 to-pink-500 dark:from-cyan-500 dark:to-pink-600\">\n      <div className=\"bg-gray-50 dark:bg-gray-800 rounded-md\">\n        <button\n          onClick={() => setIsOpen(!isOpen)}\n          className=\"w-full flex justify-between items-center text-left p-4 focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200\"\n        >\n          <span className=\"text-lg font-medium text-gray-900 dark:text-white\">\n            {question}\n          </span>\n          <span\n            className={`transform transition-transform duration-300 ${isOpen ? \"rotate-180\" : \"\"}`}\n          >\n            <svg\n              xmlns=\"http://www.w3.org/2000/svg\"\n              className=\"h-6 w-6 text-gray-600 dark:text-gray-400\"\n              fill=\"none\"\n              viewBox=\"0 0 24 24\"\n              stroke=\"currentColor\"\n            >\n              <path\n                strokeLinecap=\"round\"\n                strokeLinejoin=\"round\"\n                strokeWidth={2}\n                d=\"M19 9l-7 7-7-7\"\n              />\n            </svg>\n          </span>\n        </button>\n\n        <div\n          className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? \"max-h-96 opacity-100\" : \"max-h-0 opacity-0\"}`}\n        >\n          <div className=\"p-4 border-t border-gray-200 dark:border-gray-700\">\n            <p className=\"text-gray-700 dark:text-gray-300\">{answer}</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
-			"type": "registry:ui"
-		}
-	]
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "gradient-accordion",
+  "title": "Gradient Accordion",
+  "description": "A minimalistic gradient accordion component designed with React and Tailwind CSS.",
+  "author": "Reche Soares",
+  "type": "registry:ui",
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "cssVars": {
+    "dark": {},
+    "light": {}
+  },
+  "files": [
+    {
+      "path": "gradient-accordion.tsx",
+      "content": "\"use client\";\nimport React, { useState } from \"react\";\n\ninterface FAQItem {\n\tquestion: string;\n\tanswer: string;\n}\n\ninterface AccordionItemProps {\n\tquestion: string;\n\tanswer: string;\n}\n\nexport default function GradientAccordion() {\n\tconst faqData: FAQItem[] = [\n\t\t{\n\t\t\tquestion: \"Is it legal to download photos from Instagram using ..?\",\n\t\t\tanswer:\n\t\t\t\t\"Yes, it is generally legal to download photos from Instagram for personal use. However, you should respect copyright and privacy. Do not use downloaded content for commercial purposes without permission from the owner.\",\n\t\t},\n\t\t{\n\t\t\tquestion:\n\t\t\t\t\"Do I need an Instagram account to download photos and pics using this tool?\",\n\t\t\tanswer:\n\t\t\t\t\"No, you do not need an Instagram account to use this tool. You only need the public URL of the photo or video you wish to download.\",\n\t\t},\n\t\t{\n\t\t\tquestion: \"Can I download the photos in high resolution?\",\n\t\t\tanswer:\n\t\t\t\t\"Yes, our tool downloads photos in the highest resolution available on Instagram. The quality of the downloaded photo will be the same as the original upload.\",\n\t\t},\n\t\t{\n\t\t\tquestion: \"Is it safe to use ..?\",\n\t\t\tanswer:\n\t\t\t\t\"Absolutely. Our service is secure and respects your privacy. We do not store any of the photos you download or track your download history.\",\n\t\t},\n\t];\n\n\treturn (\n\t\t<div className=\"w-full max-w-2xl mx-auto\">\n\t\t\t<h1 className=\"text-4xl font-bold text-gray-900 dark:text-white text-center mb-10\">\n\t\t\t\tFAQ\n\t\t\t</h1>\n\t\t\t<div className=\"space-y-4\">\n\t\t\t\t{faqData.map((item, index) => (\n\t\t\t\t\t<AccordionItem\n\t\t\t\t\t\tkey={index}\n\t\t\t\t\t\tquestion={item.question}\n\t\t\t\t\t\tanswer={item.answer}\n\t\t\t\t\t/>\n\t\t\t\t))}\n\t\t\t</div>\n\t\t</div>\n\t);\n}\n\nfunction AccordionItem({ question, answer }: AccordionItemProps) {\n\tconst [isOpen, setIsOpen] = useState<boolean>(false);\n\n\treturn (\n\t\t<div className=\"p-0.5 rounded-lg bg-gradient-to-r from-cyan-400 to-pink-500 dark:from-cyan-500 dark:to-pink-600\">\n\t\t\t<div className=\"bg-gray-50 dark:bg-gray-800 rounded-md\">\n\t\t\t\t<button\n\t\t\t\t\tonClick={() => setIsOpen(!isOpen)}\n\t\t\t\t\tclassName=\"w-full flex justify-between items-center text-left p-4 focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200\"\n\t\t\t\t>\n\t\t\t\t\t<span className=\"text-lg font-medium text-gray-900 dark:text-white\">\n\t\t\t\t\t\t{question}\n\t\t\t\t\t</span>\n\t\t\t\t\t<span\n\t\t\t\t\t\tclassName={`transform transition-transform duration-300 ${isOpen ? \"rotate-180\" : \"\"}`}\n\t\t\t\t\t>\n\t\t\t\t\t\t<svg\n\t\t\t\t\t\t\txmlns=\"http://www.w3.org/2000/svg\"\n\t\t\t\t\t\t\tclassName=\"h-6 w-6 text-gray-600 dark:text-gray-400\"\n\t\t\t\t\t\t\tfill=\"none\"\n\t\t\t\t\t\t\tviewBox=\"0 0 24 24\"\n\t\t\t\t\t\t\tstroke=\"currentColor\"\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\tstrokeLinecap=\"round\"\n\t\t\t\t\t\t\t\tstrokeLinejoin=\"round\"\n\t\t\t\t\t\t\t\tstrokeWidth={2}\n\t\t\t\t\t\t\t\td=\"M19 9l-7 7-7-7\"\n\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t</svg>\n\t\t\t\t\t</span>\n\t\t\t\t</button>\n\n\t\t\t\t<div\n\t\t\t\t\tclassName={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? \"max-h-96 opacity-100\" : \"max-h-0 opacity-0\"}`}\n\t\t\t\t>\n\t\t\t\t\t<div className=\"p-4 border-t border-gray-200 dark:border-gray-700\">\n\t\t\t\t\t\t<p className=\"text-gray-700 dark:text-gray-300\">{answer}</p>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t);\n}\n",
+      "type": "registry:ui"
+    }
+  ]
 }

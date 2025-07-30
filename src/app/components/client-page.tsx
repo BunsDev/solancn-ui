@@ -636,14 +636,14 @@ export function ComponentsClientPage({
 								<>
 									{" "}
 									for{" "}
-									<span className="font-medium">\"{debouncedSearchTerm}\"</span>
+									<span className="font-medium">&quot;{debouncedSearchTerm}&quot;</span>
 								</>
 							)}
 						</>
 					) : (
 						<>
 							No components found for{" "}
-							<span className="font-medium">\"{debouncedSearchTerm}\"</span>
+							<span className="font-medium">&quot;{debouncedSearchTerm}&quot;</span>
 						</>
 					)}
 				</p>
