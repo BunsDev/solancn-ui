@@ -396,6 +396,8 @@ export default function RootLayout({
 				{/* Manifest and Icons */}
 				<link rel="manifest" href="/manifest.json" />
 				<link rel="icon" href="/favicon.ico" />
+				<link rel="shortcut icon" href="/favicon.ico" />
+				<link rel="icon" type="image/png" href="/logo.png" />
 				<link rel="apple-touch-icon" href="/logo.png" />
 
 				{/* Preconnect to external domains for performance */}

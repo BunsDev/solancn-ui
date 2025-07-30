@@ -73,7 +73,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
 	const baseUrl = "https://ui.solancn.com";
 	// Use a fixed date to reduce regeneration
 	const currentDate = new Date("2025-01-01");
-
+	const docsPage = {
+		url: `${baseUrl}/docs`,
+		lastModified: currentDate,
+		changeFrequency: "monthly" as const,
+		priority: 0.9,
+	};
+	const componentsPage = {
+		url: `${baseUrl}/components`,
+		lastModified: currentDate,
+		changeFrequency: "monthly" as const,
+		priority: 0.9,
+	};
 	// Core pages
 	const corePages = [
 		{
@@ -82,18 +93,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 			changeFrequency: "weekly" as const,
 			priority: 1.0,
 		},
-		{
-			url: `${baseUrl}/docs`,
-			lastModified: currentDate,
-			changeFrequency: "monthly" as const,
-			priority: 0.9,
-		},
-		{
-			url: `${baseUrl}/components`,
-			lastModified: currentDate,
-			changeFrequency: "monthly" as const,
-			priority: 0.9,
-		},
+		docsPage,
+		componentsPage,
 		{
 			url: `${baseUrl}/docs/installation`,
 			lastModified: currentDate,
@@ -106,7 +107,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 	const componentPages = Object.values(componentCategories)
 		.flat()
 		.map((component) => ({
-			url: `${baseUrl}/docs/${component}`,
+			url: `${baseUrl}/components/${component}`,
 			lastModified: currentDate,
 			changeFrequency: "monthly" as const, // Changed from weekly to monthly
 			priority:
