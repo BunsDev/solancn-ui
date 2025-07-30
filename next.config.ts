@@ -4,7 +4,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
 	/* config options here */
 	// Temporarily disable static export to allow builds to complete during development
-	output: "export", // Force static export - no server functions
+	// output: "export", // Force static export - no server functions
 	trailingSlash: true,
 	reactStrictMode: true,
 	pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
