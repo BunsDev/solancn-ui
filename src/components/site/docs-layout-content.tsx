@@ -31,7 +31,7 @@ export function DocsLayoutContent({ section, name, description, children }: Docs
 	const { showTOC } = useTOC();
 
 	return (
-		<div className="w-full flex-col bg-white dark:bg-black text-neutral-800 dark:text-white relative">
+		<div className="flex w-dvw mx-auto flex-col bg-background text-text relative justify-center">
 			<header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
 				<div className="flex items-center gap-2 px-4">
 					<SidebarTrigger className="-ml-1" />
@@ -54,7 +54,7 @@ export function DocsLayoutContent({ section, name, description, children }: Docs
 					</Breadcrumb>
 				</div>
 			</header>
-			<div className="mx-auto max-w-[1536px] flex flex-1 md:space-x-16">
+			<div className="mx-auto max-w-2xl flex flex-1 md:space-x-16 justify-center">
 				{/* <Sidebar /> */}
 				<main
 					// className={`flex-1 py-6 pb-16 pt-8 min-w-0 px-4 text-neutral-800 dark:text-white ${showTOC ? "max-w-4xl" : "max-w-none pr-8"

@@ -15,8 +15,8 @@ import {
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavUser } from "@/components/nav-user"
+// import { NavProjects } from "@/components/nav-projects"
+import { NavResources } from "@/components/nav-resources"
 import { TeamSwitcher } from "@/components/team-switcher"
 import {
   Sidebar,
@@ -50,16 +50,31 @@ interface NavItem {
 
 // This is sample data.
 const data = {
-  user: {
-    name: "Solancn",
-    email: "admin@solancn.com",
-    avatar: "/logo.png",
+  resources: {
+    name: 'Resources',
+    links: [
+      {
+        name: 'Solana Docs',
+        url: 'https://docs.solana.com/',
+        description: 'Official documentation for Solana blockchain',
+      },
+      {
+        name: 'Solana Faucet',
+        url: 'https://faucet.solana.com/',
+        description: 'Get test tokens for development',
+      },
+      {
+        name: 'Solana Cookbook',
+        url: 'https://solana.com/developers/cookbook/',
+        description: 'Recipes for common Solana development tasks',
+      },
+    ],
   },
   teams: [
     {
-      name: "Documentation",
+      name: "Solancn UI",
       logo: GalleryVerticalEnd,
-      plan: "Installation",
+      plan: "Installation and Guides",
       path: "/docs",
       teamContext: "docs"
     },
@@ -78,20 +93,184 @@ const data = {
       teamContext: "components"
     },
     {
-      name: "Blocks",
+      name: "Templates",
       logo: Command,
       plan: "Comprehensive Elements",
-      path: "/blocks",
-      teamContext: "blocks"
+      path: "/templates",
+      teamContext: "templates"
     },
   ],
   navMain: [
     {
-      title: "Components",
+      title: "Overview",
       url: "/components",
       icon: SquareTerminal,
       isActive: true,
-      teamContext: "components", // This item is shown when Components team is active
+      teamContext: "components",
+      items: [
+        {
+          title: "Introduction",
+          url: "/components/introduction",
+        },
+        {
+          title: "Getting Started",
+          url: "/components/getting-started",
+        }
+      ],
+    },
+    {
+      title: "Layout",
+      url: "/components/layout",
+      icon: Frame,
+      teamContext: "components",
+      items: [
+        {
+          title: "Accordion",
+          url: "/components/accordion",
+        },
+        {
+          title: "Card",
+          url: "/components/card",
+        },
+        {
+          title: "Collapsible",
+          url: "/components/collapsible",
+        },
+        {
+          title: "Resizable",
+          url: "/components/resizable",
+        },
+        {
+          title: "Scroll Area",
+          url: "/components/scroll-area",
+        },
+        {
+          title: "Separator",
+          url: "/components/separator",
+        },
+        {
+          title: "Sheet",
+          url: "/components/sheet",
+        },
+        {
+          title: "Sidebar",
+          url: "/components/sidebar",
+        },
+        {
+          title: "Tabs",
+          url: "/components/tabs",
+        },
+      ],
+    },
+    {
+      title: "Data Display",
+      url: "/components/data-display",
+      icon: PieChart,
+      teamContext: "components",
+      items: [
+        {
+          title: "Avatar",
+          url: "/components/avatar",
+        },
+        {
+          title: "Badge",
+          url: "/components/badge",
+        },
+        {
+          title: "Code Block",
+          url: "/components/code-block",
+        },
+        {
+          title: "Table",
+          url: "/components/table",
+        },
+        {
+          title: "Vitepress Table",
+          url: "/components/vitepress-table",
+        },
+      ],
+    },
+    {
+      title: "Inputs & Forms",
+      url: "/components/inputs",
+      icon: Settings2,
+      teamContext: "components",
+      items: [
+        {
+          title: "Button",
+          url: "/components/button",
+        },
+        {
+          title: "Input",
+          url: "/components/input",
+        },
+        {
+          title: "Label",
+          url: "/components/label",
+        },
+        {
+          title: "Select",
+          url: "/components/select",
+        },
+        {
+          title: "Switch",
+          url: "/components/switch",
+        },
+        {
+          title: "Toggle",
+          url: "/components/toggle",
+        },
+        {
+          title: "Toggle Group",
+          url: "/components/toggle-group",
+        },
+      ],
+    },
+    {
+      title: "Feedback & Overlay",
+      url: "/components/feedback",
+      icon: AudioWaveform,
+      teamContext: "components",
+      items: [
+        {
+          title: "Dropdown Menu",
+          url: "/components/dropdown-menu",
+        },
+        {
+          title: "Skeleton",
+          url: "/components/skeleton",
+        },
+        {
+          title: "Sonner",
+          url: "/components/sonner",
+        },
+        {
+          title: "Tooltip",
+          url: "/components/tooltip",
+        },
+        {
+          title: "Border Beam",
+          url: "/components/border-beam",
+        },
+      ],
+    },
+    {
+      title: "Navigation",
+      url: "/components/navigation",
+      icon: Map,
+      teamContext: "components",
+      items: [
+        {
+          title: "Breadcrumb",
+          url: "/components/breadcrumb",
+        }
+      ],
+    },
+    {
+      title: "Utility",
+      url: "/components/utility",
+      icon: Command,
+      teamContext: "components",
       items: [
         {
           title: "History",
@@ -128,30 +307,30 @@ const data = {
       ],
     },
     {
-      title: "Blocks",
-      url: "/blocks",
+      title: "Templates",
+      url: "/templates",
       icon: BookOpen,
-      teamContext: "blocks", // This item is shown when Blocks team is active
+      teamContext: "templates", // This item is shown when Templates team is active
       items: [
         {
           title: "Dashboard",
-          url: "/blocks/dashboard",
+          url: "/templates/dashboard",
         },
         {
           title: "Staking",
-          url: "/blocks/staking",
+          url: "/templates/staking",
         },
         {
           title: "Staking Interface",
-          url: "/blocks/staking-interface",
+          url: "/templates/staking-interface",
         },
         {
           title: "Swap",
-          url: "/blocks/swap",
+          url: "/templates/swap",
         },
         {
           title: "Swap Interface",
-          url: "/blocks/swap-interface",
+          url: "/templates/swap-interface",
         },
       ],
     },
@@ -197,7 +376,7 @@ const data = {
       name: "Travel",
       url: "#",
       icon: Map,
-      teamContext: "blocks", // This item is shown when Blocks team is active
+      teamContext: "templates", // This item is shown when Templates team is active
     },
   ],
 }
@@ -260,11 +439,28 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     switch(activeTeam.teamContext) {
       case "components": return "Components";
       case "designs": return "Designs";
-      case "blocks": return "Blocks";
+      case "templates": return "Templates";
       case "docs": return "Documentation";
       default: return "Platform";
     }
   };
+  
+  // Get brand color based on active team
+  const getBrandColor = () => {
+    switch(activeTeam.teamContext) {
+      case "components": return "#9945FF"; // Solana Purple
+      case "designs": return "#14F195"; // Solana Green
+      case "templates": return "#9945FF"; // Solana Purple
+      case "docs": return "#14F195"; // Solana Green
+      default: return "#9945FF"; // Default to Solana Purple
+    }
+  };
+
+  // Apply brand color to sidebar elements
+  React.useEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty('--solana-accent', getBrandColor());
+  }, [activeTeam]);
 
   return (
     <TeamContext.Provider 
@@ -288,10 +484,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarHeader>
         <SidebarContent>
           <NavMain items={filteredNavItems} />
-          <NavProjects projects={filteredProjects} />
+          {/* <NavProjects projects={filteredProjects} /> */}
         </SidebarContent>
         <SidebarFooter>
-          {/* <NavUser user={data.user} /> */}
+          <NavResources resources={data.resources} />
         </SidebarFooter>
         <SidebarRail />
       </Sidebar>

@@ -19,7 +19,7 @@ test("get item target path", async () => {
     await getItemTargetPath(await getConfig(appDir), {
       type: "registry:ui",
     })
-  ).toEqual(path.resolve(appDir, "./components/ui"))
+  ).toEqual(path.resolve(appDir, "./components"))
 
   // JSX.
   appDir = path.resolve(__dirname, "../fixtures/config-jsx")
@@ -27,7 +27,7 @@ test("get item target path", async () => {
     await getItemTargetPath(await getConfig(appDir), {
       type: "registry:ui",
     })
-  ).toEqual(path.resolve(appDir, "./components/ui"))
+  ).toEqual(path.resolve(appDir, "./components"))
 
   // Custom paths.
   appDir = path.resolve(__dirname, "../fixtures/config-ui")

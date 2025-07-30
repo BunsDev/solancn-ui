@@ -15,7 +15,7 @@ interface RegistryFile {
   target?: string;
 }
 
-interface BlockViewerProps {
+interface TemplateViewerProps {
   item: {
     name: string
     files?: RegistryFile[]
@@ -25,12 +25,12 @@ interface BlockViewerProps {
   children?: React.ReactNode
 }
 
-export function BlockViewer({
+export function TemplateViewer({
   item,
   tree,
   highlightedFiles,
   children,
-}: BlockViewerProps) {
+}: TemplateViewerProps) {
   const [activeFile, setActiveFile] = React.useState<string | null>(
     item.files?.[0]?.path || null
   )

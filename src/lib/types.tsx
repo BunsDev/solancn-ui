@@ -16,10 +16,10 @@ export interface Component extends RegistryItem {
 	categoryColor?: string;
 }
 
-export interface Block extends RegistryItem {
+export interface Template extends RegistryItem {
 	name: string;
 	title: string;
-	type: "registry:block";
+	type: "registry:template";
 	preview: React.ReactNode;
 	description?: string;
 	category?: string;
@@ -91,7 +91,7 @@ export interface Category {
 // Registry data interface
 export interface RegistryData {
 	components?: Record<string, RegistryItem>;
-	blocks?: Record<string, RegistryItem>;
+	templates?: Record<string, RegistryItem>;
 	ui?: Record<string, RegistryItem>;
 	theme?: RegistryItem;
 }

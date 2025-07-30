@@ -1,9 +1,10 @@
+// import { type Registry } from "solancn/registry"
 import { type Registry } from "solancn/registry"
 
-export const blocks: Registry["items"] = [
+export const templates: Registry["items"] = [
   {
     name: "wallet-connect",
-    type: "registry:block",
+    type: "registry:template",
     description: "Solana wallet connection component with wallet adapter integration.",
     registryDependencies: [
       "button",
@@ -12,15 +13,15 @@ export const blocks: Registry["items"] = [
     ],
     files: [
       {
-        path: "blocks/wallet-connect/wallet-button.tsx",
+        path: "templates/wallet-connect/wallet-button.tsx",
         type: "registry:component",
       },
       {
-        path: "blocks/wallet-connect/wallet-modal.tsx",
+        path: "templates/wallet-connect/wallet-modal.tsx",
         type: "registry:component",
       },
       {
-        path: "blocks/wallet-connect/wallet-provider.tsx",
+        path: "templates/wallet-connect/wallet-provider.tsx",
         type: "registry:component",
       }
     ],
@@ -28,7 +29,7 @@ export const blocks: Registry["items"] = [
   },
   {
     name: "navigation-tabs",
-    type: "registry:block",
+    type: "registry:template",
     description: "Solana UI tabbed navigation interface for main application features.",
     registryDependencies: [
       "tabs",
@@ -37,11 +38,11 @@ export const blocks: Registry["items"] = [
     ],
     files: [
       {
-        path: "blocks/navigation-tabs/main-tabs.tsx",
+        path: "templates/navigation-tabs/main-tabs.tsx",
         type: "registry:component",
       },
       {
-        path: "blocks/navigation-tabs/tab-content.tsx",
+        path: "templates/navigation-tabs/tab-content.tsx",
         type: "registry:component",
       }
     ],
@@ -49,7 +50,7 @@ export const blocks: Registry["items"] = [
   },
   {
     name: "staking-interface",
-    type: "registry:block",
+    type: "registry:template",
     description: "Complete staking interface with validator selection and staking options.",
     registryDependencies: [
       "tabs",
@@ -63,32 +64,32 @@ export const blocks: Registry["items"] = [
     ],
     files: [
       {
-        path: "blocks/staking-interface/staking-page.tsx",
+        path: "templates/staking-interface/staking-page.tsx",
         type: "registry:page",
         target: "app/stake/page.tsx",
       },
       {
-        path: "blocks/staking-interface/components/stake-form.tsx",
+        path: "templates/staking-interface/components/stake-form.tsx",
         type: "registry:component",
       },
       {
-        path: "blocks/staking-interface/components/unstake-form.tsx",
+        path: "templates/staking-interface/components/unstake-form.tsx",
         type: "registry:component",
       },
       {
-        path: "blocks/staking-interface/components/history-table.tsx",
+        path: "templates/staking-interface/components/history-table.tsx",
         type: "registry:component",
       },
       {
-        path: "blocks/staking-interface/components/validator-selector.tsx",
+        path: "templates/staking-interface/components/validator-selector.tsx",
         type: "registry:component",
       },
       {
-        path: "blocks/staking-interface/components/stake-summary.tsx",
+        path: "templates/staking-interface/components/stake-summary.tsx",
         type: "registry:component",
       },
       {
-        path: "blocks/staking-interface/components/network-stats.tsx",
+        path: "templates/staking-interface/components/network-stats.tsx",
         type: "registry:component",
       }
     ],
@@ -96,7 +97,7 @@ export const blocks: Registry["items"] = [
   },
   {
     name: "portfolio-view",
-    type: "registry:block",
+    type: "registry:template",
     description: "Portfolio view showing asset balances and performance metrics.",
     registryDependencies: [
       "card",
@@ -106,20 +107,20 @@ export const blocks: Registry["items"] = [
     ],
     files: [
       {
-        path: "blocks/portfolio-view/portfolio-page.tsx",
+        path: "templates/portfolio-view/portfolio-page.tsx",
         type: "registry:page",
         target: "app/portfolio/page.tsx",
       },
       {
-        path: "blocks/portfolio-view/components/asset-list.tsx",
+        path: "templates/portfolio-view/components/asset-list.tsx",
         type: "registry:component",
       },
       {
-        path: "blocks/portfolio-view/components/balance-summary.tsx",
+        path: "templates/portfolio-view/components/balance-summary.tsx",
         type: "registry:component",
       },
       {
-        path: "blocks/portfolio-view/components/performance-chart.tsx",
+        path: "templates/portfolio-view/components/performance-chart.tsx",
         type: "registry:component",
       }
     ],
@@ -127,7 +128,7 @@ export const blocks: Registry["items"] = [
   },
   {
     name: "swap-interface",
-    type: "registry:block",
+    type: "registry:template",
     description: "Token swap interface with price information and slippage controls.",
     registryDependencies: [
       "card",
@@ -138,24 +139,24 @@ export const blocks: Registry["items"] = [
     ],
     files: [
       {
-        path: "blocks/swap-interface/swap-page.tsx",
+        path: "templates/swap-interface/swap-page.tsx",
         type: "registry:page",
         target: "app/swap/page.tsx",
       },
       {
-        path: "blocks/swap-interface/components/swap-form.tsx",
+        path: "templates/swap-interface/components/swap-form.tsx",
         type: "registry:component",
       },
       {
-        path: "blocks/swap-interface/components/token-selector.tsx",
+        path: "templates/swap-interface/components/token-selector.tsx",
         type: "registry:component",
       },
       {
-        path: "blocks/swap-interface/components/price-info.tsx",
+        path: "templates/swap-interface/components/price-info.tsx",
         type: "registry:component",
       },
       {
-        path: "blocks/swap-interface/components/slippage-settings.tsx",
+        path: "templates/swap-interface/components/slippage-settings.tsx",
         type: "registry:component",
       }
     ],
@@ -163,7 +164,7 @@ export const blocks: Registry["items"] = [
   },
   {
     name: "transfer-interface",
-    type: "registry:block",
+    type: "registry:template",
     description: "Token transfer interface with address book and recent transactions.",
     registryDependencies: [
       "card",
@@ -174,20 +175,20 @@ export const blocks: Registry["items"] = [
     ],
     files: [
       {
-        path: "blocks/transfer-interface/transfer-page.tsx",
+        path: "templates/transfer-interface/transfer-page.tsx",
         type: "registry:page",
         target: "app/transfer/page.tsx",
       },
       {
-        path: "blocks/transfer-interface/components/transfer-form.tsx",
+        path: "templates/transfer-interface/components/transfer-form.tsx",
         type: "registry:component",
       },
       {
-        path: "blocks/transfer-interface/components/address-book.tsx",
+        path: "templates/transfer-interface/components/address-book.tsx",
         type: "registry:component",
       },
       {
-        path: "blocks/transfer-interface/components/recent-transfers.tsx",
+        path: "templates/transfer-interface/components/recent-transfers.tsx",
         type: "registry:component",
       }
     ],
@@ -195,7 +196,7 @@ export const blocks: Registry["items"] = [
   },
   {
     name: "receive-interface",
-    type: "registry:block",
+    type: "registry:template",
     description: "Interface for receiving tokens with QR code and address display.",
     registryDependencies: [
       "card",
@@ -205,16 +206,16 @@ export const blocks: Registry["items"] = [
     ],
     files: [
       {
-        path: "blocks/receive-interface/receive-page.tsx",
+        path: "templates/receive-interface/receive-page.tsx",
         type: "registry:page",
         target: "app/receive/page.tsx",
       },
       {
-        path: "blocks/receive-interface/components/address-display.tsx",
+        path: "templates/receive-interface/components/address-display.tsx",
         type: "registry:component",
       },
       {
-        path: "blocks/receive-interface/components/qr-code.tsx",
+        path: "templates/receive-interface/components/qr-code.tsx",
         type: "registry:component",
       }
     ],
@@ -222,7 +223,7 @@ export const blocks: Registry["items"] = [
   },
   {
     name: "solana-theme",
-    type: "registry:block",
+    type: "registry:template",
     description: "Solana UI theme components with brand colors and styling.",
     registryDependencies: [
       "button",
@@ -231,11 +232,11 @@ export const blocks: Registry["items"] = [
     ],
     files: [
       {
-        path: "blocks/solana-theme/theme-provider.tsx",
+        path: "templates/solana-theme/theme-provider.tsx",
         type: "registry:component",
       },
       {
-        path: "blocks/solana-theme/solana-colors.tsx",
+        path: "templates/solana-theme/solana-colors.tsx",
         type: "registry:component",
       }
     ],

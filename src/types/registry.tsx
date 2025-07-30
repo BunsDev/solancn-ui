@@ -1,7 +1,7 @@
 // Registry item types
 export type RegistryItemType =
 	| "registry:component"
-	| "registry:block"
+	| "registry:template"
 	| "registry:ui"
 	| "registry:theme";
 

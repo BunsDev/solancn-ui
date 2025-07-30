@@ -5,12 +5,12 @@ import { z } from "zod"
 
 export const registryItemTypeSchema = z.enum([
   "registry:lib",
-  "registry:block",
   "registry:component",
   "registry:ui",
   "registry:hook",
   "registry:page",
   "registry:file",
+  "registry:template",
 
   // Internal use only
   "registry:theme",

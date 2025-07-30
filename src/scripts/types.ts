@@ -1,5 +1,5 @@
 export type RegistryType =
-	| "registry:block"
+	| "registry:template"
 	| "registry:component"
 	| "registry:lib"
 	| "registry:hook"

@@ -306,18 +306,6 @@ function ComponentCard({
 								<Tooltip>
 									<TooltipTrigger asChild>
 										<Button size="icon" variant="outline" className="h-8 w-8">
-											<Star className="h-4 w-4 text-amber-500" />
-											<span className="sr-only">Star component</span>
-										</Button>
-									</TooltipTrigger>
-									<TooltipContent>Star this component</TooltipContent>
-								</Tooltip>
-							</TooltipProvider>
-
-							<TooltipProvider delayDuration={200}>
-								<Tooltip>
-									<TooltipTrigger asChild>
-										<Button size="icon" variant="outline" className="h-8 w-8">
 											<Download className="h-4 w-4 text-[#14F195]" />
 											<span className="sr-only">Install component</span>
 										</Button>

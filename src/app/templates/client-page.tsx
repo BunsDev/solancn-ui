@@ -88,9 +88,9 @@ interface ComponentMetric {
 }
 
 /**
- * BlockCard - Card component for displaying a component with preview
+ * TemplateCard - Card component for displaying a component with preview
  */
-function BlockCard({
+function TemplateCard({
 	component,
 	viewMode = "grid",
 	searchTerm = "",
@@ -725,7 +725,7 @@ export function ComponentsClientPage({
 									exit={{ opacity: 0, scale: 0.9 }}
 									transition={{ duration: 0.2 }}
 								>
-									<BlockCard
+									<TemplateCard
 										key={component.name}
 										component={component}
 										viewMode={viewMode as "grid" | "row"}

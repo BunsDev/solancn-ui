@@ -17,8 +17,8 @@ export const createSlug = (text: string) => {
 
 export function getLink(item: RegistryItem): string {
   const itemTypeLink =
-    item.type === "registry:block"
-      ? "blocks"
+    item.type === "registry:template"
+      ? "templates"
       : item.type === "registry:component"
         ? "components"
         : item.type === "registry:ui"

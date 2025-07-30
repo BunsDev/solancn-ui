@@ -1,8 +1,9 @@
 "use client"
 
-import { ChevronRight, type LucideIcon } from "lucide-react"
+import { ChevronRight, ChevronDown, Component, Package, type LucideIcon } from "lucide-react"
 import { usePathname } from "next/navigation"
 import * as React from "react"
+import Link from "next/link"
 
 import {
   Collapsible,
@@ -21,27 +22,39 @@ import {
 } from "@/components/ui/sidebar"
 import { useTeamContext } from "./app-sidebar"
 
-export function NavMain({
-  items,
-}: {
-  items: {
+interface NavMainItemProps {
+  title: string
+  url: string
+  icon?: LucideIcon
+  isActive?: boolean
+  items?: {
     title: string
     url: string
     icon?: LucideIcon
-    isActive?: boolean
-    items?: {
-      title: string
-      url: string
-      icon?: LucideIcon
-    }[]
   }[]
+}
+
+export function NavMain({
+  items,
+}: {
+  items: NavMainItemProps[]
 }) {
   const pathname = usePathname()
   const { platformTitle = "Platform" } = useTeamContext()
   
+  // CSS custom property for Solana brand color accents
+  const accentStyle = {
+    "--component-active": "var(--solana-accent, #9945FF)"
+  } as React.CSSProperties
+  
   // Determine if a section should be open based on the current path
   const isSectionActive = (item: { url: string }) => {
     return pathname.startsWith(item.url)
+  }
+  
+  // Determine if an item is the current active route
+  const isActive = (url: string) => {
+    return pathname === url
   }
 
   return (
@@ -58,9 +71,11 @@ export function NavMain({
             <SidebarMenuItem>
               <CollapsibleTrigger asChild>
                 <SidebarMenuButton tooltip={item.title}>
-                  {item.icon && <item.icon />}
-                  <span>{item.title}</span>
-                  <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                  {item.icon && <item.icon className="shrink-0" />}
+                  <span className="truncate">{item.title}</span>
+                  <span className="ml-auto flex h-4 w-4 shrink-0 items-center justify-center">
+                    <ChevronRight className="h-4 w-4 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                  </span>
                 </SidebarMenuButton>
               </CollapsibleTrigger>
               <CollapsibleContent>
@@ -68,12 +83,18 @@ export function NavMain({
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
                       <SidebarMenuSubButton asChild>
-                        <a 
+                        <Link
                           href={subItem.url} 
-                          className={pathname === subItem.url ? "bg-accent text-accent-foreground" : ""}>
-                          {subItem.icon && <subItem.icon />}
-                          <span>{subItem.title}</span>
-                        </a>
+                          className={`flex items-center gap-2 ${isActive(subItem.url) ? "font-medium" : ""}`}
+                          style={isActive(subItem.url) ? { color: 'var(--solana-accent)' } : undefined}
+                        >
+                          {subItem.icon ? (
+                            <subItem.icon className="h-4 w-4 shrink-0" />
+                          ) : (
+                            <Component className="h-4 w-4 shrink-0 text-muted-foreground" />
+                          )}
+                          <span className="truncate">{subItem.title}</span>
+                        </Link>
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                   ))}

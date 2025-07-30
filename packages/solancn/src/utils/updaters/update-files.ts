@@ -254,6 +254,10 @@ function resolveFileTargetDirectory(
     return config.resolvedPaths.components
   }
 
+  if (file.type === "registry:template") {
+    return config.resolvedPaths.templates
+  }
+
   if (file.type === "registry:hook") {
     return config.resolvedPaths.hooks
   }

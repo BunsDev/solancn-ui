@@ -328,7 +328,7 @@ export const components: ComponentType[] = [
     name: "nftmarketplace",
     title: "Nftmarketplace",
     description: "A minimalistic nftmarketplace component designed with React and Tailwind CSS.",
-    path: "../app/components/nftmarketplace",
+    path: "../app/templates/nftmarketplace",
     dependencies: [],
   },
   {

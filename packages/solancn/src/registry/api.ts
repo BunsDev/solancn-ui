@@ -162,6 +162,10 @@ export async function getItemTargetPath(
     return config.resolvedPaths.ui ?? config.resolvedPaths.components
   }
 
+  if (item.type === "registry:template") {
+    return config.resolvedPaths.templates
+  }
+
   const [parent, type] = item.type?.split(":") ?? []
   if (!(parent in config.resolvedPaths)) {
     return null
@@ -489,7 +493,7 @@ export function getRegistryTypeAliasMap() {
     ["registry:ui", "ui"],
     ["registry:lib", "lib"],
     ["registry:hook", "hooks"],
-    ["registry:block", "components"],
+    ["registry:template", "templates"],
     ["registry:component", "components"],
   ])
 }

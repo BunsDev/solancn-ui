@@ -120,7 +120,7 @@ export const navigation: NavigationItem[] = [
 			{ label: "Gradient", href: "/components/gradient" },
 			{ label: "Spotlight Card", href: "/components/spotlightcard" },
 			{ label: "Multi Select", href: "/components/multiselector" },
-			{ label: "NFT Marketplace", href: "/components/nftmarketplace" },
+			// { label: "NFT Marketplace", href: "/templates/nftmarketplace" },
 		],
 	},
 	{

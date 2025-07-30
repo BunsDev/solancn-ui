@@ -10,11 +10,12 @@ export const dynamic = "force-static";
 export default function DocsLayout({ children }: { children: ReactNode }) {
 	return (
 		<TOCProvider>
-
 			<SidebarProvider>
-				<AppSidebar />	
-				<SidebarInset>			
-						<DocsLayoutContent section="Docs" name="Installation" description="How to install dependencies and structure your app.">{children}</DocsLayoutContent>
+				<AppSidebar />
+				<SidebarInset>
+					<DocsLayoutContent section="Docs" name="Installation" description="How to install dependencies and structure your app.">
+						{children}
+					</DocsLayoutContent>
 				</SidebarInset>
 			</SidebarProvider>
 		</TOCProvider>

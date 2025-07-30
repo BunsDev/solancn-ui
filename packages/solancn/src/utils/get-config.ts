@@ -39,6 +39,7 @@ export const rawConfigSchema = z
       ui: z.string().optional(),
       lib: z.string().optional(),
       hooks: z.string().optional(),
+      templates: z.string().optional(),
     }),
     iconLibrary: z.string().optional(),
   })
@@ -56,6 +57,7 @@ export const configSchema = rawConfigSchema.extend({
     lib: z.string(),
     hooks: z.string(),
     ui: z.string(),
+    templates: z.string(),
   }),
 })
 
@@ -102,6 +104,7 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
       tailwindCss: path.resolve(cwd, config.tailwind.css),
       utils: await resolveImport(config.aliases["utils"], tsConfig),
       components: await resolveImport(config.aliases["components"], tsConfig),
+      templates: await resolveImport(config.aliases["templates"], tsConfig),
       ui: config.aliases["ui"]
         ? await resolveImport(config.aliases["ui"], tsConfig)
         : path.resolve(

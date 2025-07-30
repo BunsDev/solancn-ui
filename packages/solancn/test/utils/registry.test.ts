@@ -1,7 +1,8 @@
 import { expect, test } from "vitest"
 
 import { resolveTree } from "../../src/registry/api"
-import { Registry } from "../../src/registry/schema"
+import { registryIndexSchema } from "../../src/registry/schema"
+import { z } from "zod"
 
 test("resolve tree", async () => {
   const index = [
@@ -37,7 +38,7 @@ test("resolve tree", async () => {
       files: [{ type: "registry:component", path: "example-card.tsx" }],
       registryDependencies: ["button", "dialog", "input"],
     },
-  ] satisfies Registry
+  ] as z.infer<typeof registryIndexSchema>
 
   expect(
     (await resolveTree(index, ["button"])).map((entry) => entry.name).sort()

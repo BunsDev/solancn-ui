@@ -440,7 +440,7 @@ describe("resolveFilePath", () => {
           isSrcDir: false,
         }
       )
-    ).toBe("/foo/bar/components/ui/button.tsx")
+    ).toBe("/foo/bar/components/button.tsx")
   })
 })
 

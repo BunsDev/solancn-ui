@@ -41,10 +41,10 @@ export const registryItemFileSchema = z.object({
     "registry:component",
     "registry:ui",
     "registry:example",
-    "registry:block",
+    "registry:template",
     "registry:hook",
     "registry:lib",
-    "registry:page"
+    "registry:page",
   ]),
   target: z.string().optional(),
   content: z.string().optional(),
@@ -56,7 +56,7 @@ export const registryItemSchema = z.object({
   component: z.any(),
   files: z.array(registryItemFileSchema),
   dependencies: z.array(z.string()).optional(),
-  type: z.enum(["components", "blocks"]).optional(),
+  type: z.enum(["components", "templates"]).optional(),
   meta: z.any().optional(),
 })
 

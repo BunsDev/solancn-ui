@@ -1,7 +1,7 @@
 // Component imports
 
 // √
-import NftMarketplace from "@/app/components/nftmarketplace/nftmarketplace";
+import NftMarketplace from "@/app/templates/nftmarketplace/nftmarketplace";
 
 
 import AccordionPage from "@/app/components/accordion/accordion-view";

@@ -9,9 +9,9 @@ import {
 } from "@/lib/registry"
 import { cn } from "@/lib/utils"
 import { ComponentPreview } from "@/components/site/component-preview"
-import { BlockViewer } from "@/components/site/block-viewer"
+import { TemplateViewer } from "@/components/site/template-viewer"
 
-export async function BlockDisplay({ name }: { name: string }) {
+export async function TemplateDisplay({ name }: { name: string }) {
   const item = await getCachedRegistryItem(name)
   const files = item?.files
   if (!files) {
@@ -24,7 +24,7 @@ export async function BlockDisplay({ name }: { name: string }) {
   ])
 
   return (
-    <BlockViewer
+    <TemplateViewer
       item={{
         name: item.name,
         files: item.files.map((file) => ({
@@ -48,7 +48,7 @@ export async function BlockDisplay({ name }: { name: string }) {
           item.meta?.containerClassName
         )}
       />
-    </BlockViewer>
+    </TemplateViewer>
   )
 }
 

@@ -7,6 +7,7 @@
 module.exports = {
   ...require('./colors'),
   ...require('./network'),
+  ...require('./types'),
+  ...require('./ui'),
   ...require('./validators'),
-  ...require('./ui')
 };
