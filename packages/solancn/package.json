@@ -1,6 +1,6 @@
 {
   "name": "solancn",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Add components to your apps.",
   "publishConfig": {
     "access": "public"
@@ -35,6 +35,10 @@
     "./registry": {
       "types": "./dist/registry/index.d.ts",
       "default": "./dist/registry/index.js"
+    },
+    "./mcp": {
+      "types": "./dist/mcp/index.d.ts",
+      "default": "./dist/mcp/index.js"
     }
   },
   "bin": "./dist/index.js",

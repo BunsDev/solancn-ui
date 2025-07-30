@@ -1,6 +1,4 @@
 import * as React from "react"
-import { registryItemFileSchema } from "solancn/registry"
-import { z } from "zod"
 
 import { highlightCode } from "@/lib/highlight-code"
 import {

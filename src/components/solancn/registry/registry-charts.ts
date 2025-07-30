@@ -2,7 +2,7 @@
 
 interface RegistryFile {
   path: string;
-  type: "registry:component" | "registry:block";
+  type: "registry:component" | "registry:block" | "registry:template" | "registry:ui" | "registry:design";
 }
 export interface RegistryItem {
   name: string;

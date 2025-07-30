@@ -219,9 +219,9 @@
     "description": "A minimalistic network component designed with React and Tailwind CSS.",
     "component": null
   },
-  "nftmarketplace": {
-    "name": "nftmarketplace",
-    "description": "A minimalistic nftmarketplace component designed with React and Tailwind CSS.",
+  "nftmarket": {
+    "name": "nftmarket",
+    "description": "A minimalistic nftmarket component designed with React and Tailwind CSS.",
     "component": null
   },
   "noise": {

@@ -8,7 +8,7 @@ type NavigationItem = {
 	children: NavigationChild[];
 };
 
-export const navigation: NavigationItem[] = [
+export const docsNavigation: NavigationItem[] = [
 	{
 		label: "Getting Started",
 		children: [
@@ -16,16 +16,8 @@ export const navigation: NavigationItem[] = [
 			{ label: "Installation", href: "/docs/installation" },
 		],
 	},
-	{
-		label: "Design Tools",
-		children: [
-			{ label: "Loaders", href: "/components/loaders" },
-			{ label: "Patterns", href: "/components/pattern" },
-			{ label: "Palettes", href: "/components/colorpalette" },
-			{ label: "Gradients", href: "/components/gradientgen" },
-			{ label: "Icons", href: "/components/svg-icons" },
-		],
-	},
+];
+export const componentsNavigation: NavigationItem[] = [
 	{
 		label: "Components",
 		children: [
@@ -120,7 +112,7 @@ export const navigation: NavigationItem[] = [
 			{ label: "Gradient", href: "/components/gradient" },
 			{ label: "Spotlight Card", href: "/components/spotlightcard" },
 			{ label: "Multi Select", href: "/components/multiselector" },
-			// { label: "NFT Marketplace", href: "/templates/nftmarketplace" },
+			// { label: "NFT Marketplace", href: "/templates/nftmarket" },
 		],
 	},
 	{
@@ -146,6 +138,27 @@ export const navigation: NavigationItem[] = [
 			{ label: "Testimonial", href: "/components/testimonial" },
 			{ label: "Forgot Password", href: "/components/forgotpassword" },
 			{ label: "Team Member", href: "/components/teammember" },
+		],
+	},
+];
+
+export const templatesNavigation: NavigationItem[] = [
+	{
+		label: "Templates",
+		children: [
+			{ label: "Swap", href: "/templates/swap" },
+			{ label: "Staking", href: "/templates/staking" },
+			{ label: "Wallet", href: "/templates/wallet" },
+			{ label: "Trading View", href: "/templates/tradingview" },
+			{ label: "Portfolio View", href: "/templates/portfolio-view" },
+
+			{ label: "Lending Market", href: "/templates/lendingmarket" },
+			{ label: "DeFi Dashboard", href: "/templates/defidashboard" },
+			{ label: "DeFi Portfolio", href: "/templates/defiportfolio" },
+
+			{ label: "NFT Gallery", href: "/templates/nftgallery" },
+			{ label: "NFT Collection", href: "/templates/nftcollection" },
+			{ label: "NFT Market", href: "/templates/nftmarket" },
 		],
 	},
 ];

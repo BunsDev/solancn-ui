@@ -1,10 +1,14 @@
 // import { type Registry } from "solancn/registry"
-import { type Registry } from "solancn/registry"
+// import { type Registry } from "solancn/registry"
 
-export const templates: Registry["items"] = [
+import { type Registry } from "@/lib/registry-types";
+import { RegistryItem } from "./registry-charts";
+
+export const templates: RegistryItem[] = [
   {
     name: "wallet-connect",
     type: "registry:template",
+    title: "Wallet Connect",
     description: "Solana wallet connection component with wallet adapter integration.",
     registryDependencies: [
       "button",
@@ -30,6 +34,7 @@ export const templates: Registry["items"] = [
   {
     name: "navigation-tabs",
     type: "registry:template",
+    title: "Navigation Tabs",
     description: "Solana UI tabbed navigation interface for main application features.",
     registryDependencies: [
       "tabs",
@@ -51,6 +56,7 @@ export const templates: Registry["items"] = [
   {
     name: "staking-interface",
     type: "registry:template",
+    title: "Staking Interface",
     description: "Complete staking interface with validator selection and staking options.",
     registryDependencies: [
       "tabs",
@@ -64,32 +70,31 @@ export const templates: Registry["items"] = [
     ],
     files: [
       {
-        path: "templates/staking-interface/staking-page.tsx",
-        type: "registry:page",
-        target: "app/stake/page.tsx",
+        path: "templates/staking/staking-page.tsx",
+        type: "registry:template",
       },
       {
-        path: "templates/staking-interface/components/stake-form.tsx",
+        path: "templates/staking/components/stake-form.tsx",
         type: "registry:component",
       },
       {
-        path: "templates/staking-interface/components/unstake-form.tsx",
+        path: "templates/staking/components/unstake-form.tsx",
         type: "registry:component",
       },
       {
-        path: "templates/staking-interface/components/history-table.tsx",
+        path: "templates/staking/components/history-table.tsx",
         type: "registry:component",
       },
       {
-        path: "templates/staking-interface/components/validator-selector.tsx",
+        path: "templates/staking/components/validator-selector.tsx",
         type: "registry:component",
       },
       {
-        path: "templates/staking-interface/components/stake-summary.tsx",
+        path: "templates/staking/components/stake-summary.tsx",
         type: "registry:component",
       },
       {
-        path: "templates/staking-interface/components/network-stats.tsx",
+        path: "templates/staking/components/network-stats.tsx",
         type: "registry:component",
       }
     ],
@@ -98,6 +103,7 @@ export const templates: Registry["items"] = [
   {
     name: "portfolio-view",
     type: "registry:template",
+    title: "Portfolio View",
     description: "Portfolio view showing asset balances and performance metrics.",
     registryDependencies: [
       "card",
@@ -108,8 +114,7 @@ export const templates: Registry["items"] = [
     files: [
       {
         path: "templates/portfolio-view/portfolio-page.tsx",
-        type: "registry:page",
-        target: "app/portfolio/page.tsx",
+        type: "registry:template",
       },
       {
         path: "templates/portfolio-view/components/asset-list.tsx",
@@ -129,6 +134,7 @@ export const templates: Registry["items"] = [
   {
     name: "swap-interface",
     type: "registry:template",
+    title: "Swap Interface",
     description: "Token swap interface with price information and slippage controls.",
     registryDependencies: [
       "card",
@@ -140,8 +146,7 @@ export const templates: Registry["items"] = [
     files: [
       {
         path: "templates/swap-interface/swap-page.tsx",
-        type: "registry:page",
-        target: "app/swap/page.tsx",
+        type: "registry:template",
       },
       {
         path: "templates/swap-interface/components/swap-form.tsx",
@@ -165,6 +170,7 @@ export const templates: Registry["items"] = [
   {
     name: "transfer-interface",
     type: "registry:template",
+    title: "Transfer Interface",
     description: "Token transfer interface with address book and recent transactions.",
     registryDependencies: [
       "card",
@@ -176,8 +182,7 @@ export const templates: Registry["items"] = [
     files: [
       {
         path: "templates/transfer-interface/transfer-page.tsx",
-        type: "registry:page",
-        target: "app/transfer/page.tsx",
+        type: "registry:template",
       },
       {
         path: "templates/transfer-interface/components/transfer-form.tsx",
@@ -197,6 +202,7 @@ export const templates: Registry["items"] = [
   {
     name: "receive-interface",
     type: "registry:template",
+    title: "Receive Interface",
     description: "Interface for receiving tokens with QR code and address display.",
     registryDependencies: [
       "card",
@@ -207,8 +213,7 @@ export const templates: Registry["items"] = [
     files: [
       {
         path: "templates/receive-interface/receive-page.tsx",
-        type: "registry:page",
-        target: "app/receive/page.tsx",
+        type: "registry:template",
       },
       {
         path: "templates/receive-interface/components/address-display.tsx",
@@ -224,6 +229,7 @@ export const templates: Registry["items"] = [
   {
     name: "solana-theme",
     type: "registry:template",
+    title: "Solana Theme",
     description: "Solana UI theme components with brand colors and styling.",
     registryDependencies: [
       "button",
