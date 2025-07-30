@@ -1,0 +1,8 @@
+components
+dist
+.turbo
+
+node_modules
+
+.env.*
+!.env.example
