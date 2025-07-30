@@ -10,9 +10,9 @@
 		"export": "next build",
 		"lint": "next lint",
 		"lint:fix": "biome check --write",
-		"build:registry": "tsx ./scripts/auto-generate-components.ts && tsx ./scripts/build-registry.ts",
-		"generate:components": "tsx ./scripts/auto-generate-components.ts",
-		"watch:components": "tsx ./scripts/watch-components.ts"
+		"build:registry": "tsx src/scripts/auto-generate-components.ts && tsx src/scripts/build-registry.ts",
+		"generate:components": "tsx src/scripts/auto-generate-components.ts",
+		"watch:components": "tsx src/scripts/watch-components.ts"
 	},
 	"dependencies": {
 		"@babel/generator": "^7.28.0",

@@ -9,7 +9,6 @@ import { SidebarMobile } from "./sidebar-mobile";
 import {
   X,
   BookOpen,
-  MessageCircle,
 } from "lucide-react";
 import { Logo } from "@/assets/icons/logo";
 import { SearchModal } from "./search-modal";
