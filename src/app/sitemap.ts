@@ -120,23 +120,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
 	// Additional important pages
 	const additionalPages = [
 		{
-			url: `${baseUrl}/examples`,
+			url: `${baseUrl}/templates/${template}`,
 			lastModified: currentDate,
 			changeFrequency: "monthly" as const,
 			priority: 0.6,
-		},
-		{
-			url: `${baseUrl}/templates`,
-			lastModified: currentDate,
-			changeFrequency: "monthly" as const,
-			priority: 0.6,
-		},
-		{
-			url: `${baseUrl}/showcase`,
-			lastModified: currentDate,
-			changeFrequency: "monthly" as const,
-			priority: 0.5,
-		},
+		}
 	];
 
 	return [...corePages, ...componentPages, ...additionalPages];
