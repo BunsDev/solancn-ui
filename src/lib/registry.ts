@@ -113,21 +113,32 @@ export async function getRegistryItem(
 
 /**
  * Helper function to get the content of a file
- * This uses fetch API for compatibility with Next.js
+ * For static exports, this returns mock content or pre-bundled content
  */
 export async function getFileContent(filePath: string): Promise<string> {
+  // For static exports, return mock content based on the file extension
+  // In a real app, this could be pre-bundled content generated at build time
   try {
-    // Use fetch API instead of fs for client-side compatibility
-    const response = await fetch(`/api/files?path=${encodeURIComponent(filePath)}`)
+    const extension = filePath.split('.').pop()?.toLowerCase() || ''
     
-    if (!response.ok) {
-      throw new Error(`Failed to fetch file: ${response.statusText}`)
+    // Return mock content based on extension
+    switch (extension) {
+      case 'tsx':
+      case 'ts':
+        return '// TypeScript content for ' + filePath
+      case 'js':
+      case 'jsx':
+        return '// JavaScript content for ' + filePath
+      case 'css':
+        return '/* CSS content for ' + filePath + ' */'
+      case 'json':
+        return JSON.stringify({ mockData: 'for ' + filePath }, null, 2)
+      default:
+        return '// Mock content for ' + filePath
     }
-    
-    return await response.text()
   } catch (error) {
-    console.error(`Error reading file ${filePath}:`, error)
-    return ''
+    console.error(`Error getting file content ${filePath}:`, error)
+    return '// Unable to load content for ' + filePath
   }
 }
 
