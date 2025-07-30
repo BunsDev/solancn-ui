@@ -651,7 +651,7 @@ export default function SolancnHome() {
                     <span className="max-w-dvw text-center text-lg text-muted-foreground sm:text-xl">
                         Install Solana UI components and start building your dApp today
                     </span>
-                    <div className="w-full max-w-xl mt-8">
+                    {/* <div className="w-full max-w-xl mt-8">
                         <Card className="border-2 border-muted hover:border-primary/20 transition-colors duration-300">
                             <CardContent className="p-6">
                                 <div className="space-y-6">
@@ -683,7 +683,7 @@ export default function SolancnHome() {
                                         </Label>
                                         <div className="mt-2 rounded-md bg-muted p-3 font-mono text-sm">
                                             <pre className="text-xs md:text-sm">
-                                                <code>{`import { WalletAdapter, WalletButton } from '@solana-ui/react';\n\nexport default function MyApp() {\n  return <WalletButton>Connect Wallet</WalletButton>;\n}`}</code>
+                                                <code>{`import { WalletAdapter, WalletButton } from '@solancn-ui/react';\n\nexport default function MyApp() {\n  return <WalletButton>Connect Wallet</WalletButton>;\n}`}</code>
                                             </pre>
                                         </div>
                                     </div>
@@ -696,7 +696,7 @@ export default function SolancnHome() {
                                 </div>
                             </CardContent>
                         </Card>
-                    </div>
+                    </div> */}
                 </div>
             </section>
         </div>
