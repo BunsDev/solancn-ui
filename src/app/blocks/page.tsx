@@ -18,7 +18,7 @@ export default async function BlocksPage() {
   return (
     <div className="flex flex-col gap-12 md:gap-24">
       {FEATURED_BLOCKS.map((name) => (
-        <BlockDisplay name={name} key={name} />
+        // <BlockDisplay name={name} key={name} />
       ))}
       <div className="container-wrapper">
         <div className="container flex justify-center py-6">

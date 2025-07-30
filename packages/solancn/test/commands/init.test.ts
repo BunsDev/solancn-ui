@@ -20,7 +20,7 @@ const processExitMock = vi.spyOn(process, 'exit').mockImplementation((() => {}) 
 vi.mock("execa")
 
 // Mock fs promises
-vi.mock("fs/promises", () => ({
+vi.mock("node:fs/promises", () => ({
   writeFile: vi.fn(),
   mkdir: vi.fn(),
 }))

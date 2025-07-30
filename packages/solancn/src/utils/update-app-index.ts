@@ -1,4 +1,4 @@
-import fs from "fs/promises"
+import fs from "node:fs/promises"
 import path from "path"
 import { getRegistryItem } from "@/src/registry/api"
 import { Config } from "@/src/utils/get-config"

@@ -9,10 +9,10 @@ import {
   updateFiles,
 } from "../../../src/utils/updaters/update-files"
 
-vi.mock("fs/promises", async () => {
+vi.mock("node:fs/promises", async () => {
   const actual = (await vi.importActual(
-    "fs/promises"
-  )) as typeof import("fs/promises")
+    "node:fs/promises"
+  )) as typeof import("node:fs/promises")
   return {
     ...actual,
     writeFile: vi.fn(),

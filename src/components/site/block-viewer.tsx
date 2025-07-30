@@ -17,15 +17,15 @@ import {
   Terminal,
 } from "lucide-react"
 import { ImperativePanelHandle } from "react-resizable-panels"
-import { registryItemFileSchema, registryItemSchema } from "shadcn/registry"
+import { registryItemFileSchema, registryItemSchema } from "solancn/registry"
 import { z } from "zod"
 
 import { trackEvent } from "@/lib/events"
 import { createFileTreeForRegistryItemFiles, FileTree } from "@/lib/registry"
 import { cn } from "@/lib/utils"
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
-import { getIconForLanguageExtension } from "@/components/icons"
-import { OpenInV0Button } from "@/components/open-in-v0-button"
+import { getIconForLanguageExtension } from "@/components/solancn/icons"
+import { OpenInV0Button } from "@/components/buttons/v0-button"
 import { Button } from "@/components/ui/button"
 import {
   Collapsible,
@@ -37,7 +37,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable"
-import { Separator } from "@/registry/new-york-v4/ui/separator"
+import { Separator } from "@/components/ui/separator"
 import {
   Sidebar,
   SidebarGroup,
@@ -284,7 +284,7 @@ function BlockViewerMobile({ children }: { children: React.ReactNode }) {
       ) : (
         <div className="overflow-hidden rounded-xl border">
           <Image
-            src={`/r/styles/new-york-v4/${item.name}-light.png`}
+            src={`/registry/styles/${item.style}/${item.name}-light.png`}
             alt={item.name}
             data-block={item.name}
             width={1440}
@@ -292,7 +292,7 @@ function BlockViewerMobile({ children }: { children: React.ReactNode }) {
             className="object-cover dark:hidden"
           />
           <Image
-            src={`/r/styles/new-york-v4/${item.name}-dark.png`}
+            src={`/registry/styles/${item.style}/${item.name}-dark.png`}
             alt={item.name}
             data-block={item.name}
             width={1440}

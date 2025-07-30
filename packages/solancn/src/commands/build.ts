@@ -1,5 +1,5 @@
-import * as fs from "fs/promises"
-import * as path from "path"
+import * as fs from "node:fs/promises"
+import * as path from "node:path"
 import { preFlightBuild } from "@/src/preflights/preflight-build"
 import { registryItemSchema, registrySchema } from "@/src/registry"
 import { handleError } from "@/src/utils/handle-error"
