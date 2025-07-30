@@ -6,7 +6,7 @@
 		"bdev": "pnpm run build && pnpm run dev",
 		"dev": "next dev",
 		"build": "next build",
-		"build:cli": "turbo --filter=solancn build",
+		"build:cli": "next build --filter=solancn",
 		"registry:build": "pnpm --filter=solancn registry:build && pnpm lint:fix && pnpm format:write -- --loglevel silent",
 		"registry:capture": "pnpm --filter=solancn registry:capture",
 		"start": "next start",
