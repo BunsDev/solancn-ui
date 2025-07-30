@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import type * as React from "react";
-import "./globals.css";
-import { Analytics } from "@vercel/analytics/next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { geistMono } from "@/assets/fonts";
 import { PerformanceMonitor } from "@/components/performance/performance-monitor";
 import { PackageManagerProvider } from "@/contexts/package-manager-context";
+import WalletContextProvider from "@/app/providers/wallet-provider";
+
+import "./globals.css";
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -562,7 +563,6 @@ export default function RootLayout({
 			<body
 				className={`${inter.className} ${geistMono.variable} antialiased min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100`}
 			>
-				<Analytics />
 
 				{/* Performance Optimizations */}
 				{/* <Script
@@ -592,10 +592,12 @@ export default function RootLayout({
         </Script> */}
 
 				<ThemeProvider attribute="class" defaultTheme="dark">
-					<PackageManagerProvider>
-						{children}
-						<PerformanceMonitor />
-					</PackageManagerProvider>
+					<WalletContextProvider>
+						<PackageManagerProvider>
+							{children}
+							<PerformanceMonitor />
+						</PackageManagerProvider>
+					</WalletContextProvider>
 				</ThemeProvider>
 			</body>
 		</html>
