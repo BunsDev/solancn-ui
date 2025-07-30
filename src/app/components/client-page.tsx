@@ -3,31 +3,18 @@
 /**
  * Component Library Explorer - Solana UI
  * 
- * A modern, responsive UI for exploring and searching components
- * in the Solana UI component library. Features include:
- * 
- * - Advanced filtering and search capabilities
- * - Interactive component previews with hover effects
- * - Responsive grid layout that adapts to all screen sizes
- * - Category-based navigation with visual indicators
- * - Accessibility features for keyboard navigation and screen readers
- * - View transitions and subtle animations for enhanced UX
+ * A simple responsive UI for exploring components
+ * in the Solana UI component library.
  * 
  * @author Solana UI Team
  * @version 1.0.0
  */
 
-import { useCallback, useEffect, useState, useRef, useTransition } from "react";
+import { useCallback, useEffect, useRef, useState, useTransition } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { useDebounce } from "@/hooks/use-debounce";
 
 // Icons
-import {
-  ArrowLeft, Check, Search, SlidersHorizontal, X,
-  Filter, Grid3X3, List, Info, ExternalLink,
-  ChevronRight, ChevronDown, Eye, Code, Copy,
-} from "lucide-react";
+import { Eye, Code, Search, ChevronRight, Grid3X3, X, ArrowLeft, List } from "lucide-react";
 
 // UI Components
 import { Badge } from "@/components/ui/badge";
@@ -57,6 +44,8 @@ import { Separator } from "@/components/ui/separator";
 import type { Component, RegistryItem } from "@/lib/types";
 import { cn, getLink } from "@/lib/utils";
 import MinimalPreview from "@/components/cards/preview-card";
+import { useDebounce } from "use-debounce";
+import { motion } from "framer-motion";
 
 /**
  * Helper to extract tags from description
@@ -207,34 +196,6 @@ export function ComponentsClientPage({
   const processedComponents = components.map((component) => ({
     ...component
   }));
-
-  // Filter components based on search term and category
-  const filterComponents = useCallback(() => {
-    startTransition(() => {
-      let filtered = [...processedComponents];
-
-      // Apply search filter
-      if (debouncedSearchTerm) {
-        const term = debouncedSearchTerm.toLowerCase();
-        filtered = filtered.filter(
-          (component) =>
-            component.name.toLowerCase().includes(term) ||
-            component.title.toLowerCase().includes(term) ||
-            component.description?.toLowerCase().includes(term) ||
-            extractTags(component.description).some((tag) =>
-              tag.toLowerCase().includes(term)
-            ),
-        );
-      }
-
-      // setFilteredComponents(filtered);
-    });
-  }, [debouncedSearchTerm, processedComponents]);
-
-  // Apply filters when dependencies change
-  useEffect(() => {
-    filterComponents();
-  }, [debouncedSearchTerm, filterComponents]);
 
   // Clear all filters
   const clearFilters = () => {
