@@ -1,6 +1,6 @@
 {
 	"name": "solancn-ui",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"private": true,
 	"scripts": {
 		"bdev": "pnpm run build && pnpm run dev",
