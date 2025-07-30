@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 export const dynamic = "force-static"
 export const revalidate = false
 
-export default async function TemplatesPage() {
+export default function TemplatesPage() {
   return (
     <div className="flex flex-col gap-12 md:gap-24">
       <div className="container-wrapper">
