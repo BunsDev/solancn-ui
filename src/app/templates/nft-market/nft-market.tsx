@@ -306,7 +306,7 @@ export function NFTMarket() {
 			<style>{`@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
 				 @import url('https://cdnjs.cloudflare.com/ajax/libs/sol-wallet-adapter/0.1.5/styles.min.css');`}</style>
 
-			<div className="relative z-10 w-full max-w-[1600px] mx-auto">
+			<div className="relative w-full max-w-[1600px] mx-auto z-50">
 				{/* Header Section with Wallet Button */}
 				<div className="mb-6 sm:mb-8 lg:mb-12">
 					<div className="flex flex-col md:flex-row justify-between items-center mb-6">
@@ -360,7 +360,7 @@ export function NFTMarket() {
 			</div>
 
 			{/* Solana-themed gradient background */}
-			<div className="fixed inset-0 z-0 opacity-20">
+			<div className="fixed inset-0 -z-50 opacity-20">
 				<div className="absolute inset-0 bg-gradient-to-br from-[#9945FF]/30 to-[#14F195]/30 animate-aurora"></div>
 			</div>
 

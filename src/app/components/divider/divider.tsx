@@ -1,12 +1,20 @@
 "use client";
 import type React from "react";
 
+// Solana theme colors
+const SOLANA_COLORS = {
+	purple: "#9945FF",
+	green: "#14F195",
+	black: "#000000",
+	darkGray: "#13131d",
+};
+
 interface DividerProps extends React.HTMLAttributes<HTMLDivElement> {
 	orientation?: "horizontal" | "vertical";
 	decorative?: boolean;
 	variant?: "solid" | "dashed" | "dotted";
 	thickness?: number;
-	color?: string;
+	color?: "purple" | "green" | "default" | string;
 	className?: string;
 	children?: React.ReactNode;
 }
@@ -16,7 +24,7 @@ const Divider = ({
 	decorative = true,
 	variant = "solid",
 	thickness = 1,
-	color,
+	color = "default",
 	className = "",
 	children,
 	...props
@@ -31,7 +39,15 @@ const Divider = ({
 		dotted: "border-dotted",
 	};
 
-	const colorStyle = color ? { borderColor: color } : {};
+	// Map predefined Solana color names to hex values, or use custom color if provided
+const resolveColor = () => {
+		if (color === "purple") return SOLANA_COLORS.purple;
+		if (color === "green") return SOLANA_COLORS.green;
+		if (color === "default") return SOLANA_COLORS.purple;
+		return color; // Use custom color if provided
+	};
+	
+	const colorStyle = { borderColor: resolveColor() };
 
 	const thicknessStyle =
 		orientation === "horizontal"
@@ -42,7 +58,6 @@ const Divider = ({
     flex-grow
     ${orientation === "horizontal" ? "border-t" : "border-l"}
     ${variantStyles[variant]}
-    ${!color ? "border-border-[#13131d] dark:border-[#13131d]" : ""}
   `;
 
 	return (
@@ -58,7 +73,7 @@ const Divider = ({
 						className={lineClasses}
 						style={{ ...colorStyle, ...thicknessStyle }}
 					></div>
-					<span className="flex items-center px-4 text-sm text-zinc-500 font-medium">
+					<span className="flex items-center px-4 text-sm font-medium" style={{ color: color === "green" ? SOLANA_COLORS.green : SOLANA_COLORS.purple }}>
 						{children}
 					</span>
 					<div

@@ -3,6 +3,7 @@ import { Check, Clipboard } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { transformTsxToJsx } from "@/lib/tsx-to-jsx-transformer";
 import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
 
 type LanguageType = "tsx" | "jsx";
 
@@ -80,61 +81,68 @@ const CodeCopy = ({
 	};
 
 	return (
-		<div className="flex items-center gap-1">
+		<div className="flex items-center gap-2">
 			{/* Language selector */}
-			<div className="flex items-center bg-muted/50 rounded-md p-1">
-				<button
+			<div className="flex items-center gap-1">
+				<Button
 					onClick={() => onLanguageChange?.("tsx")}
+					variant="ghost"
+					size="sm"
 					className={cn(
-						"px-2 py-1 text-xs font-medium rounded transition-all duration-200",
+						"transition-all duration-200",
 						selectedLanguage === "tsx"
-							? "bg-white/10 text-foreground shadow-sm backdrop-blur-sm border border-white/20"
-							: "text-muted-foreground hover:text-foreground hover:bg-muted/30",
+							? "bg-white/10 text-foreground shadow-sm backdrop-blur-sm"
+							: "text-muted-foreground hover:text-foreground hover:bg-muted/30"
 					)}
 					title="TypeScript React"
 				>
-					<TSXIcon className="h-4 w-4 inline mr-1" />
+					<TSXIcon className="h-4 w-4 mr-1" />
 					TS
-				</button>
-				<button
+				</Button>
+				{/* <Button
 					onClick={() => onLanguageChange?.("jsx")}
+					variant="ghost"
+					size="sm"
 					className={cn(
-						"px-2 py-1 text-xs font-medium rounded transition-all duration-200",
+						"transition-all duration-200",
 						selectedLanguage === "jsx"
-							? "bg-white/10 text-foreground shadow-sm backdrop-blur-sm border border-white/20"
-							: "text-muted-foreground hover:text-foreground hover:bg-muted/30",
+							? "bg-white/10 text-foreground shadow-sm backdrop-blur-sm"
+							: "text-muted-foreground hover:text-foreground hover:bg-muted/30"
 					)}
 					title="JavaScript React"
 				>
-					<JSXIcon className="h-4 w-4 inline mr-1" />
+					<JSXIcon className="h-4 w-4 mr-1" />
 					JS
-				</button>
+				</Button> */}
 			</div>
 
 			{/* Copy button */}
-			<button
+			<Button
 				onClick={copyCode}
+				variant="ghost"
+				size="icon"
 				className={cn(
-					"relative cursor-pointer z-20 p-2 text-muted-foreground hover:text-foreground transition-colors",
-					className,
+					"relative text-muted-foreground hover:text-foreground transition-colors",
+					className
 				)}
 				title={`Copy ${selectedLanguage.toUpperCase()} code`}
 			>
 				<div
-					className={`absolute inset-0 transform transition-all duration-300 ${
+					className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${
 						copied ? "scale-0 opacity-0" : "scale-100 opacity-100"
 					}`}
 				>
 					<Clipboard className="h-4 w-4" />
 				</div>
 				<div
-					className={`absolute inset-0 transform transition-all duration-300 ${
+					className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${
 						copied ? "scale-100 opacity-100" : "scale-0 opacity-0"
 					}`}
 				>
 					<Check className="h-4 w-4 text-green-500" />
 				</div>
-			</button>
+				<span className="sr-only">Copy code</span>
+			</Button>
 		</div>
 	);
 };
