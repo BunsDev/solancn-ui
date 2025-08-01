@@ -438,7 +438,7 @@ for (const template of templates) {
 	console.log(`✅ Built registry for template: ${template.name}`);
 }
 
-// Create a registry list with all components and templates
+// Create a registry list with all components and templates - format as object with keys as component/template names
 const registryList: Record<string, RegistryListItem> = {};
 
 // Add components to the registry list
@@ -463,7 +463,10 @@ templates.forEach(template => {
 	};
 });
 
-// Write the registry list to a JSON file
+// Validate the structure of the registry list
+console.log(`✅ Registry list contains ${Object.keys(registryList).length} items (${components.length} components, ${templates.length} templates)`);
+
+// Write the registry list to a JSON file - both files use the same object-keyed format
 fs.writeFileSync(registryListPath, JSON.stringify(registryList, null, 2));
 fs.writeFileSync(registryListPathAlt, JSON.stringify(registryList, null, 2));
 

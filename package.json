@@ -75,7 +75,8 @@
 		"tinycolor2": "^1.6.0",
 		"ts-morph": "^26.0.0",
 		"unist-builder": "^3.0.1",
-		"use-debounce": "^10.0.5"
+		"use-debounce": "^10.0.5",
+		"zod": "^4.0.14"
 	},
 	"devDependencies": {
 		"@eslint/eslintrc": "^3.3.1",

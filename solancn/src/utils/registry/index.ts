@@ -25,8 +25,18 @@ export async function getRegistryIndexSolancn(env?: boolean) {
   try {
     const [result] = await fetchRegistry(["index.json"], baseUrl);
 
-    // @ts-ignore
-    return registryIndexSchema.parse([...result]);
+    // Check if result is an object (new format) or array (old format)
+    if (result && typeof result === 'object' && !Array.isArray(result)) {
+      // Convert object format to array format required by the CLI
+      const registryArray = Object.entries(result as Record<string, any>).map(([key, value]) => {
+        return { ...value, name: key };
+      });
+      
+      return registryIndexSchema.parse(registryArray);
+    } else {
+      // Handle case where result is already an array (fallback)
+      return registryIndexSchema.parse(result);
+    }
   } catch (error) {
     console.error(error);
     throw new Error("Failed to fetch components from SolancnUI registry. Check if https://ui.solancn.com is accessible or use --registry flag to specify an alternative.");
