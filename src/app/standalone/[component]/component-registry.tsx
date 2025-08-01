@@ -72,7 +72,12 @@ import Testimonial2 from "@/app/components/testimonial/testimonial2";
 import TextReveal from "@/app/components/textreveal/textreveal";
 import ToastView from "@/app/components/toast/toast-view";
 import TwoStep from "@/app/components/twostep/twostep";
+
 // √
+import { NFTMarket } from "@/app/templates/nft-market/nft-market";
+import { Stake } from "@/app/templates/stake/stake";
+import { DefiDashboard } from "@/app/templates/defi-dashboard/defi-dashboard";
+import { Bridge } from "@/app/templates/bridge/bridge";
 
 // Component registry mapping component names to their view components
 export const ComponentRegistry: Record<string, React.ComponentType> = {
@@ -155,5 +160,10 @@ export const ComponentRegistry: Record<string, React.ComponentType> = {
 	CarouselCards: CarouselCards,
 	AccordionSection: AccordionSection,
 	BentoGridCom: BentoGridCom,
-	// Add more components here...
+
+	// TEMPLATES //
+	NFTMarket: NFTMarket,
+	Stake: Stake,
+	DefiDashboard: DefiDashboard,
+	Bridge: Bridge,
 };

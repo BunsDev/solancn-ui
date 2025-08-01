@@ -19,12 +19,12 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-export function DefiDashboardComponent() {
+export function DefiDashboard() {
 	return (
 		<div className="w-full max-w-[1200px] mx-auto space-y-6 text-text">
 			<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 				{/* Portfolio Value Card */}
-				<Card className="bg-black text-text border border-[#9945FF]/20 col-span-1 md:col-span-2">
+				<Card className="bg-transparent text-text border border-[#9945FF]/20 col-span-1 md:col-span-2">
 					<CardHeader className="border-b border-[#9945FF]/20">
 						<CardTitle className="text-[#14F195] flex items-center">
 							<BarChart3 className="mr-2 h-5 w-5" /> Portfolio Overview
@@ -117,7 +117,7 @@ export function DefiDashboardComponent() {
 				</Card>
 
 				{/* APY Summary Card */}
-				<Card className="bg-black text-text border border-[#9945FF]/20">
+				<Card className="bg-transparent text-text border border-[#9945FF]/20">
 					<CardHeader className="border-b border-[#9945FF]/20">
 						<CardTitle className="text-[#14F195] flex items-center">
 							<TrendingUp className="mr-2 h-5 w-5" /> APY Summary
@@ -170,7 +170,7 @@ export function DefiDashboardComponent() {
 			</div>
 
 			{/* Investment Performance */}
-			<Card className="bg-black text-text border border-[#9945FF]/20">
+			<Card className="bg-transparent text-text border border-[#9945FF]/20">
 				<CardHeader className="border-b border-[#9945FF]/20">
 					<CardTitle className="text-[#14F195] flex items-center">
 						<PieChart className="mr-2 h-5 w-5" /> Investment Performance
@@ -181,7 +181,7 @@ export function DefiDashboardComponent() {
 				</CardHeader>
 				<CardContent className="pt-6">
 					<Tabs defaultValue="all" className="w-full">
-						<TabsList className="grid w-full grid-cols-4 bg-black border border-[#9945FF]/30">
+						<TabsList className="grid w-full grid-cols-4 bg-transparent border border-[#9945FF]/30">
 							<TabsTrigger
 								value="all"
 								className="data-[state=active]:bg-[#9945FF]/20"
@@ -242,7 +242,7 @@ export function DefiDashboardComponent() {
 						</TabsContent>
 
 						<TabsContent value="month" className="space-y-4 mt-4">
-							<div className="h-[200px] w-full bg-[#9945FF]/5 rounded-md flex items-center justify-center">
+							<div className="h-[200px] w-full bg-transparent rounded-md flex items-center justify-center">
 								<span className="text-gray-400">
 									Performance Chart (1 Month)
 								</span>
@@ -274,7 +274,7 @@ export function DefiDashboardComponent() {
 
 						<TabsContent value="week" className="mt-4">
 							{/* Similar content for 1 week tab */}
-							<div className="h-[200px] w-full bg-[#9945FF]/5 rounded-md flex items-center justify-center">
+							<div className="h-[200px] w-full bg-transparent rounded-md flex items-center justify-center">
 								<span className="text-gray-400">
 									Performance Chart (1 Week)
 								</span>
@@ -283,7 +283,7 @@ export function DefiDashboardComponent() {
 
 						<TabsContent value="day" className="mt-4">
 							{/* Similar content for 24h tab */}
-							<div className="h-[200px] w-full bg-[#9945FF]/5 rounded-md flex items-center justify-center">
+							<div className="h-[200px] w-full bg-transparent rounded-md flex items-center justify-center">
 								<span className="text-gray-400">
 									Performance Chart (24 Hours)
 								</span>
@@ -310,7 +310,7 @@ export function DefiDashboardComponent() {
 			</Card>
 
 			{/* Recent Activities */}
-			<Card className="bg-black text-text border border-[#9945FF]/20">
+			<Card className="bg-transparent text-text border border-[#9945FF]/20">
 				<CardHeader className="border-b border-[#9945FF]/20">
 					<CardTitle className="text-[#14F195] flex items-center">
 						<Layers className="mr-2 h-5 w-5" /> Recent Activities
@@ -406,13 +406,31 @@ export function DefiDashboardComponent() {
 					</Button>
 				</CardFooter>
 			</Card>
+			{/* Add keyframes for animation and font-family */}
+			<style>{`
+				@keyframes aurora {
+				  0% { transform: rotate(0deg); }
+				  100% { transform: rotate(360deg); }
+				}
+				.animate-aurora {
+				  animation: aurora 20s linear infinite;
+				}
+				.font-space-grotesk {
+				  font-family: 'Space Grotesk', sans-serif;
+				}
+				
+				/* Solana wallet adapter custom styles */
+				.wallet-adapter-button {
+				  background-color: #9945FF;
+				  transition: all 0.2s ease;
+				}
+				.wallet-adapter-button:hover {
+				  background-color: #8035e0;
+				}
+				.wallet-adapter-button:not([disabled]):hover {
+				  background-color: #8035e0;
+				}
+			`}</style>
 		</div>
 	);
 }
-
-export const defiDashboard = {
-	name: "defi-dashboard",
-	components: {
-		Default: <DefiDashboardComponent />,
-	},
-};

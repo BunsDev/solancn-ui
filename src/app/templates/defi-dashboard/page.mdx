@@ -8,7 +8,7 @@ import {
   TabsContent,
 } from "@/components/site/tabs.tsx";
 import { HideTOC } from "@/components/site/hide-toc";
-import { DefiDashboardComponent } from "@/components/templates/defi-dashboard/defi-dashboard-component";
+import { DefiDashboard } from "@/app/templates/defi-dashboard/defi-dashboard";
 
 <HideTOC />
 
@@ -21,9 +21,9 @@ A comprehensive DeFi investment dashboard for Solana with portfolio overview, as
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<DefiDashboardComponent />} componentName="DefiDashboardComponent" />
+    <ComponentRenderer component={<DefiDashboard />} componentName="DefiDashboard" />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/components/templates/defi-dashboard/defi-dashboard-component.tsx" />
+    <CodeBlock filePath="src/app/templates/defi-dashboard/defi-dashboard.tsx" />
   </TabsContent>
 </Tabs>

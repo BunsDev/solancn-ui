@@ -59,7 +59,6 @@ const componentCategories = {
 		"spotlightcard",
 	],
 	"Specialized Components": [
-		"nftmarket",
 		"amazongift",
 		"codeprofile",
 		"pattern",

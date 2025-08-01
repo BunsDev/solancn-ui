@@ -1,9 +1,9 @@
 {
 	"$schema": "https://ui.shadcn.com/schema/registry-item.json",
 	"name": "nft-market",
-	"title": "Nft Market",
-	"description": "A minimalistic nftmarket component designed with React and Tailwind CSS.",
-	"author": "Reche Soares",
+	"title": "NFT Market",
+	"description": "A minimalistic NFT market component designed with React and Tailwind CSS.",
+	"author": "BunsDev",
 	"type": "registry:template",
 	"dependencies": [],
 	"devDependencies": [],

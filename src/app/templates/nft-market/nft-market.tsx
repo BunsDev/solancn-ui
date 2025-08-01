@@ -296,7 +296,7 @@ const NFTCard: React.FC<NftCardProps> = ({
 };
 
 // Main App Component to display the grid of NFT cards
-export function NFTMarketComponent() {
+export function NFTMarket() {
 	const { publicKey, connecting, connected } = useWallet();
 	const { connection } = useConnection();
 
@@ -391,11 +391,4 @@ export function NFTMarketComponent() {
 			`}</style>
 		</div>
 	);
-};
-
-export const nftMarket = {
-	name: "nft-market",
-	components: {
-		Default: <NFTMarketComponent />,
-	},
 };

@@ -8,7 +8,7 @@ import {
   TabsContent,
 } from "@/components/site/tabs.tsx";
 import { HideTOC } from "@/components/site/hide-toc";
-import { BridgeComponent } from "@/components/templates/bridge/bridge-component";
+import { Bridge } from "@/app/templates/bridge/bridge";
 
 <HideTOC />
 
@@ -21,9 +21,9 @@ A responsive bridge interface for transferring assets between Solana and other b
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<BridgeComponent />} componentName="BridgeComponent" />
+    <ComponentRenderer component={<Bridge />} componentName="Bridge" />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/components/templates/bridge/bridge-component.tsx" />
+    <CodeBlock filePath="src/app/templates/bridge/bridge.tsx" />
   </TabsContent>
 </Tabs>
