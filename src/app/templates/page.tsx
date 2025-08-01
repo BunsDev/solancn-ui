@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { TemplateDisplay } from "@/components/site/template-display";
 import { Button } from "@/components/ui/button";
 
 export const dynamic = "force-static";
