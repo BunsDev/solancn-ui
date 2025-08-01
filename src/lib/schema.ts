@@ -7,7 +7,7 @@ export const organizationSchema = {
 	logo: "https://ui.solancn.com/logo.png",
 	description:
 		"Modern React component library with 50+ animated components built with Tailwind CSS and Framer Motion",
-	foundingDate: "2024",
+	foundingDate: "2025",
 	founder: {
 		"@type": "Person",
 		name: "Solancn UI Team",
@@ -35,7 +35,7 @@ export const softwareApplicationSchema = {
 	operatingSystem: "Web",
 	browserRequirements: "Requires JavaScript. Requires HTML5.",
 	softwareVersion: "1.0.0",
-	datePublished: "2024-01-01",
+	datePublished: "2025-01-01",
 	dateModified: new Date().toISOString(),
 	author: {
 		"@type": "Organization",

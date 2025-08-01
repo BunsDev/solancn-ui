@@ -4,24 +4,29 @@
   "title": "Gradient",
   "description": "A minimalistic gradient component designed with React and Tailwind CSS.",
   "author": "Reche Soares",
-  "type": "registry:ui",
+  "type": "registry:component",
   "dependencies": [],
+  "files": [
+    {
+      "path": "gradient.tsx",
+      "content": "import Gradient from \"./gradient\";\n\nfunction GradientView() {\n\treturn (\n\t\t<div className=\"font-sans flex items-center justify-center\">\n\t\t\t<Gradient>\n\t\t\t\t<div className=\"bg-slate-900 rounded-lg p-8 w-full max-w-md\">\n\t\t\t\t\t<div className=\"text-center\">\n\t\t\t\t\t\t<span className=\"pointer-events-none z-10 h-full whitespace-pre-wrap bg-gradient-to-br from-[#ff2975] from-35% to-[#00FFF1] bg-clip-text text-center text-6xl font-bold leading-none tracking-tighter text-transparent dark:drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]\">\n\t\t\t\t\t\t\tNeon Gradient Card\n\t\t\t\t\t\t</span>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</Gradient>\n\t\t</div>\n\t);\n}\n\nexport default GradientView;\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "gradient.tsx",
+      "content": "\"use client\";\nimport React, { type ReactNode, useEffect } from \"react\";\n\nlet stylesInjected = false;\n\nconst injectGlobalStyles = () => {\n\tif (stylesInjected) return;\n\tconst style = document.createElement(\"style\");\n\tstyle.innerHTML = `\n    @keyframes move-gradient {\n      0% {\n        background-position: 0% 50%;\n      }\n      50% {\n        background-position: 100% 50%;\n      }\n      100% {\n        background-position: 0% 50%;\n      }\n    }\n  `;\n\tdocument.head.appendChild(style);\n\tstylesInjected = true;\n};\n\ninterface GradientProps {\n\tchildren: ReactNode;\n\tclassName?: string;\n}\n\nconst Gradient = ({ children, className = \"\" }: GradientProps) => {\n\tuseEffect(() => {\n\t\tinjectGlobalStyles();\n\t}, []);\n\n\treturn (\n\t\t<div className={`relative group ${className}`}>\n\t\t\t<div\n\t\t\t\tclassName=\"absolute -inset-2 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-500 rounded-xl blur-2xl opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200\"\n\t\t\t\tstyle={{\n\t\t\t\t\tbackgroundSize: \"200% 200%\",\n\t\t\t\t\tanimation: \"move-gradient 4s ease-in-out infinite\",\n\t\t\t\t}}\n\t\t\t></div>\n\n\t\t\t<div\n\t\t\t\tclassName=\"relative rounded-xl bg-gradient-to-r from-pink-600 via-purple-600 to-blue-500 p-0.5 transition-all duration-500\"\n\t\t\t\tstyle={{\n\t\t\t\t\tbackgroundSize: \"200% 200%\",\n\t\t\t\t\tanimation: \"move-gradient 4s ease-in-out infinite\",\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\t{children}\n\t\t\t</div>\n\t\t</div>\n\t);\n};\n\nexport default Gradient;\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "gradient",
+      "content": "\"use client\";\nimport React, { type ReactNode, useEffect } from \"react\";\n\nlet stylesInjected = false;\n\nconst injectGlobalStyles = () => {\n\tif (stylesInjected) return;\n\tconst style = document.createElement(\"style\");\n\tstyle.innerHTML = `\n    @keyframes move-gradient {\n      0% {\n        background-position: 0% 50%;\n      }\n      50% {\n        background-position: 100% 50%;\n      }\n      100% {\n        background-position: 0% 50%;\n      }\n    }\n  `;\n\tdocument.head.appendChild(style);\n\tstylesInjected = true;\n};\n\ninterface GradientProps {\n\tchildren: ReactNode;\n\tclassName?: string;\n}\n\nconst Gradient = ({ children, className = \"\" }: GradientProps) => {\n\tuseEffect(() => {\n\t\tinjectGlobalStyles();\n\t}, []);\n\n\treturn (\n\t\t<div className={`relative group ${className}`}>\n\t\t\t<div\n\t\t\t\tclassName=\"absolute -inset-2 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-500 rounded-xl blur-2xl opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200\"\n\t\t\t\tstyle={{\n\t\t\t\t\tbackgroundSize: \"200% 200%\",\n\t\t\t\t\tanimation: \"move-gradient 4s ease-in-out infinite\",\n\t\t\t\t}}\n\t\t\t></div>\n\n\t\t\t<div\n\t\t\t\tclassName=\"relative rounded-xl bg-gradient-to-r from-pink-600 via-purple-600 to-blue-500 p-0.5 transition-all duration-500\"\n\t\t\t\tstyle={{\n\t\t\t\t\tbackgroundSize: \"200% 200%\",\n\t\t\t\t\tanimation: \"move-gradient 4s ease-in-out infinite\",\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\t{children}\n\t\t\t</div>\n\t\t</div>\n\t);\n};\n\nexport default Gradient;\n",
+      "type": "registry:component"
+    }
+  ],
   "devDependencies": [],
   "registryDependencies": [],
   "cssVars": {
     "dark": {},
     "light": {}
-  },
-  "files": [
-    {
-      "path": "gradient.tsx",
-      "content": "import Gradient from \"./gradient\";\n\nfunction GradientView() {\n\treturn (\n\t\t<div className=\"font-sans flex items-center justify-center\">\n\t\t\t<Gradient>\n\t\t\t\t<div className=\"bg-slate-900 rounded-lg p-8 w-full max-w-md\">\n\t\t\t\t\t<div className=\"text-center\">\n\t\t\t\t\t\t<span className=\"pointer-events-none z-10 h-full whitespace-pre-wrap bg-gradient-to-br from-[#ff2975] from-35% to-[#00FFF1] bg-clip-text text-center text-6xl font-bold leading-none tracking-tighter text-transparent dark:drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]\">\n\t\t\t\t\t\t\tNeon Gradient Card\n\t\t\t\t\t\t</span>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</Gradient>\n\t\t</div>\n\t);\n}\n\nexport default GradientView;\n",
-      "type": "registry:ui"
-    },
-    {
-      "path": "gradient.tsx",
-      "content": "\"use client\";\nimport React, { type ReactNode, useEffect } from \"react\";\n\nlet stylesInjected = false;\n\nconst injectGlobalStyles = () => {\n\tif (stylesInjected) return;\n\tconst style = document.createElement(\"style\");\n\tstyle.innerHTML = `\n    @keyframes move-gradient {\n      0% {\n        background-position: 0% 50%;\n      }\n      50% {\n        background-position: 100% 50%;\n      }\n      100% {\n        background-position: 0% 50%;\n      }\n    }\n  `;\n\tdocument.head.appendChild(style);\n\tstylesInjected = true;\n};\n\ninterface GradientProps {\n\tchildren: ReactNode;\n\tclassName?: string;\n}\n\nconst Gradient = ({ children, className = \"\" }: GradientProps) => {\n\tuseEffect(() => {\n\t\tinjectGlobalStyles();\n\t}, []);\n\n\treturn (\n\t\t<div className={`relative group ${className}`}>\n\t\t\t<div\n\t\t\t\tclassName=\"absolute -inset-2 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-500 rounded-xl blur-2xl opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200\"\n\t\t\t\tstyle={{\n\t\t\t\t\tbackgroundSize: \"200% 200%\",\n\t\t\t\t\tanimation: \"move-gradient 4s ease-in-out infinite\",\n\t\t\t\t}}\n\t\t\t></div>\n\n\t\t\t<div\n\t\t\t\tclassName=\"relative rounded-xl bg-gradient-to-r from-pink-600 via-purple-600 to-blue-500 p-0.5 transition-all duration-500\"\n\t\t\t\tstyle={{\n\t\t\t\t\tbackgroundSize: \"200% 200%\",\n\t\t\t\t\tanimation: \"move-gradient 4s ease-in-out infinite\",\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\t{children}\n\t\t\t</div>\n\t\t</div>\n\t);\n};\n\nexport default Gradient;\n",
-      "type": "registry:ui"
-    }
-  ]
+  }
 }

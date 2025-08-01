@@ -13,8 +13,15 @@ interface ComponentData {
 	name: string;
 	title: string;
 	description: string;
+	type: string;
 	path: string;
 	dependencies: string[];
+	files?: {
+		path: string;
+		name: string;
+		content: string;
+		type: string;
+	}[];
 }
 
 // Function to automatically generate components from docs directory
@@ -27,9 +34,18 @@ function generateComponentsFromDocs(basePath: string) {
 		name: "tabs",
 		title: "Tabs",
 		description:
-			"A minimalistic tab component designed with React and Tailwind CSS.",
+		"A minimalistic tab component designed with React and Tailwind CSS.",
+		type: "registry:component",
 		path: "../app/components/tabs",
 		dependencies: [],
+		files: [
+			{
+				path: "../app/components/tabs",
+				name: "tabs",
+				content: "",
+				type: "registry:component",
+			},
+		],
 	});
 
 	try {
@@ -93,8 +109,17 @@ function generateComponentsFromDocs(basePath: string) {
 					name: componentName,
 					title: title,
 					description: description,
+					type: "registry:component",
 					path: `../app/components/${componentName}`,
 					dependencies: [],
+					files: [
+						{
+							path: `../app/components/${componentName}`,
+							name: componentName,
+							content: "",
+							type: "registry:component",
+						},
+					],
 				});
 			}
 		}
@@ -134,8 +159,17 @@ ${components
     name: "${component.name}",
     title: "${component.title}",
     description: "${component.description}",
+    type: "${component.type}",
     path: "${component.path}",
     dependencies: [],
+    files: [
+      {
+        path: "${component.path}",
+        name: "${component.name}",
+        content: "",
+        type: "${component.type}",
+      },
+    ],
   }`,
 	)
 	.join(",\n")}

@@ -358,7 +358,6 @@ export function VercelV0Chat() {
 								)}
 							>
 								<option value="GPT-4">GPT-4</option>
-								<option value="DeepSak-R1">DeepSak-R1</option>
 								<option value="Gemini Pro">Gemini Pro</option>
 								<option value="Claude 3 Opus">Claude 3 Opus</option>
 								<option value="Llama 3">Llama 3</option>

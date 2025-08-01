@@ -68,8 +68,8 @@ const frameworks = [
 
 export default function Install() {
 	return (
-		<div className="flex flex-col gap-6 w-full">
-			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+		// <div className="flex flex-col gap-6 w-full lg:w-5xl mx-auto">
+			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full sm:max-w-4xl lg:w-5xl mx-auto p-4">
 				{frameworks.map((fw) => (
 					<a
 						key={fw.name}
@@ -89,7 +89,7 @@ export default function Install() {
 						</span>
 					</a>
 				))}
-			</div>
+			{/* </div> */}
 			{/* <div className="flex justify-end">
 				<a
 					href="https://ui.shadcn.com/docs/installation"

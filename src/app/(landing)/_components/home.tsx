@@ -32,6 +32,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import { getStats } from "@/lib/stats/getStats";
 
 // Type definitions
 type FeatureCardProps = {
@@ -63,33 +64,51 @@ const FeatureCard = ({
 );
 
 // Project statistics component
-const ProjectStats = () => (
-	<div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 mb-12">
-		<div className="flex flex-col items-center p-4 bg-card rounded-xl border">
-			<Star className="h-6 w-6 mb-2 text-yellow-500" />
-			<span className="text-xl font-bold">1,240</span>
-			<span className="text-sm text-muted-foreground">GitHub Stars</span>
-		</div>
+const ProjectStats = () => {
+	const [stats, setStats] = useState({
+		components: 0,
+		templates: 0,
+		license: "MIT",
+		downloads: 0,
+		lastUpdated: "",
+	});
+	
+	useEffect(() => {
+		// Fetch stats when component mounts
+		const fetchStats = async () => {
+			try {
+				const fetchedStats = await getStats();
+				setStats(fetchedStats);
+			} catch (error) {
+				console.error("Error fetching stats:", error);
+			}
+		};
+		
+		fetchStats();
+	}, []);
+	
+	return (
+		<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 mb-12">
+			<div className="flex flex-col w-full items-center p-6 bg-card rounded-xl border">
+				<Star className="h-6 w-6 mb-2 text-yellow-500" />
+				<span className="text-xl font-bold">{stats.components}</span>
+				<span className="text-sm text-muted-foreground">Components</span>
+			</div>
 
-		<div className="flex flex-col items-center p-4 bg-card rounded-xl border">
-			<Download className="h-6 w-6 mb-2 text-green-500" />
-			<span className="text-xl font-bold">45,300+</span>
-			<span className="text-sm text-muted-foreground">Downloads</span>
-		</div>
+			<div className="flex flex-col w-full items-center p-6 bg-card rounded-xl border">
+				<Download className="h-6 w-6 mb-2 text-green-500" />
+				<span className="text-xl font-bold">{stats.templates}</span>
+				<span className="text-sm text-muted-foreground">Templates</span>
+			</div>
 
-		<div className="flex flex-col items-center p-4 bg-card rounded-xl border">
-			<Users className="h-6 w-6 mb-2 text-blue-500" />
-			<span className="text-xl font-bold">26</span>
-			<span className="text-sm text-muted-foreground">Contributors</span>
+			<div className="flex flex-col w-full items-center p-6 bg-card rounded-xl border">
+				<CreditCard className="h-6 w-6 mb-2 text-violet-500" />
+				<span className="text-xl font-bold">{stats.license}</span>
+				<span className="text-sm text-muted-foreground">License</span>
+			</div>
 		</div>
-
-		<div className="flex flex-col items-center p-4 bg-card rounded-xl border">
-			<CreditCard className="h-6 w-6 mb-2 text-violet-500" />
-			<span className="text-xl font-bold">MIT</span>
-			<span className="text-sm text-muted-foreground">License</span>
-		</div>
-	</div>
-);
+	);
+};
 
 // Testimonial component
 // const Testimonial = ({

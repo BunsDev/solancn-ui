@@ -502,7 +502,7 @@ export default function RootLayout({
 							logo: "https://ui.solancn.com/logo.png",
 							description:
 								"Modern React component library for developers. First UI library from the USA with 500+ animated components.",
-							foundingDate: "2024",
+							foundingDate: "2025",
 							founder: {
 								"@type": "Person",
 								name: "BunsDev",
