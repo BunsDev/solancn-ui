@@ -2,18 +2,9 @@ import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-	// Temporarily ignore type errors during build to fix starters
-	typescript: {
-		ignoreBuildErrors: true,
-	},
-	// Skip ESLint to speed up build
-	eslint: {
-		ignoreDuringBuilds: true,
-	},
 	/* config options here */
-	// Temporarily disable static export to allow builds to complete during development
-	// output: "export", // Force static export - no server functions
-	trailingSlash: false,
+	output: "export", // Force static export - no server functions
+	trailingSlash: true,
 	reactStrictMode: true,
 	pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
 
