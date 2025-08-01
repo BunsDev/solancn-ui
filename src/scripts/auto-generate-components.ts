@@ -13,6 +13,7 @@ interface ComponentData {
 	name: string;
 	title: string;
 	description: string;
+	type: string;
 	path: string;
 	dependencies: string[];
 }
@@ -27,7 +28,8 @@ function generateComponentsFromDocs(basePath: string) {
 		name: "tabs",
 		title: "Tabs",
 		description:
-			"A minimalistic tab component designed with React and Tailwind CSS.",
+		"A minimalistic tab component designed with React and Tailwind CSS.",
+		type: "registry:component",
 		path: "../app/components/tabs",
 		dependencies: [],
 	});
@@ -93,6 +95,7 @@ function generateComponentsFromDocs(basePath: string) {
 					name: componentName,
 					title: title,
 					description: description,
+					type: "registry:component",
 					path: `../app/components/${componentName}`,
 					dependencies: [],
 				});
@@ -134,6 +137,7 @@ ${components
     name: "${component.name}",
     title: "${component.title}",
     description: "${component.description}",
+    type: "${component.type}",
     path: "${component.path}",
     dependencies: [],
   }`,

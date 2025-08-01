@@ -4,7 +4,7 @@
   "title": "Tabs",
   "description": "A minimalistic tab component designed with React and Tailwind CSS.",
   "author": "Reche Soares",
-  "type": "registry:ui",
+  "type": "registry:component",
   "dependencies": [],
   "devDependencies": [],
   "registryDependencies": [],
@@ -16,7 +16,7 @@
     {
       "path": "tabs.tsx",
       "content": "import Tabs from \"@/components/core/tabs\";\n\nexport default function TabsView() {\n\tconst tabData = [\n\t\t{\n\t\t\tid: 1,\n\t\t\tname: \"Photos\",\n\t\t\tcontent:\n\t\t\t\t\"This is the PHOTOS tab content. Here you would display your photo gallery or image collection.\",\n\t\t},\n\t\t{\n\t\t\tid: 2,\n\t\t\tname: \"Music\",\n\t\t\tcontent:\n\t\t\t\t\"This is the MUSIC tab content. Here you would display your music player or audio tracks.\",\n\t\t},\n\t\t{\n\t\t\tid: 3,\n\t\t\tname: \"Videos\",\n\t\t\tcontent:\n\t\t\t\t\"This is the VIDEOS tab content. Here you would display your video player or video collection.\",\n\t\t},\n\t];\n\n\treturn <Tabs items={tabData} />;\n}\n",
-      "type": "registry:ui"
+      "type": "registry:component"
     }
   ]
 }
