@@ -157,7 +157,7 @@ export const templatesNavigation: NavigationItem[] = [
 		children: [
 			{ label: "NFT Market", href: "/templates/nftmarket" },
 			{ label: "Bridge", href: "/templates/bridge" },
-			{ label: "Staking", href: "/templates/staking" },
+			{ label: "Stake", href: "/templates/stake" },
 			// { label: "Wallet", href: "/templates/wallet" },
 			// { label: "Trading View", href: "/templates/tradingview" },
 			// { label: "Portfolio View", href: "/templates/portfolio-view" },

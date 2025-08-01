@@ -213,7 +213,7 @@ const SolIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
 );
 
 // The NFT Card Component
-const NftCard: React.FC<NftCardProps> = ({
+const NFTCard: React.FC<NftCardProps> = ({
 	imageUrl,
 	title,
 	creator,
@@ -296,7 +296,7 @@ const NftCard: React.FC<NftCardProps> = ({
 };
 
 // Main App Component to display the grid of NFT cards
-const NftMarket: React.FC = () => {
+export function NFTMarketComponent() {
 	const { publicKey, connecting, connected } = useWallet();
 	const { connection } = useConnection();
 
@@ -354,7 +354,7 @@ const NftMarket: React.FC = () => {
 				{/* Fully responsive grid with 4 columns max on desktop */}
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
 					{nftData.map((nft) => (
-						<NftCard key={nft.id} {...nft} />
+						<NFTCard key={nft.id} {...nft} />
 					))}
 				</div>
 			</div>
@@ -393,4 +393,9 @@ const NftMarket: React.FC = () => {
 	);
 };
 
-export default NftMarket;
+export const nftMarket = {
+	name: "nft-market",
+	components: {
+		Default: <NFTMarketComponent />,
+	},
+};

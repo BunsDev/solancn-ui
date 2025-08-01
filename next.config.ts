@@ -24,7 +24,20 @@ const nextConfig: NextConfig = {
 	experimental: {
 		optimizePackageImports: ["lucide-react", "framer-motion"],
 	},
-
+	redirects: async () => {
+		return [
+			{
+				source: "/components",
+				destination: "/components/marquee",
+				permanent: true,
+			},
+			{
+				source: "/templates",
+				destination: "/templates/nft-market",
+				permanent: true,
+			},
+		];
+	},
 	// Bundle analyzer for performance monitoring
 	webpack: (config, { dev, isServer }) => {
 		// Optimize bundle size

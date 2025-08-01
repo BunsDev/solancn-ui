@@ -73,7 +73,6 @@ import TextReveal from "@/app/components/textreveal/textreveal";
 import ToastView from "@/app/components/toast/toast-view";
 import TwoStep from "@/app/components/twostep/twostep";
 // √
-import NftMarket from "@/app/templates/nftmarket/nftmarket";
 
 // Component registry mapping component names to their view components
 export const ComponentRegistry: Record<string, React.ComponentType> = {
@@ -152,7 +151,6 @@ export const ComponentRegistry: Record<string, React.ComponentType> = {
 	"hero-2": Hero2,
 	CoderProfileCard: CoderProfileCard,
 	Portfolio2Page: Portfolio2Page,
-	NftMarket: NftMarket,
 	ImageCarousel: ImageCarousel,
 	CarouselCards: CarouselCards,
 	AccordionSection: AccordionSection,

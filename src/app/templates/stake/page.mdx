@@ -8,14 +8,12 @@ import {
   TabsContent,
 } from "@/components/site/tabs.tsx";
 import { HideTOC } from "@/components/site/hide-toc";
-import NftMarket from "./nftmarket"
+import { StakeComponent } from "@/components/templates/stake/stake-component";
 
 <HideTOC />
 
-# NFT Marketplace
-A fully responsive NFT marketplace component with a clean design.
-
-
+# Solana Stake
+A responsive stake component for Solana with a clean, modern design that allows users to stake and unstake SOL tokens.
 
 <Tabs defaultValue="preview" className="">
   <TabsList>
@@ -23,10 +21,9 @@ A fully responsive NFT marketplace component with a clean design.
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<NftMarket />} componentName="NftMarket" />
+    <ComponentRenderer component={<StakeComponent />} componentName="StakeComponent" />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/templates/nftmarket/nftmarket.tsx" />
+    <CodeBlock filePath="src/components/templates/stake/stake-component.tsx" />
   </TabsContent>
 </Tabs>
-

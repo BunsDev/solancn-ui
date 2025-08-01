@@ -247,7 +247,7 @@ Solancn UI includes components and utilities specially designed for Solana block
 * **DApp Components**: Specialized components for Swap, Stake, Portfolio, Transfer, and Receive functionality
 * **Conditional UI**: Components that respond to wallet connection state
 
-The staking components include:
+The stake components include:
 * Modern validator selection interface
 * Support for both Native and Liquid staking methods
 * Transaction history display
