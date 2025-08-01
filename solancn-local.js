@@ -89,11 +89,12 @@ function startCli() {
   console.log('Running Solancn CLI command...\n');
   
   // Run the CLI command with the local registry URL
-  const args = process.argv.slice(2);
+  let args = process.argv.slice(2);
   
-  // Add --shadcn flag for components not in our registry
+  // Automatically add --shadcn flag for add commands for better success rate
   if (args[0] === 'add' && !args.includes('--shadcn') && !args.includes('-s')) {
-    console.log('TIP: Use --shadcn flag to use Shadcn components if local components are not found.');
+    console.log('Auto-adding --shadcn flag to use both local and Shadcn registries');
+    args = [...args, '--shadcn'];
   }
   
   // Set environment variables for the CLI

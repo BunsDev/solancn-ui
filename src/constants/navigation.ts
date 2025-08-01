@@ -40,7 +40,6 @@ export const componentsNavigation: NavigationItem[] = [
 		label: "Button",
 		children: [
 			{ label: "Buttons", href: "/components/button" },
-			// { label: "Modern Button", href: "/components/modern-button" },
 			{ label: "Dropdown", href: "/components/dropdown" },
 			// { label: "Shimmer Button", href: "/components/shimmer" },
 			{ label: "Drawer", href: "/components/drawer" },

@@ -21,22 +21,59 @@ function transformRegistry() {
     
     // Transform from object format to array format required by the CLI
     const transformedRegistry = Object.entries(registry).map(([key, value]) => {
-      // Ensure required fields are present
+      // Ensure required fields are present in the format the CLI expects
       return {
         name: key,
-        type: value.type || 'components:ui', 
+        display: value.display || key,
         description: value.description || `${key} component`,
         dependencies: value.dependencies || [],
         registryDependencies: value.registryDependencies || [],
-        files: Array.isArray(value.files) 
-          ? value.files.map(file => ({
-              name: file.name || `${key}.tsx`,
-              content: file.content || '',
-              type: file.type || 'components:ui'
-            }))
-          : [{ name: `${key}.tsx`, content: '', type: 'components:ui' }]
+        files: value.files && Array.isArray(value.files) 
+          ? value.files.map(file => {
+              return {
+                name: file.name || `${key}.tsx`,
+                content: file.content || '',
+                type: file.type || 'component'
+              };
+            })
+          : [
+              { 
+                name: `${key}.tsx`, 
+                content: '', 
+                type: 'component'
+              }
+            ]
       };
     });
+    
+    // Try to read an example component file to get the right format
+    try {
+      const examplePath = path.join(__dirname, '../../public/registry/button.json');
+      if (fs.existsSync(examplePath)) {
+        const exampleContent = fs.readFileSync(examplePath, 'utf8');
+        const exampleComponent = JSON.parse(exampleContent);
+        
+        // Update transformed registry based on the example component format
+        const updatedRegistry = transformedRegistry.map(component => {
+          return {
+            name: component.name,
+            display: exampleComponent.display ? component.display : undefined,
+            description: component.description,
+            dependencies: component.dependencies || exampleComponent.dependencies || [],
+            registryDependencies: component.registryDependencies || exampleComponent.registryDependencies || [],
+            files: component.files.map(file => ({
+              name: file.name,
+              content: file.content || '',
+              type: exampleComponent.files && exampleComponent.files[0] ? exampleComponent.files[0].type : 'component'
+            }))
+          };
+        });
+        
+        return updatedRegistry;
+      }
+    } catch (exampleError) {
+      // Ignore errors reading example component
+    }
     
     return transformedRegistry;
   } catch (error) {
@@ -45,10 +82,17 @@ function transformRegistry() {
     return [
       {
         name: "button",
-        type: "components:ui",
-        dependencies: [],
+        display: "Button",
+        description: "A button component that can be used to trigger an action.",
+        dependencies: ["@radix-ui/react-slot", "class-variance-authority"],
         registryDependencies: [],
-        files: [{ name: "button.tsx", content: "", type: "components:ui" }]
+        files: [
+          { 
+            name: "button.tsx", 
+            content: "", 
+            type: "component" 
+          }
+        ]
       }
     ];
   }

@@ -467,19 +467,6 @@
       }
     ]
   },
-  "modern-button": {
-    "name": "modern-button",
-    "description": "A minimalistic modern button component designed with React and Tailwind CSS.",
-    "type": "registry:component",
-    "files": [
-      {
-        "path": "../app/components/modern-button",
-        "name": "modern-button",
-        "content": "",
-        "type": "registry:component"
-      }
-    ]
-  },
   "moving-grid": {
     "name": "moving-grid",
     "description": "A minimalistic moving grid component designed with React and Tailwind CSS.",

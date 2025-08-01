@@ -593,22 +593,6 @@ export const components: ComponentType[] = [
     ],
   },
   {
-    name: "modern-button",
-    title: "Modern Button",
-    description: "A minimalistic modern button component designed with React and Tailwind CSS.",
-    type: "registry:component",
-    path: "../app/components/modern-button",
-    dependencies: [],
-    files: [
-      {
-        path: "../app/components/modern-button",
-        name: "modern-button",
-        content: "",
-        type: "registry:component",
-      },
-    ],
-  },
-  {
     name: "moving-grid",
     title: "Moving Grid",
     description: "A minimalistic moving grid component designed with React and Tailwind CSS.",
