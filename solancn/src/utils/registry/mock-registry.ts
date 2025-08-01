@@ -51,7 +51,7 @@ export const mockIndexData = [
   },
 ];
 
-export const mockStylesData = [
+export const stylesData = [
   { name: "default", label: "Default" },
   { name: "new-york", label: "New York" },
   { name: "zinc", label: "Zinc" },

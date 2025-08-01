@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { addComponent } from "./commands/add";
 import { init } from "./commands/init";
+import { listComponents } from "./commands/list";
 import { Command } from "commander";
 
 import { getPackageInfo } from "./utils/get-package-info";
@@ -23,12 +24,12 @@ async function main() {
     .name("solancn")
     .description("Add Solancn components to your apps.")
     .version(
-      packageInfo.version || "0.0.11",
+      packageInfo.version || "0.0.12",
       "-v, --version",
       "display the version number",
     );
 
-  program.addCommand(init).addCommand(addComponent);
+  program.addCommand(init).addCommand(addComponent).addCommand(listComponents);
 
   // .addCommand(auth).addCommand(project);
 

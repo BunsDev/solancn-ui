@@ -126,7 +126,7 @@ export function TopicSwitcher({ topics }: { topics: Topic[] }) {
 									/>
 								</div>
 								{topic.name}
-								<DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
+								{/* <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut> */}
 							</DropdownMenuItem>
 						))}
 					</DropdownMenuContent>

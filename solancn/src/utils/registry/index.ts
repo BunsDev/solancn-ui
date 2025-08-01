@@ -15,7 +15,7 @@ import { z } from "zod";
 import {
   mockIndexData,
   mockIndexDataObject,
-  mockStylesData,
+  stylesData,
   mockRegistryItem,
   mockBaseColor,
 } from "./mock-registry";
@@ -87,17 +87,17 @@ export async function getRegistryIndexShadcn() {
 
 export async function getRegistryStyles() {
   // Use mock data when in test mode
-  if (process.env.TEST_MODE === "true") {
-    return stylesSchema.parse(mockStylesData);
-  }
+  // if (process.env.TEST_MODE === "true") {
+  return stylesSchema.parse(stylesData);
+  // }
 
-  try {
-    const [result] = await fetchRegistry(["styles/index.json"], shadcnBaseUrl);
+  // try {
+  // const [result] = await fetchRegistry(["styles/index.json"], shadcnBaseUrl);
 
-    return stylesSchema.parse(result);
-  } catch (error) {
-    throw new Error("Failed to fetch styles from registry.");
-  }
+  // return stylesSchema.parse(result);
+  // } catch (error) {
+  // throw new Error("Failed to fetch styles from registry.");
+  // }
 }
 
 export async function getRegistryBaseColors() {
