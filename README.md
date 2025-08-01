@@ -3,7 +3,7 @@
 </a>
 
 <p align="center">
-    solancn-ui is a free, open-source template built with Next.js 15 and Shadcn/ui Registry to accelerate your Solana Native Design System.
+    solancn-ui is a free, open-source template built with Next.js 15 and shadcn/ui Registry to accelerate your Solana Native Design System.
 </p>
 
 <p align="center">

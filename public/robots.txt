@@ -59,7 +59,6 @@ Disallow: /*.log
 # Allow important directories for better indexing
 Allow: /docs/
 Allow: /components/
-Allow: /examples/
 Allow: /templates/
 Allow: /standalone/
 Allow: /public/

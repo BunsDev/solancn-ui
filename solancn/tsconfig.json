@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "esnext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "@/components/solancn/*": [
+        "./registry/default/solancn/*"
+      ],
+      "@/components/templates/*": [
+        "./registry/default/templates/*"
+      ],
+      "@/components/components/*": [
+        "./registry/default/components/*"
+      ],
+      "content-collections": [
+        "./.content-collections/generated"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "src/**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".content-colletions/generated",
+    "registry/default/solancn/cobeautodraggable.jsx",
+    "registry/default/solancn/cobedraggable.jsx",
+    "registry/default/templates/*",
+    "registry/default/components/*",
+  ],
+  "exclude": [
+    "node_modules",
+    "packages/**/*",
+    "scripts/**/*",
+    "scripts/build-registry.ts",
+    "__registry__"
+  ]
+}
