@@ -88,7 +88,7 @@ const ProjectStats = () => {
 	}, []);
 	
 	return (
-		<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 mb-12">
+		<div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full mt-8 mb-12">
 			<div className="flex flex-col w-full items-center p-6 bg-card rounded-xl border">
 				<Star className="h-6 w-6 mb-2 text-yellow-500" />
 				<span className="text-xl font-bold">{stats.components}</span>
