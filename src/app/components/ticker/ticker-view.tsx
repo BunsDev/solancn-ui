@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import NumberTicker from "./ticker";
+import { NumberTicker } from "./ticker";
 
-export default function Tickerview() {
+export default function TickerView() {
 	return (
 		<NumberTicker
 			value={100}
