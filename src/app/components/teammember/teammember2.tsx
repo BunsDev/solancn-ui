@@ -11,9 +11,9 @@ interface TeamMember {
 // Array of team members data. This could also come from an API.
 const teamMembers: TeamMember[] = [
 	{
-		name: "Nazmul Hossain",
+		name: "Val Alexander",
 		role: "Founder & CEO",
-		imageUrl: "https://i.postimg.cc/W1rCvYnT/nazmul-hossain.jpg",
+		imageUrl: "https://ui.solancn.com/buns.png",
 	},
 	{
 		name: "Emily Jonson",

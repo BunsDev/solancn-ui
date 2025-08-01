@@ -311,19 +311,6 @@
       }
     ]
   },
-  "glow-button": {
-    "name": "glow-button",
-    "description": "A minimalistic glow button component designed with React and Tailwind CSS.",
-    "type": "registry:component",
-    "files": [
-      {
-        "path": "../app/components/glow-button",
-        "name": "glow-button",
-        "content": "",
-        "type": "registry:component"
-      }
-    ]
-  },
   "gradient": {
     "name": "gradient",
     "description": "A minimalistic gradient component designed with React and Tailwind CSS.",

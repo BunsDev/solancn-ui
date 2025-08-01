@@ -14,6 +14,7 @@ import { z } from "zod";
 // Import mock data for testing
 import { 
   mockIndexData,
+  mockIndexDataObject,
   mockStylesData,
   mockRegistryItem,
   mockBaseColor 
@@ -32,7 +33,13 @@ const agent = process.env.https_proxy
 export async function getRegistryIndexSolancn(env?: boolean) {
   // Use mock data when in test mode
   if (process.env.TEST_MODE === 'true') {
-    return registryIndexSchema.parse(mockIndexData);
+    // For init command: return object format, for other commands: return array format
+    const args = process.argv.slice(2);
+    if (args[0] === 'init') {
+      return registryIndexSchema.parse(mockIndexDataObject);
+    } else {
+      return registryIndexSchema.parse(mockIndexData);
+    }
   }
   
   try {

@@ -37,9 +37,9 @@ type TeamMember = {
 // Data for the team members using the new images
 const teamMembers: TeamMember[] = [
 	{
-		name: "Nazmul Hossain",
+		name: "Val Alexander",
 		role: "Founder & CEO",
-		imageUrl: "https://i.postimg.cc/W1rCvYnT/nazmul-hossain.jpg",
+		imageUrl: "https://ui.solancn.com/buns.png",
 	},
 	{
 		name: "Emily Jonson",

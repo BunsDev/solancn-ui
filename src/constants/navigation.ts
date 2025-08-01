@@ -19,25 +19,30 @@ export const docsNavigation: NavigationItem[] = [
 ];
 export const componentsNavigation: NavigationItem[] = [
 	{
-		label: "Components",
+		label: "Blocks",
 		children: [
+			// { label: "Hero", href: "/components/hero" },
+			// { label: "Header", href: "/components/navbar" },
 			{ label: "Marquee", href: "/components/marquee" },
-			{ label: "Portfolio", href: "/components/portfolio" }, // √
-			{ label: "Integrations", href: "/components/integrations" },
-			{ label: "Network", href: "/components/network" },
-			{ label: "Image Swiper", href: "/components/imageswiper" },
-			{ label: "Divider", href: "/components/divider" },
-			{ label: "Noise", href: "/components/noise" },
+			{ label: "Pricing", href: "/components/pricing" },
+
+			// { label: "Testimonial", href: "/components/testimonial" },
+			// { label: "Forgot Password", href: "/components/forgotpassword" },
+			// { label: "Team Member", href: "/components/teammember" },
+			// { label: "Integrations", href: "/components/integrations" },
+			// { label: "Network", href: "/components/network" },
+			// { label: "Image Swiper", href: "/components/imageswiper" },
+			// { label: "Noise", href: "/components/noise" },
+
 		],
 	},
 	{
 		label: "Button",
 		children: [
-			{ label: "Button", href: "/components/button" },
-			{ label: "Modern Button", href: "/components/modern-button" },
-			{ label: "Glow Button", href: "/components/glow-button" },
+			{ label: "Buttons", href: "/components/button" },
+			// { label: "Modern Button", href: "/components/modern-button" },
 			{ label: "Dropdown", href: "/components/dropdown" },
-			{ label: "Shimmer Button", href: "/components/shimmer" },
+			// { label: "Shimmer Button", href: "/components/shimmer" },
 			{ label: "Drawer", href: "/components/drawer" },
 		],
 	},
@@ -45,9 +50,9 @@ export const componentsNavigation: NavigationItem[] = [
 	{
 		label: "Badge & Toast",
 		children: [
-			{ label: "Badge", href: "/components/badge" },
-			{ label: "Animated Badge", href: "/components/animatedbadge" },
-			{ label: "Toast", href: "/components/toast" },
+			{ label: "Badges", href: "/components/badge" },
+			// { label: "Animated Badges", href: "/components/animatedbadge" },
+			{ label: "Toasts", href: "/components/toast" },
 		],
 	},
 	{
@@ -61,67 +66,49 @@ export const componentsNavigation: NavigationItem[] = [
 	{
 		label: "Text",
 		children: [
-			{ label: "Text Animation", href: "/components/text" },
+			{ label: "Animated", href: "/components/text" },
 			{ label: "Fuzzy", href: "/components/fuzzy" },
-			{ label: "Flip Words", href: "/components/flipwords" },
-			{ label: "Text Reveal", href: "/components/textreveal" },
-			{ label: "Decrypting", href: "/components/decrypting" },
-			{ label: "Aurora Text", href: "/components/aurora" },
-			{ label: "Sparkles Text", href: "/components/sparklestext" },
-			{ label: "Number Ticker", href: "/components/ticker" },
-			{ label: "Letter Glitch", href: "/components/letter-glitch" },
-			{ label: "ResizeHandle Text", href: "/components/resize-handle" },
+			// { label: "Changing", href: "/components/flipwords" },
+			// { label: "Reveal", href: "/components/textreveal" },
+			{ label: "Decrypt", href: "/components/decrypting" },
+			// { label: "Aurora", href: "/components/aurora" },
+			// { label: "Sparkles Text", href: "/components/sparklestext" },
+			{ label: "Ticker", href: "/components/ticker" },
+			// { label: "Glitch", href: "/components/letter-glitch" },
+			// { label: "ResizeHandle", href: "/components/resize-handle" },
 		],
 	},
 	{
-		label: "Tabs",
+		label: "Accordion & Tabs",
 		children: [
-			{ label: "Dock Tabs", href: "/components/doctabs" },
-			{ label: "Carousel", href: "/components/carousel" },
+			// { label: "Dock Tabs", href: "/components/doctabs" },
+			// { label: "Carousel", href: "/components/carousel" },
 			{ label: "Tabs", href: "/components/tabs" },
-			{ label: "Fancy Tabs", href: "/components/tabs-fancy" },
-			{ label: "Classic Tabs", href: "/components/tabs-classic" },
-			{ label: "Dock", href: "/components/dock" },
-			{ label: "File Tree", href: "/components/filetree" },
-			{ label: "Copy Button", href: "/components/copybutton" },
-		],
-	},
-	{
-		label: "Accordion",
-		children: [
+			// { label: "Fancy Tabs", href: "/components/tabs-fancy" },
+			// { label: "Classic Tabs", href: "/components/tabs-classic" },
+			// { label: "Dock", href: "/components/dock" },
+			// { label: "File Tree", href: "/components/filetree" },
+			{ label: "Install", href: "/components/copybutton" },
 			{ label: "Accordion", href: "/components/accordion" },
-			{ label: "Fancy Accordion", href: "/components/accordion-last" },
-			{
-				label: "Gradient Accordion",
-				href: "/components/gradient-accordion",
-			},
-		],
-	},
-	{
-		label: "Form & Cards",
-		children: [
-			{ label: "Login", href: "/components/login" },
-			{ label: "Sign In", href: "/components/signin" },
-			{ label: "Newsletter", href: "/components/waitlist" },
-			{ label: "Card", href: "/components/card" },
-			{ label: "Two Step", href: "/components/twostep" },
-			{ label: "Amazon Gift Card", href: "/components/amazongift" },
-			{ label: "Magic Card", href: "/components/magic" },
-			{ label: "Gradient", href: "/components/gradient" },
-			{ label: "Spotlight Card", href: "/components/spotlightcard" },
-			{ label: "Multi Select", href: "/components/multiselector" },
-		],
-	},
-	{
-		label: "Designs",
-		children: [
-			{ label: "Marquee", href: "/components/marquee" },
-			{ label: "Portfolio", href: "/components/portfolio" },
-			{ label: "Integrations", href: "/components/integrations" },
-			{ label: "Network", href: "/components/network" },
-			{ label: "Image Swiper", href: "/components/imageswiper" },
+			// { label: "Fancy", href: "/components/accordion-last" },
 			{ label: "Divider", href: "/components/divider" },
-			{ label: "Noise", href: "/components/noise" },
+		],
+	},
+	{
+		label: "Forms & Cards",
+		children: [
+			// { label: "Login", href: "/components/login" },
+			// { label: "Login", href: "/components/signin" },
+			// { label: "Newsletter", href: "/components/waitlist" },
+			{ label: "Card", href: "/components/card" },
+			// { label: "Portfolio", href: "/components/portfolio" }, // √
+
+			{ label: "MFA", href: "/components/twostep" },
+			// { label: "Amazon Gift Card", href: "/components/amazongift" },
+			// { label: "Magic Card", href: "/components/magic" },
+			// { label: "Gradient", href: "/components/gradient" },
+			// { label: "Spotlight Card", href: "/components/spotlightcard" },
+			{ label: "Multi-Select", href: "/components/multiselector" },
 		],
 	},
 	{
@@ -131,24 +118,15 @@ export const componentsNavigation: NavigationItem[] = [
 			{ label: "Bento Grid", href: "/components/bento-grid" },
 		],
 	},
-	{
-		label: "Backgrounds",
-		children: [
-			{ label: "Falling Glitch", href: "/components/falling-glitch" },
-			{ label: "Moving Grid", href: "/components/moving-grid" },
-		],
-	},
-	{
-		label: "Websites Blocks",
-		children: [
-			{ label: "Hero", href: "/components/hero" },
-			{ label: "Header", href: "/components/navbar" },
-			{ label: "Pricing", href: "/components/pricing" },
-			{ label: "Testimonial", href: "/components/testimonial" },
-			{ label: "Forgot Password", href: "/components/forgotpassword" },
-			{ label: "Team Member", href: "/components/teammember" },
-		],
-	},
+	// {
+	// 	label: "Backgrounds",
+	// 	children: [
+	// 		{ label: "Falling Glitch", href: "/components/falling-glitch" },
+	// 		{ label: "Moving Grid", href: "/components/moving-grid" },
+
+	// 	],
+	// },
+
 ];
 
 export const templatesNavigation: NavigationItem[] = [

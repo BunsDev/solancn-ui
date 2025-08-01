@@ -401,22 +401,6 @@ export const components: ComponentType[] = [
     ],
   },
   {
-    name: "glow-button",
-    title: "Glow Button",
-    description: "A minimalistic glow button component designed with React and Tailwind CSS.",
-    type: "registry:component",
-    path: "../app/components/glow-button",
-    dependencies: [],
-    files: [
-      {
-        path: "../app/components/glow-button",
-        name: "glow-button",
-        content: "",
-        type: "registry:component",
-      },
-    ],
-  },
-  {
     name: "gradient",
     title: "Gradient",
     description: "A minimalistic gradient component designed with React and Tailwind CSS.",
