@@ -1,85 +1,91 @@
 {
-    "name": "solancn",
-    "version": "0.0.9",
-    "description": "Add Solana ui components to your apps with shadcn-based configuration",
-    "publishConfig": {
-      "access": "public"
-    },
-    "license": "MIT",
-    "author": {
-      "name": "Solancn UI Team",
-      "url": "https://github.com/BunsDev"
-    },
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/BunsDev/solancn-ui",
-      "directory": "solancn"
-    },
-    "files": [
-      "dist"
-    ],
-    "keywords": [
-      "components",
-      "ui",
-      "tailwind",
-      "radix-ui",
-      "shadcn",
-      "solancn-ui",
-      "solancn",
-      "framer-motion"
-    ],
-    "type": "module",
-    "exports": "./dist/index.js",
-    "bin": "./dist/index.js",
-    "scripts": {
-      "dev": "tsup --watch --env.COMPONENTS_REGISTRY_URL http://localhost:3000 ",
-      "build": "tsup --env.COMPONENTS_REGISTRY_URL https://ui.solancn.com",
-      "typecheck": "tsc --noEmit",
-      "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
-      "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
-      "pub:beta": "pnpm build && pnpm publish --no-git-checks --access public --tag beta",
-      "pub:next": "pnpm build && pnpm publish --no-git-checks --access public --tag next",
-      "release": "pnpm build && pnpm publish --access public",
-      "test": "vitest run"
-    },
-    "dependencies": {
-      "@antfu/ni": "^0.21.4",
-      "@babel/core": "^7.22.1",
-      "@babel/parser": "^7.22.6",
-      "@babel/plugin-transform-typescript": "^7.22.5",
-      "chalk": "5.2.0",
-      "commander": "^10.0.0",
-      "configstore": "^6.0.0",
-      "cosmiconfig": "^8.1.3",
-      "diff": "^5.1.0",
-      "dotenv": "^16.4.5",
-      "execa": "^7.0.0",
-      "fast-glob": "^3.3.2",
-      "fs-extra": "^11.1.0",
-      "gradient-string": "^2.0.2",
-      "https-proxy-agent": "^6.2.0",
-      "lodash.template": "^4.5.0",
-      "node-fetch": "^3.3.0",
-      "ora": "^6.1.2",
-      "prettier": "^3.4.2",
-      "prompts": "^2.4.2",
-      "recast": "^0.23.2",
-      "ts-morph": "^18.0.0",
-      "tsconfig-paths": "^4.2.0",
-      "vitest": "^3.2.4",
-      "zod": "^3.20.2"
-    },
-    "devDependencies": {
-      "@types/babel__core": "^7.20.1",
-      "@types/configstore": "^6.0.2",
-      "@types/diff": "^5.0.3",
-      "@types/fs-extra": "^11.0.1",
-      "@types/gradient-string": "^1.1.6",
-      "@types/lodash.template": "^4.5.1",
-      "@types/prompts": "^2.4.2",
-      "tsup": "^6.6.3",
-      "type-fest": "^3.8.0",
-      "typescript": "^4.9.3"
-    }
-  }
-  
+  "name": "solancn",
+  "version": "0.0.9",
+  "description": "Add Solana ui components to your apps with shadcn-based configuration",
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Solancn UI Team",
+    "url": "https://github.com/BunsDev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BunsDev/solancn-ui",
+    "directory": "solancn"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "components",
+    "ui",
+    "tailwind",
+    "radix-ui",
+    "shadcn",
+    "solancn-ui",
+    "solancn",
+    "framer-motion"
+  ],
+  "type": "module",
+  "exports": "./dist/index.js",
+  "bin": "./dist/index.js",
+  "scripts": {
+    "dev": "tsup --watch --env.COMPONENTS_REGISTRY_URL http://localhost:3000 ",
+    "build": "tsup --env.COMPONENTS_REGISTRY_URL https://ui.solancn.com",
+    "typecheck": "tsc --noEmit",
+    "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
+    "pub:beta": "pnpm build && pnpm test:cli && pnpm publish --no-git-checks --access public --tag beta",
+    "pub:next": "pnpm build && pnpm test:cli && pnpm publish --no-git-checks --access public --tag next",
+    "release": "pnpm build && pnpm test:cli && pnpm publish --access public",
+    "test": "vitest run",
+    "test:cli": "tsx test/test-cli.ts",
+    "test:cli:interactive": "tsx test/test-cli.ts",
+    "prerelease": "pnpm test:cli"
+  },
+  "dependencies": {
+    "@antfu/ni": "^25.0.0",
+    "@babel/core": "^7.22.1",
+    "@babel/parser": "^7.22.6",
+    "@babel/plugin-transform-typescript": "^7.22.5",
+    "chalk": "5.2.0",
+    "commander": "^10.0.0",
+    "configstore": "^6.0.0",
+    "cosmiconfig": "^8.1.3",
+    "diff": "^5.1.0",
+    "dotenv": "^16.4.5",
+    "execa": "^7.0.0",
+    "fast-glob": "^3.3.2",
+    "fs-extra": "^11.1.0",
+    "gradient-string": "^2.0.2",
+    "https-proxy-agent": "^6.2.0",
+    "lodash.template": "^4.5.0",
+    "node-fetch": "^3.3.0",
+    "ora": "^6.1.2",
+    "prettier": "^3.4.2",
+    "prompts": "^2.4.2",
+    "recast": "^0.23.2",
+    "ts-morph": "^18.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "vitest": "^3.2.4",
+    "zod": "^3.20.2"
+  },
+  "devDependencies": {
+    "@types/babel__core": "^7.20.1",
+    "@types/configstore": "^6.0.2",
+    "@types/diff": "^5.0.3",
+    "@types/fs-extra": "^11.0.1",
+    "@types/gradient-string": "^1.1.6",
+    "@types/lodash.template": "^4.5.1",
+    "@types/prompts": "^2.4.2",
+    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/ui": "^3.2.4",
+    "tsup": "^6.6.3",
+    "tsx": "^4.20.3",
+    "type-fest": "^3.8.0",
+    "typescript": "^4.9.3"
+  },
+  "packageManager": "pnpm@10.11.1"
+}
