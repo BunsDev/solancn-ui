@@ -107,7 +107,7 @@ const HeroSection: React.FC = () => {
 							href="#"
 							className="hidden lg:inline-block bg-indigo-600 dark:bg-indigo-500 text-white font-semibold px-5 py-2 rounded-lg hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors shadow-sm"
 						>
-							Get Started
+							Learn
 						</a>
 
 						<div className="lg:hidden">
@@ -157,7 +157,7 @@ const HeroSection: React.FC = () => {
 								href="#"
 								className="w-full mt-6 text-center bg-indigo-600 dark:bg-indigo-500 text-white font-semibold px-5 py-3 rounded-lg hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors shadow-sm"
 							>
-								Get Started
+								Learn More
 							</a>
 						</nav>
 					</div>

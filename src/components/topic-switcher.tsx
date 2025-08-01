@@ -17,6 +17,7 @@ import {
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
+	SidebarProvider,
 	useSidebar,
 } from "@/components/ui/sidebar";
 import { useTopicContext } from "./app-sidebar"; // Import the TeamContext hook
@@ -80,6 +81,7 @@ export function TopicSwitcher({ topics }: { topics: Topic[] }) {
 	};
 
 	return (
+		<SidebarProvider>
 		<SidebarMenu>
 			<SidebarMenuItem>
 				<DropdownMenu>
@@ -131,5 +133,6 @@ export function TopicSwitcher({ topics }: { topics: Topic[] }) {
 				</DropdownMenu>
 			</SidebarMenuItem>
 		</SidebarMenu>
+		</SidebarProvider>
 	);
 }

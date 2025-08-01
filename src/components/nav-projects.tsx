@@ -22,6 +22,7 @@ import {
 	SidebarMenuAction,
 	SidebarMenuButton,
 	SidebarMenuItem,
+	SidebarProvider,
 	useSidebar,
 } from "@/components/ui/sidebar";
 import { useTopicContext } from "./app-sidebar";
@@ -53,6 +54,7 @@ export function NavProjects({
 	}
 
 	return (
+		<SidebarProvider>
 		<SidebarGroup className="group-data-[collapsible=icon]:hidden">
 			<SidebarGroupLabel>Projects</SidebarGroupLabel>
 			<SidebarMenu>
@@ -101,5 +103,6 @@ export function NavProjects({
 				</SidebarMenuItem>
 			</SidebarMenu>
 		</SidebarGroup>
+		</SidebarProvider>
 	);
 }

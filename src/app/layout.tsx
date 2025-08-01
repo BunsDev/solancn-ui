@@ -590,7 +590,7 @@ export default function RootLayout({
           `}
         </Script> */}
 
-				<ThemeProvider attribute="class" defaultTheme="dark">
+				<ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
 					<WalletContextProvider>
 						<PackageManagerProvider>
 							{children}

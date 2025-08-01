@@ -1,0 +1,982 @@
+[
+  {
+    "name": "accordion",
+    "type": "registry:component",
+    "description": "A minimalistic accordion component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "accordion",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "accordion-last",
+    "type": "registry:component",
+    "description": "A minimalistic accordion component with last item styling designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "accordion-last",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "amazongift",
+    "type": "registry:component",
+    "description": "A minimalistic Amazon gift card component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "amazongift",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "animatedbadge",
+    "type": "registry:component",
+    "description": "A minimalistic animatedbadge component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "animatedbadge",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "aurora",
+    "type": "registry:component",
+    "description": "A minimalistic aurora component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "aurora",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "badge",
+    "type": "registry:component",
+    "description": "A minimalistic badge component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "badge",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "bento-grid",
+    "type": "registry:component",
+    "description": "A minimalistic bento grid component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "bento-grid",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "button",
+    "type": "registry:component",
+    "description": "A minimalistic button component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "button",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "card",
+    "type": "registry:component",
+    "description": "A minimalistic card component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "card",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "carousel",
+    "type": "registry:component",
+    "description": "A minimalistic carousel component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "carousel",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "codeprofile",
+    "type": "registry:component",
+    "description": "A minimalistic codeprofile component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "codeprofile",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "colorpalette",
+    "type": "registry:component",
+    "description": "A minimalistic colorpalette component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "colorpalette",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "copybutton",
+    "type": "registry:component",
+    "description": "A minimalistic copybutton component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "copybutton",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "decrypting",
+    "type": "registry:component",
+    "description": "A minimalistic decrypting component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "decrypting",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "divider",
+    "type": "registry:component",
+    "description": "A minimalistic divider component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "divider",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "dock",
+    "type": "registry:component",
+    "description": "A minimalistic dock component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "dock",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "doctabs",
+    "type": "registry:component",
+    "description": "A minimalistic doctabs component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "doctabs",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "drawer",
+    "type": "registry:component",
+    "description": "A minimalistic drawer component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "drawer",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "dropdown",
+    "type": "registry:component",
+    "description": "A minimalistic dropdown component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "dropdown",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "falling-glitch",
+    "type": "registry:component",
+    "description": "A minimalistic falling glitch component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "falling-glitch",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "filetree",
+    "type": "registry:component",
+    "description": "A minimalistic filetree component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "filetree",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "flipwords",
+    "type": "registry:component",
+    "description": "A minimalistic flip words animation component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "flipwords",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "forgotpassword",
+    "type": "registry:component",
+    "description": "A minimalistic forgotpassword component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "forgotpassword",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "fuzzy",
+    "type": "registry:component",
+    "description": "A minimalistic fuzzy search component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "fuzzy",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "gradient",
+    "type": "registry:component",
+    "description": "A minimalistic gradient component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "gradient",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "gradient-accordion",
+    "type": "registry:component",
+    "description": "A minimalistic gradient accordion component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "gradient-accordion",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "gradientgen",
+    "type": "registry:component",
+    "description": "A minimalistic gradientgen component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "gradientgen",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "hero",
+    "type": "registry:component",
+    "description": "A minimalistic hero component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "hero",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "imageswiper",
+    "type": "registry:component",
+    "description": "A minimalistic imageswiper component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "imageswiper",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "integrations",
+    "type": "registry:component",
+    "description": "A minimalistic integrations component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "integrations",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "letter-glitch",
+    "type": "registry:component",
+    "description": "A minimalistic letter glitch component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "letter-glitch",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "loaders",
+    "type": "registry:component",
+    "description": "A minimalistic loaders component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "loaders",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "login",
+    "type": "registry:component",
+    "description": "A minimalistic login component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "login",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "magic",
+    "type": "registry:component",
+    "description": "A minimalistic magic component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "magic",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "marquee",
+    "type": "registry:component",
+    "description": "A minimalistic marquee component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "marquee",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "masonary",
+    "type": "registry:component",
+    "description": "A minimalistic masonary component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "masonary",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "modern-button",
+    "type": "registry:component",
+    "description": "A minimalistic modern button component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "modern-button",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "moving-grid",
+    "type": "registry:component",
+    "description": "A minimalistic moving grid component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "moving-grid",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "multiselector",
+    "type": "registry:component",
+    "description": "A minimalistic multiselector component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "multiselector",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "navbar",
+    "type": "registry:component",
+    "description": "A minimalistic navbar component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "navbar",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "network",
+    "type": "registry:component",
+    "description": "A minimalistic network component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "network",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "noise",
+    "type": "registry:component",
+    "description": "A minimalistic noise component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "noise",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "password",
+    "type": "registry:component",
+    "description": "A minimalistic password input component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "password",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "pattern",
+    "type": "registry:component",
+    "description": "A collection of beautiful background patterns designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "pattern",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "portfolio",
+    "type": "registry:component",
+    "description": "A minimalistic portfolio component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "portfolio",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "pricing",
+    "type": "registry:component",
+    "description": "A minimalistic pricing component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "pricing",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "prompt",
+    "type": "registry:component",
+    "description": "A minimalistic prompt component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "prompt",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "resize-handle",
+    "type": "registry:component",
+    "description": "A minimalistic resize handle component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "resize-handle",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "search",
+    "type": "registry:component",
+    "description": "A minimalistic search component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "search",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "shimmer",
+    "type": "registry:component",
+    "description": "A minimalistic shimmer component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "shimmer",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "signin",
+    "type": "registry:component",
+    "description": "A minimalistic signin component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "signin",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "sparklestext",
+    "type": "registry:component",
+    "description": "A minimalistic sparklestext component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "sparklestext",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "spotlightcard",
+    "type": "registry:component",
+    "description": "A minimalistic spotlightcard component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "spotlightcard",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "svg-icons",
+    "type": "registry:component",
+    "description": "A minimalistic svg icons component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "svg-icons",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "tabs",
+    "type": "registry:component",
+    "description": "A minimalistic tab component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "tabs",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "tabs-classic",
+    "type": "registry:component",
+    "description": "A minimalistic tabs classic component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "tabs-classic",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "tabs-fancy",
+    "type": "registry:component",
+    "description": "A minimalistic tabs fancy component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "tabs-fancy",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "teammember",
+    "type": "registry:component",
+    "description": "A minimalistic teammember component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "teammember",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "testimonial",
+    "type": "registry:component",
+    "description": "A minimalistic testimonial component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "testimonial",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "text",
+    "type": "registry:component",
+    "description": "A minimalistic text component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "text",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "textreveal",
+    "type": "registry:component",
+    "description": "A minimalistic textreveal component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "textreveal",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "ticker",
+    "type": "registry:component",
+    "description": "A minimalistic ticker component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "ticker",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "toast",
+    "type": "registry:component",
+    "description": "A minimalistic toast component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "toast",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "transactions",
+    "type": "registry:component",
+    "description": "A minimalistic transactions component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "transactions",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "twostep",
+    "type": "registry:component",
+    "description": "A minimalistic two-step verification component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "twostep",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "waitlist",
+    "type": "registry:component",
+    "description": "A minimalistic waitlist component designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "waitlist",
+        "content": "",
+        "type": "registry:component"
+      }
+    ]
+  },
+  {
+    "name": "bridge",
+    "type": "registry:template",
+    "description": "A minimalistic bridge template designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "bridge",
+        "content": "",
+        "type": "registry:template"
+      }
+    ]
+  },
+  {
+    "name": "defi-dashboard",
+    "type": "registry:template",
+    "description": "A minimalistic defi dashboard template designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "defi-dashboard",
+        "content": "",
+        "type": "registry:template"
+      }
+    ]
+  },
+  {
+    "name": "nft-market",
+    "type": "registry:template",
+    "description": "A minimalistic nft market template designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "nft-market",
+        "content": "",
+        "type": "registry:template"
+      }
+    ]
+  },
+  {
+    "name": "stake",
+    "type": "registry:template",
+    "description": "A minimalistic stake template designed with React and Tailwind CSS.",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      {
+        "name": "stake",
+        "content": "",
+        "type": "registry:template"
+      }
+    ]
+  }
+]
