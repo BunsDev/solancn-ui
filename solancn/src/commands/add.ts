@@ -45,7 +45,7 @@ interface AddOptions {
 
 export const addComponent = new Command()
   .name("add")
-  .description("Add ui components to your project")
+  .description("Add Solancn components to your project")
   .argument("[components...]", "the components to add")
   .option("-y, --yes", "skip confirmation prompt.", true)
   .option("-o, --overwrite", "overwrite existing files.", false)

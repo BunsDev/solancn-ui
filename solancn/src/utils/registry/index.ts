@@ -21,7 +21,7 @@ import {
 } from "./mock-registry";
 
 // Temporarily use Shadcn UI registry as fallback when Solancn registry is unavailable
-const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://ui.shadcn.com";
+const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://ui.solancn.com";
 const shadcnBaseUrl = "https://ui.shadcn.com";
 
 type theTree = z.infer<typeof registryIndexSchema>;

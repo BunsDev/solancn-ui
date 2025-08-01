@@ -4,7 +4,7 @@ import { z } from "zod";
 
 import { logger } from "./logger";
 
-const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://ui.solancn.com";
+const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://ui.shadcn.com";
 
 const projectTemplatesSchema = z.object({
   repo: z.string(),
