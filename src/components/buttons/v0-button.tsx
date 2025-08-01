@@ -4,48 +4,10 @@ import { Loader2 } from "lucide-react";
 import * as React from "react";
 import { useFormStatus } from "react-dom";
 import { toast } from "sonner";
-import { editInV0 } from "@/actions/edit-in-v0";
 import { Button } from "@/components/ui/button";
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
-// import { Style } from "@/registry/registry-styles"
-
 type Size = "default" | "icon";
-
-function V0Tooltip({
-	size,
-	style = "default",
-	children,
-	// }: React.PropsWithChildren<{ size: Size; style?: Style["name"] }>) {
-}: React.PropsWithChildren<{ size: Size; style?: string }>) {
-	if (size === "default") {
-		return <>{children}</>;
-	}
-
-	return (
-		<Tooltip>
-			<TooltipTrigger asChild>
-				{style === "new-york" ? (
-					<span tabIndex={-1}>{children}</span>
-				) : (
-					<>{children}</>
-				)}
-			</TooltipTrigger>
-			<TooltipContent>
-				{style === "new-york" ? (
-					<>Not available in New York</>
-				) : (
-					<>Open in v0</>
-				)}
-			</TooltipContent>
-		</Tooltip>
-	);
-}
 
 export function V0Button({
 	name,
@@ -65,26 +27,16 @@ export function V0Button({
 		<form
 			action={async () => {
 				try {
-					const result = await editInV0({
-						name,
-						url,
-					});
-
-					if (result?.error) {
-						throw new Error(result.error);
-					}
-
-					if (result?.url) {
-						const popupOpened = window.open(result.url, "_blank");
-						if (!popupOpened) {
-							toast.warning("Pop-up window blocked.", {
-								description:
-									"Click the pop-up button in your browser to continue.",
+					const popupOpened = window.open("https://ui.solancn.com", "_blank");
+					if (!popupOpened) {
+						toast.warning("Pop-up window blocked.", {
+							description:
+								"Click the pop-up button in your browser to continue.",
 								duration: 5000,
 							});
 						}
 					}
-				} catch (error) {
+				catch (error) {
 					if (error instanceof Error) {
 						toast.error(error.message);
 					}
@@ -103,12 +55,11 @@ function Form({
 	const { pending } = useFormStatus();
 
 	return (
-		<V0Tooltip size={size}>
-			<Button aria-label="Open in v0" {...props}>
-				{size === "icon" ? (
-					<>
-						{pending ? (
-							<Loader2 className="h-3.5 w-3.5 animate-spin" />
+		<Button aria-label="Open in v0" {...props}>
+			{size === "icon" ? (
+				<>
+					{pending ? (
+						<Loader2 className="h-3.5 w-3.5 animate-spin" />
 						) : (
 							<V0Logo className="h-4 w-4" />
 						)}
@@ -120,7 +71,6 @@ function Form({
 					</>
 				)}
 			</Button>
-		</V0Tooltip>
 	);
 }
 

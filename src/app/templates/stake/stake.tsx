@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-export function StakeComponent() {
+export function Stake() {
 	return (
 		<Card className="w-[600px] md:w-full bg-black text-text border border-[#9945FF]/20">
 			<CardHeader className="border-b border-[#9945FF]/20">
@@ -153,10 +153,3 @@ export function StakeComponent() {
 		</Card>
 	);
 }
-
-export const stake = {
-	name: "stake",
-	components: {
-		Default: <StakeComponent />,
-	},
-};

@@ -145,7 +145,7 @@ export default function NotFound() {
 							</h2>
 							<p className="text-slate-600 dark:text-slate-300 text-lg max-w-md mx-auto">
 								Looks like you&apos;ve ventured into uncharted territory. This
-								page doesn&apos;t exist in the Solana ecosystem.
+								page doesn&apos;t exist in Solancn UI.
 							</p>
 						</motion.div>
 
