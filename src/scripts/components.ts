@@ -185,13 +185,6 @@ export const components: ComponentType[] = [
     dependencies: [],
   },
   {
-    name: "glitchvault",
-    title: "Glitchvault",
-    description: "A minimalistic glitchvault component designed with React and Tailwind CSS.",
-    path: "../app/components/glitchvault",
-    dependencies: [],
-  },
-  {
     name: "glow-button",
     title: "Glow Button",
     description: "A minimalistic glow button component designed with React and Tailwind CSS.",
@@ -315,13 +308,6 @@ export const components: ComponentType[] = [
     title: "Network",
     description: "A minimalistic network component designed with React and Tailwind CSS.",
     path: "../app/components/network",
-    dependencies: [],
-  },
-  {
-    name: "nftmarketplace",
-    title: "Nftmarketplace",
-    description: "A minimalistic nftmarketplace component designed with React and Tailwind CSS.",
-    path: "../app/components/nftmarketplace",
     dependencies: [],
   },
   {
@@ -479,17 +465,17 @@ export const components: ComponentType[] = [
     dependencies: [],
   },
   {
+    name: "transactions",
+    title: "Transactions",
+    description: "A minimalistic transactions component designed with React and Tailwind CSS.",
+    path: "../app/components/transactions",
+    dependencies: [],
+  },
+  {
     name: "twostep",
     title: "Twostep",
     description: "A minimalistic two-step verification component designed with React and Tailwind CSS.",
     path: "../app/components/twostep",
-    dependencies: [],
-  },
-  {
-    name: "video-text",
-    title: "Video Text",
-    description: "A minimalistic video text component designed with React and Tailwind CSS.",
-    path: "../app/components/video-text",
     dependencies: [],
   },
   {

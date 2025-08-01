@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import React from "react";
 import Header from "@/components/site/header";
 import { Footer } from "./_components/footer";
-import SolancnHome from "./_components/solancn-home";
+import SolancnHome from "./_components/home";
 
 // Force static generation for landing page
-// export const dynamic = "";
+export const dynamic = "force-static";
 // Force static generation for landing page
 export const metadata: Metadata = {
 	title: "Solancn UI - Modern React Component Library",

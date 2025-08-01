@@ -5,7 +5,11 @@ import { usePathname } from "next/navigation";
 import type React from "react";
 import { useState } from "react";
 import { ScrollArea } from "@/components/site/scroll-area";
-import { navigation } from "@/constants/navigation";
+import {
+	componentsNavigation,
+	docsNavigation,
+	templatesNavigation,
+} from "@/constants/navigation";
 import { cn } from "@/lib/utils";
 
 interface MenuItem {
@@ -17,7 +21,12 @@ interface MenuItem {
 
 // Transform the existing navigation data to match our new MenuItem interface
 const transformNavigation = () => {
-	return navigation.map((section) => ({
+	const allNavigation = [
+		...docsNavigation,
+		...componentsNavigation,
+		...templatesNavigation,
+	];
+	return allNavigation.map((section) => ({
 		label: section.label,
 		href: section.children[0]?.href || "#",
 		children: section.children.map((child) => ({

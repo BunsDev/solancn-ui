@@ -1,4 +1,5 @@
 import type React from "react";
+import type { RegistryItem } from "@/types/registry";
 
 export interface Component extends RegistryItem {
 	name: string;
@@ -15,10 +16,10 @@ export interface Component extends RegistryItem {
 	categoryColor?: string;
 }
 
-export interface Block extends RegistryItem {
+export interface Template extends RegistryItem {
 	name: string;
 	title: string;
-	type: "registry:block";
+	type: "registry:template";
 	preview: React.ReactNode;
 	description?: string;
 	category?: string;
@@ -87,30 +88,10 @@ export interface Category {
 	color: string;
 }
 
-// Registry item types
-export type RegistryItemType =
-	| "registry:component"
-	| "registry:block"
-	| "registry:ui"
-	| "registry:theme";
-
-// Registry item interface
-export interface RegistryItem {
-	name: string;
-	title: string;
-	type: RegistryItemType;
-	preview?: React.ReactNode;
-	description?: string;
-	category?: string;
-	tags?: string[];
-	dependencies?: string[];
-	files?: Record<string, string>;
-}
-
 // Registry data interface
 export interface RegistryData {
 	components?: Record<string, RegistryItem>;
-	blocks?: Record<string, RegistryItem>;
+	templates?: Record<string, RegistryItem>;
 	ui?: Record<string, RegistryItem>;
 	theme?: RegistryItem;
 }

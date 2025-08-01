@@ -72,19 +72,6 @@
 					"type": "image/png"
 				}
 			]
-		},
-		{
-			"name": "Tools",
-			"short_name": "Tools",
-			"description": "Design tools and utilities",
-			"url": "/tools",
-			"icons": [
-				{
-					"src": "/icon-tools.png",
-					"sizes": "96x96",
-					"type": "image/png"
-				}
-			]
 		}
 	]
 }

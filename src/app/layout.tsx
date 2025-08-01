@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import type * as React from "react";
-import "./globals.css";
-import { Analytics } from "@vercel/analytics/next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
+import type * as React from "react";
+import WalletContextProvider from "@/app/providers/wallet-provider";
 import { geistMono } from "@/assets/fonts";
 import { PerformanceMonitor } from "@/components/performance/performance-monitor";
 import { PackageManagerProvider } from "@/contexts/package-manager-context";
+
+import "./globals.css";
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -336,7 +337,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" className={inter.variable}>
+		<html lang="en" className={inter.variable} suppressHydrationWarning>
 			<head>
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<meta name="theme-color" content="#000000" />
@@ -429,7 +430,7 @@ export default function RootLayout({
 							operatingSystem: "Web",
 							browserRequirements: "Requires JavaScript. Requires HTML5.",
 							softwareVersion: "1.0.0",
-							datePublished: "2024-01-01",
+							datePublished: "2025-01-01",
 							dateModified: new Date().toISOString(),
 							offers: {
 								"@type": "Offer",
@@ -440,7 +441,7 @@ export default function RootLayout({
 							author: {
 								"@type": "Organization",
 								name: "Solancn UI Team",
-								url: "https://github.com/solancn",
+								url: "https://github.com/BunsDev",
 							},
 							creator: {
 								"@type": "Organization",
@@ -562,8 +563,6 @@ export default function RootLayout({
 			<body
 				className={`${inter.className} ${geistMono.variable} antialiased min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100`}
 			>
-				<Analytics />
-
 				{/* Performance Optimizations */}
 				{/* <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || ''}`}
@@ -592,10 +591,12 @@ export default function RootLayout({
         </Script> */}
 
 				<ThemeProvider attribute="class" defaultTheme="dark">
-					<PackageManagerProvider>
-						{children}
-						<PerformanceMonitor />
-					</PackageManagerProvider>
+					<WalletContextProvider>
+						<PackageManagerProvider>
+							{children}
+							<PerformanceMonitor />
+						</PackageManagerProvider>
+					</WalletContextProvider>
 				</ThemeProvider>
 			</body>
 		</html>

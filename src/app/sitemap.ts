@@ -59,7 +59,6 @@ const componentCategories = {
 		"spotlightcard",
 	],
 	"Specialized Components": [
-		"nftmarketplace",
 		"amazongift",
 		"codeprofile",
 		"pattern",
@@ -116,37 +115,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
 					: 0.7,
 		}));
 
-	// Tools and utilities
-	const toolPages = [
-		{
-			url: `${baseUrl}/tools`,
-			lastModified: currentDate,
-			changeFrequency: "monthly" as const,
-			priority: 0.6,
-		},
-	];
-
 	// Additional important pages
 	const additionalPages = [
-		{
-			url: `${baseUrl}/examples`,
-			lastModified: currentDate,
-			changeFrequency: "monthly" as const,
-			priority: 0.6,
-		},
 		{
 			url: `${baseUrl}/templates`,
 			lastModified: currentDate,
 			changeFrequency: "monthly" as const,
 			priority: 0.6,
 		},
-		{
-			url: `${baseUrl}/showcase`,
-			lastModified: currentDate,
-			changeFrequency: "monthly" as const,
-			priority: 0.5,
-		},
 	];
 
-	return [...corePages, ...componentPages, ...toolPages, ...additionalPages];
+	return [...corePages, ...componentPages, ...additionalPages];
 }

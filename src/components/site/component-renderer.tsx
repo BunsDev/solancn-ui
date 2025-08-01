@@ -40,10 +40,10 @@ export function ComponentRenderer({
 		<div
 			ref={containerRef}
 			className={cn(
-				"group flex w-full items-center justify-center rounded-lg p-4 relative not-prose grid-bg bg-white dark:bg-black",
+				"group flex w-full items-center justify-center rounded-md p-4 relative not-prose grid-bg bg-background",
 				isFullPage
-					? "fixed inset-0 top-16 z-50 min-h-screen rounded-none overflow-auto"
-					: "min-h-[350px]",
+					? "fixed inset-0 top-16 z-50 min-h-screen rounded-none overflow-auto mx-auto"
+					: "min-h-[450px]",
 				className,
 			)}
 		>

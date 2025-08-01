@@ -8,7 +8,7 @@ type NavigationItem = {
 	children: NavigationChild[];
 };
 
-export const navigation: NavigationItem[] = [
+export const docsNavigation: NavigationItem[] = [
 	{
 		label: "Getting Started",
 		children: [
@@ -16,24 +16,18 @@ export const navigation: NavigationItem[] = [
 			{ label: "Installation", href: "/docs/installation" },
 		],
 	},
+];
+export const componentsNavigation: NavigationItem[] = [
 	{
 		label: "Components",
 		children: [
-			{ label: "Loaders", href: "/components/loaders" },
-			{ label: "Patterns Collection", href: "/components/pattern" },
-			{ label: "Color Palette", href: "/components/colorpalette" },
-			{ label: "Gradient", href: "/components/gradientgen" },
-			{ label: "SVG Icons", href: "/components/svg-icons" },
 			{ label: "Marquee", href: "/components/marquee" },
-			{ label: "Code Profile", href: "/components/codeprofile" },
-			{ label: "Portfolio", href: "/components/portfolio" },
-			{ label: "Orbiting Circles", href: "/components/integrations" },
+			{ label: "Portfolio", href: "/components/portfolio" }, // √
+			{ label: "Integrations", href: "/components/integrations" },
 			{ label: "Network", href: "/components/network" },
-			{ label: "Video Text", href: "/components/video-text" },
 			{ label: "Image Swiper", href: "/components/imageswiper" },
 			{ label: "Divider", href: "/components/divider" },
 			{ label: "Noise", href: "/components/noise" },
-			{ label: "GlitchVault Card", href: "/components/glitchvault" },
 		],
 	},
 	{
@@ -47,6 +41,7 @@ export const navigation: NavigationItem[] = [
 			{ label: "Drawer", href: "/components/drawer" },
 		],
 	},
+
 	{
 		label: "Badge & Toast",
 		children: [
@@ -115,7 +110,18 @@ export const navigation: NavigationItem[] = [
 			{ label: "Gradient", href: "/components/gradient" },
 			{ label: "Spotlight Card", href: "/components/spotlightcard" },
 			{ label: "Multi Select", href: "/components/multiselector" },
-			{ label: "NFT Marketplace", href: "/components/nftmarketplace" },
+		],
+	},
+	{
+		label: "Designs",
+		children: [
+			{ label: "Marquee", href: "/components/marquee" },
+			{ label: "Portfolio", href: "/components/portfolio" },
+			{ label: "Integrations", href: "/components/integrations" },
+			{ label: "Network", href: "/components/network" },
+			{ label: "Image Swiper", href: "/components/imageswiper" },
+			{ label: "Divider", href: "/components/divider" },
+			{ label: "Noise", href: "/components/noise" },
 		],
 	},
 	{
@@ -141,6 +147,27 @@ export const navigation: NavigationItem[] = [
 			{ label: "Testimonial", href: "/components/testimonial" },
 			{ label: "Forgot Password", href: "/components/forgotpassword" },
 			{ label: "Team Member", href: "/components/teammember" },
+		],
+	},
+];
+
+export const templatesNavigation: NavigationItem[] = [
+	{
+		label: "Templates",
+		children: [
+			{ label: "NFT Market", href: "/templates/nft-market" },
+			{ label: "Bridge", href: "/templates/bridge" },
+			{ label: "Stake", href: "/templates/stake" },
+			// { label: "Wallet", href: "/templates/wallet" },
+			// { label: "Trading View", href: "/templates/tradingview" },
+			// { label: "Portfolio View", href: "/templates/portfolio-view" },
+
+			// { label: "Lending Market", href: "/templates/lendingmarket" },
+			{ label: "DeFi Dashboard", href: "/templates/defi-dashboard" },
+			// { label: "DeFi Portfolio", href: "/templates/defiportfolio" },
+
+			// { label: "NFT Gallery", href: "/templates/nftgallery" },
+			// { label: "NFT Collection", href: "/templates/nftcollection" },
 		],
 	},
 ];

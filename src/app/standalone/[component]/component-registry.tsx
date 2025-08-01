@@ -53,14 +53,10 @@ import Header from "@/app/components/navbar/header";
 import Header2 from "@/app/components/navbar/header2";
 import Navbar from "@/app/components/navbar/navbar";
 import Network from "@/app/components/network/network";
-import NftMarketplace from "@/app/components/nftmarketplace/nftmarketplace";
 import PasswordInput from "@/app/components/password/password";
 import StrongPassword from "@/app/components/password/strongPassword";
 import CoderProfileCard from "@/app/components/portfolio/portfolio";
 import Portfolio2Page from "@/app/components/portfolio/portfolio2";
-import Portfolio3Page from "@/app/components/portfolio/portfolio3";
-import Portfolio4Page from "@/app/components/portfolio/portfolio4";
-import PortfolioHero from "@/app/components/portfolio/portfolio5";
 import Pricing from "@/app/components/pricing/pricing";
 import Pricing2 from "@/app/components/pricing/pricing2";
 import SimplePricing from "@/app/components/pricing/pricing3";
@@ -76,6 +72,12 @@ import Testimonial2 from "@/app/components/testimonial/testimonial2";
 import TextReveal from "@/app/components/textreveal/textreveal";
 import ToastView from "@/app/components/toast/toast-view";
 import TwoStep from "@/app/components/twostep/twostep";
+
+// √
+import { NFTMarket } from "@/app/templates/nft-market/nft-market";
+import { Stake } from "@/app/templates/stake/stake";
+import { DefiDashboard } from "@/app/templates/defi-dashboard/defi-dashboard";
+import { Bridge } from "@/app/templates/bridge/bridge";
 
 // Component registry mapping component names to their view components
 export const ComponentRegistry: Record<string, React.ComponentType> = {
@@ -154,13 +156,14 @@ export const ComponentRegistry: Record<string, React.ComponentType> = {
 	"hero-2": Hero2,
 	CoderProfileCard: CoderProfileCard,
 	Portfolio2Page: Portfolio2Page,
-	Portfolio3Page: Portfolio3Page,
-	NftMarketplace: NftMarketplace,
 	ImageCarousel: ImageCarousel,
-	Portfolio4Page: Portfolio4Page,
-	PortfolioHero: PortfolioHero,
 	CarouselCards: CarouselCards,
 	AccordionSection: AccordionSection,
 	BentoGridCom: BentoGridCom,
-	// Add more components here...
+
+	// TEMPLATES //
+	NFTMarket: NFTMarket,
+	Stake: Stake,
+	DefiDashboard: DefiDashboard,
+	Bridge: Bridge,
 };

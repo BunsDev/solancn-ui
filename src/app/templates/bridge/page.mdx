@@ -1,0 +1,29 @@
+import { CodeBlock } from "@/components/site/code-block";
+import { ComponentRenderer } from "@/components/site/component-renderer";
+import { Cli } from "@/components/site/cli";
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@/components/site/tabs.tsx";
+import { HideTOC } from "@/components/site/hide-toc";
+import { Bridge } from "@/app/templates/bridge/bridge";
+
+<HideTOC />
+
+# Solana Cross-Chain Bridge
+A responsive bridge interface for transferring assets between Solana and other blockchains with support for deposits, withdrawals, and transaction tracking.
+
+<Tabs defaultValue="preview" className="">
+  <TabsList>
+    <TabsTrigger value="preview">Preview</TabsTrigger>
+    <TabsTrigger value="code">Code</TabsTrigger>
+  </TabsList>
+  <TabsContent value="preview">
+    <ComponentRenderer component={<Bridge />} componentName="Bridge" />
+  </TabsContent>
+  <TabsContent value="code">
+    <CodeBlock filePath="src/app/templates/bridge/bridge.tsx" />
+  </TabsContent>
+</Tabs>

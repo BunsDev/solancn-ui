@@ -1,5 +1,10 @@
-import { navigation } from "@/constants/navigation";
+import {
+	componentsNavigation,
+	docsNavigation,
+	templatesNavigation,
+} from "@/constants/navigation";
 import { components } from "@/scripts/components";
+import type { NavigationChild, NavigationItem } from "@/types/navigation";
 
 export interface SearchableItem {
 	id: string;
@@ -14,17 +19,24 @@ export interface SearchableItem {
 function getNavigationItems(): SearchableItem[] {
 	const items: SearchableItem[] = [];
 
-	navigation.forEach((section) => {
-		section.children.forEach((child) => {
-			items.push({
-				id: `nav-${child.href}`,
-				title: child.label,
-				description: `${section.label} - ${child.label}`,
-				href: child.href,
-				category: section.label,
-				keywords: [child.label.toLowerCase(), section.label.toLowerCase()],
+	const allNavigation = [
+		...componentsNavigation,
+		...docsNavigation,
+		...templatesNavigation,
+	];
+	allNavigation.forEach((section: NavigationItem) => {
+		if (section.children) {
+			section.children.forEach((child: NavigationChild) => {
+				items.push({
+					id: `nav-${child.href}`,
+					title: child.label,
+					description: `${section.label} - ${child.label}`,
+					href: child.href || "#",
+					category: section.label,
+					keywords: [child.label.toLowerCase(), section.label.toLowerCase()],
+				});
 			});
-		});
+		}
 	});
 
 	return items;

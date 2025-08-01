@@ -148,7 +148,6 @@ export const seoConfig = {
 		"Specialized Components": {
 			description: "Specialized components for specific use cases",
 			components: [
-				"nftmarketplace",
 				"amazongift",
 				"codeprofile",
 				"pattern",
@@ -182,10 +181,10 @@ export const seoConfig = {
 			url: "https://ui.solancn.com",
 			logo: "https://ui.solancn.com/logo.png",
 			description: "Modern React component library for developers",
-			foundingDate: "2024",
+			foundingDate: "2025",
 			address: {
 				"@type": "PostalAddress",
-				addressCountry: "BD",
+				addressCountry: "USA",
 			},
 		},
 

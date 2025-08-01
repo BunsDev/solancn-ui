@@ -68,7 +68,7 @@ const frameworks = [
 
 export default function Install() {
 	return (
-		<div className="flex flex-col gap-6">
+		<div className="flex flex-col gap-6 w-full">
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 				{frameworks.map((fw) => (
 					<a
@@ -76,7 +76,7 @@ export default function Install() {
 						href={fw.url}
 						target="_blank"
 						rel="noopener noreferrer"
-						className="group rounded-2xl p-6 flex flex-col items-center justify-center transition-all duration-300 bg-white/30 dark:bg-zinc-900/40 backdrop-blur-md border border-zinc-200/60 dark:border-zinc-700/60 shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.03] ring-1 ring-zinc-100/40 dark:ring-zinc-800/40 hover:ring-2 hover:ring-blue-300/40 dark:hover:ring-blue-400/40"
+						className="group rounded-2xl p-4 flex flex-col items-center justify-center transition-all duration-300 bg-white/30 dark:bg-zinc-900/40 backdrop-blur-md border border-zinc-200/60 dark:border-zinc-700/60 shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.03] ring-1 ring-zinc-100/40 dark:ring-zinc-800/40 hover:ring-2 hover:ring-blue-300/40 dark:hover:ring-blue-400/40"
 						style={{ boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.10)" }}
 					>
 						<span className="flex items-center justify-center mb-2">
@@ -90,7 +90,7 @@ export default function Install() {
 					</a>
 				))}
 			</div>
-			<div className="flex justify-end">
+			{/* <div className="flex justify-end">
 				<a
 					href="https://ui.shadcn.com/docs/installation"
 					target="_blank"
@@ -99,7 +99,7 @@ export default function Install() {
 				>
 					See all installation guides →
 				</a>
-			</div>
+			</div> */}
 		</div>
 	);
 }
