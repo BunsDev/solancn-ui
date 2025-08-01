@@ -39,7 +39,7 @@ export async function getRegistryIndexSolancn(env?: boolean) {
     }
   } catch (error) {
     console.error(error);
-    throw new Error("Failed to fetch components from SolancnUI registry. Check if https://ui.solancn.com is accessible or use --registry flag to specify an alternative.");
+    throw new Error(`Failed to fetch components from SolancnUI registry. Check if ${baseUrl} is accessible.`);
   }
 }
 

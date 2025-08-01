@@ -13,40 +13,34 @@ const CLI_PATH = path.resolve(__dirname, '../dist/index.js');
 const TEMP_TEST_DIR = path.join(os.tmpdir(), 'solancn-test-' + Date.now());
 
 // Mock registry server state
-let mockServer: http.Server;
-let mockRegistryUrl = 'http://localhost:3333'; // Default value before initialization
+let mockServer: { server: http.Server; url: string };
+const mockRegistryUrl = 'http://localhost:3333'; // Default URL for mock registry
 
 // Helper function to run CLI commands
 async function runCommand(args: string[], cwd: string = TEMP_TEST_DIR) {
   try {
-    // For commands that support the registry flag (add, init), explicitly add it
-    let finalArgs = [...args];
-    const commandsWithRegistry = ['add', 'init'];
+    // Ensure we have a registry URL (either from mock server or default)
+    const registryUrl = mockServer?.url || mockRegistryUrl;
+    console.log(`Running command: node ${CLI_PATH} ${args.join(' ')}`);
+    console.log(`Using registry URL: ${registryUrl}`);
     
-    // Only add the registry flag for commands that support it
-    const mainCommand = args[0];
-    if (commandsWithRegistry.includes(mainCommand)) {
-      // Check if --registry flag is already included
-      if (!args.includes('--registry')) {
-        finalArgs.push('--registry', mockRegistryUrl);
-      }
-    }
-    
-    console.log(`Running command: node ${CLI_PATH} ${finalArgs.join(' ')}`);
-    const { stdout } = await execa('node', [CLI_PATH, ...finalArgs], {
+    // Run with environment variables for registry
+    const { stdout } = await execa('node', [CLI_PATH, ...args], { 
       cwd,
       env: {
-        // Still set the env var as backup
-        COMPONENTS_REGISTRY_URL: mockRegistryUrl,
-        // Disable prompts for tests
+        ...process.env,
+        // Point to our mock server
+        COMPONENTS_REGISTRY_URL: registryUrl,
+        // Disable prompts
         CI: 'true',
-        // Force yes to all prompts
         FORCE_YES: 'true'
-      },
+      }
     });
     return { success: true, stdout };
   } catch (error: any) {
     console.error(`Command failed: ${error.message}`);
+    console.log('Command stdout:', error.stdout || 'none');
+    console.log('Command stderr:', error.stderr || 'none');
     return { 
       success: false, 
       stdout: error.stdout || '',
@@ -220,14 +214,19 @@ function cleanupTestProject() {
 describe('Solancn CLI', () => {
   // Setup and teardown
   beforeAll(async () => {
-    // Start mock registry server
     try {
-      const mockServerData = await startMockServer();
-      mockServer = mockServerData.server;
-      mockRegistryUrl = mockServerData.url;
-      console.log(`Mock registry server started at ${mockRegistryUrl}`);
+      // Start mock registry server
+      mockServer = await startMockServer();
+      console.log(`Mock registry server started at ${mockServer.url}`);
       
-      // Create test project
+      // Set environment variable globally for all tests
+      process.env.COMPONENTS_REGISTRY_URL = mockServer.url;
+      console.log(`Setting COMPONENTS_REGISTRY_URL=${mockServer.url} for all tests`);
+      
+      // Create a clean temporary directory for tests
+      fs.mkdirSync(TEMP_TEST_DIR, { recursive: true });
+      
+      // Create test project structure
       await createTestProject();
     } catch (error) {
       console.error('Test setup failed:', error);
@@ -241,7 +240,8 @@ describe('Solancn CLI', () => {
     
     // Stop mock registry server
     if (mockServer) {
-      await stopMockServer(mockServer);
+      await stopMockServer(mockServer.server);
+      console.log('Mock registry server stopped');
     }
   }, 10000); // Increase timeout for teardown
   

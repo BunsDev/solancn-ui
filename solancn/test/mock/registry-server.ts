@@ -15,8 +15,12 @@ export function startMockServer(port = 3333) {
       res.setHeader('Content-Type', 'application/json');
       res.writeHead(200);
       
-      // Handle different paths
-      if (req.url === '/registry.json' || req.url === '/r/index.json') {
+      // Log all incoming requests to debug
+      console.log(`Mock server received request: ${req.url}`);
+      
+      // Handle different paths - expanded to catch all common registry request patterns
+      if (req.url === '/registry.json' || req.url === '/r/index.json' || 
+          req.url === '/index.json' || req.url === '/registry/index.json') {
         res.end(mockRegistry);
       } else if (req.url?.includes('components/ui/')) {
         // Extract component name from URL
