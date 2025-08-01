@@ -73,6 +73,8 @@ async function runCommand(args: string[], cwd: string = TEMP_TEST_DIR) {
         COMPONENTS_REGISTRY_URL: 'https://ui.solancn.com',
         // Auto-accept prompts for testing
         CI: 'true',
+        // Add NODE_ENV as required by ProcessEnv type
+        NODE_ENV: process.env.NODE_ENV || 'test',
       },
     });
     return { success: true, stdout };
