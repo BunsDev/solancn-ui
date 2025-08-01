@@ -86,7 +86,7 @@ export const Cli = ({ command }: CliProps) => {
 				/>
 			</div>
 
-			<div className="text-sm text-left font-mono text-nowrap font-medium bg-white dark:bg-zinc-950 py-4 overflow-x-auto max-w-full min-w-0">
+			<div className="m-2 text-sm text-left font-mono text-nowrap font-medium bg-white dark:bg-zinc-950 py-4 overflow-x-auto max-w-full min-w-0">
 				<span className="text-amber-400">{PM_COMMANDS[pm]}</span>{" "}
 				<span className="text-teal-500">shadcn@latest</span>{" "}
 				<span className="text-zinc-700 dark:text-zinc-300">{finalCommand}</span>
