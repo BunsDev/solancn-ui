@@ -10,21 +10,21 @@ export const mockIndexDataObject = {
     type: "components:ui",
     dependencies: ["@radix-ui/react-slot"],
     registryDependencies: [],
-    files: ["button.tsx"]
+    files: ["button.tsx"],
   },
   card: {
     name: "card",
     type: "components:ui",
     registryDependencies: [],
-    files: ["card.tsx"]
+    files: ["card.tsx"],
   },
   tabs: {
     name: "tabs",
     type: "components:ui",
     dependencies: ["@radix-ui/react-tabs"],
     registryDependencies: [],
-    files: ["tabs.tsx"]
-  }
+    files: ["tabs.tsx"],
+  },
 };
 
 // Array format (used by most functions)
@@ -34,27 +34,27 @@ export const mockIndexData = [
     type: "components:ui",
     dependencies: ["@radix-ui/react-slot"],
     registryDependencies: [],
-    files: ["button.tsx"]
+    files: ["button.tsx"],
   },
   {
     name: "card",
     type: "components:ui",
     registryDependencies: [],
-    files: ["card.tsx"]
+    files: ["card.tsx"],
   },
   {
     name: "tabs",
     type: "components:ui",
     dependencies: ["@radix-ui/react-tabs"],
     registryDependencies: [],
-    files: ["tabs.tsx"]
-  }
+    files: ["tabs.tsx"],
+  },
 ];
 
 export const mockStylesData = [
   { name: "default", label: "Default" },
   { name: "new-york", label: "New York" },
-  { name: "zinc", label: "Zinc" }
+  { name: "zinc", label: "Zinc" },
 ];
 
 export const mockRegistryItem = {
@@ -117,9 +117,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   }
 )
 Button.displayName = "Button"
-`
-    }
-  ]
+`,
+    },
+  ],
 };
 
 export const mockBaseColor = {
@@ -135,7 +135,7 @@ export const mockBaseColor = {
       "700": "rgb(51 65 85)",
       "800": "rgb(30 41 59)",
       "900": "rgb(15 23 42)",
-      "950": "rgb(2 6 23)"
+      "950": "rgb(2 6 23)",
     },
     dark: {
       "50": "rgb(248 250 252)",
@@ -148,19 +148,21 @@ export const mockBaseColor = {
       "700": "rgb(51 65 85)",
       "800": "rgb(30 41 59)",
       "900": "rgb(15 23 42)",
-      "950": "rgb(2 6 23)"
-    }
+      "950": "rgb(2 6 23)",
+    },
   },
   cssVars: {
     light: {
-      "primary": "var(--primary)",
-      "primary-foreground": "var(--primary-foreground)"
+      primary: "var(--primary)",
+      "primary-foreground": "var(--primary-foreground)",
     },
     dark: {
-      "primary": "var(--primary)",
-      "primary-foreground": "var(--primary-foreground)"
-    }
+      primary: "var(--primary)",
+      "primary-foreground": "var(--primary-foreground)",
+    },
   },
-  inlineColorsTemplate: "--primary: {{ colors.slate.500 }}; --primary-foreground: {{ colors.slate.50 };",
-  cssVarsTemplate: "--primary: {{ colors.slate.500 }}; --primary-foreground: {{ colors.slate.50 };"
+  inlineColorsTemplate:
+    "--primary: {{ colors.slate.500 }}; --primary-foreground: {{ colors.slate.50 };",
+  cssVarsTemplate:
+    "--primary: {{ colors.slate.500 }}; --primary-foreground: {{ colors.slate.50 };",
 };

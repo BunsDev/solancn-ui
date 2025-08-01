@@ -12,12 +12,12 @@ import fetch from "node-fetch";
 import { z } from "zod";
 
 // Import mock data for testing
-import { 
+import {
   mockIndexData,
   mockIndexDataObject,
   mockStylesData,
   mockRegistryItem,
-  mockBaseColor 
+  mockBaseColor,
 } from "./mock-registry";
 
 // Temporarily use Shadcn UI registry as fallback when Solancn registry is unavailable
@@ -32,26 +32,28 @@ const agent = process.env.https_proxy
 
 export async function getRegistryIndexSolancn(env?: boolean) {
   // Use mock data when in test mode
-  if (process.env.TEST_MODE === 'true') {
+  if (process.env.TEST_MODE === "true") {
     // For init command: return object format, for other commands: return array format
     const args = process.argv.slice(2);
-    if (args[0] === 'init') {
+    if (args[0] === "init") {
       return registryIndexSchema.parse(mockIndexDataObject);
     } else {
       return registryIndexSchema.parse(mockIndexData);
     }
   }
-  
+
   try {
     const [result] = await fetchRegistry(["index.json"], baseUrl);
 
     // Check if result is an object (new format) or array (old format)
-    if (result && typeof result === 'object' && !Array.isArray(result)) {
+    if (result && typeof result === "object" && !Array.isArray(result)) {
       // Convert object format to array format required by the CLI
-      const registryArray = Object.entries(result as Record<string, any>).map(([key, value]) => {
-        return { ...value, name: key };
-      });
-      
+      const registryArray = Object.entries(result as Record<string, any>).map(
+        ([key, value]) => {
+          return { ...value, name: key };
+        },
+      );
+
       return registryIndexSchema.parse(registryArray);
     } else {
       // Handle case where result is already an array (fallback)
@@ -59,29 +61,33 @@ export async function getRegistryIndexSolancn(env?: boolean) {
     }
   } catch (error) {
     console.error(error);
-    throw new Error(`Failed to fetch components from SolancnUI registry. Check if ${baseUrl} is accessible.`);
+    throw new Error(
+      `Failed to fetch components from SolancnUI registry. Check if ${baseUrl} is accessible.`,
+    );
   }
 }
 
 export async function getRegistryIndexShadcn() {
   // Use mock data when in test mode
-  if (process.env.TEST_MODE === 'true') {
+  if (process.env.TEST_MODE === "true") {
     return registryIndexSchema.parse(mockIndexData);
   }
-  
+
   try {
     const [result] = await fetchRegistry(["index.json"], shadcnBaseUrl);
 
     return registryIndexSchema.parse(result);
   } catch (error) {
     console.error(error);
-    throw new Error("Failed to fetch components from ShadcnUI registry. Check if https://ui.shadcn.com is accessible or use --registry flag to specify an alternative.");
+    throw new Error(
+      "Failed to fetch components from ShadcnUI registry. Check if https://ui.shadcn.com is accessible or use --registry flag to specify an alternative.",
+    );
   }
 }
 
 export async function getRegistryStyles() {
   // Use mock data when in test mode
-  if (process.env.TEST_MODE === 'true') {
+  if (process.env.TEST_MODE === "true") {
     return stylesSchema.parse(mockStylesData);
   }
 
@@ -121,7 +127,7 @@ export async function getRegistryBaseColors() {
 
 export async function getRegistryBaseColor(baseColor: string) {
   // Use mock data when in test mode
-  if (process.env.TEST_MODE === 'true') {
+  if (process.env.TEST_MODE === "true") {
     return registryBaseColorSchema.parse(mockBaseColor);
   }
 
@@ -286,19 +292,20 @@ export async function getItemTargetPath(
   }
 
   // Get the path from resolvedPaths, ensuring it's a string
-  const parentPath = config.resolvedPaths[parent as keyof typeof config.resolvedPaths];
-  
+  const parentPath =
+    config.resolvedPaths[parent as keyof typeof config.resolvedPaths];
+
   // Check if parentPath is defined before joining
   if (!parentPath) {
     return null;
   }
-  
-return path.join(parentPath, type);
+
+  return path.join(parentPath, type);
 }
 
 async function fetchRegistry(paths: string[], fetchBaseUrl = baseUrl) {
   // Use mock data when in test mode
-  if (process.env.TEST_MODE === 'true') {
+  if (process.env.TEST_MODE === "true") {
     return paths.map(() => mockRegistryItem);
   }
 

@@ -117,10 +117,18 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
       components,
       ui,
       solancn,
-      templates: config.aliases.templates ? await resolveImport(config.aliases.templates, tsConfig) : `${components}/templates`,
-      docs: config.aliases.docs ? await resolveImport(config.aliases.docs, tsConfig) : undefined,
-      lib: config.aliases.lib ? await resolveImport(config.aliases.lib, tsConfig) : undefined,
-      hooks: config.aliases.hooks ? await resolveImport(config.aliases.hooks, tsConfig) : undefined,
+      templates: config.aliases.templates
+        ? await resolveImport(config.aliases.templates, tsConfig)
+        : `${components}/templates`,
+      docs: config.aliases.docs
+        ? await resolveImport(config.aliases.docs, tsConfig)
+        : undefined,
+      lib: config.aliases.lib
+        ? await resolveImport(config.aliases.lib, tsConfig)
+        : undefined,
+      hooks: config.aliases.hooks
+        ? await resolveImport(config.aliases.hooks, tsConfig)
+        : undefined,
       iconLibrary: config.iconLibrary,
     },
   };
