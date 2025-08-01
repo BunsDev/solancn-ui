@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { type Event, trackEvent } from "@/lib/events";
 import { cn } from "@/lib/utils";
-import type { NpmCommands } from "@/types/unist";
 
 interface CopyButtonProps {
 	value: string;
@@ -129,7 +128,7 @@ export function CopyWithClassNames({
 }
 
 interface CopyNpmCommandButtonProps extends DropdownMenuTriggerProps {
-	commands: Required<NpmCommands>;
+	commands: Required<{ __npmCommand__: string; __yarnCommand__: string; __pnpmCommand__: string; __bunCommand__: string }>;
 }
 
 export function CopyNpmCommandButton({
