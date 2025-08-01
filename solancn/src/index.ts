@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { add } from "./commands/add";
+import { addComponent } from "./commands/add";
 import { init } from "./commands/init";
 import { Command } from "commander";
 
@@ -28,7 +28,7 @@ async function main() {
       "display the version number",
     );
 
-  program.addCommand(init).addCommand(add);
+  program.addCommand(init).addCommand(addComponent);
 
   // .addCommand(auth).addCommand(project);
 

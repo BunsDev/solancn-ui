@@ -6,12 +6,6 @@
   "author": "Reche Soares",
   "type": "registry:component",
   "dependencies": [],
-  "devDependencies": [],
-  "registryDependencies": [],
-  "cssVars": {
-    "dark": {},
-    "light": {}
-  },
   "files": [
     {
       "path": "ticker.tsx",
@@ -22,6 +16,17 @@
       "path": "ticker.tsx",
       "content": "\"use client\";\nimport type React from \"react\";\nimport { useEffect, useState } from \"react\";\n\ninterface NumberTickerProps {\n\tvalue: number;\n\tduration?: number;\n\tdelay?: number;\n\tdecimalPlaces?: number;\n\tprefix?: string;\n\tsuffix?: string;\n\tclassName?: string;\n\tonComplete?: () => void;\n}\n\nconst NumberTicker: React.FC<NumberTickerProps> = ({\n\tvalue,\n\tduration = 2000,\n\tdelay = 0,\n\tdecimalPlaces = 0,\n\tprefix = \"\",\n\tsuffix = \"\",\n\tclassName = \"\",\n\tonComplete,\n}) => {\n\tconst [displayValue, setDisplayValue] = useState(0);\n\n\tuseEffect(() => {\n\t\tlet animationId: number;\n\n\t\tconst startAnimation = () => {\n\t\t\tconst startTime = performance.now();\n\t\t\tconst startValue = 0; // Always start from 0\n\n\t\t\tconst animate = (currentTime: number) => {\n\t\t\t\tconst elapsed = currentTime - startTime;\n\t\t\t\tconst progress = Math.min(elapsed / duration, 1);\n\n\t\t\t\t// Smooth easing function\n\t\t\t\tconst easeOutQuart = 1 - (1 - progress) ** 4;\n\t\t\t\tconst currentValue = startValue + (value - startValue) * easeOutQuart;\n\n\t\t\t\tsetDisplayValue(currentValue);\n\n\t\t\t\tif (progress < 1) {\n\t\t\t\t\tanimationId = requestAnimationFrame(animate);\n\t\t\t\t} else {\n\t\t\t\t\tonComplete?.();\n\t\t\t\t}\n\t\t\t};\n\n\t\t\tanimationId = requestAnimationFrame(animate);\n\t\t};\n\n\t\tconst timeoutId: number = window.setTimeout(startAnimation, delay);\n\n\t\treturn () => {\n\t\t\tif (animationId) cancelAnimationFrame(animationId);\n\t\t\tif (timeoutId) clearTimeout(timeoutId);\n\t\t};\n\t}, [value, duration, delay, onComplete]);\n\n\tconst formatNumber = (num: number): string => {\n\t\treturn num.toFixed(decimalPlaces).replace(/\\B(?=(\\d{3})+(?!\\d))/g, \",\");\n\t};\n\n\treturn (\n\t\t<span className={`inline-block ${className}`}>\n\t\t\t{prefix}\n\t\t\t{formatNumber(displayValue)}\n\t\t\t{suffix}\n\t\t</span>\n\t);\n};\n\nexport default NumberTicker;\n",
       "type": "registry:component"
+    },
+    {
+      "path": "ticker",
+      "content": "\"use client\";\nimport type React from \"react\";\nimport { useEffect, useState } from \"react\";\n\ninterface NumberTickerProps {\n\tvalue: number;\n\tduration?: number;\n\tdelay?: number;\n\tdecimalPlaces?: number;\n\tprefix?: string;\n\tsuffix?: string;\n\tclassName?: string;\n\tonComplete?: () => void;\n}\n\nconst NumberTicker: React.FC<NumberTickerProps> = ({\n\tvalue,\n\tduration = 2000,\n\tdelay = 0,\n\tdecimalPlaces = 0,\n\tprefix = \"\",\n\tsuffix = \"\",\n\tclassName = \"\",\n\tonComplete,\n}) => {\n\tconst [displayValue, setDisplayValue] = useState(0);\n\n\tuseEffect(() => {\n\t\tlet animationId: number;\n\n\t\tconst startAnimation = () => {\n\t\t\tconst startTime = performance.now();\n\t\t\tconst startValue = 0; // Always start from 0\n\n\t\t\tconst animate = (currentTime: number) => {\n\t\t\t\tconst elapsed = currentTime - startTime;\n\t\t\t\tconst progress = Math.min(elapsed / duration, 1);\n\n\t\t\t\t// Smooth easing function\n\t\t\t\tconst easeOutQuart = 1 - (1 - progress) ** 4;\n\t\t\t\tconst currentValue = startValue + (value - startValue) * easeOutQuart;\n\n\t\t\t\tsetDisplayValue(currentValue);\n\n\t\t\t\tif (progress < 1) {\n\t\t\t\t\tanimationId = requestAnimationFrame(animate);\n\t\t\t\t} else {\n\t\t\t\t\tonComplete?.();\n\t\t\t\t}\n\t\t\t};\n\n\t\t\tanimationId = requestAnimationFrame(animate);\n\t\t};\n\n\t\tconst timeoutId: number = window.setTimeout(startAnimation, delay);\n\n\t\treturn () => {\n\t\t\tif (animationId) cancelAnimationFrame(animationId);\n\t\t\tif (timeoutId) clearTimeout(timeoutId);\n\t\t};\n\t}, [value, duration, delay, onComplete]);\n\n\tconst formatNumber = (num: number): string => {\n\t\treturn num.toFixed(decimalPlaces).replace(/\\B(?=(\\d{3})+(?!\\d))/g, \",\");\n\t};\n\n\treturn (\n\t\t<span className={`inline-block ${className}`}>\n\t\t\t{prefix}\n\t\t\t{formatNumber(displayValue)}\n\t\t\t{suffix}\n\t\t</span>\n\t);\n};\n\nexport default NumberTicker;\n",
+      "type": "registry:component"
     }
-  ]
+  ],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "cssVars": {
+    "dark": {},
+    "light": {}
+  }
 }

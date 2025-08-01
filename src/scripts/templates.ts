@@ -23,6 +23,14 @@ export const templates: TemplateType[] = [
     type: "registry:template",
     path: "../app/templates/bridge",
     dependencies: [],
+    files: [
+      {
+        path: "../app/templates/bridge",
+        name: "bridge",
+        content: "",
+        type: "registry:template",
+      },
+    ],
   },
   {
     name: "defi-dashboard",
@@ -31,6 +39,14 @@ export const templates: TemplateType[] = [
     type: "registry:template",
     path: "../app/templates/defi-dashboard",
     dependencies: [],
+    files: [
+      {
+        path: "../app/templates/defi-dashboard",
+        name: "defi-dashboard",
+        content: "",
+        type: "registry:template",
+      },
+    ],
   },
   {
     name: "nft-market",
@@ -39,6 +55,14 @@ export const templates: TemplateType[] = [
     type: "registry:template",
     path: "../app/templates/nft-market",
     dependencies: [],
+    files: [
+      {
+        path: "../app/templates/nft-market",
+        name: "nft-market",
+        content: "",
+        type: "registry:template",
+      },
+    ],
   },
   {
     name: "stake",
@@ -47,5 +71,13 @@ export const templates: TemplateType[] = [
     type: "registry:template",
     path: "../app/templates/stake",
     dependencies: [],
+    files: [
+      {
+        path: "../app/templates/stake",
+        name: "stake",
+        content: "",
+        type: "registry:template",
+      },
+    ],
   }
 ];

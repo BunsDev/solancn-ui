@@ -6,12 +6,6 @@
   "author": "Reche Soares",
   "type": "registry:component",
   "dependencies": [],
-  "devDependencies": [],
-  "registryDependencies": [],
-  "cssVars": {
-    "dark": {},
-    "light": {}
-  },
   "files": [
     {
       "path": "magic.tsx",
@@ -28,5 +22,11 @@
       "content": "\"use client\";\nimport React from \"react\";\n\n// A simple utility to conditionally join class names, similar to the 'clsx' library.\nconst clsx = (...args: (string | boolean | undefined | null)[]): string =>\n\targs.filter(Boolean).join(\" \");\n\n// The MagicContainer component creates a container with a glowing border effect that follows the mouse.\ninterface MagicContainerProps {\n\tchildren: React.ReactNode;\n\tclassName?: string;\n}\n\nconst MagicContainer: React.FC<MagicContainerProps> = ({\n\tchildren,\n\tclassName,\n}) => {\n\tconst [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });\n\tconst [isHovered, setIsHovered] = React.useState(false);\n\tconst containerRef = React.useRef<HTMLDivElement>(null);\n\n\tconst handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {\n\t\tif (!containerRef.current) return;\n\t\tconst rect = containerRef.current.getBoundingClientRect();\n\t\tsetMousePos({\n\t\t\tx: e.clientX - rect.left,\n\t\t\ty: e.clientY - rect.top,\n\t\t});\n\t};\n\n\treturn (\n\t\t<div\n\t\t\tref={containerRef}\n\t\t\tclassName={clsx(\n\t\t\t\t\"relative rounded-3xl p-[1px] transition-all duration-300\",\n\t\t\t\tclassName,\n\t\t\t)}\n\t\t\tstyle={{\n\t\t\t\tbackground: isHovered\n\t\t\t\t\t? `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, #9E7AFF, #38bdf8, #FF5C5C, #FE8BBB, transparent 80%)`\n\t\t\t\t\t: \"rgba(255, 255, 255, 0.05)\", // Faint border for non-hovered state\n\t\t\t}}\n\t\t\tonMouseMove={handleMouseMove}\n\t\t\tonMouseEnter={() => setIsHovered(true)}\n\t\t\tonMouseLeave={() => setIsHovered(false)}\n\t\t>\n\t\t\t{children}\n\t\t</div>\n\t);\n};\n\nexport default MagicContainer;\n",
       "type": "registry:component"
     }
-  ]
+  ],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "cssVars": {
+    "dark": {},
+    "light": {}
+  }
 }

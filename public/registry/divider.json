@@ -6,12 +6,6 @@
   "author": "Reche Soares",
   "type": "registry:component",
   "dependencies": [],
-  "devDependencies": [],
-  "registryDependencies": [],
-  "cssVars": {
-    "dark": {},
-    "light": {}
-  },
   "files": [
     {
       "path": "divider.tsx",
@@ -22,6 +16,17 @@
       "path": "divider.tsx",
       "content": "\"use client\";\nimport type React from \"react\";\n\n// Solana theme colors\nconst SOLANA_COLORS = {\n\tpurple: \"#9945FF\",\n\tgreen: \"#14F195\",\n\tblack: \"#000000\",\n\tdarkGray: \"#13131d\",\n};\n\ninterface DividerProps extends React.HTMLAttributes<HTMLDivElement> {\n\torientation?: \"horizontal\" | \"vertical\";\n\tdecorative?: boolean;\n\tvariant?: \"solid\" | \"dashed\" | \"dotted\";\n\tthickness?: number;\n\tcolor?: \"purple\" | \"green\" | \"default\" | string;\n\tclassName?: string;\n\tchildren?: React.ReactNode;\n}\n\nconst Divider = ({\n\torientation = \"horizontal\",\n\tdecorative = true,\n\tvariant = \"solid\",\n\tthickness = 1,\n\tcolor = \"default\",\n\tclassName = \"\",\n\tchildren,\n\t...props\n}: DividerProps) => {\n\tconst baseClasses = \"flex items-center\";\n\tconst orientationClasses =\n\t\torientation === \"horizontal\" ? \"w-full my-8\" : \"h-full self-stretch mx-8\";\n\n\tconst variantStyles = {\n\t\tsolid: \"border-solid\",\n\t\tdashed: \"border-dashed\",\n\t\tdotted: \"border-dotted\",\n\t};\n\n\t// Map predefined Solana color names to hex values, or use custom color if provided\nconst resolveColor = () => {\n\t\tif (color === \"purple\") return SOLANA_COLORS.purple;\n\t\tif (color === \"green\") return SOLANA_COLORS.green;\n\t\tif (color === \"default\") return SOLANA_COLORS.purple;\n\t\treturn color; // Use custom color if provided\n\t};\n\t\n\tconst colorStyle = { borderColor: resolveColor() };\n\n\tconst thicknessStyle =\n\t\torientation === \"horizontal\"\n\t\t\t? { borderTopWidth: `${thickness}px` }\n\t\t\t: { borderLeftWidth: `${thickness}px` };\n\n\tconst lineClasses = `\n    flex-grow\n    ${orientation === \"horizontal\" ? \"border-t\" : \"border-l\"}\n    ${variantStyles[variant]}\n  `;\n\n\treturn (\n\t\t<div\n\t\t\tclassName={`${baseClasses} ${orientationClasses} ${className}`}\n\t\t\trole={decorative ? \"none\" : \"separator\"}\n\t\t\taria-orientation={orientation}\n\t\t\t{...props}\n\t\t>\n\t\t\t{children ? (\n\t\t\t\t<>\n\t\t\t\t\t<div\n\t\t\t\t\t\tclassName={lineClasses}\n\t\t\t\t\t\tstyle={{ ...colorStyle, ...thicknessStyle }}\n\t\t\t\t\t></div>\n\t\t\t\t\t<span className=\"flex items-center px-4 text-sm font-medium\" style={{ color: color === \"green\" ? SOLANA_COLORS.green : SOLANA_COLORS.purple }}>\n\t\t\t\t\t\t{children}\n\t\t\t\t\t</span>\n\t\t\t\t\t<div\n\t\t\t\t\t\tclassName={lineClasses}\n\t\t\t\t\t\tstyle={{ ...colorStyle, ...thicknessStyle }}\n\t\t\t\t\t></div>\n\t\t\t\t</>\n\t\t\t) : (\n\t\t\t\t<div\n\t\t\t\t\tclassName={lineClasses}\n\t\t\t\t\tstyle={{ ...colorStyle, ...thicknessStyle }}\n\t\t\t\t></div>\n\t\t\t)}\n\t\t</div>\n\t);\n};\n\nexport default Divider;\n",
       "type": "registry:component"
+    },
+    {
+      "path": "divider",
+      "content": "\"use client\";\nimport type React from \"react\";\n\n// Solana theme colors\nconst SOLANA_COLORS = {\n\tpurple: \"#9945FF\",\n\tgreen: \"#14F195\",\n\tblack: \"#000000\",\n\tdarkGray: \"#13131d\",\n};\n\ninterface DividerProps extends React.HTMLAttributes<HTMLDivElement> {\n\torientation?: \"horizontal\" | \"vertical\";\n\tdecorative?: boolean;\n\tvariant?: \"solid\" | \"dashed\" | \"dotted\";\n\tthickness?: number;\n\tcolor?: \"purple\" | \"green\" | \"default\" | string;\n\tclassName?: string;\n\tchildren?: React.ReactNode;\n}\n\nconst Divider = ({\n\torientation = \"horizontal\",\n\tdecorative = true,\n\tvariant = \"solid\",\n\tthickness = 1,\n\tcolor = \"default\",\n\tclassName = \"\",\n\tchildren,\n\t...props\n}: DividerProps) => {\n\tconst baseClasses = \"flex items-center\";\n\tconst orientationClasses =\n\t\torientation === \"horizontal\" ? \"w-full my-8\" : \"h-full self-stretch mx-8\";\n\n\tconst variantStyles = {\n\t\tsolid: \"border-solid\",\n\t\tdashed: \"border-dashed\",\n\t\tdotted: \"border-dotted\",\n\t};\n\n\t// Map predefined Solana color names to hex values, or use custom color if provided\nconst resolveColor = () => {\n\t\tif (color === \"purple\") return SOLANA_COLORS.purple;\n\t\tif (color === \"green\") return SOLANA_COLORS.green;\n\t\tif (color === \"default\") return SOLANA_COLORS.purple;\n\t\treturn color; // Use custom color if provided\n\t};\n\t\n\tconst colorStyle = { borderColor: resolveColor() };\n\n\tconst thicknessStyle =\n\t\torientation === \"horizontal\"\n\t\t\t? { borderTopWidth: `${thickness}px` }\n\t\t\t: { borderLeftWidth: `${thickness}px` };\n\n\tconst lineClasses = `\n    flex-grow\n    ${orientation === \"horizontal\" ? \"border-t\" : \"border-l\"}\n    ${variantStyles[variant]}\n  `;\n\n\treturn (\n\t\t<div\n\t\t\tclassName={`${baseClasses} ${orientationClasses} ${className}`}\n\t\t\trole={decorative ? \"none\" : \"separator\"}\n\t\t\taria-orientation={orientation}\n\t\t\t{...props}\n\t\t>\n\t\t\t{children ? (\n\t\t\t\t<>\n\t\t\t\t\t<div\n\t\t\t\t\t\tclassName={lineClasses}\n\t\t\t\t\t\tstyle={{ ...colorStyle, ...thicknessStyle }}\n\t\t\t\t\t></div>\n\t\t\t\t\t<span className=\"flex items-center px-4 text-sm font-medium\" style={{ color: color === \"green\" ? SOLANA_COLORS.green : SOLANA_COLORS.purple }}>\n\t\t\t\t\t\t{children}\n\t\t\t\t\t</span>\n\t\t\t\t\t<div\n\t\t\t\t\t\tclassName={lineClasses}\n\t\t\t\t\t\tstyle={{ ...colorStyle, ...thicknessStyle }}\n\t\t\t\t\t></div>\n\t\t\t\t</>\n\t\t\t) : (\n\t\t\t\t<div\n\t\t\t\t\tclassName={lineClasses}\n\t\t\t\t\tstyle={{ ...colorStyle, ...thicknessStyle }}\n\t\t\t\t></div>\n\t\t\t)}\n\t\t</div>\n\t);\n};\n\nexport default Divider;\n",
+      "type": "registry:component"
     }
-  ]
+  ],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "cssVars": {
+    "dark": {},
+    "light": {}
+  }
 }

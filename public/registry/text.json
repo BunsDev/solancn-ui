@@ -6,12 +6,6 @@
   "author": "Reche Soares",
   "type": "registry:component",
   "dependencies": [],
-  "devDependencies": [],
-  "registryDependencies": [],
-  "cssVars": {
-    "dark": {},
-    "light": {}
-  },
   "files": [
     {
       "path": "text.tsx",
@@ -83,5 +77,11 @@
       "content": "\"use client\";\nimport { motion } from \"framer-motion\";\nimport { useEffect, useState } from \"react\";\n\nconst WavyText = ({ text = \"Wavy Motion\" }: { text?: string }) => {\n\tconst [animationTime, setAnimationTime] = useState(0);\n\n\tuseEffect(() => {\n\t\tconst interval = setInterval(() => {\n\t\t\tsetAnimationTime((prev) => prev + 0.1);\n\t\t}, 50);\n\t\treturn () => clearInterval(interval);\n\t}, []);\n\n\treturn (\n\t\t<h2 className=\"text-4xl md:text-6xl font-bold text-center\">\n\t\t\t{text.split(\"\").map((char, i) => {\n\t\t\t\tconst yOffset = Math.sin(animationTime + i * 0.3) * 10;\n\t\t\t\treturn (\n\t\t\t\t\t<motion.span\n\t\t\t\t\t\tkey={i}\n\t\t\t\t\t\tanimate={{\n\t\t\t\t\t\t\ty: yOffset,\n\t\t\t\t\t\t\ttransition: {\n\t\t\t\t\t\t\t\ttype: \"spring\",\n\t\t\t\t\t\t\t\tstiffness: 300,\n\t\t\t\t\t\t\t\tdamping: 30,\n\t\t\t\t\t\t\t\tmass: 0.8,\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t}}\n\t\t\t\t\t\tclassName=\"inline-block\"\n\t\t\t\t\t>\n\t\t\t\t\t\t{char === \" \" ? \"\\u00A0\" : char}\n\t\t\t\t\t</motion.span>\n\t\t\t\t);\n\t\t\t})}\n\t\t</h2>\n\t);\n};\n\nconst WavyView = () => {\n\treturn (\n\t\t<div className=\"flex flex-col items-center justify-center font-sans p-4\">\n\t\t\t<WavyText text=\"Smooth Wave Flow\" />\n\t\t</div>\n\t);\n};\n\nexport default WavyView;\n",
       "type": "registry:component"
     }
-  ]
+  ],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "cssVars": {
+    "dark": {},
+    "light": {}
+  }
 }

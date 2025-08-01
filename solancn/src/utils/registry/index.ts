@@ -11,7 +11,8 @@ import { HttpsProxyAgent } from "https-proxy-agent";
 import fetch from "node-fetch";
 import { z } from "zod";
 
-const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://ui.solancn.com";
+// Temporarily use Shadcn UI registry as fallback when Solancn registry is unavailable
+const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://ui.shadcn.com";
 const shadcnBaseUrl = "https://ui.shadcn.com";
 
 type theTree = z.infer<typeof registryIndexSchema>;
@@ -28,7 +29,7 @@ export async function getRegistryIndexSolancn(env?: boolean) {
     return registryIndexSchema.parse([...result]);
   } catch (error) {
     console.error(error);
-    throw new Error("Failed to fetch components from SolancnUI registry.");
+    throw new Error("Failed to fetch components from SolancnUI registry. Check if https://ui.solancn.com is accessible or use --registry flag to specify an alternative.");
   }
 }
 
@@ -39,7 +40,7 @@ export async function getRegistryIndexShadcn() {
     return registryIndexSchema.parse(result);
   } catch (error) {
     console.error(error);
-    throw new Error("Failed to fetch components from ShadcnUI registry.");
+    throw new Error("Failed to fetch components from ShadcnUI registry. Check if https://ui.shadcn.com is accessible or use --registry flag to specify an alternative.");
   }
 }
 

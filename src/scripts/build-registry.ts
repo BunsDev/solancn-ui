@@ -11,12 +11,21 @@ interface RegistryListItem {
 	name: string;
 	description: string;
 	type: RegistryType;
+	files: Array<{
+		path: string;
+		content: string;
+		type: RegistryType;
+	}>;
 }
 
 const registryDirPath = path.join(__dirname, "../../public/registry");
 const registryListPath = path.join(
 	__dirname,
 	"../../public/registry.json",
+);
+const registryListPathAlt = path.join(
+	__dirname,
+	"../../public/r/index.json",
 );
 
 if (!fs.existsSync(registryDirPath)) {
@@ -26,6 +35,11 @@ if (!fs.existsSync(registryDirPath)) {
 console.log(`Building component registry...`);
 // Process components
 for (const component of components) {
+	if (!component.name) {
+		console.warn("Warning: Component missing name, skipping...");
+		continue;
+	}
+	
 	const files: Array<{
 		path: string;
 		content: string;
@@ -121,16 +135,67 @@ for (const component of components) {
 	if (component.files && component.files.length > 0) {
 		for (const file of component.files) {
 			try {
-				const fileContent = fs.readFileSync(file.path, "utf-8");
-
-				files.push({
-					path: file.name,
-					content: fileContent,
-					type: file.type ?? ("registry:component" as RegistryType),
-				});
+				// If the content is already defined and not empty, use it
+				if (file.content && file.content.trim() !== "") {
+					files.push({
+						path: file.name,
+						content: file.content,
+						type: file.type ?? ("registry:component" as RegistryType),
+					});
+				} else {
+					// Otherwise read from the file path
+					try {
+						// Resolve the path relative to the scripts directory
+						const resolvedFilePath = path.resolve(__dirname, file.path);
+						
+						// Check if the path is a directory
+						const stats = fs.statSync(resolvedFilePath);
+						
+						if (stats.isDirectory()) {
+							// If it's a directory, try to find a main file
+							const dirContents = fs.readdirSync(resolvedFilePath);
+							
+							// Find a suitable main file
+							const mainFile = dirContents.find(
+								(f) => f === `${file.name}.tsx` || f === `index.tsx`
+							);
+							
+							if (mainFile) {
+								const fileContent = fs.readFileSync(
+									path.join(resolvedFilePath, mainFile),
+									"utf-8"
+								);
+								
+								files.push({
+									path: file.name,
+									content: fileContent,
+									type: file.type ?? ("registry:component" as RegistryType),
+								});
+							} else {
+								console.warn(
+									`Warning: No suitable file found in directory ${file.path} for component ${component.name}`
+								);
+							}
+						} else {
+							// It's a file, read it directly
+							const fileContent = fs.readFileSync(resolvedFilePath, "utf-8");
+							
+							files.push({
+								path: file.name,
+								content: fileContent,
+								type: file.type ?? ("registry:component" as RegistryType),
+							});
+						}
+					} catch (error) {
+						console.error(
+							`Error Reading dependency file ${file.path} for component ${component.name}`,
+							error,
+						);
+					}
+				}
 			} catch (error) {
 				console.error(
-					`Error Reading dependency file ${file.path} for component ${component.name}`,
+					`Error processing file ${file.name} for component ${component.name}`,
 					error,
 				);
 			}
@@ -153,13 +218,13 @@ for (const component of components) {
 		author: component.author ?? "Reche Soares",
 		type: "registry:component",
 		dependencies: component.dependencies ?? [],
+		files: files,
 		devDependencies: component.devDependencies ?? [],
 		registryDependencies: component.registryDependencies ?? [],
 		cssVars: component.cssVars ?? {
 			dark: {},
 			light: {},
 		},
-		files,
 	} satisfies RegistryItemSchema;
 
 	fs.writeFileSync(
@@ -173,6 +238,11 @@ for (const component of components) {
 // Process templates
 console.log(`Building template registry...`);
 for (const template of templates) {
+	if (!template.name) {
+		console.warn("Warning: Template missing name, skipping...");
+		continue;
+	}
+	
 	const files: Array<{
 		path: string;
 		content: string;
@@ -268,16 +338,67 @@ for (const template of templates) {
 	if (template.files && template.files.length > 0) {
 		for (const file of template.files) {
 			try {
-				const fileContent = fs.readFileSync(file.path, "utf-8");
-
-				files.push({
-					path: file.name,
-					content: fileContent,
-					type: file.type ?? ("registry:template" as RegistryType),
-				});
+				// If the content is already defined and not empty, use it
+				if (file.content && file.content.trim() !== "") {
+					files.push({
+						path: file.name,
+						content: file.content,
+						type: file.type ?? ("registry:template" as RegistryType),
+					});
+				} else {
+					// Otherwise read from the file path
+					try {
+						// Resolve the path relative to the scripts directory
+						const resolvedFilePath = path.resolve(__dirname, file.path);
+						
+						// Check if the path is a directory
+						const stats = fs.statSync(resolvedFilePath);
+						
+						if (stats.isDirectory()) {
+							// If it's a directory, try to find a main file
+							const dirContents = fs.readdirSync(resolvedFilePath);
+							
+							// Find a suitable main file
+							const mainFile = dirContents.find(
+								(f) => f === `${file.name}.tsx` || f === `index.tsx`
+							);
+							
+							if (mainFile) {
+								const fileContent = fs.readFileSync(
+									path.join(resolvedFilePath, mainFile),
+									"utf-8"
+								);
+								
+								files.push({
+									path: file.name,
+									content: fileContent,
+									type: file.type ?? ("registry:template" as RegistryType),
+								});
+							} else {
+								console.warn(
+									`Warning: No suitable file found in directory ${file.path} for template ${template.name}`
+								);
+							}
+						} else {
+							// It's a file, read it directly
+							const fileContent = fs.readFileSync(resolvedFilePath, "utf-8");
+							
+							files.push({
+								path: file.name,
+								content: fileContent,
+								type: file.type ?? ("registry:template" as RegistryType),
+							});
+						}
+					} catch (error) {
+						console.error(
+							`Error Reading dependency file ${file.path} for template ${template.name}`,
+							error,
+						);
+					}
+				}
 			} catch (error) {
 				console.error(
-					`Error Reading dependency file ${file.path} for template ${template.name}`,
+					`Error processing file ${file.name} for template ${template.name}`,
 					error,
 				);
 			}
@@ -318,15 +439,16 @@ for (const template of templates) {
 }
 
 // Create a registry list with all components and templates
-const registryList = {} as Record<string, RegistryListItem>;
+const registryList: Record<string, RegistryListItem> = {};
 
 // Add components to the registry list
 components.forEach(component => {
 	if (!component.name) return;
 	registryList[component.name] = {
-		name: component.name as string,
+		name: component.name,
 		description: component.description || "",
 		type: component.type ?? "registry:component",
+		files: component.files ?? [],
 	};
 });
 
@@ -334,13 +456,17 @@ components.forEach(component => {
 templates.forEach(template => {
 	if (!template.name) return;
 	registryList[template.name] = {
-		name: template.name as string,
+		name: template.name,
 		description: template.description || "",
 		type: "registry:template",
+		files: template.files ?? [],
 	};
 });
 
 // Write the registry list to a JSON file
 fs.writeFileSync(registryListPath, JSON.stringify(registryList, null, 2));
+fs.writeFileSync(registryListPathAlt, JSON.stringify(registryList, null, 2));
 
 console.log("🎉 Registry built successfully!");
+console.log(`📁 Updated: ${registryListPath}`);
+console.log(`📁 Updated: ${registryListPathAlt}`);

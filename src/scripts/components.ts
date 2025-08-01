@@ -23,6 +23,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/accordion",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/accordion",
+        name: "accordion",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "accordion-last",
@@ -31,6 +39,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/accordion-last",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/accordion-last",
+        name: "accordion-last",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "amazongift",
@@ -39,6 +55,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/amazongift",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/amazongift",
+        name: "amazongift",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "animatedbadge",
@@ -47,6 +71,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/animatedbadge",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/animatedbadge",
+        name: "animatedbadge",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "aurora",
@@ -55,6 +87,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/aurora",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/aurora",
+        name: "aurora",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "badge",
@@ -63,6 +103,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/badge",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/badge",
+        name: "badge",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "bento-grid",
@@ -71,6 +119,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/bento-grid",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/bento-grid",
+        name: "bento-grid",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "button",
@@ -79,6 +135,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/button",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/button",
+        name: "button",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "card",
@@ -87,6 +151,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/card",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/card",
+        name: "card",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "carousel",
@@ -95,6 +167,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/carousel",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/carousel",
+        name: "carousel",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "codeprofile",
@@ -103,6 +183,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/codeprofile",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/codeprofile",
+        name: "codeprofile",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "colorpalette",
@@ -111,6 +199,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/colorpalette",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/colorpalette",
+        name: "colorpalette",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "copybutton",
@@ -119,6 +215,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/copybutton",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/copybutton",
+        name: "copybutton",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "decrypting",
@@ -127,6 +231,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/decrypting",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/decrypting",
+        name: "decrypting",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "divider",
@@ -135,6 +247,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/divider",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/divider",
+        name: "divider",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "dock",
@@ -143,6 +263,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/dock",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/dock",
+        name: "dock",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "doctabs",
@@ -151,6 +279,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/doctabs",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/doctabs",
+        name: "doctabs",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "drawer",
@@ -159,6 +295,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/drawer",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/drawer",
+        name: "drawer",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "dropdown",
@@ -167,6 +311,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/dropdown",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/dropdown",
+        name: "dropdown",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "falling-glitch",
@@ -175,6 +327,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/falling-glitch",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/falling-glitch",
+        name: "falling-glitch",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "filetree",
@@ -183,6 +343,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/filetree",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/filetree",
+        name: "filetree",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "flipwords",
@@ -191,6 +359,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/flipwords",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/flipwords",
+        name: "flipwords",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "forgotpassword",
@@ -199,6 +375,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/forgotpassword",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/forgotpassword",
+        name: "forgotpassword",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "fuzzy",
@@ -207,6 +391,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/fuzzy",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/fuzzy",
+        name: "fuzzy",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "glow-button",
@@ -215,6 +407,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/glow-button",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/glow-button",
+        name: "glow-button",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "gradient",
@@ -223,6 +423,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/gradient",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/gradient",
+        name: "gradient",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "gradient-accordion",
@@ -231,6 +439,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/gradient-accordion",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/gradient-accordion",
+        name: "gradient-accordion",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "gradientgen",
@@ -239,6 +455,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/gradientgen",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/gradientgen",
+        name: "gradientgen",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "hero",
@@ -247,6 +471,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/hero",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/hero",
+        name: "hero",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "imageswiper",
@@ -255,6 +487,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/imageswiper",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/imageswiper",
+        name: "imageswiper",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "integrations",
@@ -263,6 +503,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/integrations",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/integrations",
+        name: "integrations",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "letter-glitch",
@@ -271,6 +519,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/letter-glitch",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/letter-glitch",
+        name: "letter-glitch",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "loaders",
@@ -279,6 +535,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/loaders",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/loaders",
+        name: "loaders",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "login",
@@ -287,6 +551,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/login",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/login",
+        name: "login",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "magic",
@@ -295,6 +567,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/magic",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/magic",
+        name: "magic",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "marquee",
@@ -303,6 +583,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/marquee",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/marquee",
+        name: "marquee",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "masonary",
@@ -311,6 +599,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/masonary",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/masonary",
+        name: "masonary",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "modern-button",
@@ -319,6 +615,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/modern-button",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/modern-button",
+        name: "modern-button",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "moving-grid",
@@ -327,6 +631,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/moving-grid",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/moving-grid",
+        name: "moving-grid",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "multiselector",
@@ -335,6 +647,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/multiselector",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/multiselector",
+        name: "multiselector",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "navbar",
@@ -343,6 +663,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/navbar",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/navbar",
+        name: "navbar",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "network",
@@ -351,6 +679,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/network",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/network",
+        name: "network",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "noise",
@@ -359,6 +695,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/noise",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/noise",
+        name: "noise",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "password",
@@ -367,6 +711,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/password",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/password",
+        name: "password",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "pattern",
@@ -375,6 +727,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/pattern",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/pattern",
+        name: "pattern",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "portfolio",
@@ -383,6 +743,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/portfolio",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/portfolio",
+        name: "portfolio",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "pricing",
@@ -391,6 +759,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/pricing",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/pricing",
+        name: "pricing",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "prompt",
@@ -399,6 +775,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/prompt",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/prompt",
+        name: "prompt",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "resize-handle",
@@ -407,6 +791,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/resize-handle",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/resize-handle",
+        name: "resize-handle",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "search",
@@ -415,6 +807,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/search",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/search",
+        name: "search",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "shimmer",
@@ -423,6 +823,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/shimmer",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/shimmer",
+        name: "shimmer",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "signin",
@@ -431,6 +839,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/signin",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/signin",
+        name: "signin",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "sparklestext",
@@ -439,6 +855,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/sparklestext",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/sparklestext",
+        name: "sparklestext",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "spotlightcard",
@@ -447,6 +871,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/spotlightcard",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/spotlightcard",
+        name: "spotlightcard",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "svg-icons",
@@ -455,6 +887,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/svg-icons",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/svg-icons",
+        name: "svg-icons",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "tabs",
@@ -463,6 +903,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/tabs",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/tabs",
+        name: "tabs",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "tabs-classic",
@@ -471,6 +919,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/tabs-classic",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/tabs-classic",
+        name: "tabs-classic",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "tabs-fancy",
@@ -479,6 +935,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/tabs-fancy",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/tabs-fancy",
+        name: "tabs-fancy",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "teammember",
@@ -487,6 +951,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/teammember",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/teammember",
+        name: "teammember",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "testimonial",
@@ -495,6 +967,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/testimonial",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/testimonial",
+        name: "testimonial",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "text",
@@ -503,6 +983,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/text",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/text",
+        name: "text",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "textreveal",
@@ -511,6 +999,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/textreveal",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/textreveal",
+        name: "textreveal",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "ticker",
@@ -519,6 +1015,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/ticker",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/ticker",
+        name: "ticker",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "toast",
@@ -527,6 +1031,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/toast",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/toast",
+        name: "toast",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "transactions",
@@ -535,6 +1047,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/transactions",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/transactions",
+        name: "transactions",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "twostep",
@@ -543,6 +1063,14 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/twostep",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/twostep",
+        name: "twostep",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   },
   {
     name: "waitlist",
@@ -551,5 +1079,13 @@ export const components: ComponentType[] = [
     type: "registry:component",
     path: "../app/components/waitlist",
     dependencies: [],
+    files: [
+      {
+        path: "../app/components/waitlist",
+        name: "waitlist",
+        content: "",
+        type: "registry:component",
+      },
+    ],
   }
 ];

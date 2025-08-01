@@ -6,17 +6,22 @@
   "author": "Reche Soares",
   "type": "registry:component",
   "dependencies": [],
-  "devDependencies": [],
-  "registryDependencies": [],
-  "cssVars": {
-    "dark": {},
-    "light": {}
-  },
   "files": [
     {
       "path": "moving-grid.tsx",
       "content": "\"use client\";\nimport React, { useEffect, useState } from \"react\";\n\n// Grid Background Component\nconst GridBackground = () => {\n\tconst [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });\n\n\tuseEffect(() => {\n\t\tconst handleMouseMove = (event: MouseEvent) => {\n\t\t\t// Get mouse position relative to the viewport\n\t\t\tconst { clientX, clientY } = event;\n\t\t\t// Calculate position from the center of the screen\n\t\t\tconst x = clientX - window.innerWidth / 2;\n\t\t\tconst y = clientY - window.innerHeight / 2;\n\t\t\tsetMousePosition({ x, y });\n\t\t};\n\n\t\twindow.addEventListener(\"mousemove\", handleMouseMove);\n\n\t\t// Cleanup function to remove the event listener\n\t\treturn () => {\n\t\t\twindow.removeEventListener(\"mousemove\", handleMouseMove);\n\t\t};\n\t}, []);\n\n\treturn (\n\t\t<div\n\t\t\tclassName=\"absolute inset-0 w-full h-full overflow-hidden transition-transform duration-300 ease-out\"\n\t\t\tstyle={{\n\t\t\t\tbackgroundImage: `\n          linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),\n          linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px)\n        `,\n\t\t\t\tbackgroundSize: \"40px 40px\",\n\t\t\t\tanimation: \"moveGrid 20s linear infinite\",\n\t\t\t\t// Apply a subtle transform based on mouse position for a parallax effect\n\t\t\t\ttransform: `translate(${mousePosition.x / 30}px, ${mousePosition.y / 30}px)`,\n\t\t\t}}\n\t\t>\n\t\t\t{/* Glow effect */}\n\t\t\t<div className=\"absolute top-1/2 left-1/2 w-[60vmin] h-[60vmin] bg-cyan-500/20 rounded-full blur-[150px] -translate-x-1/2 -translate-y-1/2\" />\n\t\t\t{/* Keyframes for the animation */}\n\t\t\t<style>\n\t\t\t\t{`\n          @keyframes moveGrid {\n            0% { background-position: 0 0; }\n            100% { background-position: 80px 80px; }\n          }\n        `}\n\t\t\t</style>\n\t\t</div>\n\t);\n};\n\n// Main App Component\nexport default function GridBackgroundView() {\n\treturn (\n\t\t<div className=\"relative w-full h-screen bg-slate-950 overflow-hidden\">\n\t\t\t<GridBackground />\n\t\t\t<div className=\"relative z-10 flex items-center justify-center h-full\">\n\t\t\t\t<div className=\"text-center px-4\">\n\t\t\t\t\t<h1 className=\"text-4xl font-bold text-white md:text-6xl lg:text-8xl\">\n\t\t\t\t\t\tSmooth Moving Grid\n\t\t\t\t\t</h1>\n\t\t\t\t\t<p className=\"mt-4 text-lg text-slate-300 md:text-xl\">\n\t\t\t\t\t\tA dynamic background with mouse-aware parallax effect.\n\t\t\t\t\t</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t);\n}\n",
       "type": "registry:component"
+    },
+    {
+      "path": "moving-grid",
+      "content": "\"use client\";\nimport React, { useEffect, useState } from \"react\";\n\n// Grid Background Component\nconst GridBackground = () => {\n\tconst [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });\n\n\tuseEffect(() => {\n\t\tconst handleMouseMove = (event: MouseEvent) => {\n\t\t\t// Get mouse position relative to the viewport\n\t\t\tconst { clientX, clientY } = event;\n\t\t\t// Calculate position from the center of the screen\n\t\t\tconst x = clientX - window.innerWidth / 2;\n\t\t\tconst y = clientY - window.innerHeight / 2;\n\t\t\tsetMousePosition({ x, y });\n\t\t};\n\n\t\twindow.addEventListener(\"mousemove\", handleMouseMove);\n\n\t\t// Cleanup function to remove the event listener\n\t\treturn () => {\n\t\t\twindow.removeEventListener(\"mousemove\", handleMouseMove);\n\t\t};\n\t}, []);\n\n\treturn (\n\t\t<div\n\t\t\tclassName=\"absolute inset-0 w-full h-full overflow-hidden transition-transform duration-300 ease-out\"\n\t\t\tstyle={{\n\t\t\t\tbackgroundImage: `\n          linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),\n          linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px)\n        `,\n\t\t\t\tbackgroundSize: \"40px 40px\",\n\t\t\t\tanimation: \"moveGrid 20s linear infinite\",\n\t\t\t\t// Apply a subtle transform based on mouse position for a parallax effect\n\t\t\t\ttransform: `translate(${mousePosition.x / 30}px, ${mousePosition.y / 30}px)`,\n\t\t\t}}\n\t\t>\n\t\t\t{/* Glow effect */}\n\t\t\t<div className=\"absolute top-1/2 left-1/2 w-[60vmin] h-[60vmin] bg-cyan-500/20 rounded-full blur-[150px] -translate-x-1/2 -translate-y-1/2\" />\n\t\t\t{/* Keyframes for the animation */}\n\t\t\t<style>\n\t\t\t\t{`\n          @keyframes moveGrid {\n            0% { background-position: 0 0; }\n            100% { background-position: 80px 80px; }\n          }\n        `}\n\t\t\t</style>\n\t\t</div>\n\t);\n};\n\n// Main App Component\nexport default function GridBackgroundView() {\n\treturn (\n\t\t<div className=\"relative w-full h-screen bg-slate-950 overflow-hidden\">\n\t\t\t<GridBackground />\n\t\t\t<div className=\"relative z-10 flex items-center justify-center h-full\">\n\t\t\t\t<div className=\"text-center px-4\">\n\t\t\t\t\t<h1 className=\"text-4xl font-bold text-white md:text-6xl lg:text-8xl\">\n\t\t\t\t\t\tSmooth Moving Grid\n\t\t\t\t\t</h1>\n\t\t\t\t\t<p className=\"mt-4 text-lg text-slate-300 md:text-xl\">\n\t\t\t\t\t\tA dynamic background with mouse-aware parallax effect.\n\t\t\t\t\t</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t);\n}\n",
+      "type": "registry:component"
     }
-  ]
+  ],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "cssVars": {
+    "dark": {},
+    "light": {}
+  }
 }

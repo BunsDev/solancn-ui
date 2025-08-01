@@ -6,17 +6,22 @@
   "author": "Reche Soares",
   "type": "registry:component",
   "dependencies": [],
-  "devDependencies": [],
-  "registryDependencies": [],
-  "cssVars": {
-    "dark": {},
-    "light": {}
-  },
   "files": [
     {
       "path": "textreveal.tsx",
       "content": "\"use client\";\n\nimport { motion } from \"framer-motion\";\nimport React from \"react\";\n\n// Main App Component\nexport default function TextReveal() {\n\tconst textToAnimate =\n\t\t\"Don’t wait for the perfect moment. Take the moment and make it perfect. Consistent effort, even when no one is watching, is what builds greatness over time.\";\n\tconst words = textToAnimate.split(\" \");\n\n\t// Variants for the container to orchestrate the animation\n\tconst containerVariants = {\n\t\thidden: { opacity: 0 },\n\t\tvisible: (i = 1) => ({\n\t\t\topacity: 1,\n\t\t\ttransition: { staggerChildren: 0.1, delayChildren: 0.04 * i },\n\t\t}),\n\t};\n\n\t// Variants for each word to create a smoother smoke effect\n\tconst childVariants = {\n\t\thidden: {\n\t\t\topacity: 0,\n\t\t\ty: 20,\n\t\t\tfilter: \"blur(10px)\",\n\t\t},\n\t\tvisible: {\n\t\t\topacity: 1,\n\t\t\ty: 0,\n\t\t\tfilter: \"blur(0px)\",\n\t\t},\n\t};\n\n\treturn (\n\t\t<div className=\"flex items-center justify-center font-sans p-4\">\n\t\t\t<motion.div\n\t\t\t\tstyle={{ display: \"flex\", flexWrap: \"wrap\", justifyContent: \"center\" }}\n\t\t\t\tvariants={containerVariants}\n\t\t\t\tinitial=\"hidden\"\n\t\t\t\tanimate=\"visible\"\n\t\t\t\tclassName=\"text-2xl font-bold text-center mask-r-from-0.5 max-w-5xl leading-relaxed\"\n\t\t\t>\n\t\t\t\t{words.map((word, index) => (\n\t\t\t\t\t<motion.span\n\t\t\t\t\t\tkey={index}\n\t\t\t\t\t\tvariants={childVariants}\n\t\t\t\t\t\ttransition={{\n\t\t\t\t\t\t\tduration: 0.8,\n\t\t\t\t\t\t\tease: [0.25, 0.46, 0.45, 0.94],\n\t\t\t\t\t\t}}\n\t\t\t\t\t\tstyle={{ marginRight: \"12px\", marginTop: \"10px\" }} // Adjust spacing for paragraph\n\t\t\t\t\t>\n\t\t\t\t\t\t{word}\n\t\t\t\t\t</motion.span>\n\t\t\t\t))}\n\t\t\t</motion.div>\n\t\t</div>\n\t);\n}\n",
       "type": "registry:component"
+    },
+    {
+      "path": "textreveal",
+      "content": "\"use client\";\n\nimport { motion } from \"framer-motion\";\nimport React from \"react\";\n\n// Main App Component\nexport default function TextReveal() {\n\tconst textToAnimate =\n\t\t\"Don’t wait for the perfect moment. Take the moment and make it perfect. Consistent effort, even when no one is watching, is what builds greatness over time.\";\n\tconst words = textToAnimate.split(\" \");\n\n\t// Variants for the container to orchestrate the animation\n\tconst containerVariants = {\n\t\thidden: { opacity: 0 },\n\t\tvisible: (i = 1) => ({\n\t\t\topacity: 1,\n\t\t\ttransition: { staggerChildren: 0.1, delayChildren: 0.04 * i },\n\t\t}),\n\t};\n\n\t// Variants for each word to create a smoother smoke effect\n\tconst childVariants = {\n\t\thidden: {\n\t\t\topacity: 0,\n\t\t\ty: 20,\n\t\t\tfilter: \"blur(10px)\",\n\t\t},\n\t\tvisible: {\n\t\t\topacity: 1,\n\t\t\ty: 0,\n\t\t\tfilter: \"blur(0px)\",\n\t\t},\n\t};\n\n\treturn (\n\t\t<div className=\"flex items-center justify-center font-sans p-4\">\n\t\t\t<motion.div\n\t\t\t\tstyle={{ display: \"flex\", flexWrap: \"wrap\", justifyContent: \"center\" }}\n\t\t\t\tvariants={containerVariants}\n\t\t\t\tinitial=\"hidden\"\n\t\t\t\tanimate=\"visible\"\n\t\t\t\tclassName=\"text-2xl font-bold text-center mask-r-from-0.5 max-w-5xl leading-relaxed\"\n\t\t\t>\n\t\t\t\t{words.map((word, index) => (\n\t\t\t\t\t<motion.span\n\t\t\t\t\t\tkey={index}\n\t\t\t\t\t\tvariants={childVariants}\n\t\t\t\t\t\ttransition={{\n\t\t\t\t\t\t\tduration: 0.8,\n\t\t\t\t\t\t\tease: [0.25, 0.46, 0.45, 0.94],\n\t\t\t\t\t\t}}\n\t\t\t\t\t\tstyle={{ marginRight: \"12px\", marginTop: \"10px\" }} // Adjust spacing for paragraph\n\t\t\t\t\t>\n\t\t\t\t\t\t{word}\n\t\t\t\t\t</motion.span>\n\t\t\t\t))}\n\t\t\t</motion.div>\n\t\t</div>\n\t);\n}\n",
+      "type": "registry:component"
     }
-  ]
+  ],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "cssVars": {
+    "dark": {},
+    "light": {}
+  }
 }

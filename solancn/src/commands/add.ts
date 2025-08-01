@@ -32,7 +32,18 @@ const addOptionsSchema = z.object({
   templates: z.boolean(),
 });
 
-export const add = new Command()
+interface AddOptions {
+  components: string[];
+  yes: boolean;
+  overwrite: boolean;
+  cwd: string;
+  all: boolean;
+  shadcn: boolean;
+  path: string | undefined;
+  templates: boolean;
+}
+
+export const addComponent = new Command()
   .name("add")
   .description("Add ui components to your project")
   .argument("[components...]", "the components to add")

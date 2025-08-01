@@ -16,6 +16,12 @@ interface TemplateData {
 	type: string;
 	path: string;
 	dependencies: string[];
+	files?: {
+		path: string;
+		name: string;
+		content: string;
+		type: string;
+	}[];
 }
 
 // Function to automatically generate templates from docs directory
@@ -42,16 +48,6 @@ function generateTemplatesFromDocs(basePath: string) {
 				// Generate description based on template name
 				const description = `A minimalistic ${templateName.replace("-", " ")} template designed with React and Tailwind CSS.`;
 
-				// Custom descriptions for specific templates
-				// const customDescriptions: Record<string, string> = {
-				// 	templateName:
-				// 		"custom description for templateName",
-				// };
-
-				// if (customDescriptions[templateName]) {
-				// 	description = customDescriptions[templateName];
-				// }
-
 				templates.push({
 					name: templateName,
 					title: title,
@@ -59,6 +55,14 @@ function generateTemplatesFromDocs(basePath: string) {
 					type: "registry:template",
 					path: `../app/templates/${templateName}`,
 					dependencies: [],
+					files: [
+						{
+							path: `../app/templates/${templateName}`,
+							name: templateName,
+							content: "",
+							type: "registry:template",
+						},
+					],
 				});
 			}
 		}
@@ -101,6 +105,14 @@ ${templates
     type: "${template.type}",
     path: "${template.path}",
     dependencies: [],
+    files: [
+      {
+        path: "${template.path}",
+        name: "${template.name}",
+        content: "",
+        type: "${template.type}",
+      },
+    ],
   }`,
 			)
 			.join(",\n")}
