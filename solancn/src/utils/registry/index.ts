@@ -11,6 +11,14 @@ import { HttpsProxyAgent } from "https-proxy-agent";
 import fetch from "node-fetch";
 import { z } from "zod";
 
+// Import mock data for testing
+import { 
+  mockIndexData,
+  mockStylesData,
+  mockRegistryItem,
+  mockBaseColor 
+} from "./mock-registry";
+
 // Temporarily use Shadcn UI registry as fallback when Solancn registry is unavailable
 const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://ui.shadcn.com";
 const shadcnBaseUrl = "https://ui.shadcn.com";
@@ -22,6 +30,11 @@ const agent = process.env.https_proxy
   : undefined;
 
 export async function getRegistryIndexSolancn(env?: boolean) {
+  // Use mock data when in test mode
+  if (process.env.TEST_MODE === 'true') {
+    return registryIndexSchema.parse(mockIndexData);
+  }
+  
   try {
     const [result] = await fetchRegistry(["index.json"], baseUrl);
 
@@ -44,6 +57,11 @@ export async function getRegistryIndexSolancn(env?: boolean) {
 }
 
 export async function getRegistryIndexShadcn() {
+  // Use mock data when in test mode
+  if (process.env.TEST_MODE === 'true') {
+    return registryIndexSchema.parse(mockIndexData);
+  }
+  
   try {
     const [result] = await fetchRegistry(["index.json"], shadcnBaseUrl);
 
@@ -55,6 +73,11 @@ export async function getRegistryIndexShadcn() {
 }
 
 export async function getRegistryStyles() {
+  // Use mock data when in test mode
+  if (process.env.TEST_MODE === 'true') {
+    return stylesSchema.parse(mockStylesData);
+  }
+
   try {
     const [result] = await fetchRegistry(["styles/index.json"], shadcnBaseUrl);
 
@@ -90,6 +113,11 @@ export async function getRegistryBaseColors() {
 }
 
 export async function getRegistryBaseColor(baseColor: string) {
+  // Use mock data when in test mode
+  if (process.env.TEST_MODE === 'true') {
+    return registryBaseColorSchema.parse(mockBaseColor);
+  }
+
   try {
     const [result] = await fetchRegistry(
       [`colors/${baseColor}.json`],
@@ -258,10 +286,15 @@ export async function getItemTargetPath(
     return null;
   }
   
-  return path.join(parentPath, type);
+return path.join(parentPath, type);
 }
 
 async function fetchRegistry(paths: string[], fetchBaseUrl = baseUrl) {
+  // Use mock data when in test mode
+  if (process.env.TEST_MODE === 'true') {
+    return paths.map(() => mockRegistryItem);
+  }
+
   try {
     const results = await Promise.all(
       paths.map(async (path) => {

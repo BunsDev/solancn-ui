@@ -71,9 +71,12 @@ async function runCommand(args: string[], cwd: string = TEMP_TEST_DIR) {
       cwd,
       env: {
         NODE_ENV: 'test',
-        COMPONENTS_REGISTRY_URL: 'https://ui.solancn.com',
+        // Use localhost for testing to avoid external network dependencies
+        COMPONENTS_REGISTRY_URL: 'http://localhost:3000',
         // Auto-accept prompts for testing
         CI: 'true',
+        // Mock registry mode for testing without actual server
+        TEST_MODE: 'true',
       },
     });
     return { success: true, stdout };
