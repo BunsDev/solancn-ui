@@ -5,6 +5,7 @@ import type * as React from "react";
 import WalletContextProvider from "@/app/providers/wallet-provider";
 import { geistMono } from "@/assets/fonts";
 import { PerformanceMonitor } from "@/components/performance/performance-monitor";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { PackageManagerProvider } from "@/contexts/package-manager-context";
 
 import "./globals.css";
@@ -593,8 +594,10 @@ export default function RootLayout({
 				<ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
 					<WalletContextProvider>
 						<PackageManagerProvider>
-							{children}
-							<PerformanceMonitor />
+							<SidebarProvider defaultOpen={true}>
+								{children}
+								<PerformanceMonitor />
+							</SidebarProvider>
 						</PackageManagerProvider>
 					</WalletContextProvider>
 				</ThemeProvider>
