@@ -1,6 +1,5 @@
 import { existsSync, promises as fs } from "fs";
 import path from "path";
-import { generateDistinctId } from "@/src/utils/distinct-id";
 import {
   DEFAULT_COMPONENTS,
   DEFAULT_TAILWIND_CONFIG,
@@ -10,17 +9,17 @@ import {
   rawConfigSchema,
   resolveConfigPaths,
   type Config,
-} from "@/src/utils/get-config";
-import { getPackageManager } from "@/src/utils/get-package-manager";
-import { getProjectConfig, preFlight } from "@/src/utils/get-project-info";
-import { handleError } from "@/src/utils/handle-error";
-import { logger } from "@/src/utils/logger";
+} from "../utils/get-config";
+import { getPackageManager } from "../utils/get-package-manager";
+import { getProjectConfig, preFlight } from "../utils/get-project-info";
+import { handleError } from "../utils/handle-error";
+import { logger } from "../utils/logger";
 import {
   getRegistryBaseColor,
   getRegistryBaseColors,
   getRegistryStyles,
-} from "@/src/utils/registry";
-import * as templates from "@/src/utils/templates";
+} from "../utils/registry";
+import * as templates from "../utils/templates";
 import chalk from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";

@@ -5,7 +5,7 @@ import {
   getConfig,
   RawConfig,
   resolveConfigPaths,
-} from "@/src/utils/get-config";
+} from "../utils/get-config";
 import fg from "fast-glob";
 import fs, { pathExists } from "fs-extra";
 import { loadConfig } from "tsconfig-paths";

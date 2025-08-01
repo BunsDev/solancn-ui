@@ -1,8 +1,8 @@
 import { existsSync, promises as fs } from "fs";
 import path from "path";
-import { Config, getConfig } from "@/src/utils/get-config";
-import { handleError } from "@/src/utils/handle-error";
-import { logger } from "@/src/utils/logger";
+import { Config, getConfig } from "../utils/get-config";
+import { handleError } from "../utils/handle-error";
+import { logger } from "../utils/logger";
 import {
   fetchTree,
   fetchTreeFromShadcn,
@@ -10,9 +10,9 @@ import {
   getRegistryBaseColor,
   getRegistryIndexShadcn,
   getRegistryIndexSolancn,
-} from "@/src/utils/registry";
-import { registryIndexSchema } from "@/src/utils/registry/schema";
-import { transform } from "@/src/utils/transformers";
+} from "../utils/registry";
+import { registryIndexSchema } from "../utils/registry/schema";
+import { transform } from "../utils/transformers";
 import chalk from "chalk";
 import { Command } from "commander";
 import { diffLines, type Change } from "diff";

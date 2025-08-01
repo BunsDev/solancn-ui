@@ -1,6 +1,6 @@
 # Solancn CLI
 
-A CLI for adding Solancn ui components to your project. Superset of shadcn-ui.
+A CLI for adding Solancn ui components to your project. Superset of shadcn.
 
 ## Usage
 
@@ -12,12 +12,12 @@ The `init` command installs dependencies (`framer-motion`), adds the `cn` util, 
 npx solancn init
 ```
 
-### shadcn-ui project
+### shadcn project
 
-If your project is already using the `shadcn-ui`, don't worry! You can still use solancn.
+If your project is already using the `shadcn`, don't worry! You can still use solancn.
 
 ```bash
-npx shadcn-ui init
+npx shadcn init
 ```
 
 Just add these two lines to your `components.json` file:
@@ -83,9 +83,9 @@ You can also run the command without any arguments to view a list of all availab
 npx solancn add
 ```
 
-## shadcn-ui
+## shadcn
 
-You can also use the same CLI for selecting & installing shadcn-ui components:
+You can also use the same CLI for selecting & installing shadcn components:
 
 ```bash
 npx solancn add --shadcn button

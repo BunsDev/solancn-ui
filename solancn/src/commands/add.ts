@@ -1,11 +1,9 @@
 import { existsSync, promises as fs } from "fs";
 import path from "path";
-import { generateDistinctId } from "@/src/utils/distinct-id";
-import { getConfig } from "@/src/utils/get-config";
-import { getEnv } from "@/src/utils/get-env";
-import { getPackageManager } from "@/src/utils/get-package-manager";
-import { handleError } from "@/src/utils/handle-error";
-import { ASCII_TEXT, ColorFullText, logger, message } from "@/src/utils/logger";
+import { getConfig } from "../utils/get-config";
+import { getPackageManager } from "../utils/get-package-manager";
+import { handleError } from "../utils/handle-error";
+import { ASCII_TEXT, ColorFullText, logger } from "../utils/logger";
 import {
   fetchTree,
   fetchTreeFromShadcn,
@@ -14,8 +12,8 @@ import {
   getRegistryIndexSolancn,
   getRegistryIndexShadcn,
   resolveTreeWithShadcn,
-} from "@/src/utils/registry";
-import { transform } from "@/src/utils/transformers";
+} from "../utils/registry";
+import { transform } from "../utils/transformers";
 import chalk from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
@@ -47,7 +45,7 @@ export const add = new Command()
   )
   .option("-a, --all", "add all available components", true)
   .addHelpText("after", ColorFullText(ASCII_TEXT))
-  .option("-s, --shadcn", "include available components from shadcn-ui", false)
+  .option("-s, --shadcn", "include available components from shadcn", false)
   .option("-p, --path <path>", "the path to add the component to.")
   .option("-t, --templates", "include available templates", false)
   .action(async (components, opts) => {

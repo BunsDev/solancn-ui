@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import { add } from "@/src/commands/add";
-import { init } from "@/src/commands/init";
+import { add } from "./commands/add";
+import { init } from "./commands/init";
 import { Command } from "commander";
 
 import { getPackageInfo } from "./utils/get-package-info";
@@ -23,7 +23,7 @@ async function main() {
     .name("solancn")
     .description("Add Solancn components to your apps.")
     .version(
-      packageInfo.version || "0.0.6",
+      packageInfo.version || "0.0.8",
       "-v, --version",
       "display the version number",
     );

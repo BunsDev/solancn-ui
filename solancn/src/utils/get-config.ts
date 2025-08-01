@@ -1,17 +1,22 @@
 import path from "path";
-import { resolveImport } from "@/src/utils/resolve-import";
+import { resolveImport } from "../utils/resolve-import";
 import { cosmiconfig } from "cosmiconfig";
 import { loadConfig } from "tsconfig-paths";
 import { z } from "zod";
 
-export const DEFAULT_STYLE = "default";
-export const DEFAULT_COMPONENTS = "@/components";
-export const DEFAULT_COMPONENTS_UI = "@/components/ui";
-export const DEFAULT_COMPONENTS_SOLANCN = "@/components/solancn";
-export const DEFAULT_UTILS = "@/lib/utils";
-export const DEFAULT_TAILWIND_CSS = "app/globals.css";
-export const DEFAULT_TAILWIND_CONFIG = "tailwind.config.js";
-export const DEFAULT_TAILWIND_BASE_COLOR = "slate";
+export const DEFAULT_STYLE = "new-york";
+export const DEFAULT_COMPONENTS = "./components";
+export const DEFAULT_COMPONENTS_UI = "./components/ui";
+export const DEFAULT_COMPONENTS_SOLANCN = "./components/solancn";
+export const DEFAULT_UTILS = "./lib/utils";
+export const DEFAULT_TAILWIND_CSS = "./src/app/globals.css";
+export const DEFAULT_TAILWIND_CONFIG = "./tailwind.config.js";
+export const DEFAULT_TAILWIND_BASE_COLOR = "zinc";
+export const DEFAULT_ICONS_PREFIX = "lucide";
+export const DEFAULT_TEMPLATES = "./templates";
+export const DEFAULT_DOCS = "./docs";
+export const DEFAULT_LIB = "./lib";
+export const DEFAULT_HOOKS = "./hooks";
 
 // TODO: Figure out if we want to support all cosmiconfig formats.
 // A simple components.json file would be nice.
@@ -23,7 +28,7 @@ export const rawConfigSchema = z
   .object({
     $schema: z.string().optional(),
     style: z.string(),
-    rsc: z.coerce.boolean().default(false),
+    rsc: z.coerce.boolean().default(true),
     tsx: z.coerce.boolean().default(true),
     tailwind: z.object({
       config: z.string(),
@@ -37,7 +42,12 @@ export const rawConfigSchema = z
       utils: z.string(),
       ui: z.string().optional(),
       solancn: z.string().optional(),
+      templates: z.string().optional(),
+      docs: z.string().optional(),
+      lib: z.string().optional(),
+      hooks: z.string().optional(),
     }),
+    iconLibrary: z.string().optional(),
   })
   .strict();
 
@@ -51,6 +61,11 @@ export const configSchema = rawConfigSchema.extend({
     components: z.string(),
     ui: z.string(),
     solancn: z.string(),
+    templates: z.string(),
+    docs: z.string().optional(),
+    lib: z.string().optional(),
+    hooks: z.string().optional(),
+    iconLibrary: z.string().optional(),
   }),
 });
 
@@ -101,12 +116,12 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
       utils: await resolveImport(config.aliases["utils"], tsConfig),
       components,
       ui,
-      //   ? await resolveImport(config.aliases["ui"], tsConfig)
-      //   : await resolveImport(config.aliases["components"], tsConfig),
       solancn,
-      //   ? await resolveImport(config.aliases["solancn"], tsConfig)
-      //   : config.aliases["ui"] ? await resolveImport(config.aliases["ui"], tsConfig)
-      //     : await resolveImport(config.aliases["components"], tsConfig)
+      templates: config.aliases.templates ? await resolveImport(config.aliases.templates, tsConfig) : `${components}/templates`,
+      docs: config.aliases.docs ? await resolveImport(config.aliases.docs, tsConfig) : undefined,
+      lib: config.aliases.lib ? await resolveImport(config.aliases.lib, tsConfig) : undefined,
+      hooks: config.aliases.hooks ? await resolveImport(config.aliases.hooks, tsConfig) : undefined,
+      iconLibrary: config.iconLibrary,
     },
   };
   return configSchema.parse(newConfig);

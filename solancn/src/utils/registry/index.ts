@@ -1,12 +1,12 @@
 import path from "path";
-import { Config } from "@/src/utils/get-config";
+import { Config } from "../get-config";
 import {
   registryBaseColorSchema,
   registryIndexSchema,
   registryItemWithContentSchema,
   registryWithContentSchema,
   stylesSchema,
-} from "@/src/utils/registry/schema";
+} from "./schema";
 import { HttpsProxyAgent } from "https-proxy-agent";
 import fetch from "node-fetch";
 import { z } from "zod";
@@ -28,7 +28,7 @@ export async function getRegistryIndexSolancn(env?: boolean) {
     return registryIndexSchema.parse([...result]);
   } catch (error) {
     console.error(error);
-    throw new Error("Failed to fetch components from Solancn UI registry.");
+    throw new Error("Failed to fetch components from SolancnUI registry.");
   }
 }
 
@@ -39,7 +39,7 @@ export async function getRegistryIndexShadcn() {
     return registryIndexSchema.parse(result);
   } catch (error) {
     console.error(error);
-    throw new Error("Failed to fetch components from Shadcn UI registry.");
+    throw new Error("Failed to fetch components from ShadcnUI registry.");
   }
 }
 
@@ -239,10 +239,15 @@ export async function getItemTargetPath(
     return null;
   }
 
-  return path.join(
-    config.resolvedPaths[parent as keyof typeof config.resolvedPaths],
-    type,
-  );
+  // Get the path from resolvedPaths, ensuring it's a string
+  const parentPath = config.resolvedPaths[parent as keyof typeof config.resolvedPaths];
+  
+  // Check if parentPath is defined before joining
+  if (!parentPath) {
+    return null;
+  }
+  
+  return path.join(parentPath, type);
 }
 
 async function fetchRegistry(paths: string[], fetchBaseUrl = baseUrl) {

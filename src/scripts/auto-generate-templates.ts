@@ -40,7 +40,7 @@ function generateTemplatesFromDocs(basePath: string) {
 					.join(" ");
 
 				// Generate description based on template name
-				let description = `A minimalistic ${templateName.replace("-", " ")} template designed with React and Tailwind CSS.`;
+				const description = `A minimalistic ${templateName.replace("-", " ")} template designed with React and Tailwind CSS.`;
 
 				// Custom descriptions for specific templates
 				// const customDescriptions: Record<string, string> = {
