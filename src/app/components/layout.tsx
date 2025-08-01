@@ -15,16 +15,13 @@ export default function ComponentsLayout({
 	return (
 		<TOCProvider>
 			<SidebarProvider>
-				<AppSidebar />
-				<SidebarInset>
-					<DocsLayoutContent
-						section="Components"
-						name="Library"
-						description="Explore our collection of responsive and accessible UI components."
-					>
-						{children}
-					</DocsLayoutContent>
-				</SidebarInset>
+				<DocsLayoutContent
+					section="Components"
+					name="Library"
+					description="Explore our collection of responsive and accessible UI components."
+				>
+					{children}
+				</DocsLayoutContent>
 			</SidebarProvider>
 		</TOCProvider>
 	);

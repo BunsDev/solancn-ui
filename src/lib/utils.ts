@@ -60,13 +60,13 @@ export async function getPrompt(): Promise<string> {
 	}
 }
 
-interface Team {
+interface Topic {
 	name: string;
-	teamContext: string;
+	topicContext: string;
 }
 
-interface TeamContextData {
-	teamContext: string;
+interface TopicContextData {
+	topicContext: string;
 	elements: {
 		components: Element[];
 		categories: Element[];
@@ -77,37 +77,37 @@ interface TeamContextData {
 }
 
 /**
- * Get all elements related to a specific team context
- * @param context - The team context to retrieve elements for. If not provided, attempts to detect from DOM.
- * @returns TeamContextData containing all elements related to the specified team context
+ * Get all elements related to a specific topic context
+ * @param context - The topic context to retrieve elements for. If not provided, attempts to detect from DOM.
+ * @returns TopicContextData containing all elements related to the specified topic context
  */
-export function getTeamContext(context?: string): TeamContextData {
-	// First determine the current team context if not provided
+export function getTopicContext(context?: string): TopicContextData {
+	// First determine the current topic context if not provided
 	if (!context) {
-		const teamElements = document.querySelectorAll("[data-team-context]");
-		const activeElement = Array.from(teamElements).find(
+		const topicElements = document.querySelectorAll("[data-topic-context]");
+		const activeElement = Array.from(topicElements).find(
 			(el) =>
 				el.classList.contains("active") ||
 				el.getAttribute("data-active") === "true",
 		);
 
 		if (activeElement) {
-			context = activeElement.getAttribute("data-team-context") || "";
-		} else if (teamElements.length > 0) {
-			context = teamElements[0].getAttribute("data-team-context") || "";
+			context = activeElement.getAttribute("data-topic-context") || "";
+		} else if (topicElements.length > 0) {
+			context = topicElements[0].getAttribute("data-topic-context") || "";
 		} else {
-			throw new Error("Team context could not be determined");
+			throw new Error("Topic context could not be determined");
 		}
 	}
 
 	// Return empty data if no context found
 	if (!context) {
-		throw new Error("Team context not found");
+		throw new Error("Topic context not found");
 	}
 
-	// Find all elements associated with this team context
-	const result: TeamContextData = {
-		teamContext: context,
+	// Find all elements associated with this topic context
+	const result: TopicContextData = {
+		topicContext: context,
 		elements: {
 			components: [],
 			categories: [],
@@ -116,9 +116,9 @@ export function getTeamContext(context?: string): TeamContextData {
 		},
 	};
 
-	// Find all elements with matching team context
+	// Find all elements with matching topic context
 	const contextElements = document.querySelectorAll(
-		`[data-team-context="${context}"]`,
+		`[data-topic-context="${context}"]`,
 	);
 
 	// Process each element and categorize it
@@ -143,7 +143,7 @@ export function getTeamContext(context?: string): TeamContextData {
 
 	// Get metadata if available
 	const metadataElement = document.querySelector(
-		`[data-team-context="${context}"][data-metadata]`,
+		`[data-topic-context="${context}"][data-metadata]`,
 	);
 	if (metadataElement) {
 		try {
@@ -152,7 +152,7 @@ export function getTeamContext(context?: string): TeamContextData {
 				result.metadata = JSON.parse(metadataStr);
 			}
 		} catch (error) {
-			console.error("Failed to parse team context metadata:", error);
+			console.error("Failed to parse topic context metadata:", error);
 		}
 	}
 
@@ -160,14 +160,14 @@ export function getTeamContext(context?: string): TeamContextData {
 }
 
 /**
- * Get the raw team context string only
- * @returns The current team context as a string
+ * Get the raw topic context string only
+ * @returns The current topic context as a string
  */
-export function getTeamContextString(): string {
+export function getTopicContextString(): string {
 	try {
-		return getTeamContext().teamContext;
+		return getTopicContext().topicContext;
 	} catch (error) {
-		console.error("Failed to get team context:", error);
-		return "components"; // Default to components if no context found
+		console.error("Failed to get topic context:", error);
+		return "docs"; // Default to docs if no context found
 	}
 }

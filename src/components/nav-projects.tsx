@@ -24,7 +24,7 @@ import {
 	SidebarMenuItem,
 	useSidebar,
 } from "@/components/ui/sidebar";
-import { useTeamContext } from "./app-sidebar";
+import { useTopicContext } from "./app-sidebar";
 
 export function NavProjects({
 	projects,
@@ -33,21 +33,21 @@ export function NavProjects({
 		name: string;
 		url: string;
 		icon: LucideIcon;
-		teamContext?: string;
+		topicContext?: string;
 	}[];
 }) {
 	const { isMobile } = useSidebar();
-	const { activeTeam } = useTeamContext();
+	const { activeTopic } = useTopicContext();
 
-	// Filter projects based on active team context
+	// Filter projects based on active topic context
 	const filteredProjects = projects.filter((project) => {
-		if (!project.teamContext) {
-			return true; // Show projects without a team context in all contexts
+		if (!project.topicContext) {
+			return true; // Show projects without a topic context in all contexts
 		}
-		return project.teamContext === activeTeam.teamContext;
+		return project.topicContext === activeTopic.topicContext;
 	});
 
-	// Don't render if there are no projects for this team
+	// Don't render if there are no projects for this topic
 	if (filteredProjects.length === 0) {
 		return null;
 	}

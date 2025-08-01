@@ -240,7 +240,7 @@ export default function SolancnHome() {
 						<Button
 							variant="outline"
 							size="default"
-							onClick={() => router.push("/components")}
+							onClick={() => router.push("/components/accordion")}
 							className="cursor-pointer"
 						>
 							<Code className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />

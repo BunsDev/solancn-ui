@@ -26,7 +26,7 @@ import {
 	SidebarMenuSubButton,
 	SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
-import { useTeamContext } from "./app-sidebar";
+import { useTopicContext } from "./app-sidebar";
 
 interface NavMainItemProps {
 	title: string;
@@ -42,7 +42,7 @@ interface NavMainItemProps {
 
 export function NavMain({ items }: { items: NavMainItemProps[] }) {
 	const pathname = usePathname();
-	const { platformTitle = "Platform" } = useTeamContext();
+	const { platformTitle = "Platform" } = useTopicContext();
 
 	// CSS custom property for Solana brand color accents
 	const accentStyle = {
@@ -68,12 +68,11 @@ export function NavMain({ items }: { items: NavMainItemProps[] }) {
 						key={item.title}
 						asChild
 						defaultOpen={true}
-						// isSectionActive(item)}
 						className="group/collapsible"
 					>
-						<SidebarMenuItem>
-							<CollapsibleTrigger asChild>
-								<SidebarMenuButton tooltip={item.title}>
+						<SidebarMenuItem className="group/collapsible">
+							<CollapsibleTrigger asChild className="z-100">
+								<SidebarMenuButton tooltip={item.title} className="z-100">
 									{item.icon && <item.icon className="shrink-0" />}
 									<span className="truncate">{item.title}</span>
 									<span className="ml-auto flex h-4 w-4 shrink-0 items-center justify-center">
@@ -82,10 +81,10 @@ export function NavMain({ items }: { items: NavMainItemProps[] }) {
 								</SidebarMenuButton>
 							</CollapsibleTrigger>
 							<CollapsibleContent>
-								<SidebarMenuSub>
+								<SidebarMenuSub className="z-100">
 									{item.items?.map((subItem) => (
 										<SidebarMenuSubItem key={subItem.title}>
-											<SidebarMenuSubButton asChild>
+											<SidebarMenuSubButton asChild className="z-100">
 												<Link
 													href={subItem.url}
 													className={`flex items-center gap-2 ${isActive(subItem.url) ? "font-medium" : ""}`}

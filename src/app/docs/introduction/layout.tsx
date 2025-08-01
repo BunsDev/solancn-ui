@@ -11,8 +11,6 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
 	return (
 		<TOCProvider>
 			<SidebarProvider>
-				<AppSidebar />
-				<SidebarInset>
 					<DocsLayoutContent
 						section="Docs"
 						name="Installation"
@@ -20,8 +18,7 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
 					>
 						{children}
 					</DocsLayoutContent>
-				</SidebarInset>
-			</SidebarProvider>
-		</TOCProvider>
+				</SidebarProvider>
+			</TOCProvider>
 	);
 }

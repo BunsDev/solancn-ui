@@ -8,8 +8,8 @@ import { Logo } from "@/assets/icons/logo";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { SearchModal } from "./search-modal";
-import { SidebarMobile } from "./sidebar-mobile";
 import { ThemeSwitcher } from "./theme";
+import { AppSidebar } from "../app-sidebar";
 
 const Header = () => {
 	const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -43,7 +43,7 @@ const Header = () => {
 						initial={{ opacity: 0 }}
 						exit={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
-						className="fixed inset-0 z-30 bg-black/50 md:hidden"
+						className="fixed inset-0 z-100 bg-black/50 md:hidden"
 						onClick={() => setSidebarOpen(false)}
 					/>
 				)}
@@ -53,7 +53,7 @@ const Header = () => {
 				initial={{ x: "-100%" }}
 				animate={{ x: sidebarOpen ? "0%" : "-100%" }}
 				transition={{ duration: 0.3, ease: "easeInOut" }}
-				className="fixed top-0 left-0 z-40 h-full w-4/5 sm:w-1/2 md:hidden bg-zinc-50 dark:bg-zinc-950"
+				className="fixed top-0 left-0 z-100 h-full w-4/5 sm:w-1/2 md:hidden bg-zinc-50 dark:bg-zinc-950"
 			>
 				<div className="w-full px-6 py-4 flex items-center justify-between border-b border-gray-200 dark:border-zinc-800">
 					<Link href="/" className="flex items-center">
@@ -70,7 +70,7 @@ const Header = () => {
 						<Icon icon="tabler:x" className="size-5" />
 					</Button>
 				</div>
-				<SidebarMobile onClose={() => setSidebarOpen(false)} />
+				<AppSidebar />
 			</motion.div>
 
 			<div className="w-full sticky top-0 z-[9998] bg-transparent backdrop-blur-lg border-b border-gray-200 dark:border-zinc-800">
@@ -78,14 +78,14 @@ const Header = () => {
 					<div className="flex items-center gap-12">
 						<div className="flex items-center gap-4">
 							{
-								<button
+								<Button
 									onClick={toggleSidebar}
 									className="flex flex-col items-start gap-1 md:hidden"
 								>
 									<span className="w-5 h-0.5 bg-zinc-900 dark:bg-zinc-100 rounded-full" />
 									<span className="w-3 h-0.5 bg-zinc-900 dark:bg-zinc-100 rounded-full" />
 									<span className="w-4 h-0.5 bg-zinc-900 dark:bg-zinc-100 rounded-full" />
-								</button>
+								</Button>
 							}
 
 							<Link href="/" className="flex items-center gap-2">
@@ -120,7 +120,7 @@ const Header = () => {
 								className={cn(
 									"flex items-center gap-2 hover:text-zinc-900 dark:hover:text-zinc-50",
 								)}
-								href="/components"
+								href="/components/accordion"
 							>
 								<Button
 									variant="default"
@@ -128,7 +128,7 @@ const Header = () => {
 										"text-zinc-900 dark:text-zinc-100 border-2 bg-zinc-200 dark:bg-zinc-950 hover:bg-zinc-200 dark:hover:bg-zinc-800",
 										isComponents && "dark:border-purple-600",
 										!isComponents &&
-											"dark:border-zinc-700 hover:border-purple-600",
+										"dark:border-zinc-700 hover:border-purple-600",
 									)}
 								>
 									<Icon icon="tabler:components" className="h-6 w-6" />
@@ -139,7 +139,7 @@ const Header = () => {
 								className={cn(
 									"flex items-center gap-2 hover:text-zinc-900 dark:hover:text-zinc-50",
 								)}
-								href="/templates"
+								href="/templates/nft-market"
 							>
 								<Button
 									variant="default"
@@ -147,7 +147,7 @@ const Header = () => {
 										"text-zinc-900 dark:text-zinc-100 border-2 bg-zinc-200 dark:bg-zinc-950 hover:bg-zinc-200 dark:hover:bg-zinc-800",
 										isTemplates && "dark:border-purple-600",
 										!isTemplates &&
-											"dark:border-zinc-700 hover:border-purple-600",
+										"dark:border-zinc-700 hover:border-purple-600",
 									)}
 								>
 									<Icon icon="tabler:template-filled" className="h-6 w-6" />

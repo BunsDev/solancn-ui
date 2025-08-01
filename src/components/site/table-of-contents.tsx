@@ -5,6 +5,7 @@ import { ArrowDown, ArrowUp } from "lucide-react";
 import type React from "react";
 import { useTableOfContents } from "@/hooks/use-table-of-contents";
 import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
 
 export const TableOfContents: React.FC = () => {
 	const { toc, activeId, scrollToHeading } = useTableOfContents();
@@ -20,7 +21,7 @@ export const TableOfContents: React.FC = () => {
 				<div className="space-y-6">
 					{/* Table of Contents */}
 					<nav
-						className="relative"
+						className="relative z-100"
 						role="navigation"
 						aria-label="Table of contents"
 					>
@@ -39,7 +40,7 @@ export const TableOfContents: React.FC = () => {
 										style={{ marginLeft: `${leftOffset}px` }}
 									>
 										{/* Content */}
-										<button
+										<Button
 											onClick={() => scrollToHeading(item.id)}
 											className={cn(
 												"text-left transition-all duration-200 hover:text-zinc-900 dark:hover:text-zinc-100",
@@ -55,7 +56,7 @@ export const TableOfContents: React.FC = () => {
 											)}
 										>
 											{item.text}
-										</button>
+										</Button>
 									</div>
 								);
 							})}
@@ -63,11 +64,11 @@ export const TableOfContents: React.FC = () => {
 					</nav>
 
 					{/* Reading Progress */}
-					<div className="space-y-3">
+					{/* <div className="space-y-3">
 						{/* Cool Progress Container */}
-						<div className="relative">
+						{/* <div className="relative">
 							{/* Background track with glow */}
-							<div className="w-full bg-zinc-200 dark:bg-zinc-800 rounded-full h-2 shadow-inner">
+							{/* <div className="w-full bg-zinc-200 dark:bg-zinc-800 rounded-full h-2 shadow-inner">
 								<motion.div
 									className="h-2 rounded-full relative overflow-hidden shadow-lg"
 									style={{
@@ -122,7 +123,7 @@ export const TableOfContents: React.FC = () => {
 									transition={{ duration: 0.4, ease: "easeOut" }}
 								>
 									{/* Animated shimmer effect */}
-									<motion.div
+									{/* <motion.div
 										className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
 										animate={{
 											x: ["-100%", "100%"],
@@ -133,11 +134,11 @@ export const TableOfContents: React.FC = () => {
 											ease: "linear",
 										}}
 									/>
-								</motion.div>
-							</div>
+								</motion.div> */}
+							{/* </div> */}
 
 							{/* Progress percentage indicator */}
-							<motion.div
+							{/* <motion.div
 								className="absolute top-0 -mt-6 text-xs font-medium px-2 py-1 rounded-md shadow-sm"
 								style={{
 									left: `${toc.length > 0 ? ((toc.findIndex((item) => item.id === activeId) + 1) / toc.length) * 100 : 0}%`,
@@ -201,36 +202,38 @@ export const TableOfContents: React.FC = () => {
 										)
 									: 0}
 								%
-							</motion.div>
-						</div>
+							</motion.div> */}
+						{/* </div>  */}
 
-						<div className="flex justify-between text-xs text-zinc-500 dark:text-zinc-400">
+						{/* <div className="flex justify-between text-xs text-zinc-500 dark:text-zinc-400">
 							<span>Start</span>
 							<span>End</span>
-						</div>
-					</div>
+						</div> */}
+					{/* </div> */}
 
 					{/* Glassy Navigation Buttons */}
 					<div className="space-y-2">
-						<button
+						<Button
 							onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+							variant="outline"
 							className="w-full flex items-center gap-2 px-3 py-2 text-sm text-zinc-700 dark:text-zinc-300 bg-white/60 dark:bg-zinc-800/60 backdrop-blur-md border border-white/20 dark:border-zinc-700/50 rounded-lg hover:bg-white/80 dark:hover:bg-zinc-800/80 transition-all duration-200 shadow-sm hover:shadow-md"
 						>
 							<ArrowUp className="w-3.5 h-3.5" />
 							<span>Back to top</span>
-						</button>
-						<button
+						</Button>
+						<Button
 							onClick={() =>
 								window.scrollTo({
 									top: document.body.scrollHeight,
 									behavior: "smooth",
 								})
 							}
+							variant="outline"
 							className="w-full flex items-center gap-2 px-3 py-2 text-sm text-zinc-700 dark:text-zinc-300 bg-white/60 dark:bg-zinc-800/60 backdrop-blur-md border border-white/20 dark:border-zinc-700/50 rounded-lg hover:bg-white/80 dark:hover:bg-zinc-800/80 transition-all duration-200 shadow-sm hover:shadow-md"
 						>
 							<ArrowDown className="w-3.5 h-3.5" />
 							<span>Go to bottom</span>
-						</button>
+						</Button>
 					</div>
 				</div>
 			</div>

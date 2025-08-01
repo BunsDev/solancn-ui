@@ -18,7 +18,7 @@ import * as React from "react";
 import { NavMain } from "@/components/nav-main";
 // import { NavProjects } from "@/components/nav-projects"
 import { NavResources } from "@/components/nav-resources";
-import { TeamSwitcher } from "@/components/team-switcher";
+import { TopicSwitcher } from "@/components/topic-switcher";
 import {
 	Sidebar,
 	SidebarContent,
@@ -32,12 +32,12 @@ import {
 	templatesNavigation,
 } from "@/constants/navigation";
 
-// Define team type for better type safety
-interface Team {
+// Define topic type for better type safety
+interface Topic {
 	name: string;
 	logo: React.ElementType;
 	plan: string;
-	teamContext: string; // Array of team IDs this item belongs to
+	topicContext: string; // Array of topic IDs this item belongs to
 	path: string;
 }
 
@@ -45,7 +45,7 @@ interface Team {
 interface NavItem {
 	title: string;
 	url: string;
-	teamContext: string; // Array of team IDs this item belongs to
+	topicContext: string; // Array of topic IDs this item belongs to
 	icon?: LucideIcon;
 	isActive?: boolean;
 	items?: {
@@ -83,27 +83,27 @@ const data = {
 			},
 		],
 	},
-	teams: [
+	topics: [
 		{
 			name: "Solancn UI",
 			logo: GalleryVerticalEnd,
-			plan: "Installation and Guides",
-			path: "/docs",
-			teamContext: "docs",
+			plan: "Installation & Guides",
+			path: "/docs/introduction",
+			topicContext: "docs",
 		},
 		{
 			name: "Components",
 			logo: Command,
-			plan: "UI Legos",
-			path: "/components",
-			teamContext: "components",
+			plan: "Modular Components",
+			path: "/components/accordion",
+			topicContext: "components",
 		},
 		{
 			name: "Templates",
 			logo: Command,
-			plan: "Comprehensive Elements",
-			path: "/templates",
-			teamContext: "templates",
+			plan: "Starter Kits",
+			path: "/templates/nft-market",
+			topicContext: "templates",
 		},
 	],
 	navMain: [...docsNavigation, ...componentsNavigation, ...templatesNavigation],
@@ -112,49 +112,49 @@ const data = {
 	//     name: "Sales & Marketing",
 	//     url: "#",
 	//     icon: PieChart,
-	//     teamContext: "components", // This item is shown when Components team is active
+	//     topicContext: "components", // This item is shown when Components topic is active
 	//   },
 	//   {
 	//     name: "Travel",
 	//     url: "#",
 	//     icon: Map,
-	//     teamContext: "templates", // This item is shown when Templates team is active
+	//     topicContext: "templates", // This item is shown when Templates topic is active
 	//   },
 	// ],
 };
 
-const activeTeam = data.teams.find((team) => team.teamContext === "components");
-if (!activeTeam) {
-	throw new Error("Active team not found");
+const activeTopic = data.topics.find((topic) => topic.topicContext === "docs");
+if (!activeTopic) {
+	throw new Error("Active topic not found");
 }
 
-// Define TeamContext type for better TypeScript support
-export interface TeamContextType {
-	activeTeam: Team;
-	setActiveTeam: React.Dispatch<React.SetStateAction<Team>>;
+// Define TopicContext type for better TypeScript support
+export interface TopicContextType {
+	activeTopic: Topic;
+	setActiveTopic: React.Dispatch<React.SetStateAction<Topic>>;
 	filteredNavItems: NavItem[];
 	filteredProjects?: any[]; // typeof data.projects;
 	platformTitle?: string;
 }
 
-// Create a context for the active team
-const TeamContext = React.createContext<TeamContextType>({
-	activeTeam: activeTeam,
-	setActiveTeam: () => {},
+// Create a context for the active topic
+const TopicContext = React.createContext<TopicContextType>({
+	activeTopic: activeTopic,
+	setActiveTopic: () => {},
 	filteredNavItems: [],
 	filteredProjects: [],
 });
 
-// Custom hook to use team context
-export const useTeamContext = () => React.useContext(TeamContext);
+// Custom hook to use topic context
+export const useTopicContext = () => React.useContext(TopicContext);
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-	// State for tracking active team, initialized with the first team
-	const [activeTeam, setActiveTeam] = React.useState<Team>(data.teams[0]);
+	// State for tracking active topic, initialized with the first topic
+	const [activeTopic, setActiveTopic] = React.useState<Topic>(data.topics[0]);
 
-	// Filter navigation items based on active team and map them to the NavItem interface
+	// Filter navigation items based on active topic and map them to the NavItem interface
 	const filteredNavItems = React.useMemo(() => {
-		// First, filter the navigation items based on active team
+		// First, filter the navigation items based on active topic
 		const filteredItems = data.navMain.filter((item) => {
 			// If no children property or empty children array, show in all contexts
 			if (!item.children || item.children.length === 0) {
@@ -173,17 +173,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 				const itemFirstChild = item.children[0];
 
 				// For navigation items, we can determine their category based on which array they belong to
-				const belongsToActiveTeam =
-					(activeTeam.teamContext === "docs" &&
+				const belongsToActiveTopic =
+					(activeTopic.topicContext === "docs" &&
 						docsNavigation.includes(navItem)) ||
-					(activeTeam.teamContext === "components" &&
+					(activeTopic.topicContext === "components" &&
 						componentsNavigation.includes(navItem)) ||
-					(activeTeam.teamContext === "templates" &&
+					(activeTopic.topicContext === "templates" &&
 						templatesNavigation.includes(navItem));
 
-				// Compare the hrefs if they exist and check if this belongs to the active team
+				// Compare the hrefs if they exist and check if this belongs to the active topic
 				return (
-					navItemFirstChild.href === itemFirstChild?.href && belongsToActiveTeam
+					navItemFirstChild.href === itemFirstChild?.href && belongsToActiveTopic
 				);
 			});
 		});
@@ -192,10 +192,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 		return filteredItems.map((item) => {
 			// Check if the item has most NavItem properties
 			if ("title" in item && "url" in item) {
-				// Ensure teamContext property exists
+				// Ensure topicContext property exists
 				const navItem = item as any;
-				if (!("teamContext" in item)) {
-					navItem.teamContext = activeTeam.teamContext;
+				if (!("topicContext" in item)) {
+					navItem.topicContext = activeTopic.topicContext;
 				}
 				return navItem as NavItem;
 			}
@@ -204,8 +204,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 			return {
 				title: "title" in item ? item.title : item.label || "",
 				url: "url" in item ? item.url : item.children?.[0]?.href || "",
-				teamContext:
-					"teamContext" in item ? item.teamContext : activeTeam.teamContext,
+				topicContext:
+					"topicContext" in item ? item.topicContext : activeTopic.topicContext,
 				// Only use the icon if it's a LucideIcon
 				icon:
 					"icon" in item && item.icon
@@ -225,23 +225,23 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 							})),
 			} as NavItem;
 		});
-	}, [activeTeam]);
+	}, [activeTopic]);
 
-	// Filter projects based on active team
+	// Filter projects based on active topic
 	// const filteredProjects = React.useMemo(() => {
 	//   return data.projects.filter(project => {
-	//     // If no teamContext is specified, show in all contexts
-	//     if (!project.teamContext || project.teamContext.length === 0) {
+	//     // If no topicContext is specified, show in all contexts
+	//     if (!project.topicContext || project.topicContext.length === 0) {
 	//       return true;
 	//     }
-	//     // Show projects that include the active team in their context
-	//     return project.teamContext.includes(activeTeam.teamContext);
+	//     // Show projects that include the active topic in their context
+	//     return project.topicContext.includes(activeTopic.topicContext);
 	//   });
-	// }, [activeTeam]);
+	// }, [activeTopic]);
 
-	// Calculate platform title based on active team
+	// Calculate platform title based on active topic
 	const getPlatformTitle = () => {
-		switch (activeTeam.teamContext) {
+		switch (activeTopic.topicContext) {
 			case "components":
 				return "Components";
 			case "templates":
@@ -253,9 +253,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 		}
 	};
 
-	// Get brand color based on active team
+	// Get brand color based on active topic
 	const getBrandColor = () => {
-		switch (activeTeam.teamContext) {
+		switch (activeTopic.topicContext) {
 			case "components":
 				return "#9945FF"; // Solana Purple
 			case "templates":
@@ -271,27 +271,27 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 	React.useEffect(() => {
 		const root = document.documentElement;
 		root.style.setProperty("--solana-accent", getBrandColor());
-	}, [activeTeam]);
+	}, [activeTopic]);
 
 	return (
-		<TeamContext.Provider
+		<TopicContext.Provider
 			value={{
-				activeTeam,
-				setActiveTeam,
+				activeTopic,
+				setActiveTopic,
 				filteredNavItems,
 				// filteredProjects,
 				platformTitle: getPlatformTitle(),
 			}}
 		>
-			<Sidebar collapsible="icon" {...props}>
+			<Sidebar collapsible="offcanvas" {...props} className="z-100">
 				<SidebarHeader>
-					<TeamSwitcher
-						teams={data.teams.map((team) => ({
-							name: team.name,
-							logo: team.logo,
-							plan: team.plan,
-							path: team.path,
-							teamContext: team.teamContext,
+					<TopicSwitcher
+						topics={data.topics.map((topic) => ({
+							name: topic.name,
+							logo: topic.logo,
+							plan: topic.plan,
+							path: topic.path,
+							topicContext: topic.topicContext,
 						}))}
 					/>
 				</SidebarHeader>
@@ -304,6 +304,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 				</SidebarFooter>
 				<SidebarRail />
 			</Sidebar>
-		</TeamContext.Provider>
+		</TopicContext.Provider>
 	);
 }

@@ -19,54 +19,54 @@ import {
 	SidebarMenuItem,
 	useSidebar,
 } from "@/components/ui/sidebar";
-import { useTeamContext } from "./app-sidebar"; // Import the TeamContext hook
+import { useTopicContext } from "./app-sidebar"; // Import the TeamContext hook
 
-interface Team {
+interface Topic {
 	name: string;
 	logo: React.ElementType;
 	plan: string;
 	path: string;
-	teamContext: string;
+	topicContext: string;
 }
 
-export function TeamSwitcher({ teams }: { teams: Team[] }) {
+export function TopicSwitcher({ topics }: { topics: Topic[] }) {
 	const router = useRouter();
 	const pathname = usePathname();
 	const { isMobile } = useSidebar();
 
-	// Get active team and setter from context
-	const { activeTeam, setActiveTeam } = useTeamContext();
+	// Get active topic and setter from context
+	const { activeTopic, setActiveTopic } = useTopicContext();
 
-	// Update active team based on URL path if it changes
+	// Update active topic based on URL path if it changes
 	React.useEffect(() => {
-		// Determine which team should be active based on the current path
-		const pathTeam = teams.find((team) => {
-			const teamPath = team.path.split("/")[1]; // e.g., 'components' from '/components'
-			return pathname.startsWith(`/${teamPath}`);
+		// Determine which topic should be active based on the current path
+		const pathTopic = topics.find((topic) => {
+			const topicPath = topic.path.split("/")[1]; // e.g., 'components' from '/components'
+			return pathname.startsWith(`/${topicPath}`);
 		});
 
-		// Update active team if the path indicates a different team
-		if (pathTeam && pathTeam.teamContext !== activeTeam.teamContext) {
-			setActiveTeam(pathTeam);
+		// Update active topic if the path indicates a different topic
+		if (pathTopic && pathTopic.topicContext !== activeTopic.topicContext) {
+			setActiveTopic(pathTopic);
 		}
-	}, [pathname, teams, activeTeam, setActiveTeam]);
+	}, [pathname, topics, activeTopic, setActiveTopic]);
 
-	const handleTeamSelect = async (team: Team) => {
-		// Update the team in context
-		setActiveTeam(team);
+	const handleTopicSelect = async (topic: Topic) => {
+		// Update the topic in context
+		setActiveTopic(topic);
 
-		// Navigate to the team's path if available
-		if (team.path) {
-			router.push(team.path);
+		// Navigate to the topic's path if available
+		if (topic.path) {
+			router.push(topic.path);
 		}
 	};
 
-	if (!activeTeam) {
+	if (!activeTopic) {
 		return null;
 	}
 
-	// Get the icon for each team context
-	const getTeamIcon = (context: string) => {
+	// Get the icon for each topic context
+	const getTopicIcon = (context: string) => {
 		switch (context) {
 			case "components":
 				return "lucide:terminal-square";
@@ -90,13 +90,13 @@ export function TeamSwitcher({ teams }: { teams: Team[] }) {
 						>
 							<div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
 								<Icon
-									icon={getTeamIcon(activeTeam.teamContext)}
+									icon={getTopicIcon(activeTopic.topicContext)}
 									className="size-4"
 								/>
 							</div>
 							<div className="grid flex-1 text-left text-sm leading-tight">
-								<span className="truncate font-medium">{activeTeam.name}</span>
-								<span className="truncate text-xs">{activeTeam.plan}</span>
+								<span className="truncate font-medium">{activeTopic.name}</span>
+								<span className="truncate text-xs">{activeTopic.plan}</span>
 							</div>
 							<ChevronsUpDown className="ml-auto" />
 						</SidebarMenuButton>
@@ -108,22 +108,22 @@ export function TeamSwitcher({ teams }: { teams: Team[] }) {
 						sideOffset={4}
 					>
 						<DropdownMenuLabel className="text-muted-foreground text-xs">
-							Teams
+							Topics
 						</DropdownMenuLabel>
-						{teams.map((team, index) => (
+						{topics.map((topic, index) => (
 							<DropdownMenuItem
-								key={team.name}
-								onClick={() => handleTeamSelect(team)}
-								// Highlight the active team
-								className={`gap-2 p-2 ${team.teamContext === activeTeam.teamContext ? "bg-accent text-accent-foreground" : ""}`}
+								key={topic.name}
+								onClick={() => handleTopicSelect(topic)}
+								// Highlight the active topic
+								className={`gap-2 p-2 ${topic.topicContext === activeTopic.topicContext ? "bg-accent text-accent-foreground" : ""}`}
 							>
 								<div className="flex size-6 items-center justify-center rounded-md border">
 									<Icon
-										icon={getTeamIcon(team.teamContext)}
+										icon={getTopicIcon(topic.topicContext)}
 										className="size-3.5 shrink-0"
 									/>
 								</div>
-								{team.name}
+								{topic.name}
 								<DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
 							</DropdownMenuItem>
 						))}

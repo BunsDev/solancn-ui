@@ -11,12 +11,9 @@ export default function TemplatesLayout({ children }: { children: ReactNode }) {
 	return (
 		<TOCProvider>
 			<SidebarProvider>
-				<AppSidebar />
-				<SidebarInset>
-					<DocsLayoutContent section="Templates" name="" description="">
-						{children}
-					</DocsLayoutContent>
-				</SidebarInset>
+				<DocsLayoutContent section="Templates" name="" description="">
+					{children}
+				</DocsLayoutContent>
 			</SidebarProvider>
 		</TOCProvider>
 	);
