@@ -1,6 +1,6 @@
 {
-	"buildCommand": "pnpm run build",
+	"buildCommand": "npm run build",
 	"outputDirectory": "out",
-	"installCommand": "pnpm install",
-	"devCommand": "pnpm run dev"
+	"installCommand": "npm install",
+	"devCommand": "npm run dev"
 }
