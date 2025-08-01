@@ -5,10 +5,8 @@ import { handleError } from "../utils/handle-error";
 import { logger } from "../utils/logger";
 import {
   fetchTree,
-  fetchTreeFromShadcn,
   getItemTargetPath,
   getRegistryBaseColor,
-  getRegistryIndexShadcn,
   getRegistryIndexSolancn,
 } from "../utils/registry";
 import { registryIndexSchema } from "../utils/registry/schema";
@@ -60,24 +58,12 @@ export const diff = new Command()
       }
 
       const registryIndex = await getRegistryIndexSolancn();
-      const shadcnRegistryIndex = await getRegistryIndexShadcn();
 
       if (!options.component) {
         const targetDir = config.resolvedPaths.components;
 
         // Find all components that exist in the project.
         const projectComponents = registryIndex.filter((item) => {
-          for (const file of item.files) {
-            const filePath = path.resolve(targetDir, file);
-            if (existsSync(filePath)) {
-              return true;
-            }
-          }
-
-          return false;
-        });
-
-        const projectShadcnComponents = shadcnRegistryIndex.filter((item) => {
           for (const file of item.files) {
             const filePath = path.resolve(targetDir, file);
             if (existsSync(filePath)) {
@@ -102,8 +88,8 @@ export const diff = new Command()
 
         // Check for updates in shadcn primitives.
         const componentsShadcnWithUpdates = [];
-        for (const component of projectShadcnComponents) {
-          const changes = await diffComponent(component, config, true);
+        for (const component of projectComponents) {
+          const changes = await diffComponent(component, config);
           if (changes.length) {
             componentsShadcnWithUpdates.push({
               name: component.name,
@@ -152,11 +138,7 @@ export const diff = new Command()
         (item) => item.name === options.component,
       );
 
-      const shadcnComponent = shadcnRegistryIndex.find(
-        (item) => item.name === options.component,
-      );
-
-      if (!component && !shadcnComponent) {
+      if (!component) {
         logger.error(
           `The component ${chalk.green(options.component)} does not exist.`,
         );
@@ -177,19 +159,6 @@ export const diff = new Command()
         }
       }
 
-      if (shadcnComponent) {
-        const changes = await diffComponent(shadcnComponent, config, true);
-
-        if (!changes.length) {
-          logger.info(`No updates found for ${options.component}.`);
-        } else {
-          for (const change of changes) {
-            logger.info(`- ${change.filePath}`);
-            await printDiff(change.patch);
-            logger.info("");
-          }
-        }
-      }
     } catch (error) {
       console.log(error);
       handleError(error);
@@ -199,11 +168,8 @@ export const diff = new Command()
 async function diffComponent(
   component: z.infer<typeof registryIndexSchema>[number],
   config: Config,
-  shadcn = false,
 ) {
-  const payload = await (shadcn
-    ? fetchTreeFromShadcn(config.style, [component])
-    : fetchTree([component]));
+  const payload = await fetchTree([component]);
   const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
 
   const changes = [];

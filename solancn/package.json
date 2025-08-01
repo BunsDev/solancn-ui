@@ -1,7 +1,7 @@
 {
   "name": "solancn",
-  "version": "0.0.12",
-  "description": "Add Solana ui components to your apps with shadcn-based configuration",
+  "version": "0.0.13",
+  "description": "Add Solana UI components to your apps with shadcn-based configuration",
   "publishConfig": {
     "access": "public"
   },

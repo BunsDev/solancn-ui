@@ -2,15 +2,15 @@ import { CodeBlock } from "@/components/site/code-block";
 import { ComponentRenderer } from "@/components/site/component-renderer";
 import { Cli } from "@/components/site/cli";
 import {
-  Tabs,
+  Tabs as TabsSite,
   TabsList,
   TabsTrigger,
   TabsContent,
 } from "@/components/site/tabs.tsx";
 import { PropsTable } from "@/components/site/props-table.tsx";
 import { Table, StatusBadge } from "@/components/ui/table";
-import TabsView from "./tabs-view.tsx";
-
+import Tabs from "./tabs.tsx";
+import TabsComponent from "@/components/core/tabs-component.tsx";
 
 # 🎛️ Tabs Component
 
@@ -19,23 +19,23 @@ A minimalistic and animated tab component built with **React**, **Tailwind CSS**
 
 # Introduction
 
-<Tabs defaultValue="preview" className="">
+<TabsSite defaultValue="preview" className="">
   <TabsList>
     <TabsTrigger value="preview">Preview</TabsTrigger>
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<TabsView />} componentName="tabs" />
+    <ComponentRenderer component={<Tabs />} componentName="tabs" />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/tabs/tabs-view.tsx" />
+    <CodeBlock filePath="src/app/components/tabs/tabs.tsx" />
   </TabsContent>
-</Tabs>
+</TabsSite>
 
 
 # Installation
 
-<Tabs defaultValue="cli" className="">
+<TabsSite defaultValue="cli" className="">
   <TabsList>
     <TabsTrigger value="cli">CLI</TabsTrigger>
     <TabsTrigger value="manual">Manual</TabsTrigger>
@@ -45,9 +45,9 @@ A minimalistic and animated tab component built with **React**, **Tailwind CSS**
   </TabsContent>
 
   <TabsContent value="manual">
-    <CodeBlock filePath="src/components/core/tabs.tsx" />
+    <CodeBlock filePath="src/components/core/tabs-component.tsx" />
   </TabsContent>
-</Tabs>
+</TabsSite>
 
 
 
@@ -73,9 +73,9 @@ Use the `Tabs` component to organize different sections of content into a clean,
 # 🧩 Code Example
 
 ```tsx
-import Tabs from "@/components/ui/tabs";
+import TabsComponent from "@/components/core/tabs-component";
 
-export default function TabsView() {
+export default function Tabs() {
   const tabData = [
     {
       id: 1,
@@ -97,7 +97,7 @@ export default function TabsView() {
     },
   ];
 
-  return <Tabs items={tabData} />;
+  return <TabsComponent items={tabData} />;
 }
 ```
 

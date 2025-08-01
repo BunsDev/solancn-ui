@@ -2,7 +2,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-export default function TabsViewFancy() {
+export default function TabsFancy() {
 	const [activeTab, setActiveTab] = useState(1);
 	const [isLoading, setIsLoading] = useState(false);
 

@@ -6,12 +6,11 @@ import { handleError } from "../utils/handle-error";
 import { ASCII_TEXT, ColorFullText, logger } from "../utils/logger";
 import {
   fetchTree,
-  fetchTreeFromShadcn,
+  fetchTreeStyled,
   getItemTargetPath,
   getRegistryBaseColor,
   getRegistryIndexSolancn,
-  getRegistryIndexShadcn,
-  resolveTreeWithShadcn,
+  resolveTreeWithDependencies,
 } from "../utils/registry";
 import { transform } from "../utils/transformers";
 import chalk from "chalk";
@@ -27,7 +26,7 @@ const addOptionsSchema = z.object({
   overwrite: z.boolean(),
   cwd: z.string(),
   all: z.boolean(),
-  shadcn: z.boolean(),
+  useStyled: z.boolean(),
   path: z.string().optional(),
   templates: z.boolean(),
 });
@@ -38,7 +37,7 @@ interface AddOptions {
   overwrite: boolean;
   cwd: string;
   all: boolean;
-  shadcn: boolean;
+  useStyled: boolean;
   path: string | undefined;
   templates: boolean;
 }
@@ -56,7 +55,7 @@ export const addComponent = new Command()
   )
   .option("-a, --all", "add all available components", true)
   .addHelpText("after", ColorFullText(ASCII_TEXT))
-  .option("-s, --shadcn", "include available components from shadcn", false)
+  .option("-s, --useStyled", "use styled version of components", false)
   .option("-p, --path <path>", "the path to add the component to.")
   .option("-t, --templates", "include available templates", false)
   .action(async (components, opts) => {
@@ -84,15 +83,10 @@ export const addComponent = new Command()
         process.exit(1);
       }
 
-      const registryIndex = !options.shadcn
-        ? await getRegistryIndexSolancn()
-        : [];
-      const shadcnRegistryIndex = await getRegistryIndexShadcn();
+      const registryIndex = await getRegistryIndexSolancn();
 
       let selectedComponents = options.all
-        ? (options.shadcn ? shadcnRegistryIndex : registryIndex).map(
-            (entry) => entry.name,
-          )
+        ? registryIndex.map((entry) => entry.name)
         : options.components;
 
       if (!options.components?.length && !options.all) {
@@ -105,9 +99,7 @@ export const addComponent = new Command()
             return type === "solancn";
           });
 
-        const multiselectChoice = options.shadcn
-          ? shadcnRegistryIndex
-          : filterIndex();
+        const multiselectChoice = filterIndex();
         const { components } = await prompts({
           type: "multiselect",
           name: "components",
@@ -130,29 +122,21 @@ export const addComponent = new Command()
         process.exit(0);
       }
 
-      // const tree = await resolveTree(registryIndex, selectedComponents)
-      const { solancnTree, shadcnTree } = await resolveTreeWithShadcn(
-        shadcnRegistryIndex,
-        registryIndex,
-        selectedComponents,
-        options.shadcn,
-      );
+      const tree = await resolveTreeWithDependencies(registryIndex, selectedComponents);
 
-      const solancnPayload = await fetchTree(solancnTree);
-      const shadcnPayload = await fetchTreeFromShadcn(config.style, shadcnTree);
+      const payload = options.useStyled
+        ? await fetchTreeStyled(config.style, tree)
+        : await fetchTree(tree);
       const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
 
-      if (!solancnPayload.length && !shadcnPayload.length) {
+      if (!payload.length) {
         logger.warn("Selected components not found. Exiting.");
         process.exit(0);
       } else {
-        solancnPayload.length !== 0 &&
-          logger.info(`Found ${solancnPayload.length}x Solancn components.`);
-        shadcnPayload.length !== 0 &&
-          logger.info(`Found ${shadcnPayload.length}x Shadcn UI components.`);
+        logger.info(`Found ${payload.length}x Solancn components.`);
       }
 
-      const totalPayload = [...solancnPayload, ...shadcnPayload];
+      const totalPayload = payload;
 
       if (!options.yes) {
         const { proceed } = await prompts({

@@ -14,7 +14,7 @@ export interface TabsProps {
 	className?: string;
 }
 
-export default function Tabs({ items = [], className = "" }: TabsProps) {
+export default function TabsComponent({ items = [], className = "" }: TabsProps) {
 	const [activeTab, setActiveTab] = useState<string | number>(
 		items[0]?.id ?? 1,
 	);

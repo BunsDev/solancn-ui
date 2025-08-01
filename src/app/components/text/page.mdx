@@ -8,19 +8,21 @@ import {
   TabsContent,
 } from "@/components/site/tabs.tsx";
 import { PropsTable } from "@/components/site/props-table.tsx";
-import SlideInView from "./slideIn.tsx"
-import ScaleInView from "./scalein.tsx"
-import BouncyView from "./bouncy.tsx"
-import BlurInView from "./blurin.tsx"
-import WavyView from "./wavy.tsx"
-import TexturedMaskView from "./texturedmask.tsx"
-import StaggeredPopInView from "./staggeredpopin.tsx"
-import ShinyView from "./shiny.tsx"
-import GradientView from "./gradient.tsx"
-import GlitchView from "./glitch.tsx"
-import MorphingView from "./morphing.tsx"
-import TypewriterView from "./typewriter.tsx"
-import ParticleView from "./particle.tsx"
+import {
+  SlideIn,
+  ScaleIn,
+  Bouncy,
+  BlurIn,
+  Wavy,
+  TexturedMask,
+  StaggeredPopIn,
+  Shiny,
+  Gradient,
+  Glitch,
+  Morphing,
+  Typewriter,
+  Particle,
+} from "./text.tsx"
 
 # Text Animation Components
 
@@ -36,10 +38,10 @@ A smooth character-by-character slide-in animation that reveals text from left t
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<SlideInView />} reTrigger={true} />
+    <ComponentRenderer component={<SlideIn />} reTrigger={true} />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/text/slideIn.tsx" />
+    <CodeBlock filePath="src/app/components/text/text.tsx" />
   </TabsContent>
 </Tabs>
 
@@ -55,10 +57,10 @@ An elegant scaling animation that grows each character from zero to full size wi
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<ScaleInView />} reTrigger={true} />
+    <ComponentRenderer component={<ScaleIn />} reTrigger={true} />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/text/scalein.tsx" />
+    <CodeBlock filePath="src/app/components/text/text.tsx" />
   </TabsContent>
 </Tabs>
 
@@ -72,10 +74,10 @@ A playful bouncing animation that adds personality to your text with spring phys
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<BouncyView />} reTrigger={true} />
+    <ComponentRenderer component={<Bouncy />} reTrigger={true} />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/text/bouncy.tsx" />
+    <CodeBlock filePath="src/app/components/text/text.tsx" />
   </TabsContent>
 </Tabs>
 
@@ -90,10 +92,10 @@ A sophisticated blur-to-focus animation that gradually sharpens each character a
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<BlurInView />} reTrigger={true} />
+    <ComponentRenderer component={<BlurIn />} reTrigger={true} />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/text/blurin.tsx" />
+    <CodeBlock filePath="src/app/components/text/text.tsx" />
   </TabsContent>
 </Tabs>
 
@@ -107,10 +109,10 @@ A continuous wave animation that creates a flowing, rhythmic motion across the t
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<WavyView />} reTrigger={true} />
+    <ComponentRenderer component={<Wavy />} reTrigger={true} />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/text/wavy.tsx" />
+    <CodeBlock filePath="src/app/components/text/text.tsx" />
   </TabsContent>
 </Tabs>
 
@@ -125,10 +127,10 @@ An advanced masking animation that reveals text through dynamic texture patterns
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<TexturedMaskView />} reTrigger={true} />
+    <ComponentRenderer component={<TexturedMask />} reTrigger={true} />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/text/texturedmask.tsx" />
+    <CodeBlock filePath="src/app/components/text/text.tsx" />
   </TabsContent>
 </Tabs>
 
@@ -142,10 +144,10 @@ A dynamic pop-in animation with staggered timing that creates a cascading reveal
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<StaggeredPopInView />} reTrigger={true} />
+    <ComponentRenderer component={<StaggeredPopIn />} reTrigger={true} />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/text/staggeredpopin.tsx" />
+    <CodeBlock filePath="src/app/components/text/text.tsx" />
   </TabsContent>
 </Tabs>
 
@@ -160,10 +162,10 @@ A lustrous shimmer effect that sweeps across the text, creating a metallic or gl
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<ShinyView />} reTrigger={true} />
+    <ComponentRenderer component={<Shiny />} reTrigger={true} />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/text/shiny.tsx" />
+    <CodeBlock filePath="src/app/components/text/text.tsx" />
   </TabsContent>
 </Tabs>
 
@@ -177,10 +179,10 @@ A vibrant animated gradient that flows through the text, creating dynamic color 
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<GradientView />} reTrigger={true} />
+    <ComponentRenderer component={<Gradient />} reTrigger={true} />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/text/gradient.tsx" />
+    <CodeBlock filePath="src/app/components/text/text.tsx" />
   </TabsContent>
 </Tabs>
 
@@ -194,10 +196,10 @@ A cyberpunk-inspired glitch effect with customizable speed, shadows, and hover i
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<GlitchView />} reTrigger={true} />
+    <ComponentRenderer component={<Glitch />} reTrigger={true} />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/text/glitch.tsx" />
+    <CodeBlock filePath="src/app/components/text/text.tsx" />
   </TabsContent>
 </Tabs>
 
@@ -211,10 +213,10 @@ An advanced 3D morphing animation that seamlessly transitions between different 
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<MorphingView />} reTrigger={true} />
+    <ComponentRenderer component={<Morphing />} reTrigger={true} />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/text/morphing.tsx" />
+    <CodeBlock filePath="src/app/components/text/text.tsx" />
   </TabsContent>
 </Tabs>
 
@@ -228,10 +230,10 @@ A classic typewriter effect with realistic typing speed, character-by-character 
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<TypewriterView />} reTrigger={true} />
+    <ComponentRenderer component={<Typewriter />} reTrigger={true} />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/text/typewriter.tsx" />
+    <CodeBlock filePath="src/app/components/text/text.tsx" />
   </TabsContent>
 </Tabs>
 
@@ -246,10 +248,10 @@ An interactive particle system that surrounds text with floating, animated parti
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<ParticleView />} reTrigger={true} />
+    <ComponentRenderer component={<Particle />} reTrigger={true} />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/text/particle.tsx" />
+    <CodeBlock filePath="src/app/components/text/text.tsx" />
   </TabsContent>
 </Tabs>
 

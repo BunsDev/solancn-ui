@@ -90,9 +90,8 @@ vi.mock("../utils/registry", () => ({
       ],
     },
   ]),
-  fetchTreeFromShadcn: vi.fn().mockResolvedValue([]),
+  fetchTreeStyled: vi.fn().mockResolvedValue([]),
   getRegistryIndexSolancn: vi.fn().mockResolvedValue([{ name: "button" }]),
-  getRegistryIndexShadcn: vi.fn().mockResolvedValue([{ name: "button" }]),
   getRegistryBaseColor: vi.fn().mockResolvedValue({
     name: "zinc",
     inlineColors: {
@@ -100,10 +99,7 @@ vi.mock("../utils/registry", () => ({
       dark: { background: "zinc-950", foreground: "white" },
     },
   }),
-  resolveTreeWithShadcn: vi.fn().mockResolvedValue({
-    shadcnTree: [{ name: "button" }],
-    solancnTree: [],
-  }),
+  resolveTreeWithDependencies: vi.fn().mockResolvedValue([{ name: "button" }]),
   getItemTargetPath: vi.fn().mockResolvedValue("/project/components/ui/button"),
 }));
 
@@ -195,7 +191,7 @@ describe("Component addition functionality", () => {
 
     // Verify registry was fetched
     expect(registry.getRegistryIndexSolancn).toHaveBeenCalledTimes(0);
-    expect(registry.resolveTreeWithShadcn).toHaveBeenCalledTimes(0);
+    expect(registry.resolveTreeWithDependencies).toHaveBeenCalledTimes(0);
     expect(registry.fetchTree).toHaveBeenCalledTimes(0);
 
     // Verify component was written
@@ -205,8 +201,8 @@ describe("Component addition functionality", () => {
     expect(transform.transform).toHaveBeenCalledTimes(0);
   });
 
-  it("should handle registry fallback when primary registry fails", async () => {
-    // Mock primary registry failure
+  it("should handle registry errors gracefully", async () => {
+    // Mock registry failure
     vi.mocked(registry.getRegistryIndexSolancn).mockRejectedValueOnce(
       new Error("Failed to fetch from SolancnUI registry"),
     );
@@ -220,14 +216,10 @@ describe("Component addition functionality", () => {
       overwrite: false,
       cwd: "/project",
       all: false,
-      shadcn: true, // Use shadcn registry
+      useStyled: true, // Use styled components
       path: undefined,
       templates: false,
     });
-
-    // Verify fallback registry was used
-    expect(registry.getRegistryIndexShadcn).toHaveBeenCalledTimes(0);
-    expect(registry.resolveTreeWithShadcn).toHaveBeenCalledTimes(0);
 
     // Verify component was still written
     expect(fs.promises.writeFile).toHaveBeenCalledTimes(0);
@@ -235,10 +227,7 @@ describe("Component addition functionality", () => {
 
   it("should handle missing component in registry", async () => {
     // Mock empty registry response for this test only
-    vi.mocked(registry.resolveTreeWithShadcn).mockResolvedValueOnce({
-      shadcnTree: [],
-      solancnTree: [],
-    });
+    vi.mocked(registry.resolveTreeWithDependencies).mockResolvedValueOnce([]);
 
     // Mock process.exit to prevent the test from actually exiting
     const mockExit = vi.spyOn(process, "exit").mockImplementation((code) => {

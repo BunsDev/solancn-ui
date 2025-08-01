@@ -1,6 +1,6 @@
-import Tabs from "@/components/core/tabs";
+import TabsComponent from "@/components/core/tabs-component";
 
-export default function TabsView() {
+export default function Tabs() {
 	const tabData = [
 		{
 			id: 1,
@@ -22,5 +22,5 @@ export default function TabsView() {
 		},
 	];
 
-	return <Tabs items={tabData} />;
+	return <TabsComponent items={tabData} />;
 }

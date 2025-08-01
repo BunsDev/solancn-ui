@@ -7,10 +7,10 @@ import {
   TabsTrigger,
   TabsContent,
 } from "@/components/site/tabs.tsx";
-import TabsViewFancy from "./tabs-view-fancy.tsx"
+import TabsFancy from "./tabs-fancy.tsx"
 
 
-# 💎 Tabs View: Fancy
+# 💎 Tabs: Fancy
 
 This **Fancy Tabs** component offers a vibrant and animated design perfect for modern user interfaces. It leverages smooth transitions and a sleek aesthetic to create an engaging user experience. Ideal for dashboards, portfolios, or any application where a touch of style can elevate the content.
 
@@ -20,10 +20,10 @@ This **Fancy Tabs** component offers a vibrant and animated design perfect for m
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<TabsViewFancy />} />
+    <ComponentRenderer component={<TabsFancy />} />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/tabs-fancy/tabs-view-fancy.tsx" />
+    <CodeBlock filePath="src/app/components/tabs-fancy/tabs-fancy.tsx" />
   </TabsContent>
 </Tabs>
 
@@ -40,7 +40,7 @@ You can add this component to your project using the CLI or by manually copying 
   </TabsContent>
 
   <TabsContent value="manual">
-    <CodeBlock filePath="src/app/components/tabs-fancy/tabs-view-fancy.tsx" />
+    <CodeBlock filePath="src/app/components/tabs-fancy/tabs-fancy.tsx" />
   </TabsContent>
 </Tabs>
 
@@ -48,16 +48,16 @@ You can add this component to your project using the CLI or by manually copying 
 
 # 💻 Usage
 
-After installation, you can import and use the `TabsViewFancy` component in your application.
+After installation, you can import and use the `TabsFancy` component in your application.
 
 ```tsx
-import { TabsViewFancy } from "@/components/ui/tabs-view-fancy"; // Adjust the import path as needed
+import { TabsFancy } from "@/components/ui/tabs-fancy"; // Adjust the import path as needed
 
 export default function MyPage() {
   return (
     <div className="p-8">
       <h1 className="text-2xl font-bold mb-4">My Awesome Feature</h1>
-      <TabsViewFancy />
+      <TabsFancy />
     </div>
   );
 }

@@ -64,9 +64,9 @@ import Prompt from "@/app/components/prompt/prompt";
 import VercelV0Chat from "@/app/components/prompt/v0";
 import Search from "@/app/components/search/search";
 import Shimmer from "@/app/components/shimmer/shimmer";
-import TabsView from "@/app/components/tabs/tabs-view";
-import TabsClassicView from "@/app/components/tabs-classic/tabs-view-classic";
-import TabsFancyView from "@/app/components/tabs-fancy/tabs-view-fancy";
+import Tabs from "@/app/components/tabs/tabs";
+import TabsClassic from "@/app/components/tabs-classic/tabs-classic";
+import TabsFancy from "@/app/components/tabs-fancy/tabs-fancy";
 import Testimonial from "@/app/components/testimonial/testimonial";
 import Testimonial2 from "@/app/components/testimonial/testimonial2";
 import TextReveal from "@/app/components/textreveal/textreveal";
@@ -119,11 +119,11 @@ export const ComponentRegistry: Record<string, React.ComponentType> = {
 	pricing: Pricing,
 	"pricing-2": Pricing2,
 	"pricing-3": SimplePricing,
-	tabs: TabsView,
-	"tabs-classic": TabsClassicView,
-	"classic-tabs": TabsClassicView,
-	"tabs-fancy": TabsFancyView,
-	"fancy-tabs": TabsFancyView,
+	tabs: Tabs,
+	"tabs-classic": TabsClassic,
+	"classic-tabs": TabsClassic,
+	"tabs-fancy": TabsFancy,
+	"fancy-tabs": TabsFancy,
 	textreveal: TextReveal,
 	"text-reveal": TextReveal,
 	carousel: Carousel,

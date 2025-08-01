@@ -12,8 +12,8 @@
 		"lint": "next lint",
 		"lint:fix": "biome check --write",
 		"build:registry": "tsx src/scripts/auto-generate-components.ts && tsx src/scripts/auto-generate-templates.ts && tsx src/scripts/build-registry.ts",
-		"generate:components": "tsx src/scripts/auto-generate-components.ts",
-		"generate:templates": "tsx src/scripts/auto-generate-templates.ts",
+		"gen:components": "tsx src/scripts/auto-generate-components.ts",
+		"gen:templates": "tsx src/scripts/auto-generate-templates.ts",
 		"watch:components": "tsx src/scripts/watch-components.ts"
 	},
 	"dependencies": {

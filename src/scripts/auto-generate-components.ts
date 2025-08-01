@@ -42,7 +42,7 @@ function generateComponentsFromDocs(basePath: string) {
 			{
 				path: "../app/components/tabs",
 				name: "tabs",
-				content: "",
+				content: fs.readFileSync(path.join(componentsPath, "tabs", "tabs.tsx"), "utf-8"),
 				type: "registry:component",
 			},
 		],
@@ -105,6 +105,11 @@ function generateComponentsFromDocs(basePath: string) {
 					description = customDescriptions[componentName];
 				}
 
+				const componentContent = fs.readFileSync(
+					`../app/components/${componentName}/${componentName}.tsx`,
+					"utf-8",
+				);
+
 				components.push({
 					name: componentName,
 					title: title,
@@ -116,7 +121,7 @@ function generateComponentsFromDocs(basePath: string) {
 						{
 							path: `../app/components/${componentName}`,
 							name: componentName,
-							content: "",
+							content: componentContent,
 							type: "registry:component",
 						},
 					],
@@ -166,7 +171,7 @@ ${components
       {
         path: "${component.path}",
         name: "${component.name}",
-        content: "",
+        content: "${component.files?.[0].content}",
         type: "${component.type}",
       },
     ],

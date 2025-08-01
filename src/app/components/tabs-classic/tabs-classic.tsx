@@ -1,8 +1,9 @@
 "use client";
+
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
-export default function TabsViewClassic() {
+export default function TabsClassic() {
 	const [activeTab, setActiveTab] = useState(1);
 	const [isHovering, setIsHovering] = useState<number | null>(null);
 

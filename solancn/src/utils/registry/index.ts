@@ -20,9 +20,8 @@ import {
   mockBaseColor,
 } from "./mock-registry";
 
-// Temporarily use Shadcn UI registry as fallback when Solancn registry is unavailable
+// Use Solancn registry for components
 const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://ui.solancn.com";
-const shadcnBaseUrl = "https://ui.shadcn.com";
 
 type theTree = z.infer<typeof registryIndexSchema>;
 
@@ -43,7 +42,7 @@ export async function getRegistryIndexSolancn(env?: boolean) {
   }
 
   try {
-    const [result] = await fetchRegistry(["index.json"], baseUrl);
+    const [result] = await fetchRegistry(["index.json"]);
 
     // Check if result is an object (new format) or array (old format)
     if (result && typeof result === "object" && !Array.isArray(result)) {
@@ -67,36 +66,18 @@ export async function getRegistryIndexSolancn(env?: boolean) {
   }
 }
 
-export async function getRegistryIndexShadcn() {
-  // Use mock data when in test mode
-  if (process.env.TEST_MODE === "true") {
-    return registryIndexSchema.parse(mockIndexData);
-  }
-
-  try {
-    const [result] = await fetchRegistry(["index.json"], shadcnBaseUrl);
-
-    return registryIndexSchema.parse(result);
-  } catch (error) {
-    console.error(error);
-    throw new Error(
-      "Failed to fetch components from ShadcnUI registry. Check if https://ui.shadcn.com is accessible or use --registry flag to specify an alternative.",
-    );
-  }
-}
+// This function has been removed as we're only using Solancn registry
 
 export async function getRegistryStyles() {
-  // Use mock data when in test mode
-  // if (process.env.TEST_MODE === "true") {
+  // Use mock data for styles
   return stylesSchema.parse(stylesData);
-  // }
-
+  
+  // Uncomment to fetch styles from Solancn registry
   // try {
-  // const [result] = await fetchRegistry(["styles/index.json"], shadcnBaseUrl);
-
-  // return stylesSchema.parse(result);
+  //   const [result] = await fetchRegistry(["styles/index.json"]);
+  //   return stylesSchema.parse(result);
   // } catch (error) {
-  // throw new Error("Failed to fetch styles from registry.");
+  //   throw new Error("Failed to fetch styles from registry.");
   // }
 }
 
@@ -132,98 +113,45 @@ export async function getRegistryBaseColor(baseColor: string) {
   }
 
   try {
-    const [result] = await fetchRegistry(
-      [`colors/${baseColor}.json`],
-      shadcnBaseUrl,
-    );
+    const [result] = await fetchRegistry([`colors/${baseColor}.json`]);
 
     return registryBaseColorSchema.parse(result);
   } catch (error) {
-    throw new Error("Failed to fetch base color from registry.");
+    throw new Error("Failed to fetch base color from Solancn registry.");
   }
 }
 
-export async function resolveTreeWithShadcn(
-  shadcnIndex: theTree,
+export async function resolveTreeWithDependencies(
   index: theTree,
   names: string[],
-  calledByShadcn = false,
-): Promise<{ shadcnTree: theTree; solancnTree: theTree }> {
-  const shadcnTree: theTree = [];
-  const solancnTree: theTree = [];
+): Promise<theTree> {
+  const tree: theTree = [];
 
   for (const name of names) {
-    if (!calledByShadcn) {
-      const entry = index.find((e) => e.name === name);
+    // Find entry in the Solancn registry
+    const entry = index.find((e) => e.name === name);
 
-      if (!entry) {
-        const newName = name.split(":")[1];
-        const shadcnEntry = shadcnIndex.find((e) => e.name === newName);
+    if (!entry) {
+      continue;
+    }
 
-        if (!shadcnEntry) {
-          continue;
-        }
-        shadcnTree.push(shadcnEntry);
+    tree.push(entry);
 
-        if (shadcnEntry.registryDependencies) {
-          const { shadcnTree: shadcnTreeDependencies } =
-            await resolveTreeWithShadcn(
-              shadcnIndex,
-              index,
-              shadcnEntry.registryDependencies,
-              true,
-            );
-          shadcnTree.push(...shadcnTreeDependencies);
-        }
-      }
-
-      entry && solancnTree.push(entry);
-
-      if (entry && entry.registryDependencies) {
-        const {
-          solancnTree: solancnTreeDependencies,
-          shadcnTree: shadcnTreeDependencies,
-        } = await resolveTreeWithShadcn(
-          shadcnIndex,
-          index,
-          entry.registryDependencies,
-          false,
-        );
-        shadcnTree.push(...shadcnTreeDependencies);
-        solancnTree.push(...solancnTreeDependencies);
-      }
-    } else {
-      const entry = shadcnIndex.find((e) => e.name === name);
-
-      if (!entry) {
-        continue;
-      }
-
-      shadcnTree.push(entry);
-
-      if (entry.registryDependencies) {
-        const { shadcnTree: shadcnTreeDependencies } =
-          await resolveTreeWithShadcn(
-            shadcnIndex,
-            index,
-            entry.registryDependencies,
-            true,
-          );
-        shadcnTree.push(...shadcnTreeDependencies);
-      }
+    // Resolve dependencies recursively
+    if (entry.registryDependencies) {
+      const dependencies = await resolveTreeWithDependencies(
+        index,
+        entry.registryDependencies
+      );
+      tree.push(...dependencies);
     }
   }
 
-  return {
-    shadcnTree: shadcnTree.filter(
-      (component, index, self) =>
-        self.findIndex((c) => c.name === component.name) === index,
-    ),
-    solancnTree: solancnTree.filter(
-      (component, index, self) =>
-        self.findIndex((c) => c.name === component.name) === index,
-    ),
-  };
+  // Remove duplicates
+  return tree.filter(
+    (component, index, self) =>
+      self.findIndex((c) => c.name === component.name) === index,
+  );
 }
 
 export async function resolveTree(index: theTree, names: string[]) {
@@ -250,7 +178,7 @@ export async function resolveTree(index: theTree, names: string[]) {
   );
 }
 
-export async function fetchTree(tree: theTree, env?: string) {
+export async function fetchTree(tree: theTree) {
   try {
     const treeNormal = tree.filter((item) => !item.type.includes("components"));
     // {baseUrl}/registry/components/solancn/[name].json.
@@ -266,14 +194,14 @@ export async function fetchTree(tree: theTree, env?: string) {
   }
 }
 
-export async function fetchTreeFromShadcn(style: string, tree: theTree) {
+export async function fetchTreeStyled(style: string, tree: theTree) {
   try {
     const paths = tree.map((item) => `styles/${style}/${item.name}.json`);
-    const result = await fetchRegistry(paths, shadcnBaseUrl);
+    const result = await fetchRegistry(paths);
 
     return registryWithContentSchema.parse(result);
   } catch (error) {
-    throw new Error(`Failed to fetch tree from Shadcn UI registry.`);
+    throw new Error(`Failed to fetch styled components from Solancn UI registry.`);
   }
 }
 
@@ -303,16 +231,18 @@ export async function getItemTargetPath(
   return path.join(parentPath, type);
 }
 
-async function fetchRegistry(paths: string[], fetchBaseUrl = baseUrl) {
+async function fetchRegistry(paths: string[], customBaseUrl?: string) {
   // Use mock data when in test mode
   if (process.env.TEST_MODE === "true") {
     return paths.map(() => mockRegistryItem);
   }
 
+  const urlToUse = customBaseUrl || baseUrl;
+
   try {
     const results = await Promise.all(
       paths.map(async (path) => {
-        const response = await fetch(`${fetchBaseUrl}/registry/${path}`, {
+        const response = await fetch(`${urlToUse}/registry/${path}`, {
           agent,
         });
         return await response.json();
@@ -320,6 +250,6 @@ async function fetchRegistry(paths: string[], fetchBaseUrl = baseUrl) {
     );
     return results;
   } catch (error) {
-    throw new Error(`Failed to fetch registry from ${fetchBaseUrl}.`);
+    throw new Error(`Failed to fetch registry from ${urlToUse}.`);
   }
 }

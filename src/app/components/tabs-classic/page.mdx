@@ -9,11 +9,11 @@ import {
 } from "@/components/site/tabs.tsx";
 import { PropsTable } from "@/components/site/props-table.tsx";
 import { Table, StatusBadge } from "@/components/ui/table";
-import TabsViewClassic from "./tabs-view-classic.tsx";
+import TabsClassic from "./tabs-classic.tsx";
 
 
 
-# 🎨 Tabs View: Classic
+# 🎨 Tabs: Classic
 
 The **Classic Tabs** component provides a timeless and functional design, offering a structured and familiar layout that users intuitively understand. Its clean lines and clear separation of content make it a reliable choice for any application where clarity and usability are
 
@@ -23,10 +23,10 @@ The **Classic Tabs** component provides a timeless and functional design, offeri
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<TabsViewClassic />} />
+    <ComponentRenderer component={<TabsClassic />} />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/tabs-classic/tabs-view-classic.tsx" />
+    <CodeBlock filePath="src/app/components/tabs-classic/tabs-classic.tsx" />
   </TabsContent>
 </Tabs>
 
@@ -45,7 +45,7 @@ Once installed, import the component and use it within your pages. The component
   </TabsContent>
 
   <TabsContent value="manual">
-    <CodeBlock filePath="src/app/components/tabs-classic/tabs-view-classic.tsx" />
+    <CodeBlock filePath="src/app/components/tabs-classic/tabs-classic.tsx" />
   </TabsContent>
 </Tabs>
 
@@ -56,13 +56,13 @@ Once installed, import the component and use it within your pages. The component
 Once installed, import the component and use it within your pages. The component encapsulates a set of pre-defined tabs and content for demonstration.
 
 ```tsx
-import { TabsViewClassic } from "@/components/ui/tabs-view-classic"; // Adjust the import path as needed
+import { TabsClassic } from "@/components/ui/tabs-classic"; // Adjust the import path as needed
 
 export default function SettingsPage() {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6">Account Settings</h1>
-      <TabsViewClassic />
+      <TabsClassic />
     </div>
   );
 }
