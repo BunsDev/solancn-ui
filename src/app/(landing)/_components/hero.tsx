@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { BorderBeam } from "@/components/ui";
 import Image from "next/image";
 import Link from "next/link";
-import Button from "@/app/docs/button/button";
+import Button from "@/app/components/button/button";
 import { BookOpen, Wrench } from "lucide-react";
 import { useState, useEffect } from "react";
 
