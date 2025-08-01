@@ -23,7 +23,7 @@ async function main() {
     .name("solancn")
     .description("Add Solancn components to your apps.")
     .version(
-      packageInfo.version || "0.0.9",
+      packageInfo.version || "0.0.10",
       "-v, --version",
       "display the version number",
     );
