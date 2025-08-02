@@ -25,7 +25,7 @@ import {
 	SidebarProvider,
 	useSidebar,
 } from "@/components/ui/sidebar";
-import { useTopicContext } from "./app-sidebar";
+// import { useTopicContext } from "./app-sidebar";
 
 export function NavProjects({
 	projects,
@@ -38,14 +38,14 @@ export function NavProjects({
 	}[];
 }) {
 	const { isMobile } = useSidebar();
-	const { activeTopic } = useTopicContext();
+	// const { activeTopic } = useTopicContext();
 
 	// Filter projects based on active topic context
 	const filteredProjects = projects.filter((project) => {
 		if (!project.topicContext) {
 			return true; // Show projects without a topic context in all contexts
 		}
-		return project.topicContext === activeTopic.topicContext;
+		// return project.topicContext === activeTopic.topicContext;
 	});
 
 	// Don't render if there are no projects for this topic

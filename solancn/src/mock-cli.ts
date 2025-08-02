@@ -5,34 +5,23 @@ import inquirer from "inquirer";
 import chalk from "chalk";
 import ora from "ora";
 import * as path from "path";
+import { execa } from "execa";
 
 // Set TEST_MODE to true for our mock environment
 process.env.TEST_MODE = "true";
 
-// Import the actual CLI command handlers
-// We need to use dynamic imports to ensure TEST_MODE is set first
-async function loadCommands() {
-  // Use named exports as they appear in the main index.ts file
-  const { listComponents } = await import("./commands/list");
-  const { addComponent } = await import("./commands/add");
-  const { init } = await import("./commands/init");
-  return { listComponents, addComponent, init };
-}
-
 async function mockCLI() {
   console.log(chalk.bold.cyan("🧪 Solancn Mock CLI Interactive Environment"));
-  console.log(chalk.gray("Running in TEST_MODE - using mock registry data\n"));
+  console.log(chalk.bold.yellow("Running in TEST_MODE - using mock registry data\n"));
 
   // Create a temporary working directory for the mock CLI
   const mockWorkDir = path.join(process.cwd(), ".mock-cli-workspace");
   console.log(chalk.gray(`Mock workspace: ${mockWorkDir}\n`));
-
-  const commands = await loadCommands();
   
   // Create the program
   const program = new Command();
   
-  // Setup the program with the actual command handlers but in mock mode
+  // Setup the program with commands that will execute the actual CLI in test mode
   program
     .name("solancn-mock")
     .description("Solancn Mock CLI for testing")
@@ -47,18 +36,18 @@ async function mockCLI() {
     .action(async (options) => {
       const spinner = ora("Fetching components...").start();
       try {
-        // Create temporary program and add the command
-        const tempProgram = new Command();
-        tempProgram.addCommand(commands.listComponents);
-        
-        // Build arguments array based on options
+        // Build command arguments based on options
         const args = ["list"];
         if (options.category) args.push("-c", options.category);
         if (options.json) args.push("--json");
         
-        // Parse with the temporary program
-        await tempProgram.parseAsync(["node", "solancn", ...args]);
+        // Execute CLI command directly
+        const { stdout } = await execa("node", ["./dist/index.js", ...args], {
+          env: { TEST_MODE: "true" }
+        });
+        
         spinner.succeed("Components fetched successfully");
+        console.log(stdout);
       } catch (error: unknown) {
         const errorMessage = error instanceof Error ? error.message : String(error);
         spinner.fail(`Error fetching components: ${errorMessage}`);
@@ -75,19 +64,19 @@ async function mockCLI() {
     .action(async (component, options) => {
       const spinner = ora(`Adding component ${component}...`).start();
       try {
-        // Create temporary program and add the command
-        const tempProgram = new Command();
-        tempProgram.addCommand(commands.addComponent);
-        
-        // Build arguments array based on options
+        // Build command arguments based on options
         const args = ["add", component];
         if (options.path) args.push("-p", options.path);
         if (options.template) args.push("-t");
         if (options.yes) args.push("-y");
         
-        // Parse with the temporary program
-        await tempProgram.parseAsync(["node", "solancn", ...args]);
+        // Execute CLI command directly
+        const { stdout } = await execa("node", ["./dist/index.js", ...args], {
+          env: { TEST_MODE: "true" }
+        });
+        
         spinner.succeed(`Component ${component} added successfully`);
+        console.log(stdout);
       } catch (error: unknown) {
         const errorMessage = error instanceof Error ? error.message : String(error);
         spinner.fail(`Error adding component: ${errorMessage}`);
@@ -103,18 +92,18 @@ async function mockCLI() {
     .action(async (options) => {
       const spinner = ora("Initializing Solancn...").start();
       try {
-        // Create temporary program and add the command
-        const tempProgram = new Command();
-        tempProgram.addCommand(commands.init);
-        
-        // Build arguments array based on options
+        // Build command arguments based on options
         const args = ["init"];
         if (options.path) args.push("-p", options.path);
         if (options.yes) args.push("-y");
         
-        // Parse with the temporary program
-        await tempProgram.parseAsync(["node", "solancn", ...args]);
+        // Execute CLI command directly
+        const { stdout } = await execa("node", ["./dist/index.js", ...args], {
+          env: { TEST_MODE: "true" }
+        });
+        
         spinner.succeed("Solancn initialized successfully");
+        console.log(stdout);
       } catch (error: unknown) {
         const errorMessage = error instanceof Error ? error.message : String(error);
         spinner.fail(`Error initializing Solancn: ${errorMessage}`);
@@ -163,7 +152,7 @@ async function mockCLI() {
       if (category) options.category = category;
       if (outputJson) options.json = true;
 
-      await program?.commands?.find(cmd => cmd.name() === "list")?.action(options);
+      await program.commands.find(cmd => cmd.name() === "list")?.action(options);
     } else if (action === "add") {
       const { component, path, template, yes } = await inquirer.prompt([
         {
@@ -197,7 +186,7 @@ async function mockCLI() {
       if (template) options.template = true;
       if (yes) options.yes = true;
 
-      await program?.commands?.find(cmd => cmd.name() === "add")?.action(component);
+      await program.commands.find(cmd => cmd.name() === "add")?.action(component);
     } else if (action === "init") {
       const { path, yes } = await inquirer.prompt([
         {
@@ -218,7 +207,7 @@ async function mockCLI() {
       if (path) options.path = path;
       if (yes) options.yes = true;
 
-      await program?.commands?.find(cmd => cmd.name() === "init")?.action(options);
+      await program.commands.find(cmd => cmd.name() === "init")?.action(options);
     } else if (action === "custom") {
       const { command } = await inquirer.prompt([
         {
