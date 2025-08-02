@@ -44,6 +44,7 @@
     "test": "vitest run",
     "test:cli": "tsx test/test-cli.ts",
     "test:cli:interactive": "tsx test/test-cli.ts",
+    "mock:cli": "tsx src/mock-cli.ts",
     "test:ci": "CI=true pnpm test && echo '✅ CLI tests skipped in CI environment'",
     "prerelease": "pnpm test:ci"
   },
@@ -63,6 +64,7 @@
     "fs-extra": "^11.1.0",
     "gradient-string": "^2.0.2",
     "https-proxy-agent": "^6.2.0",
+    "inquirer": "^12.9.0",
     "lodash.template": "^4.5.0",
     "node-fetch": "^3.3.0",
     "ora": "^6.1.2",
@@ -80,6 +82,7 @@
     "@types/diff": "^5.0.3",
     "@types/fs-extra": "^11.0.1",
     "@types/gradient-string": "^1.1.6",
+    "@types/inquirer": "^9.0.8",
     "@types/lodash.template": "^4.5.1",
     "@types/prompts": "^2.4.2",
     "@vitest/coverage-v8": "^3.2.4",

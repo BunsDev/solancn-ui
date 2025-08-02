@@ -44,10 +44,10 @@ app.get('/registry/:componentName.json', (req, res) => {
     // Return a generic component structure if file doesn't exist
     res.json({
       name: componentName,
-      type: "components:ui",
+      type: "registry:component",
       dependencies: [],
       registryDependencies: [],
-      files: [{ name: `${componentName}.tsx`, content: "", type: "components:ui" }]
+      files: [{ name: `${componentName}.tsx`, content: "", type: "registry:component" }]
     });
   }
 });

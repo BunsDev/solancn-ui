@@ -47,11 +47,7 @@ function generateTemplatesFromDocs(basePath: string) {
 
 				// Generate description based on template name
 				const description = `A minimalistic ${templateName.replace("-", " ")} template designed with React and Tailwind CSS.`;
-
-				const templateContent = fs.readFileSync(
-					`../app/templates/${templateName}/${templateName}.tsx`,
-					"utf-8",
-				);
+				const templateContent = fs.readFileSync(path.join(templatesPath, `${templateName}/${templateName}.tsx`), "utf-8");
 
 				templates.push({
 					name: templateName,
@@ -114,7 +110,7 @@ ${templates
       {
         path: "${template.path}",
         name: "${template.name}",
-        content: "${template.files?.[0].content}",
+        content: "${template.files?.find((file) => file.name === template.name)?.content}",
         type: "${template.type}",
       },
     ],

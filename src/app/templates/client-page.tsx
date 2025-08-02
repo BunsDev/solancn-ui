@@ -411,10 +411,11 @@ interface ProcessedComponent extends Component {
 // Helper function to get component category from navigation structure
 const getComponentCategory = (componentName: string): string => {
 	for (const section of allNavigation) {
-		const found = section.children.some(
+		if (!section.children) continue;
+		const found = section?.children?.some(
 			(child) =>
-				child.href.includes(`/components/${componentName}`) ||
-				child.label.toLowerCase() === componentName.toLowerCase(),
+				child?.href?.includes(`/components/${componentName}`) ||
+				child?.label?.toLowerCase() === componentName.toLowerCase(),
 		);
 
 		if (found) return section.label;
