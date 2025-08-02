@@ -45,14 +45,22 @@ async function mockCLI() {
         if (options.category) args.push("-c", options.category);
         if (options.json) args.push("--json");
         
-        // Execute CLI command directly
-        const { stdout } = await execa("node", ["./dist/index.js", ...args], {
+        // Execute CLI command directly with inherit stdio for real-time output
+        spinner.stop();
+        console.log(chalk.yellow("Running:"), chalk.cyan(`solancn ${args.join(' ')}\n`));
+        
+        const result = await execa("node", ["./dist/index.js", ...args], {
           env: { TEST_MODE: "true", NODE_ENV: "development" },
-          cwd: process.cwd()
+          cwd: process.cwd(),
+          stdio: "inherit",
+          reject: false
         });
         
-        spinner.succeed("Components fetched successfully");
-        console.log(stdout);
+        if (result.exitCode === 0) {
+          console.log(chalk.green("\n✓ Command completed successfully"));
+        } else {
+          console.log(chalk.red("\n✗ Command failed with exit code " + result.exitCode));
+        }
       } catch (error: unknown) {
         const errorMessage = error instanceof Error ? error.message : String(error);
         spinner.fail(`Error fetching components: ${errorMessage}`);
@@ -78,14 +86,22 @@ async function mockCLI() {
         if (options.template) args.push("-t");
         if (options.yes) args.push("-y");
         
-        // Execute CLI command directly
-        const { stdout } = await execa("node", ["./dist/index.js", ...args], {
+        // Execute CLI command directly with inherit stdio for real-time output
+        spinner.stop();
+        console.log(chalk.yellow("Running:"), chalk.cyan(`solancn ${args.join(' ')}\n`));
+        
+        const result = await execa("node", ["./dist/index.js", ...args], {
           env: { TEST_MODE: "true", NODE_ENV: "development" },
-          cwd: process.cwd()
+          cwd: process.cwd(),
+          stdio: "inherit",
+          reject: false
         });
         
-        spinner.succeed(`Component ${component} added successfully`);
-        console.log(stdout);
+        if (result.exitCode === 0) {
+          console.log(chalk.green(`\n✓ Component ${component} added successfully`));
+        } else {
+          console.log(chalk.red(`\n✗ Failed to add component ${component} (exit code ${result.exitCode})`));
+        }
       } catch (error: unknown) {
         const errorMessage = error instanceof Error ? error.message : String(error);
         spinner.fail(`Error adding component: ${errorMessage}`);
@@ -109,14 +125,22 @@ async function mockCLI() {
         if (options.path) args.push("-p", options.path);
         if (options.yes) args.push("-y");
         
-        // Execute CLI command directly
-        const { stdout } = await execa("node", ["./dist/index.js", ...args], {
+        // Execute CLI command directly with inherit stdio for real-time output
+        spinner.stop();
+        console.log(chalk.yellow("Running:"), chalk.cyan(`solancn ${args.join(' ')}\n`));
+        
+        const result = await execa("node", ["./dist/index.js", ...args], {
           env: { TEST_MODE: "true", NODE_ENV: "development" },
-          cwd: process.cwd()
+          cwd: process.cwd(),
+          stdio: "inherit",
+          reject: false
         });
         
-        spinner.succeed("Solancn initialized successfully");
-        console.log(stdout);
+        if (result.exitCode === 0) {
+          console.log(chalk.green("\n✓ Solancn initialized successfully"));
+        } else {
+          console.log(chalk.red("\n✗ Failed to initialize Solancn (exit code " + result.exitCode + ")"));
+        }
       } catch (error: unknown) {
         const errorMessage = error instanceof Error ? error.message : String(error);
         spinner.fail(`Error initializing Solancn: ${errorMessage}`);

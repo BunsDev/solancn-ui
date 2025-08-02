@@ -92,7 +92,6 @@ export const seoConfig = {
 				"navbar",
 				"footer",
 				"dock",
-				"marquee",
 			],
 		},
 		"Form Components": {

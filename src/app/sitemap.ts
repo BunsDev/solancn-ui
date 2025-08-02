@@ -18,7 +18,6 @@ const componentCategories = {
 		"tooltip",
 		"navbar",
 		"dock",
-		"marquee",
 	],
 	"Form Components": [
 		"login",

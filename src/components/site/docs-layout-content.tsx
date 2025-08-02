@@ -70,13 +70,13 @@ export function DocsLayoutContent({
 					</main>
 
 					{/* Table of contents - only visible on larger screens when showTOC is true */}
-					{showTOC && (
+					{/* {showTOC && (
 						<div className="hidden lg:block w-[240px] xl:w-[280px] flex-shrink-0 border-l p-4">
 							<div className="sticky top-20">
 								<TableOfContents />
 							</div>
 						</div>
-					)}
+					)} */}
 				</div>
 			</SidebarInset>
 		</SidebarProvider>

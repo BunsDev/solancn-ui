@@ -429,19 +429,6 @@
     ]
   },
   {
-    "name": "marquee",
-    "description": "A minimalistic marquee component designed with React and Tailwind CSS.",
-    "dependencies": [],
-    "registryDependencies": [],
-    "files": [
-      {
-        "name": "marquee",
-        "content": "",
-        "type": "registry:component"
-      }
-    ]
-  },
-  {
     "name": "masonary",
     "description": "A minimalistic masonary component designed with React and Tailwind CSS.",
     "dependencies": [],

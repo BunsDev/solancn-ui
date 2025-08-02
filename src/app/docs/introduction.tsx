@@ -125,9 +125,9 @@ export default function Introduction() {
   return (
     <div className="w-full space-y-12">
       {/* Hero Section */}
-      <section className="relative overflow-hidden rounded-3xl bg-background p-8 md:p-12">
-        <div className="absolute top-0 right-0 -mt-16 -mr-16 h-64 w-64 rounded-full bg-background blur-3xl" />
-        <div className="absolute bottom-0 left-0 -mb-16 -ml-16 h-64 w-64 rounded-full bg-background blur-3xl" />
+      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-zinc-900 to-zinc-950 p-8 md:p-12">
+        <div className="absolute top-0 right-0 -mt-16 -mr-16 h-64 w-64 rounded-full bg-[#9945FF]/20 blur-3xl" />
+        <div className="absolute bottom-0 left-0 -mb-16 -ml-16 h-64 w-64 rounded-full bg-[#14F195]/20 blur-3xl" />
         
         <div className="relative z-10 flex flex-col items-center text-center">
           <motion.div 

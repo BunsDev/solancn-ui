@@ -1,10 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { BookOpen, Command, FileText, Layout, Palette, PenTool } from "lucide-react"
+import { BookOpen, Layout, PenTool } from "lucide-react"
 
-import { NavUser } from "@/components/nav-user"
-import { Label } from "@/components/ui/label"
 import {
 	Sidebar,
 	SidebarContent,
@@ -25,7 +23,9 @@ import {
 } from "@/constants/navigation";
 import { NavigationItem } from "@/types/navigation";
 import Link from "next/link";
-
+import Image from "next/image";
+import { Logo } from "@/assets/icons/logo";
+import { useTheme } from "next-themes";
 // This is sample data
 const data = {
 	user: {
@@ -77,6 +77,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 	const [activeItem, setActiveItem] = React.useState(data.navMain[0])
 	const [navigationItems, setNavigationItems] = React.useState<NavigationItem[]>(docsNavigation)
 	const { setOpen } = useSidebar()
+	const { theme } = useTheme()
 	
 	// Function to get the appropriate navigation items based on the selected main item
 	const getNavigationItems = (item: typeof data.navMain[0]) => {
@@ -109,15 +110,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 					<SidebarMenu>
 						<SidebarMenuItem>
 							<SidebarMenuButton size="lg" asChild className="md:h-8 md:p-0">
-								<a href="#">
-									<div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-										<Command className="size-4" />
-									</div>
-									<div className="grid flex-1 text-left text-sm leading-tight">
-										<span className="truncate font-medium">Acme Inc</span>
-										<span className="truncate text-xs">Enterprise</span>
-									</div>
-								</a>
+								<Link href="/">
+									<div className="bg-muted text-muted-foreground flex aspect-square size-8 items-center justify-center rounded-lg p-1">
+									<Logo
+										// useBlack={theme !== "dark"}
+									/>
+								</div>
+							</Link>
 							</SidebarMenuButton>
 						</SidebarMenuItem>
 					</SidebarMenu>

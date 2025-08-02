@@ -110,7 +110,7 @@ const PricingCard: React.FC<PricingCardProps> = ({ plan }) => {
     hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-2xl
     ${
 			plan.isPopular
-				? "border-2 border-indigo-500 dark:border-indigo-400 relative shadow-lg shadow-indigo-500/20 dark:shadow-indigo-400/20"
+				? "border-2 border-primary dark:border-primary relative shadow-lg shadow-primary/20 dark:shadow-primary/20"
 				: "border-gray-200 dark:border-zinc-700 hover:border-gray-300 dark:hover:border-zinc-600"
 		}
   `;
@@ -120,7 +120,7 @@ const PricingCard: React.FC<PricingCardProps> = ({ plan }) => {
     border border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2
     ${
 			plan.isPopular
-				? "bg-indigo-500 dark:bg-indigo-600 text-white shadow-lg shadow-indigo-500/30 dark:shadow-indigo-600/30 hover:bg-indigo-600 dark:hover:bg-indigo-700 focus:ring-indigo-500 dark:focus:ring-indigo-400"
+				? "bg-primary dark:bg-primary text-white shadow-lg shadow-primary/30 dark:shadow-primary/30 hover:bg-primary dark:hover:bg-primary focus:ring-primary dark:focus:ring-primary"
 				: `
         bg-white/70 dark:bg-zinc-800/70 hover:bg-white dark:hover:bg-zinc-800
         text-slate-800 dark:text-zinc-200
@@ -134,7 +134,7 @@ const PricingCard: React.FC<PricingCardProps> = ({ plan }) => {
 	return (
 		<div className={cardClasses}>
 			{plan.isPopular && (
-				<div className="absolute top-0 right-4 -mt-3 bg-indigo-500 dark:bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+				<div className="absolute top-0 right-4 -mt-3 bg-primary dark:bg-primary text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
 					MOST POPULAR
 				</div>
 			)}

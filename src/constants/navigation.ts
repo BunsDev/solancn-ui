@@ -4,9 +4,9 @@ import { NavigationItem } from "@/types/navigation";
 export const docsNavigation: NavigationItem[] = [
 	{
 		label: "Getting Started",
-		href: "/docs",
+		href: "/docs/introduction",
 		children: [
-			{ label: "Introduction", href: "/docs" },
+			{ label: "Introduction", href: "/docs/introduction" },
 			{ label: "Installation", href: "/docs/installation" },
 		],
 	},
@@ -14,11 +14,10 @@ export const docsNavigation: NavigationItem[] = [
 export const componentsNavigation: NavigationItem[] = [
 	{
 		label: "Blocks",
-		href: "/components",
+		href: "/components/hero",
 		children: [
-			// { label: "Hero", href: "/components/hero" },
+			{ label: "Hero", href: "/components/hero" },
 			// { label: "Header", href: "/components/navbar" },
-			{ label: "Marquee", href: "/components/marquee" },
 			{ label: "Pricing", href: "/components/pricing" },
 
 			// { label: "Testimonial", href: "/components/testimonial" },
@@ -124,7 +123,7 @@ export const componentsNavigation: NavigationItem[] = [
 export const templatesNavigation: NavigationItem[] = [
 	{
 		label: "Templates",
-		href: "/templates",
+		href: "/templates/nft-market",
 		children: [
 			{ label: "NFT Market", href: "/templates/nft-market" },
 			{ label: "Bridge", href: "/templates/bridge" },

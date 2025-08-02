@@ -48,7 +48,6 @@ import NexusOrbSup from "@/app/components/integrations/nexusorbsup";
 import Spider from "@/app/components/integrations/spider";
 import Login from "@/app/components/login/login";
 import MagicCardView from "@/app/components/magic/magic";
-import MarqueeView from "@/app/components/marquee/marquee-view";
 import Header from "@/app/components/navbar/header";
 import Header2 from "@/app/components/navbar/header2";
 import Navbar from "@/app/components/navbar/navbar";
@@ -58,8 +57,6 @@ import StrongPassword from "@/app/components/password/strongPassword";
 import CoderProfileCard from "@/app/components/portfolio/portfolio";
 import Portfolio2Page from "@/app/components/portfolio/portfolio2";
 import Pricing from "@/app/components/pricing/pricing";
-import Pricing2 from "@/app/components/pricing/pricing2";
-import SimplePricing from "@/app/components/pricing/pricing3";
 import Prompt from "@/app/components/prompt/prompt";
 import VercelV0Chat from "@/app/components/prompt/v0";
 import Search from "@/app/components/search/search";
@@ -116,8 +113,6 @@ export const ComponentRegistry: Record<string, React.ComponentType> = {
 	"fuzzy-search": FuzzySearch,
 	login: Login,
 	pricing: Pricing,
-	"pricing-2": Pricing2,
-	"pricing-3": SimplePricing,
 	tabs: Tabs,
 	"tabs-classic": TabsClassic,
 	"classic-tabs": TabsClassic,
@@ -137,7 +132,6 @@ export const ComponentRegistry: Record<string, React.ComponentType> = {
 	"forgot-password": ForgotPassword,
 	gradient: GradientView,
 	"magic-card": MagicCardView,
-	marquee: MarqueeView,
 	navbar: Navbar,
 	header: Header,
 	"header-2": Header2,

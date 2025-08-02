@@ -545,22 +545,6 @@ export const components: ComponentType[] = [
     ],
   },
   {
-    name: "marquee",
-    title: "Marquee",
-    description: "A minimalistic marquee component designed with React and Tailwind CSS.",
-    type: "registry:component",
-    path: "../app/components/marquee",
-    dependencies: [],
-    files: [
-      {
-        path: "../app/components/marquee",
-        name: "marquee",
-        content: "",
-        type: "registry:component",
-      },
-    ],
-  },
-  {
     name: "masonary",
     title: "Masonary",
     description: "A minimalistic masonary component designed with React and Tailwind CSS.",

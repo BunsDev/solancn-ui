@@ -146,7 +146,7 @@ export const Hero = () => {
               </Button>
             </Link>
 
-            <Link href="/docs/pattern">
+            <Link href="/docs/installation">
               <Button
                 size="lg"
                 variant="outline"

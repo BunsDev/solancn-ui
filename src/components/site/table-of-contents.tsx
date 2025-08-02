@@ -51,8 +51,8 @@ export const TableOfContents: React.FC = () => {
 														? "text-[0.8rem]"
 														: "text-[0.75rem]",
 												isActive
-													? "text-blue-600 dark:text-blue-400 font-medium"
-													: "text-zinc-600 dark:text-zinc-400",
+													? "text-primary dark:text-primary font-medium"
+													: "text-secondary dark:text-secondary",
 											)}
 										>
 											{item.text}

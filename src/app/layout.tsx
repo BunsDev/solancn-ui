@@ -9,7 +9,6 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { PackageManagerProvider } from "@/contexts/package-manager-context";
 
 import "./globals.css";
-import { AppSidebar } from "@/components/app-sidebar";
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -563,7 +562,7 @@ export default function RootLayout({
 				/>
 			</head>
 			<body
-				className={`${inter.className} ${geistMono.variable} antialiased min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100`}
+				className={`${inter.className} ${geistMono.variable} antialiased min-h-screen bg-background text-text`}
 			>
 				{/* Performance Optimizations */}
 				{/* <Script
