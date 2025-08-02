@@ -26,38 +26,25 @@ import {
 	SidebarMenuSubButton,
 	SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
-import { useTopicContext } from "./app-sidebar";
 import { NavMainItemProps } from "@/types/navigation";
 
 export function NavMain({ items }: { items: NavMainItemProps[] }) {
 	const pathname = usePathname();
-	const { platformTitle = "Platform" } = useTopicContext();
-
-	// CSS custom property for Solana brand color accents
-	const accentStyle = {
-		"--component-active": "var(--solana-accent, #9945FF)",
-	} as React.CSSProperties;
-
-	// Determine if a section should be open based on the current path
-	const isSectionActive = (item: { url: string }) => {
-		return pathname.startsWith(item.url);
-	};
 
 	// Determine if an item is the current active route
 	const isActive = (url: string) => {
 		return pathname === url;
-	};
+	};	
 
 	return (
 		<SidebarGroup>
-			<SidebarGroupLabel>{platformTitle}</SidebarGroupLabel>
+			<SidebarGroupLabel>{items[0].title}</SidebarGroupLabel>
 			<SidebarMenu>
 				{items.map((item) => (
 					<Collapsible
 						key={item.title}
 						asChild
 						defaultOpen={true}
-						// isSectionActive(item)}
 						className="group/collapsible"
 					>
 						<SidebarMenuItem>
@@ -76,7 +63,7 @@ export function NavMain({ items }: { items: NavMainItemProps[] }) {
 										<SidebarMenuSubItem key={subItem.title}>
 											<SidebarMenuSubButton asChild>
 												<Link
-													href={subItem.href}
+													href={subItem.href || '#'}
 													className={`flex items-center gap-2 ${isActive(subItem.href) ? "font-medium" : ""}`}
 													style={
 														isActive(subItem.href)

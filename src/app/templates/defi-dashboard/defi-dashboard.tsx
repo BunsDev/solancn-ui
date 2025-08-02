@@ -483,36 +483,6 @@ export function DefiDashboard() {
 						</Button>
 					</CardFooter>
 				</Card>
-				{/* Solana-themed gradient background */}
-				<div className="fixed inset-0 -z-50 opacity-20">
-					<div className="absolute inset-0 bg-gradient-to-br from-[#9945FF]/30 to-[#14F195]/30 animate-aurora"></div>
-				</div>
-
-				{/* Add keyframes for animation and font-family */}
-				<style>{`
-				@keyframes aurora {
-				  0% { transform: rotate(0deg); }
-				  100% { transform: rotate(360deg); }
-				}
-				.animate-aurora {
-				  animation: aurora 20s linear infinite;
-				}
-				.font-space-grotesk {
-				  font-family: 'Space Grotesk', sans-serif;
-				}
-				
-				/* Solana wallet adapter custom styles */
-				.wallet-adapter-button {
-				  background-color: #9945FF;
-				  transition: all 0.2s ease;
-				}
-				.wallet-adapter-button:hover {
-				  background-color: #8035e0;
-				}
-				.wallet-adapter-button:not([disabled]):hover {
-				  background-color: #8035e0;
-				}
-			`}</style>
 			</div>
 		</div>
 	);
