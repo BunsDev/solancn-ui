@@ -54,7 +54,7 @@ importers:
         specifier: ^6.2.0
         version: 6.2.1
       inquirer:
-        specifier: ^12.9.0
+        specifier: 12.9.0
         version: 12.9.0(@types/node@20.19.9)
       lodash.template:
         specifier: ^4.5.0

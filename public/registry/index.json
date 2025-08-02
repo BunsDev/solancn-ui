@@ -389,19 +389,6 @@
       }
     ]
   },
-  "letter-glitch": {
-    "name": "letter-glitch",
-    "description": "A minimalistic letter glitch component designed with React and Tailwind CSS.",
-    "type": "registry:component",
-    "files": [
-      {
-        "path": "../app/components/letter-glitch",
-        "name": "letter-glitch",
-        "content": "",
-        "type": "registry:component"
-      }
-    ]
-  },
   "loaders": {
     "name": "loaders",
     "description": "A minimalistic loaders component designed with React and Tailwind CSS.",

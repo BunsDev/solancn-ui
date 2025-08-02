@@ -72,7 +72,6 @@ export const componentsNavigation: NavigationItem[] = [
 			// { label: "Aurora", href: "/components/aurora" },
 			// { label: "Sparkles Text", href: "/components/sparklestext" },
 			{ label: "Ticker", href: "/components/ticker" },
-			// { label: "Glitch", href: "/components/letter-glitch" },
 			// { label: "ResizeHandle", href: "/components/resize-handle" },
 		],
 	},

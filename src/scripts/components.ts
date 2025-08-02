@@ -497,22 +497,6 @@ export const components: ComponentType[] = [
     ],
   },
   {
-    name: "letter-glitch",
-    title: "Letter Glitch",
-    description: "A minimalistic letter glitch component designed with React and Tailwind CSS.",
-    type: "registry:component",
-    path: "../app/components/letter-glitch",
-    dependencies: [],
-    files: [
-      {
-        path: "../app/components/letter-glitch",
-        name: "letter-glitch",
-        content: "",
-        type: "registry:component",
-      },
-    ],
-  },
-  {
     name: "loaders",
     title: "Loaders",
     description: "A minimalistic loaders component designed with React and Tailwind CSS.",

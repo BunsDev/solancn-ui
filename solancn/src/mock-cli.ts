@@ -6,6 +6,7 @@ import chalk from "chalk";
 import ora from "ora";
 import * as path from "path";
 import { execa } from "execa";
+import fs from "fs";
 
 // Set TEST_MODE to true for our mock environment
 process.env.TEST_MODE = "true";
@@ -14,8 +15,11 @@ async function mockCLI() {
   console.log(chalk.bold.cyan("🧪 Solancn Mock CLI Interactive Environment"));
   console.log(chalk.bold.yellow("Running in TEST_MODE - using mock registry data\n"));
 
-  // Create a temporary working directory for the mock CLI
+  // Create a temporary working directory for the mock CLI if it doesn't exist
   const mockWorkDir = path.join(process.cwd(), ".mock-cli-workspace");
+  if (!fs.existsSync(mockWorkDir)) {
+    fs.mkdirSync(mockWorkDir, { recursive: true });
+  }
   console.log(chalk.gray(`Mock workspace: ${mockWorkDir}\n`));
   
   // Create the program
@@ -43,7 +47,8 @@ async function mockCLI() {
         
         // Execute CLI command directly
         const { stdout } = await execa("node", ["./dist/index.js", ...args], {
-          env: { TEST_MODE: "true" }
+          env: { TEST_MODE: "true", NODE_ENV: "development" },
+          cwd: process.cwd()
         });
         
         spinner.succeed("Components fetched successfully");
@@ -51,6 +56,9 @@ async function mockCLI() {
       } catch (error: unknown) {
         const errorMessage = error instanceof Error ? error.message : String(error);
         spinner.fail(`Error fetching components: ${errorMessage}`);
+        if (error instanceof Error && error.stack) {
+          console.error(chalk.dim(error.stack));
+        }
       }
     });
 
@@ -72,7 +80,8 @@ async function mockCLI() {
         
         // Execute CLI command directly
         const { stdout } = await execa("node", ["./dist/index.js", ...args], {
-          env: { TEST_MODE: "true" }
+          env: { TEST_MODE: "true", NODE_ENV: "development" },
+          cwd: process.cwd()
         });
         
         spinner.succeed(`Component ${component} added successfully`);
@@ -80,6 +89,9 @@ async function mockCLI() {
       } catch (error: unknown) {
         const errorMessage = error instanceof Error ? error.message : String(error);
         spinner.fail(`Error adding component: ${errorMessage}`);
+        if (error instanceof Error && error.stack) {
+          console.error(chalk.dim(error.stack));
+        }
       }
     });
 
@@ -99,7 +111,8 @@ async function mockCLI() {
         
         // Execute CLI command directly
         const { stdout } = await execa("node", ["./dist/index.js", ...args], {
-          env: { TEST_MODE: "true" }
+          env: { TEST_MODE: "true", NODE_ENV: "development" },
+          cwd: process.cwd()
         });
         
         spinner.succeed("Solancn initialized successfully");
@@ -107,6 +120,9 @@ async function mockCLI() {
       } catch (error: unknown) {
         const errorMessage = error instanceof Error ? error.message : String(error);
         spinner.fail(`Error initializing Solancn: ${errorMessage}`);
+        if (error instanceof Error && error.stack) {
+          console.error(chalk.dim(error.stack));
+        }
       }
     });
 
@@ -152,9 +168,12 @@ async function mockCLI() {
       if (category) options.category = category;
       if (outputJson) options.json = true;
 
-      await program.commands.find(cmd => cmd.name() === "list")?.action(options);
+      const listCommand = program.commands.find(cmd => cmd.name() === "list");
+      if (listCommand) {
+        await listCommand.action(options);
+      }
     } else if (action === "add") {
-      const { component, path, template, yes } = await inquirer.prompt([
+      const { component, componentPath, template, yes } = await inquirer.prompt([
         {
           type: "input",
           name: "component",
@@ -163,7 +182,7 @@ async function mockCLI() {
         },
         {
           type: "input",
-          name: "path",
+          name: "componentPath",
           message: "Path to add the component to (leave empty for default):",
           default: ""
         },
@@ -182,16 +201,19 @@ async function mockCLI() {
       ]);
 
       const options: any = {};
-      if (path) options.path = path;
+      if (componentPath) options.path = componentPath;
       if (template) options.template = true;
       if (yes) options.yes = true;
 
-      await program.commands.find(cmd => cmd.name() === "add")?.action(component);
+      const addCommand = program.commands.find(cmd => cmd.name() === "add");
+      if (addCommand) {
+        await addCommand.action(component);
+      }
     } else if (action === "init") {
-      const { path, yes } = await inquirer.prompt([
+      const { initPath, yes } = await inquirer.prompt([
         {
           type: "input",
-          name: "path",
+          name: "initPath",
           message: "Path to initialize Solancn in (leave empty for current directory):",
           default: ""
         },
@@ -204,10 +226,13 @@ async function mockCLI() {
       ]);
 
       const options: any = {};
-      if (path) options.path = path;
+      if (initPath) options.path = initPath;
       if (yes) options.yes = true;
 
-      await program.commands.find(cmd => cmd.name() === "init")?.action(options);
+      const initCommand = program.commands.find(cmd => cmd.name() === "init");
+      if (initCommand) {
+        await initCommand.action(options);
+      }
     } else if (action === "custom") {
       const { command } = await inquirer.prompt([
         {
