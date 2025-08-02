@@ -61,24 +61,24 @@ export function DocsLayoutContent({
 					</div>
 				</header>
 
-					{/* Main content area with responsive padding and width */}
-					<div className="flex flex-1 min-w-0 overflow-hidden container mx-auto max-w-fit">
-						<main className={`flex-1 py-6 pb-16 pt-6 min-w-0 px-4 sm:px-6 lg:px-8 ${showTOC ? "max-w-3xl lg:max-w-4xl" : "max-w-none"}`}>
-							<div className="prose prose-zinc dark:prose-invert prose-h1:text-3xl prose-h1:font-semibold prose-h2:text-xl prose-h2:font-semibold prose-h2:mt-14 prose-h3:text-lg prose-h3:font-medium prose-h3:scroll-m-20 max-w-none w-full">
-								{children}
-							</div>
-						</main>
+				{/* Main content area with responsive padding and width */}
+				<div className="flex flex-1 min-w-0 overflow-hidden container mx-auto max-w-fit">
+					<main className={`flex-1 py-6 pb-16 pt-6 min-w-0 px-4 sm:px-6 lg:px-8 ${showTOC ? "max-w-3xl lg:max-w-4xl" : "max-w-none"}`}>
+						<div className="prose prose-zinc dark:prose-invert prose-h1:text-3xl prose-h1:font-semibold prose-h2:text-xl prose-h2:font-semibold prose-h2:mt-14 prose-h3:text-lg prose-h3:font-medium prose-h3:scroll-m-20 max-w-none w-full">
+							{children}
+						</div>
+					</main>
 
-						{/* Table of contents - only visible on larger screens when showTOC is true */}
-						{showTOC && (
-							<div className="hidden lg:block w-[240px] xl:w-[280px] flex-shrink-0 border-l p-4">
-								<div className="sticky top-20">
-									<TableOfContents />
-								</div>
+					{/* Table of contents - only visible on larger screens when showTOC is true */}
+					{showTOC && (
+						<div className="hidden lg:block w-[240px] xl:w-[280px] flex-shrink-0 border-l p-4">
+							<div className="sticky top-20">
+								<TableOfContents />
 							</div>
-						)}
-					</div>
-				</SidebarInset>
+						</div>
+					)}
+				</div>
+			</SidebarInset>
 		</SidebarProvider>
 	);
 }

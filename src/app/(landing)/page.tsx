@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 
 const page = () => {
 	return (
-		<main className="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 min-h-screen">
+		<main className="bg-background dark:bg-background text-text min-h-screen w-full mx-auto justify-center md:w-full">
 			<Header />
 			<SolancnHome />
 			<Footer />

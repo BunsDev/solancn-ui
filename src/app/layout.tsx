@@ -9,6 +9,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { PackageManagerProvider } from "@/contexts/package-manager-context";
 
 import "./globals.css";
+import { AppSidebar } from "@/components/app-sidebar";
 
 const inter = Inter({
 	subsets: ["latin"],

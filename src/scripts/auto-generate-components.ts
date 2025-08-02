@@ -105,10 +105,7 @@ function generateComponentsFromDocs(basePath: string) {
 					description = customDescriptions[componentName];
 				}
 
-				const componentContent = fs.readFileSync(
-					`../app/components/${componentName}/${componentName}.tsx`,
-					"utf-8",
-				);
+				const componentContent = fs.readFileSync(path.join(componentsPath, `${componentName}/${componentName}.tsx`), "utf-8");
 
 				components.push({
 					name: componentName,

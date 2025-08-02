@@ -47,7 +47,7 @@ import NexusOrb from "@/app/components/integrations/nexusorb";
 import NexusOrbSup from "@/app/components/integrations/nexusorbsup";
 import Spider from "@/app/components/integrations/spider";
 import Login from "@/app/components/login/login";
-import MagicCardView from "@/app/components/magic/magiccard-view";
+import MagicCardView from "@/app/components/magic/magic";
 import MarqueeView from "@/app/components/marquee/marquee-view";
 import Header from "@/app/components/navbar/header";
 import Header2 from "@/app/components/navbar/header2";
@@ -69,7 +69,6 @@ import TabsClassic from "@/app/components/tabs-classic/tabs-classic";
 import TabsFancy from "@/app/components/tabs-fancy/tabs-fancy";
 import Testimonial from "@/app/components/testimonial/testimonial";
 import Testimonial2 from "@/app/components/testimonial/testimonial2";
-import TextReveal from "@/app/components/textreveal/textreveal";
 import ToastView from "@/app/components/toast/toast-view";
 import TwoStep from "@/app/components/twostep/twostep";
 
@@ -124,8 +123,6 @@ export const ComponentRegistry: Record<string, React.ComponentType> = {
 	"classic-tabs": TabsClassic,
 	"tabs-fancy": TabsFancy,
 	"fancy-tabs": TabsFancy,
-	textreveal: TextReveal,
-	"text-reveal": TextReveal,
 	carousel: Carousel,
 	"enhanced-carousel": EnhancedCarousel,
 	customAccordion: CustomAccordion,

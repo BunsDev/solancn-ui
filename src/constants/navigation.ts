@@ -1,16 +1,10 @@
-type NavigationChild = {
-	label: string;
-	href: string;
-	badge?: string; // Optional badge like "New" or "Updated"
-};
-type NavigationItem = {
-	label: string;
-	children: NavigationChild[];
-};
+import { NavigationItem } from "@/types/navigation";
+
 
 export const docsNavigation: NavigationItem[] = [
 	{
 		label: "Getting Started",
+		href: "/docs",
 		children: [
 			{ label: "Introduction", href: "/docs" },
 			{ label: "Installation", href: "/docs/installation" },
@@ -20,6 +14,7 @@ export const docsNavigation: NavigationItem[] = [
 export const componentsNavigation: NavigationItem[] = [
 	{
 		label: "Blocks",
+		href: "/components",
 		children: [
 			// { label: "Hero", href: "/components/hero" },
 			// { label: "Header", href: "/components/navbar" },
@@ -38,6 +33,7 @@ export const componentsNavigation: NavigationItem[] = [
 	},
 	{
 		label: "Button",
+		href: "/components/button",
 		children: [
 			{ label: "Buttons", href: "/components/button" },
 			{ label: "Dropdown", href: "/components/dropdown" },
@@ -48,6 +44,7 @@ export const componentsNavigation: NavigationItem[] = [
 
 	{
 		label: "Badge & Toast",
+		href: "/components/badge",
 		children: [
 			{ label: "Badges", href: "/components/badge" },
 			// { label: "Animated Badges", href: "/components/animatedbadge" },
@@ -56,6 +53,7 @@ export const componentsNavigation: NavigationItem[] = [
 	},
 	{
 		label: "Input",
+		href: "/components/input",
 		children: [
 			{ label: "Search", href: "/components/search" },
 			{ label: "Prompt", href: "/components/prompt" },
@@ -64,6 +62,7 @@ export const componentsNavigation: NavigationItem[] = [
 	},
 	{
 		label: "Text",
+		href: "/components/text",
 		children: [
 			{ label: "Animated", href: "/components/text" },
 			{ label: "Fuzzy", href: "/components/fuzzy" },
@@ -79,6 +78,7 @@ export const componentsNavigation: NavigationItem[] = [
 	},
 	{
 		label: "Accordion & Tabs",
+		href: "/components/accordion",
 		children: [
 			// { label: "Dock Tabs", href: "/components/doctabs" },
 			// { label: "Carousel", href: "/components/carousel" },
@@ -95,6 +95,7 @@ export const componentsNavigation: NavigationItem[] = [
 	},
 	{
 		label: "Forms & Cards",
+		href: "/components/card",
 		children: [
 			// { label: "Login", href: "/components/login" },
 			// { label: "Login", href: "/components/signin" },
@@ -112,25 +113,19 @@ export const componentsNavigation: NavigationItem[] = [
 	},
 	{
 		label: "Grid",
+		href: "/components/grid",
 		children: [
 			{ label: "Masonary Grid", href: "/components/masonary" },
 			{ label: "Bento Grid", href: "/components/bento-grid" },
 		],
 	},
-	// {
-	// 	label: "Backgrounds",
-	// 	children: [
-	// 		{ label: "Falling Glitch", href: "/components/falling-glitch" },
-	// 		{ label: "Moving Grid", href: "/components/moving-grid" },
-
-	// 	],
-	// },
 
 ];
 
 export const templatesNavigation: NavigationItem[] = [
 	{
 		label: "Templates",
+		href: "/templates",
 		children: [
 			{ label: "NFT Market", href: "/templates/nft-market" },
 			{ label: "Bridge", href: "/templates/bridge" },

@@ -31,31 +31,10 @@ import {
 	docsNavigation,
 	templatesNavigation,
 } from "@/constants/navigation";
+import { NavProjects } from "./nav-projects";
+import { NavigationChild, NavigationItem, NavMainItemProps, Topic } from "@/types/navigation";
 
-// Define topic type for better type safety
-interface Topic {
-	name: string;
-	logo: React.ElementType;
-	plan: string;
-	topicContext: string; // Array of topic IDs this item belongs to
-	path: string;
-}
-
-// Define navigation item type
-interface NavItem {
-	title: string;
-	url: string;
-	topicContext: string; // Array of topic IDs this item belongs to
-	icon?: LucideIcon;
-	isActive?: boolean;
-	items?: {
-		title: string;
-		url: string;
-		icon?: LucideIcon;
-	}[];
-}
-
-const allNavigation = [
+const allNavigation: NavigationItem[] = [
 	...docsNavigation,
 	...componentsNavigation,
 	...templatesNavigation,
@@ -95,35 +74,21 @@ const data = {
 			name: "Components",
 			logo: Command,
 			plan: "Modular Components",
-			path: "/components/accordion",
+			path: "/components",
 			topicContext: "components",
 		},
 		{
 			name: "Templates",
 			logo: Command,
 			plan: "Starter Kits",
-			path: "/templates/nft-market",
+			path: "/templates",
 			topicContext: "templates",
 		},
 	],
-	navMain: [...docsNavigation, ...componentsNavigation, ...templatesNavigation],
-	// projects: [
-	//   {
-	//     name: "Sales & Marketing",
-	//     url: "#",
-	//     icon: PieChart,
-	//     topicContext: "components", // This item is shown when Components topic is active
-	//   },
-	//   {
-	//     name: "Travel",
-	//     url: "#",
-	//     icon: Map,
-	//     topicContext: "templates", // This item is shown when Templates topic is active
-	//   },
-	// ],
+	navMain: allNavigation,
 };
 
-const activeTopic = data.topics.find((topic) => topic.topicContext === "docs");
+const activeTopic = data.topics.find((topic) => topic.topicContext === "components");
 if (!activeTopic) {
 	throw new Error("Active topic not found");
 }
@@ -132,8 +97,7 @@ if (!activeTopic) {
 export interface TopicContextType {
 	activeTopic: Topic;
 	setActiveTopic: React.Dispatch<React.SetStateAction<Topic>>;
-	filteredNavItems: NavItem[];
-	filteredProjects?: any[]; // typeof data.projects;
+	filteredNavItems: NavMainItemProps[];
 	platformTitle?: string;
 }
 
@@ -142,7 +106,7 @@ const TopicContext = React.createContext<TopicContextType>({
 	activeTopic: activeTopic,
 	setActiveTopic: () => {},
 	filteredNavItems: [],
-	filteredProjects: [],
+	platformTitle: "Platform",
 });
 
 // Custom hook to use topic context
@@ -152,92 +116,47 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 	// State for tracking active topic, initialized with the first topic
 	const [activeTopic, setActiveTopic] = React.useState<Topic>(data.topics[0]);
 
-	// Filter navigation items based on active topic and map them to the NavItem interface
-	const filteredNavItems = React.useMemo(() => {
-		// First, filter the navigation items based on active topic
-		const filteredItems = data.navMain.filter((item) => {
-			// If no children property or empty children array, show in all contexts
-			if (!item.children || item.children.length === 0) {
-				return true;
-			}
+	// Filter navigation items based on active topic context
+	const filteredNavItems: NavMainItemProps[] = React.useMemo(() => {
+		// Select appropriate navigation array based on active topic
+		let navigationSource: NavigationItem[] = [];
+		
+		// Select the right navigation source based on active topic
+		switch (activeTopic.topicContext) {
+			case "docs":
+				navigationSource = docsNavigation;
+				break;
+			case "components":
+				navigationSource = componentsNavigation;
+				break;
+			case "templates":
+				navigationSource = templatesNavigation;
+				break;
+			default:
+				navigationSource = [];
+		}
 
-			// Check if there's a matching navigation item based on first child's href
-			return allNavigation.some((navItem) => {
-				// Make sure both items have children arrays with at least one child
-				if (!navItem.children?.length || !item.children?.length) {
-					return false;
-				}
-
-				// Get the first child from each to compare hrefs
-				const navItemFirstChild = navItem.children[0];
-				const itemFirstChild = item.children[0];
-
-				// For navigation items, we can determine their category based on which array they belong to
-				const belongsToActiveTopic =
-					(activeTopic.topicContext === "docs" &&
-						docsNavigation.includes(navItem)) ||
-					(activeTopic.topicContext === "components" &&
-						componentsNavigation.includes(navItem)) ||
-					(activeTopic.topicContext === "templates" &&
-						templatesNavigation.includes(navItem));
-
-				// Compare the hrefs if they exist and check if this belongs to the active topic
-				return (
-					navItemFirstChild.href === itemFirstChild?.href && belongsToActiveTopic
-				);
-			});
-		});
-
-		// Convert filtered items to NavItem type
-		return filteredItems.map((item) => {
-			// Check if the item has most NavItem properties
-			if ("title" in item && "url" in item) {
-				// Ensure topicContext property exists
-				const navItem = item as any;
-				if (!("topicContext" in item)) {
-					navItem.topicContext = activeTopic.topicContext;
-				}
-				return navItem as NavItem;
-			}
-
-			// Convert NavigationItem to NavItem
+		// Map the navigation structure to the format expected by NavMain
+		const navItems: NavMainItemProps[] = navigationSource.map((section) => {
+			// Make sure we have valid children
+			const children = section.children || [];
+			
+			// Map each section to the NavMainItemProps interface
 			return {
-				title: "title" in item ? item.title : item.label || "",
-				url: "url" in item ? item.url : item.children?.[0]?.href || "",
-				topicContext:
-					"topicContext" in item ? item.topicContext : activeTopic.topicContext,
-				// Only use the icon if it's a LucideIcon
-				icon:
-					"icon" in item && item.icon
-						? typeof item.icon === "function" && "displayName" in item.icon
-							? (item.icon as LucideIcon)
-							: undefined
-						: undefined,
-				isActive: "isActive" in item ? item.isActive : undefined,
-				items:
-					"items" in item
-						? item.items
-						: item.children?.map((child) => ({
-								title: child.label || "",
-								url: child.href || "",
-								// No icons for child items when converting from NavigationItem
-								icon: undefined,
-							})),
-			} as NavItem;
+				title: section.label,
+				href: section.href || children[0]?.href || "/",
+				// Map children to the format expected by NavMain - href is required
+				items: children.map((child) => ({
+					title: child.label,
+					href: child.href || "/",
+					icon: undefined
+				}))
+			};
 		});
-	}, [activeTopic]);
 
-	// Filter projects based on active topic
-	// const filteredProjects = React.useMemo(() => {
-	//   return data.projects.filter(project => {
-	//     // If no topicContext is specified, show in all contexts
-	//     if (!project.topicContext || project.topicContext.length === 0) {
-	//       return true;
-	//     }
-	//     // Show projects that include the active topic in their context
-	//     return project.topicContext.includes(activeTopic.topicContext);
-	//   });
-	// }, [activeTopic]);
+		// Return the mapped navigation items
+		return navItems;
+	}, [activeTopic]);
 
 	// Calculate platform title based on active topic
 	const getPlatformTitle = () => {
@@ -279,11 +198,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 				activeTopic,
 				setActiveTopic,
 				filteredNavItems,
-				// filteredProjects,
 				platformTitle: getPlatformTitle(),
 			}}
 		>
-			<Sidebar collapsible="offcanvas" {...props} className="z-100">
+			<Sidebar collapsible="offcanvas" {...props}>
 				<SidebarHeader>
 					<TopicSwitcher
 						topics={data.topics.map((topic) => ({
@@ -297,7 +215,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 				</SidebarHeader>
 				<SidebarContent>
 					<NavMain items={filteredNavItems} />
-					{/* <NavProjects projects={filteredProjects} /> */}
 				</SidebarContent>
 				<SidebarFooter>
 					<NavResources resources={data.resources} />

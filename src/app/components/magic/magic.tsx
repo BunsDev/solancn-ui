@@ -92,7 +92,7 @@ const StarIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
 /*                         MagicCardView Component                     */
 /* ------------------------------------------------------------------ */
 
-export default function MagicCardView() {
+export default function Magic() {
 	/* --------------------------- Fallback URLs -------------------------- */
 	const coverFallback = "https://placehold.co/400x128/cccccc/cccccc?text=.";
 	const profileFallback = "https://placehold.co/100x100/cccccc/ffffff?text=NH";

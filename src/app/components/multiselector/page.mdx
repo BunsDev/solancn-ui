@@ -7,10 +7,10 @@ import {
   TabsTrigger,
   TabsContent,
 } from "@/components/site/tabs.tsx";
-import MultiSelectPage from "./multiselector1.tsx"
-import TagMultiSelectPage from "./multiselector2.tsx"
-import SkillMultiSelectPage from "./multiselector3.tsx"
-import CategoryMultiSelectPage from "./multiselector4.tsx"
+import { MultiSelect1,
+TagMultiSelectPage,
+SkillMultiSelectPage,
+CategoryMultiSelectPage } from "./multiselector.tsx"
 
 # Multi-Select Components
 
@@ -24,10 +24,10 @@ A collection of versatile multi-select components with different use cases and s
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<MultiSelectPage />} />
+    <ComponentRenderer component={<MultiSelect1 />} />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/multiselector/multiselector1.tsx" />
+    <CodeBlock filePath="src/app/components/multiselector/multiselector.tsx" />
   </TabsContent>
 </Tabs>
 
@@ -44,7 +44,7 @@ A colorful tag-based multi-select with technology tags and color coding.
     <ComponentRenderer component={<TagMultiSelectPage />} />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/multiselector/multiselector2.tsx" />
+    <CodeBlock filePath="src/app/components/multiselector/multiselector.tsx" />
   </TabsContent>
 </Tabs>
 
@@ -61,7 +61,7 @@ A skills-based multi-select with proficiency levels and categories.
     <ComponentRenderer component={<SkillMultiSelectPage />} />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/multiselector/multiselector3.tsx" />
+    <CodeBlock filePath="src/app/components/multiselector/multiselector.tsx" />
   </TabsContent>
 </Tabs>
 
@@ -78,6 +78,6 @@ A category-based multi-select with icons, descriptions, and item counts.
     <ComponentRenderer component={<CategoryMultiSelectPage />} />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/multiselector/multiselector4.tsx" />
+    <CodeBlock filePath="src/app/components/multiselector/multiselector.tsx" />
   </TabsContent>
 </Tabs>

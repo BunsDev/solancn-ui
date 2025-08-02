@@ -766,19 +766,6 @@
       }
     ]
   },
-  "textreveal": {
-    "name": "textreveal",
-    "description": "A minimalistic textreveal component designed with React and Tailwind CSS.",
-    "type": "registry:component",
-    "files": [
-      {
-        "path": "../app/components/textreveal",
-        "name": "textreveal",
-        "content": "",
-        "type": "registry:component"
-      }
-    ]
-  },
   "ticker": {
     "name": "ticker",
     "description": "A minimalistic ticker component designed with React and Tailwind CSS.",

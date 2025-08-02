@@ -27,18 +27,7 @@ import {
 	SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import { useTopicContext } from "./app-sidebar";
-
-interface NavMainItemProps {
-	title: string;
-	url: string;
-	icon?: LucideIcon;
-	isActive?: boolean;
-	items?: {
-		title: string;
-		url: string;
-		icon?: LucideIcon;
-	}[];
-}
+import { NavMainItemProps } from "@/types/navigation";
 
 export function NavMain({ items }: { items: NavMainItemProps[] }) {
 	const pathname = usePathname();
@@ -68,11 +57,12 @@ export function NavMain({ items }: { items: NavMainItemProps[] }) {
 						key={item.title}
 						asChild
 						defaultOpen={true}
+						// isSectionActive(item)}
 						className="group/collapsible"
 					>
-						<SidebarMenuItem className="group/collapsible">
-							<CollapsibleTrigger asChild className="z-100">
-								<SidebarMenuButton tooltip={item.title} className="z-100">
+						<SidebarMenuItem>
+							<CollapsibleTrigger asChild>
+								<SidebarMenuButton tooltip={item.title}>
 									{item.icon && <item.icon className="shrink-0" />}
 									<span className="truncate">{item.title}</span>
 									<span className="ml-auto flex h-4 w-4 shrink-0 items-center justify-center">
@@ -81,15 +71,15 @@ export function NavMain({ items }: { items: NavMainItemProps[] }) {
 								</SidebarMenuButton>
 							</CollapsibleTrigger>
 							<CollapsibleContent>
-								<SidebarMenuSub className="z-100">
+								<SidebarMenuSub>
 									{item.items?.map((subItem) => (
 										<SidebarMenuSubItem key={subItem.title}>
-											<SidebarMenuSubButton asChild className="z-100">
+											<SidebarMenuSubButton asChild>
 												<Link
-													href={subItem.url}
-													className={`flex items-center gap-2 ${isActive(subItem.url) ? "font-medium" : ""}`}
+													href={subItem.href}
+													className={`flex items-center gap-2 ${isActive(subItem.href) ? "font-medium" : ""}`}
 													style={
-														isActive(subItem.url)
+														isActive(subItem.href)
 															? { color: "var(--solana-accent)" }
 															: undefined
 													}

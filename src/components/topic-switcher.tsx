@@ -20,15 +20,8 @@ import {
 	SidebarProvider,
 	useSidebar,
 } from "@/components/ui/sidebar";
-import { useTopicContext } from "./app-sidebar"; // Import the TeamContext hook
-
-interface Topic {
-	name: string;
-	logo: React.ElementType;
-	plan: string;
-	path: string;
-	topicContext: string;
-}
+import { useTopicContext } from "./app-sidebar"; // Import the TopicContext hook
+import { Topic } from "@/types/navigation";
 
 export function TopicSwitcher({ topics }: { topics: Topic[] }) {
 	const router = useRouter();
@@ -40,14 +33,21 @@ export function TopicSwitcher({ topics }: { topics: Topic[] }) {
 
 	// Update active topic based on URL path if it changes
 	React.useEffect(() => {
-		// Determine which topic should be active based on the current path
+		// Extract the first part of the path (e.g., 'components' from '/components/button')
+		const currentPath = pathname.split('/')[1];
+		
+		// Find matching topic based on path segment
 		const pathTopic = topics.find((topic) => {
-			const topicPath = topic.path.split("/")[1]; // e.g., 'components' from '/components'
-			return pathname.startsWith(`/${topicPath}`);
+			const topicPath = topic.path.split('/')[1]; // e.g., 'components' from '/components'
+			return currentPath === topicPath;
 		});
+
+		// Log for debugging
+		console.log('Current path:', currentPath, 'Matching topic:', pathTopic?.topicContext);
 
 		// Update active topic if the path indicates a different topic
 		if (pathTopic && pathTopic.topicContext !== activeTopic.topicContext) {
+			console.log('Switching topic to:', pathTopic.topicContext);
 			setActiveTopic(pathTopic);
 		}
 	}, [pathname, topics, activeTopic, setActiveTopic]);
@@ -109,10 +109,10 @@ export function TopicSwitcher({ topics }: { topics: Topic[] }) {
 						side={isMobile ? "bottom" : "right"}
 						sideOffset={4}
 					>
-						<DropdownMenuLabel className="text-muted-foreground text-xs">
+						<DropdownMenuLabel className="text-text text-xs">
 							Topics
 						</DropdownMenuLabel>
-						{topics.map((topic, index) => (
+						{topics.map((topic) => (
 							<DropdownMenuItem
 								key={topic.name}
 								onClick={() => handleTopicSelect(topic)}

@@ -21,7 +21,7 @@ export const TableOfContents: React.FC = () => {
 				<div className="space-y-6">
 					{/* Table of Contents */}
 					<nav
-						className="relative z-100"
+						className="relative z-10"
 						role="navigation"
 						aria-label="Table of contents"
 					>

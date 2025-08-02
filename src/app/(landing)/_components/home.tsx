@@ -203,7 +203,7 @@ export default function SolancnHome() {
 	}, []);
 
 	return (
-		<div className="min-h-screen w-full flex flex-col bg-background mx-auto justify-center px-2 sm:px-12">
+		<div className="min-h-screen w-full flex flex-col bg-background mx-auto justify-center px-2 sm:px-12 max-w-7xl">
 			{/* Gradient overlay effect */}
 			<div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/20 via-background to-background"></div>
 

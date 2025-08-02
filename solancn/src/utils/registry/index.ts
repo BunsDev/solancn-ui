@@ -30,20 +30,11 @@ const agent = process.env.https_proxy
   : undefined;
 
 export async function getRegistryIndexSolancn(env?: boolean) {
-  // Use mock data when in test mode
-  if (process.env.TEST_MODE === "true") {
-    // For init command: return object format, for other commands: return array format
-    const args = process.argv.slice(2);
-    if (args[0] === "init") {
-      return registryIndexSchema.parse(mockIndexDataObject);
-    } else {
-      return registryIndexSchema.parse(mockIndexData);
-    }
-  }
-
   try {
     const [result] = await fetchRegistry(["index.json"]);
-
+    const registryURL = `${baseUrl}/registry/index.json`;
+    console.log({ registryURL });
+    console.log({ result });
     // Check if result is an object (new format) or array (old format)
     if (result && typeof result === "object" && !Array.isArray(result)) {
       // Convert object format to array format required by the CLI
@@ -52,11 +43,14 @@ export async function getRegistryIndexSolancn(env?: boolean) {
           return { ...value, name: key };
         },
       );
-
-      return registryIndexSchema.parse(registryArray);
+      const registryIndex = registryIndexSchema.parse(registryArray);
+      console.log({ registryIndex });
+      return registryIndex;
     } else {
       // Handle case where result is already an array (fallback)
-      return registryIndexSchema.parse(result);
+      const registryIndex = registryIndexSchema.parse(result);
+      console.log({ registryIndex });
+      return registryIndex;
     }
   } catch (error) {
     console.error(error);
@@ -69,16 +63,9 @@ export async function getRegistryIndexSolancn(env?: boolean) {
 // This function has been removed as we're only using Solancn registry
 
 export async function getRegistryStyles() {
-  // Use mock data for styles
-  return stylesSchema.parse(stylesData);
-  
-  // Uncomment to fetch styles from Solancn registry
-  // try {
-  //   const [result] = await fetchRegistry(["styles/index.json"]);
-  //   return stylesSchema.parse(result);
-  // } catch (error) {
-  //   throw new Error("Failed to fetch styles from registry.");
-  // }
+  const registryStyles = await fetchRegistry(["styles/index.json"]);
+  console.log({ registryStyles });
+  return stylesSchema.parse(registryStyles);
 }
 
 export async function getRegistryBaseColors() {
@@ -107,18 +94,16 @@ export async function getRegistryBaseColors() {
 }
 
 export async function getRegistryBaseColor(baseColor: string) {
-  // Use mock data when in test mode
-  if (process.env.TEST_MODE === "true") {
-    return registryBaseColorSchema.parse(mockBaseColor);
-  }
+  const registryBaseColor = registryBaseColorSchema.parse(mockBaseColor);
+  console.log({ registryBaseColor });
+  return registryBaseColor;
+  // try {
+  //   const [result] = await fetchRegistry([`colors/${baseColor}.json`]);
 
-  try {
-    const [result] = await fetchRegistry([`colors/${baseColor}.json`]);
-
-    return registryBaseColorSchema.parse(result);
-  } catch (error) {
-    throw new Error("Failed to fetch base color from Solancn registry.");
-  }
+  //   return registryBaseColorSchema.parse(result);
+  // } catch (error) {
+  //   throw new Error("Failed to fetch base color from Solancn registry.");
+  // }
 }
 
 export async function resolveTreeWithDependencies(

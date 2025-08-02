@@ -8,7 +8,7 @@ import {
   TabsContent,
 } from "@/components/site/tabs.tsx";
 import { PropsTable } from "@/components/site/props-table.tsx";
-import MagicCardView from "./magiccard-view"
+import Magic from "./magic"
 
 # Magic Card
 
@@ -27,10 +27,10 @@ A stunning profile card component with an interactive glowing border effect that
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<MagicCardView />} />
+    <ComponentRenderer component={<Magic />} />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/magic/magiccard.tsx" />
+    <CodeBlock filePath="src/app/components/magic/magic.tsx" />
   </TabsContent>
 </Tabs>
 

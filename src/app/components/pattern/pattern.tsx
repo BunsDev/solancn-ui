@@ -135,7 +135,7 @@ function PatternCard({
 	);
 }
 
-export default function PatternCraftInterface() {
+export default function Pattern() {
 	const [selectedCategory, setSelectedCategory] = useState("all");
 	const [previewPattern, setPreviewPattern] = useState<Pattern | null>(null);
 	const [copiedId, setCopiedId] = useState<string | null>(null);
