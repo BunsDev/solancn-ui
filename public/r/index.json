@@ -597,19 +597,6 @@
       }
     ]
   },
-  "sparklestext": {
-    "name": "sparklestext",
-    "description": "A minimalistic sparklestext component designed with React and Tailwind CSS.",
-    "type": "registry:component",
-    "files": [
-      {
-        "path": "../app/components/sparklestext",
-        "name": "sparklestext",
-        "content": "",
-        "type": "registry:component"
-      }
-    ]
-  },
   "spotlightcard": {
     "name": "spotlightcard",
     "description": "A minimalistic spotlightcard component designed with React and Tailwind CSS.",

@@ -753,22 +753,6 @@ export const components: ComponentType[] = [
     ],
   },
   {
-    name: "sparklestext",
-    title: "Sparklestext",
-    description: "A minimalistic sparklestext component designed with React and Tailwind CSS.",
-    type: "registry:component",
-    path: "../app/components/sparklestext",
-    dependencies: [],
-    files: [
-      {
-        path: "../app/components/sparklestext",
-        name: "sparklestext",
-        content: "",
-        type: "registry:component",
-      },
-    ],
-  },
-  {
     name: "spotlightcard",
     title: "Spotlightcard",
     description: "A minimalistic spotlightcard component designed with React and Tailwind CSS.",

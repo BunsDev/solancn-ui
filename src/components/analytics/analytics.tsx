@@ -68,7 +68,6 @@ function getComponentCategory(componentName: string): string {
 		"Animation Components": [
 			"flipwords",
 			"textreveal",
-			"sparklestext",
 			"shimmer",
 			"loaders",
 		],

@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { BookOpen, Layout, PenTool, Palette } from "lucide-react"
+import { BookOpen, Layout, PenTool, Palette, Search, ChevronRight } from "lucide-react"
 
 import {
 	Sidebar,
@@ -22,17 +22,29 @@ import {
 	templatesNavigation,
 	designsNavigation
 } from "@/constants/navigation";
-import { NavigationItem } from "@/types/navigation";
+import { NavigationItem, NavigationChild } from "@/types/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Logo } from "@/assets/icons/logo";
 import { useTheme } from "next-themes";
-// This is sample data
+import { cn } from "@/lib/utils";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Badge } from "@/components/ui/badge";
+import { ScrollArea } from "@/components/ui/scroll-area";
+// Navigation section descriptions
+const sectionDescriptions = {
+	docs: "Official documentation and guides for using the Solana UI components",
+	components: "Reusable UI building blocks for creating consistent Solana interfaces",
+	templates: "Pre-built page templates optimized for common Solana application patterns",
+	designs: "Design system resources including colors, typography, and visual patterns"
+};
+
+// Enhanced navigation data with descriptions
 const data = {
 	user: {
-		name: "shadcn",
-		email: "m@example.com",
-		avatar: "/avatars/shadcn.jpg",
+		name: "bunsdev",
+		email: "bunsdev@gmail.com",
+		avatar: "/bunsdev.png",
 	},
 	navMain: [
 		{
@@ -40,43 +52,36 @@ const data = {
 			href: "/docs",
 			icon: BookOpen,
 			isActive: true,
-			navigationType: "docs"
+			navigationType: "docs",
+			description: sectionDescriptions.docs
 		},
-		// {
-		// 	title: "Guides",
-		// 	url: "/guides",
-		// 	icon: FileText,
-		// 	isActive: false,
-		// },
-		// {
-		// 	title: "Design",
-		// 	url: "/design",
-		// 	icon: Palette,
-		// 	isActive: false,
-		// },
 		{
 			itemName: "Components",
 			href: "/components",
 			icon: Layout,
 			isActive: false,
-			navigationType: "components"
+			navigationType: "components",
+			description: sectionDescriptions.components
 		},
 		{
 			itemName: "Templates",
 			href: "/templates",
 			icon: PenTool,
 			isActive: false,
-			navigationType: "templates"
+			navigationType: "templates",
+			description: sectionDescriptions.templates
 		},
 		{
 			itemName: "Designs",
 			href: "/designs",
 			icon: Palette,
 			isActive: false,
-			navigationType: "designs"
+			navigationType: "designs",
+			description: sectionDescriptions.designs
 		},
 	],
-	mails: [...componentsNavigation, ...docsNavigation, ...templatesNavigation, ...designsNavigation]
+	// Combined navigation items for search functionality
+	allItems: [...componentsNavigation, ...docsNavigation, ...templatesNavigation, ...designsNavigation]
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {

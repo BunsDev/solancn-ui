@@ -31,7 +31,6 @@ const componentCategories = {
 	"Animation Components": [
 		"flipwords",
 		"textreveal",
-		"sparklestext",
 		"decrypting",
 		"shimmer",
 		"loaders",

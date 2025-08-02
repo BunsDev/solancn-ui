@@ -107,8 +107,7 @@ export const componentsNavigation: NavigationItem[] = [
 			// { childName: "Changing", href: "/components/flipwords" },
 			// { childName: "Reveal", href: "/components/textreveal" },
 			{ childName: "Decrypt", href: "/components/decrypting" },
-			// { childName: "Aurora", href: "/components/aurora" },
-			// { childName: "Sparkles Text", href: "/components/sparklestext" },
+			// { childName: "Aurora", href: "/components/aurora" }, // √
 			{ childName: "Ticker", href: "/components/ticker" },
 			// { childName: "ResizeHandle", href: "/components/resize-handle" },
 		],

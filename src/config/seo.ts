@@ -111,7 +111,6 @@ export const seoConfig = {
 			components: [
 				"flipwords",
 				"textreveal",
-				"sparklestext",
 				"decrypting",
 				"shimmer",
 				"loaders",
