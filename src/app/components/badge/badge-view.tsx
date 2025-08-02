@@ -293,64 +293,6 @@ const GoldBadge = ({
 export default function BadgeView() {
 	return (
 		<div className="space-y-8 p-6">
-			{/* Original Badges */}
-			<div className="space-y-4">
-				<h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-					Original Badge Variants
-				</h3>
-				<div className="flex flex-wrap gap-2">
-					<Badge>Badge</Badge>
-					<Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-						Soft (Default)
-					</Badge>
-					<Badge className="bg-blue-600 text-white">Solid</Badge>
-					<Badge className="border border-blue-300 text-blue-700 dark:border-blue-600 dark:text-blue-300">
-						Outline
-					</Badge>
-					<Badge
-						className="bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
-						onDismiss={() => console.log("Dismissed!")}
-						iconLeft={<CalendarIcon />}
-					>
-						Dismissible
-					</Badge>
-					<Badge
-						className="bg-purple-600 text-white"
-						onClick={() => alert("Badge clicked!")}
-					>
-						Clickable
-					</Badge>
-					<Badge
-						className="border border-orange-300 text-orange-700 dark:border-orange-600 dark:text-orange-300"
-						href="#"
-						iconRight={<SendIcon />}
-					>
-						Link
-					</Badge>
-				</div>
-			</div>
-
-			{/* Glassy Badges */}
-			<div className="space-y-4">
-				<h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-					Glassy Effect Badges
-				</h3>
-				<div className="flex flex-wrap gap-3">
-					<GlassBadge>Glass Basic</GlassBadge>
-					<GlassBadge className="text-blue-600 dark:text-blue-400">
-						Glass Blue
-					</GlassBadge>
-					<GlassBadge className="text-purple-600 dark:text-purple-400">
-						Glass Purple
-					</GlassBadge>
-					<GlassBadge className="text-green-600 dark:text-green-400">
-						Glass Green
-					</GlassBadge>
-					<GlassBadge className="text-pink-600 dark:text-pink-400">
-						Glass Pink
-					</GlassBadge>
-				</div>
-			</div>
 
 			{/* Neon Badges */}
 			<div className="space-y-4">
@@ -364,21 +306,6 @@ export default function BadgeView() {
 					<NeonBadge color="green">Neon Green</NeonBadge>
 					<NeonBadge color="orange">Neon Orange</NeonBadge>
 					<NeonBadge color="red">Neon Red</NeonBadge>
-				</div>
-			</div>
-
-			{/* Gradient Badges */}
-			<div className="space-y-4">
-				<h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-					Gradient Badges
-				</h3>
-				<div className="flex flex-wrap gap-3">
-					<GradientBadge gradient="blue">Ocean Blue</GradientBadge>
-					<GradientBadge gradient="purple">Purple Haze</GradientBadge>
-					<GradientBadge gradient="green">Forest Green</GradientBadge>
-					<GradientBadge gradient="orange">Sunset Orange</GradientBadge>
-					<GradientBadge gradient="rainbow">Rainbow</GradientBadge>
-					<GradientBadge gradient="sunset">Sunset</GradientBadge>
 				</div>
 			</div>
 
@@ -406,50 +333,6 @@ export default function BadgeView() {
 				</div>
 			</div>
 
-			{/* Holographic Badges */}
-			<div className="space-y-4">
-				<h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-					Holographic Badges
-				</h3>
-				<div className="flex flex-wrap gap-3">
-					<HolographicBadge className="text-white">
-						Holographic
-					</HolographicBadge>
-					<HolographicBadge className="text-cyan-200">
-						Cyber Holo
-					</HolographicBadge>
-					<HolographicBadge className="text-purple-200">
-						Magic Holo
-					</HolographicBadge>
-					<HolographicBadge className="text-pink-200">
-						Dream Holo
-					</HolographicBadge>
-				</div>
-			</div>
-
-			{/* Crystal Badges */}
-			<div className="space-y-4">
-				<h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-					Crystal Badges
-				</h3>
-				<div className="flex flex-wrap gap-3">
-					<CrystalBadge className="text-gray-700 dark:text-gray-300">
-						Crystal Clear
-					</CrystalBadge>
-					<CrystalBadge className="text-blue-600 dark:text-blue-400">
-						Ice Crystal
-					</CrystalBadge>
-					<CrystalBadge className="text-purple-600 dark:text-purple-400">
-						Amethyst
-					</CrystalBadge>
-					<CrystalBadge className="text-green-600 dark:text-green-400">
-						Emerald
-					</CrystalBadge>
-					<CrystalBadge className="text-pink-600 dark:text-pink-400">
-						Rose Quartz
-					</CrystalBadge>
-				</div>
-			</div>
 
 			{/* Icon Badges */}
 			<div className="space-y-4">
@@ -481,23 +364,6 @@ export default function BadgeView() {
 						<CrownIcon />
 						<span className="ml-1">VIP</span>
 					</GlassBadge>
-				</div>
-			</div>
-
-			{/* Metallic Badges */}
-			<div className="space-y-4">
-				<h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-					Metallic & Luxury Badges
-				</h3>
-				<div className="flex flex-wrap gap-3">
-					<MetallicBadge>Silver</MetallicBadge>
-					<GoldBadge>Gold Premium</GoldBadge>
-					<MetallicBadge className="bg-gradient-to-r from-rose-400 via-pink-300 to-rose-400 text-rose-900">
-						Rose Gold
-					</MetallicBadge>
-					<MetallicBadge className="bg-gradient-to-r from-purple-400 via-purple-300 to-purple-400 text-purple-900">
-						Platinum
-					</MetallicBadge>
 				</div>
 			</div>
 

@@ -15,7 +15,7 @@ import {
 	TabsTrigger,
 } from "./components/site/tabs";
 import { CodeBlock } from "./components/ui/code-block";
-import { createSlug } from "./lib/utils";
+import { cn, createSlug } from "./lib/utils";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
 	return {
@@ -127,7 +127,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 			// and will be handled by our CodeBlock component, so return as-is
 			if (className?.includes("language-")) {
 				return (
-					<code className={className} {...props}>
+					<code className={cn(className)} {...props}>
 						{children}
 					</code>
 				);
@@ -147,7 +147,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 		pre: ({ children, className, id, style }: React.ComponentProps<"pre">) => {
 			// Only pass safe props that are compatible with div elements
 			return (
-				<CodeBlock className={className} id={id} style={style}>
+				<CodeBlock className={cn(className)} id={id} style={style}>
 					{children}
 				</CodeBlock>
 			);

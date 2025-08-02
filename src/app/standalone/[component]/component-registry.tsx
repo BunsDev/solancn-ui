@@ -41,7 +41,7 @@ import FlipwordsView from "@/app/components/flipwords/flipwords-view";
 import ForgotPassword from "@/app/components/forgotpassword/forgotpassword";
 import FuzzySearch from "@/app/components/fuzzy/fuzzy";
 import GradientView from "@/app/components/gradient/gradient-view";
-import HeroSection from "@/app/components/hero/hero";
+import { BridgeHero, DexHero, LendingHero, TokenLauncherHero } from "@/app/components/hero/hero";
 import Hero2 from "@/app/components/hero/hero2";
 import NexusOrb from "@/app/components/integrations/nexusorb";
 import NexusOrbSup from "@/app/components/integrations/nexusorbsup";
@@ -143,8 +143,10 @@ export const ComponentRegistry: Record<string, React.ComponentType> = {
 	"nexus-orb": NexusOrb,
 	"nexus-orb-sup": NexusOrbSup,
 	spider: Spider,
-	hero: HeroSection,
-	"hero-2": Hero2,
+	"bridge-hero": BridgeHero,
+	"dex-hero": DexHero,
+	"lending-hero": LendingHero,
+	"token-launcher-hero": TokenLauncherHero,
 	CoderProfileCard: CoderProfileCard,
 	Portfolio2Page: Portfolio2Page,
 	ImageCarousel: ImageCarousel,

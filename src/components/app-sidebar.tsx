@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { BookOpen, Layout, PenTool } from "lucide-react"
+import { BookOpen, Layout, PenTool, Palette } from "lucide-react"
 
 import {
 	Sidebar,
@@ -20,6 +20,7 @@ import {
 	componentsNavigation,
 	docsNavigation,
 	templatesNavigation,
+	designsNavigation
 } from "@/constants/navigation";
 import { NavigationItem } from "@/types/navigation";
 import Link from "next/link";
@@ -67,8 +68,15 @@ const data = {
 			isActive: false,
 			navigationType: "templates"
 		},
+		{
+			title: "Designs",
+			url: "/designs",
+			icon: Palette,
+			isActive: false,
+			navigationType: "designs"
+		},
 	],
-	mails: [...componentsNavigation, ...docsNavigation, ...templatesNavigation]
+	mails: [...componentsNavigation, ...docsNavigation, ...templatesNavigation, ...designsNavigation]
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -88,6 +96,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 				return docsNavigation
 			case "templates":
 				return templatesNavigation
+			case "designs":
+				return designsNavigation
 			default:
 				return []
 		}

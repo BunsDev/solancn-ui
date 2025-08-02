@@ -102,7 +102,7 @@ const Header = () => {
 								</div>
 							</Link>
 						</div>
-						<nav className=" hidden md:flex items-center gap-6 text-base font-medium text-zinc-800 dark:text-zinc-200">
+						{/* <nav className=" hidden md:flex items-center gap-6 text-base font-medium text-zinc-800 dark:text-zinc-200">
 							<Link className="flex items-center gap-2 " href="/docs">
 								<Button
 									variant="default"
@@ -154,7 +154,7 @@ const Header = () => {
 									Templates
 								</Button>
 							</Link>
-						</nav>
+						</nav> */}
 					</div>
 					<nav className="flex items-center space-x-3">
 						<button

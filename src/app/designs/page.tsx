@@ -1,0 +1,20 @@
+import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
+
+export const dynamic = "force-static";
+export const revalidate = false;
+
+export default function DesignsPage() {
+	return (
+		<div className="flex flex-col gap-12 md:gap-24">
+			<div className="container-wrapper">
+				<div className="container flex justify-center py-6">
+					<Button asChild variant="outline">
+						<Link href="/designs/colors">Browse more designs</Link>
+					</Button>
+				</div>
+			</div>
+		</div>
+	);
+}

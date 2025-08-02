@@ -20,7 +20,11 @@ export default function ComponentsLayout({
 					name="Library"
 					description="Explore our collection of responsive and accessible UI components."
 				>
-					{children}
+					<div
+						className="w-full overflow-hidden max-w-[720px] sm:max-w-[1200px] mx-auto"
+					>
+						{children}
+					</div>
 				</DocsLayoutContent>
 			</SidebarProvider>
 		</TOCProvider>

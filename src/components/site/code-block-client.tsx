@@ -70,36 +70,44 @@ export const CodeBlockClient = ({
   }, [code, selectedLanguage, lang]);
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full overflow-hidden">
       {/* Language header */}
-      <div className="flex items-center justify-between px-4 py-2 bg-muted/50 border border-b-0 border-border rounded-t-lg">
-        <div className="flex items-center">
-          {getLanguageIcon(displayLang)}
-          <span className="text-xs font-mono text-muted-foreground uppercase tracking-wide">
+      <div className="flex items-center justify-between px-2 sm:px-4 py-1.5 sm:py-2 bg-muted/50 border border-b-0 border-border rounded-t-lg">
+        <div className="flex items-center overflow-hidden">
+          <div className="flex-shrink-0">
+            {getLanguageIcon(displayLang)}
+          </div>
+          <span className="text-xs font-mono text-muted-foreground uppercase tracking-wide truncate">
             {displayLang}
           </span>
           {fileName && (
-            <span className="ml-2 text-xs text-muted-foreground/70">
+            <span className="ml-2 text-xs text-muted-foreground/70 truncate max-w-[100px] sm:max-w-[150px] md:max-w-[250px]">
               {fileName}
             </span>
           )}
         </div>
-        <CodeCopy 
-          code={code} 
-          selectedLanguage={selectedLanguage}
-          onLanguageChange={setSelectedLanguage}
-        />
+        <div className="flex-shrink-0">
+          <CodeCopy 
+            code={code} 
+            selectedLanguage={selectedLanguage}
+            onLanguageChange={setSelectedLanguage}
+          />
+        </div>
       </div>
 
       <div
         className={cn(
-          "not-prose relative max-h-[400px] overflow-auto w-full max-w-[600px] lg:max-w-screen-lg", 
-		  "rounded-b-lg border border-border",
+          "not-prose relative overflow-auto w-full flex flex-col", 
+          "max-h-[50vh] sm:max-h-[400px]", 
+		      "rounded-b-lg border border-border",
           "scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border",
           // Remove background colors to let Shiki handle them
           "[&_.shiki]:!bg-transparent [&_.shiki]:!m-0",
           "[&_pre]:!bg-transparent [&_pre]:!m-0",
-          "[&_code]:!bg-transparent [&_code]:!p-0"
+          "[&_code]:!bg-transparent [&_code]:!p-0",
+          // Responsive text size adjustments
+          "[&_pre]:text-xs sm:[&_pre]:text-sm",
+          "[&_code]:text-xs sm:[&_code]:text-sm"
         )}
       >
         <CodeRenderer code={transformedCode} lang={displayLang} />

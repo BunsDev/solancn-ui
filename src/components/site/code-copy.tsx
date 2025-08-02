@@ -81,23 +81,23 @@ const CodeCopy = ({
 	};
 
 	return (
-		<div className="flex items-center gap-2">
+		<div className="flex items-center gap-1 sm:gap-2">
 			{/* Language selector */}
-			<div className="flex items-center gap-1">
+			<div className="flex items-center gap-0.5 sm:gap-1">
 				<Button
 					onClick={() => onLanguageChange?.("tsx")}
 					variant="ghost"
 					size="sm"
 					className={cn(
-						"transition-all duration-200",
+						"transition-all duration-200 px-1.5 sm:px-2.5 h-6 sm:h-8",
 						selectedLanguage === "tsx"
 							? "bg-white/10 text-foreground shadow-sm backdrop-blur-sm"
 							: "text-muted-foreground hover:text-foreground hover:bg-muted/30"
 					)}
 					title="TypeScript React"
 				>
-					<TSXIcon className="h-4 w-4 mr-1" />
-					TS
+					<TSXIcon className="h-3 w-3 sm:h-4 sm:w-4 mr-0.5 sm:mr-1" />
+					<span className="text-xs sm:text-sm">TS</span>
 				</Button>
 				{/* <Button
 					onClick={() => onLanguageChange?.("jsx")}
@@ -123,6 +123,7 @@ const CodeCopy = ({
 				size="icon"
 				className={cn(
 					"relative text-muted-foreground hover:text-foreground transition-colors",
+					"w-6 h-6 sm:w-8 sm:h-8", // Responsive sizing
 					className
 				)}
 				title={`Copy ${selectedLanguage.toUpperCase()} code`}
@@ -132,14 +133,14 @@ const CodeCopy = ({
 						copied ? "scale-0 opacity-0" : "scale-100 opacity-100"
 					}`}
 				>
-					<Clipboard className="h-4 w-4" />
+					<Clipboard className="h-3 w-3 sm:h-4 sm:w-4" />
 				</div>
 				<div
 					className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${
 						copied ? "scale-100 opacity-100" : "scale-0 opacity-0"
 					}`}
 				>
-					<Check className="h-4 w-4 text-green-500" />
+					<Check className="h-3 w-3 sm:h-4 sm:w-4 text-green-500" />
 				</div>
 				<span className="sr-only">Copy code</span>
 			</Button>

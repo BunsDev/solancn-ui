@@ -7,12 +7,12 @@ import { TOCProvider } from "@/contexts/toc-context";
 // Force static generation for all docs pages
 export const dynamic = "force-static";
 
-export default function TemplatesLayout({ children }: { children: ReactNode }) {
+export default function DesignsLayout({ children }: { children: ReactNode }) {
 	return (
 		<TOCProvider>
 			<SidebarProvider>
-			<DocsLayoutContent section="Templates" name="All Templates" description="Explore our collection of composable templates for the Solana ecosystem.">
-			{children}
+				<DocsLayoutContent section="Designs" name="All Designs" description="Explore our collection of responsive and accessible UI components.">
+					{children}
 				</DocsLayoutContent>
 			</SidebarProvider>
 		</TOCProvider>

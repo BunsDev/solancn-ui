@@ -125,6 +125,7 @@ export function CodeBlock({ children, className, ...props }: CodeBlockProps) {
 	const [isLoading, setIsLoading] = useState(true);
 	const [rawCode, setRawCode] = useState<string>("");
 	const [detectedLanguage, setDetectedLanguage] = useState<string>("");
+	const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 640px)").matches;
 
 	// Extract code and language from children
 	useEffect(() => {
@@ -261,29 +262,31 @@ export function CodeBlock({ children, className, ...props }: CodeBlockProps) {
 
 	if (isLoading) {
 		return (
-			<div className="relative group my-6">
-				<div className="flex items-center justify-between px-4 py-2 bg-muted/50 border border-b-0 border-border rounded-t-lg">
+			<div className="relative group my-4 sm:my-6 w-full overflow-hidden">
+				<div className="flex items-center justify-between px-2 sm:px-4 py-1.5 sm:py-2 bg-muted/50 border border-b-0 border-border rounded-t-lg">
 					<div className="flex items-center">
-						<div className="w-4 h-4 mr-2 bg-muted animate-pulse rounded"></div>
-						<span className="text-xs font-mono text-muted-foreground uppercase tracking-wide">
+						<div className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 bg-muted animate-pulse rounded"></div>
+						<span className="text-xs font-mono text-muted-foreground uppercase tracking-wide truncate">
 							Loading...
 						</span>
 					</div>
 				</div>
-				<div className="border border-border bg-muted p-4 rounded-t-none rounded-b-lg">
-					<div className="h-20 bg-muted-foreground/20 animate-pulse rounded"></div>
+				<div className="border border-border bg-muted p-2 sm:p-4 rounded-t-none rounded-b-lg">
+					<div className="h-16 sm:h-20 bg-muted-foreground/20 animate-pulse rounded"></div>
 				</div>
 			</div>
 		);
 	}
 
 	return (
-		<div className="relative group my-6">
+		<div className="relative group my-4 sm:my-6 w-full overflow-hidden">
 			{detectedLanguage && detectedLanguage !== "text" && (
-				<div className="flex items-center justify-between px-4 py-2 bg-muted/50 border border-b-0 border-border rounded-t-lg">
-					<div className="flex items-center">
-						{getLanguageIcon(detectedLanguage)}
-						<span className="text-xs font-mono text-muted-foreground uppercase tracking-wide">
+				<div className="flex items-center justify-between px-2 sm:px-4 py-1.5 sm:py-2 bg-muted/50 border border-b-0 border-border rounded-t-lg">
+					<div className="flex items-center overflow-hidden">
+						<div className="flex-shrink-0">
+							{getLanguageIcon(detectedLanguage)}
+						</div>
+						<span className="text-xs font-mono text-muted-foreground uppercase tracking-wide truncate">
 							{detectedLanguage}
 						</span>
 					</div>
@@ -295,11 +298,11 @@ export function CodeBlock({ children, className, ...props }: CodeBlockProps) {
 					"relative overflow-hidden border border-border",
 					"scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border",
 					// Remove background colors to let Shiki handle them
-					"[&_pre]:!bg-transparent [&_pre]:!m-0 [&_pre]:!p-4",
+					"[&_pre]:!bg-transparent [&_pre]:!m-0 [&_pre]:!p-2 sm:[&_pre]:!p-4",
 					"[&_code]:!bg-transparent [&_code]:!p-0",
 					// Ensure proper text sizing and font
-					"[&_pre]:text-sm [&_pre]:font-mono",
-					"[&_code]:text-sm [&_code]:font-mono",
+					"[&_pre]:text-xs sm:[&_pre]:text-sm [&_pre]:font-mono",
+					"[&_code]:text-xs sm:[&_code]:text-sm [&_code]:font-mono",
 					// Handle scrolling
 					"[&_pre]:overflow-x-auto",
 					detectedLanguage && detectedLanguage !== "text"
@@ -314,19 +317,19 @@ export function CodeBlock({ children, className, ...props }: CodeBlockProps) {
 			<button
 				onClick={copyToClipboard}
 				className={cn(
-					"absolute right-2 p-2 rounded-md transition-all duration-200",
+					"absolute right-1.5 sm:right-2 p-1.5 sm:p-2 rounded-md transition-all duration-200",
 					"bg-background/80 backdrop-blur-sm border border-border",
 					"opacity-0 group-hover:opacity-100",
 					"hover:bg-muted hover:scale-105",
 					"focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary",
-					detectedLanguage && detectedLanguage !== "text" ? "top-12" : "top-2",
+					detectedLanguage && detectedLanguage !== "text" ? "top-10 sm:top-12" : "top-1.5 sm:top-2",
 				)}
 				aria-label="Copy code to clipboard"
 			>
 				{copied ? (
-					<Check className="h-4 w-4 text-green-500" />
+					<Check className="h-3 w-3 sm:h-4 sm:w-4 text-green-500" />
 				) : (
-					<Copy className="h-4 w-4 text-muted-foreground" />
+					<Copy className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground" />
 				)}
 			</button>
 		</div>

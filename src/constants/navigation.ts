@@ -141,3 +141,15 @@ export const templatesNavigation: NavigationItem[] = [
 		],
 	},
 ];
+
+export const designsNavigation: NavigationItem[] = [
+	{
+		label: "Design",
+		href: "/components/pattern",
+		children: [
+			{ label: "Pattern", href: "/components/pattern" },
+			{ label: "Colors", href: "/components/colors" },
+			{ label: "Typography", href: "/components/typography" },
+		],
+	},
+];

@@ -8,34 +8,13 @@ import {
   TabsContent,
 } from "@/components/site/tabs.tsx";
 import { HideTOC } from "@/components/site/hide-toc";
-import Hero from "./hero.tsx"
-import Hero2 from "./hero2.tsx"
-import Hero3 from "./hero3.tsx"
-import SolancnUIHero from "./hero4.tsx"
+import {BridgeHero, DexHero, LendingHero, TokenLauncherHero} from "./hero.tsx"
 
 <HideTOC />
 
+# Solana Bridging Interface Hero
 
-#  Solancn UI Hero
-A hero section component with a responsive design, featuring a centered content area and a background image. Perfect for marketing websites and landing pages.
-
-<Tabs defaultValue="preview" className="">
-  <TabsList>
-    <TabsTrigger value="preview">Preview</TabsTrigger>
-    <TabsTrigger value="code">Code</TabsTrigger>
-  </TabsList>
-  <TabsContent value="preview">
-    <ComponentRenderer component={<SolancnUIHero />} componentName="SolancnUIHero" />
-  </TabsContent>
-  <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/hero/hero4.tsx" />
-  </TabsContent>
-</Tabs>
-
-
-# Hero Section with Mobile Navigation
-
-A complete hero section component featuring a responsive navigation header with mobile menu overlay and a centered hero content area. Perfect for landing pages and marketing websites.
+A modern hero section designed for a cross-chain bridging interface. Features a sleek dark theme with Solana purple (#9945FF) and green (#14F195) accents, intuitive bridge interface with network selector, and key statistics display. Perfect for DeFi applications focused on asset transfers between blockchains.
 
 <Tabs defaultValue="preview" className="">
   <TabsList>
@@ -43,16 +22,16 @@ A complete hero section component featuring a responsive navigation header with 
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<Hero />} componentName="hero" />
+    <ComponentRenderer component={<BridgeHero />} componentName="bridge-hero" />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/hero/hero.tsx" />
+    <CodeBlock filePath="src/app/components/hero/bridge-hero.tsx" />
   </TabsContent>
 </Tabs>
 
-# Modern Hero with Gradient Background
+# Solana Exchange (AMM) Hero
 
-An elegant hero section with decorative gradient backgrounds, pill-style navigation, and modern typography. Features a clean design with subtle animations and professional styling.
+A feature-rich hero section for a decentralized exchange with Solana styling. Includes a swap interface with token selection, real-time rate display, and trading statistics. The dark theme with gradient background enhances the modern DeFi experience while maintaining focus on the trading functionality.
 
 <Tabs defaultValue="preview" className="">
   <TabsList>
@@ -60,16 +39,16 @@ An elegant hero section with decorative gradient backgrounds, pill-style navigat
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<Hero2 />} componentName="hero-2" />
+    <ComponentRenderer component={<DexHero />} componentName="dex-hero" />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/hero/hero2.tsx" />
+    <CodeBlock filePath="src/app/components/hero/dex-hero.tsx" />
   </TabsContent>
 </Tabs>
 
-# Minimalist Black & White Hero
+# Solana Lending Platform Hero
 
-A clean, minimalist hero section with a classic black and white design. Features simple navigation, clear typography, and essential elements only. Perfect for professional and corporate websites.
+A sophisticated hero section for a lending protocol on Solana. Features a tabbed interface to toggle between supply and borrow markets, complete with APY rates, liquidity information, and action buttons. The clean layout with Solana's brand colors provides an intuitive entry point for DeFi lending activities.
 
 <Tabs defaultValue="preview" className="">
   <TabsList>
@@ -77,10 +56,26 @@ A clean, minimalist hero section with a classic black and white design. Features
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
   <TabsContent value="preview">
-    <ComponentRenderer component={<Hero3 />} componentName="hero-3" />
+    <ComponentRenderer component={<LendingHero />} componentName="lending-hero" />
   </TabsContent>
   <TabsContent value="code">
-    <CodeBlock filePath="src/app/components/hero/hero3.tsx" />
+    <CodeBlock filePath="src/app/components/hero/lending-hero.tsx" />
   </TabsContent>
 </Tabs>
 
+# Solana Token Launcher Hero
+
+An engaging hero section for a token creation platform. Features an easy-to-use token launcher form alongside key features and trending tokens. The vibrant gradient background with Solana's signature purple and green creates an exciting atmosphere for users looking to launch their own tokens on Solana.
+
+<Tabs defaultValue="preview" className="">
+  <TabsList>
+    <TabsTrigger value="preview">Preview</TabsTrigger>
+    <TabsTrigger value="code">Code</TabsTrigger>
+  </TabsList>
+  <TabsContent value="preview">
+    <ComponentRenderer component={<TokenLauncherHero />} componentName="token-launcher-hero" />
+  </TabsContent>
+  <TabsContent value="code">
+    <CodeBlock filePath="src/app/components/hero/token-launcher-hero.tsx" />
+  </TabsContent>
+</Tabs>

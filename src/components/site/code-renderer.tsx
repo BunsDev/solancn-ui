@@ -48,9 +48,9 @@ export const CodeRenderer = ({ code, lang = "tsx" }: CodeRendererProps) => {
 
 	if (isLoading) {
 		return (
-			<div className="font-normal text-sm">
-				<div style={{ padding: "16px", paddingRight: "20px" }}>
-					<pre>
+			<div className="font-normal text-xs sm:text-sm w-full">
+				<div className="p-2 sm:p-4 pr-3 sm:pr-5">
+					<pre className="overflow-x-auto">
 						<code>{code}</code>
 					</pre>
 				</div>
@@ -59,9 +59,9 @@ export const CodeRenderer = ({ code, lang = "tsx" }: CodeRendererProps) => {
 	}
 
 	return (
-		<div className="font-normal text-sm">
+		<div className="font-normal text-xs sm:text-sm w-full">
 			<div
-				style={{ padding: "16px", paddingRight: "20px" }}
+				className="p-2 sm:p-4 pr-3 sm:pr-5"
 				dangerouslySetInnerHTML={{ __html: html }}
 			/>
 		</div>
