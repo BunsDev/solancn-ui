@@ -40,7 +40,7 @@ interface Icon {
 }
 
 // --- Main App Component ---
-export default function Svgicons() {
+export default function SvgIcons() {
 	const { theme } = useDarkMode();
 	// State management for icons, search, loading, and pagination
 	const [icons, setIcons] = React.useState<Icon[]>([]);
