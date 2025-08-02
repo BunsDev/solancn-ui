@@ -126,7 +126,7 @@ export async function resolveTreeWithDependencies(
     if (entry.registryDependencies) {
       const dependencies = await resolveTreeWithDependencies(
         index,
-        entry.registryDependencies
+        entry.registryDependencies,
       );
       tree.push(...dependencies);
     }
@@ -186,7 +186,9 @@ export async function fetchTreeStyled(style: string, tree: theTree) {
 
     return registryWithContentSchema.parse(result);
   } catch (error) {
-    throw new Error(`Failed to fetch styled components from Solancn UI registry.`);
+    throw new Error(
+      `Failed to fetch styled components from Solancn UI registry.`,
+    );
   }
 }
 

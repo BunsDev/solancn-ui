@@ -154,8 +154,12 @@ describe("Component addition functionality", () => {
     (getConfig as any).mockResolvedValue(mockConfig);
 
     // Mock successful registry operations
-    (registry.getRegistryIndexSolancn as any).mockResolvedValue([{ name: "button" }]);
-    (registry.resolveTreeWithDependencies as any).mockResolvedValue([{ name: "button" }]);
+    (registry.getRegistryIndexSolancn as any).mockResolvedValue([
+      { name: "button" },
+    ]);
+    (registry.resolveTreeWithDependencies as any).mockResolvedValue([
+      { name: "button" },
+    ]);
     (registry.fetchTree as any).mockResolvedValue([mockRegistryItem]);
     (registry.getRegistryBaseColor as any).mockResolvedValue({
       name: "zinc",
@@ -212,7 +216,9 @@ describe("Component addition functionality", () => {
 
     // Check for calls to registry with original components
     expect(registry.getRegistryIndexSolancn).toHaveBeenCalledTimes(1);
-    expect(registry.resolveTreeWithDependencies).toHaveBeenCalledWith(["button"]);
+    expect(registry.resolveTreeWithDependencies).toHaveBeenCalledWith([
+      "button",
+    ]);
 
     // Verify component was written
     expect(fs.promises.writeFile).toHaveBeenCalledTimes(0);

@@ -122,7 +122,10 @@ export const addComponent = new Command()
         process.exit(0);
       }
 
-      const tree = await resolveTreeWithDependencies(registryIndex, selectedComponents);
+      const tree = await resolveTreeWithDependencies(
+        registryIndex,
+        selectedComponents,
+      );
 
       const payload = options.useStyled
         ? await fetchTreeStyled(config.style, tree)

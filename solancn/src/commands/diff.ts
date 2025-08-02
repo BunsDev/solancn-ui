@@ -158,7 +158,6 @@ export const diff = new Command()
           }
         }
       }
-
     } catch (error) {
       console.log(error);
       handleError(error);
