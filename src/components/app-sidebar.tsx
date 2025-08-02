@@ -36,8 +36,8 @@ const data = {
 	},
 	navMain: [
 		{
-			title: "Documentation",
-			url: "/docs",
+			itemName: "Documentation",
+			href: "/docs",
 			icon: BookOpen,
 			isActive: true,
 			navigationType: "docs"
@@ -55,22 +55,22 @@ const data = {
 		// 	isActive: false,
 		// },
 		{
-			title: "Components",
-			url: "/components",
+			itemName: "Components",
+			href: "/components",
 			icon: Layout,
 			isActive: false,
 			navigationType: "components"
 		},
 		{
-			title: "Templates",
-			url: "/templates",
+			itemName: "Templates",
+			href: "/templates",
 			icon: PenTool,
 			isActive: false,
 			navigationType: "templates"
 		},
 		{
-			title: "Designs",
-			url: "/designs",
+			itemName: "Designs",
+			href: "/designs",
 			icon: Palette,
 			isActive: false,
 			navigationType: "designs"
@@ -136,10 +136,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 						<SidebarGroupContent className="px-1.5 md:px-0">
 							<SidebarMenu>
 								{data.navMain.map((item) => (
-									<SidebarMenuItem key={item.title}>
+									<SidebarMenuItem key={item.itemName}>
 										<SidebarMenuButton
 											tooltip={{
-												children: item.title,
+												children: item.itemName,
 												hidden: false,
 											}}
 											onClick={() => {
@@ -149,11 +149,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 												setNavigationItems(items)
 												setOpen(true)
 											}}
-											isActive={activeItem?.title === item.title}
+											isActive={activeItem?.itemName === item.itemName}
 											className="px-2.5 md:px-2"
 										>
 											<item.icon />
-											<span>{item.title}</span>
+											<span>{item.itemName}</span>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 								))}
@@ -172,7 +172,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 				<SidebarHeader className="gap-3.5 border-b p-4">
 					<div className="flex w-full items-center justify-between">
 						<div className="text-foreground text-base font-medium">
-							{activeItem?.title}
+							{activeItem?.itemName}
 						</div>
 					</div>
 					<SidebarInput placeholder="Type to search..." />
@@ -181,28 +181,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 					<SidebarGroup className="px-0">
 						<SidebarGroupContent>
 							{navigationItems.map((section) => (
-								<div key={section.label} className="border-b last:border-b-0">
-									<Link 
-										href={section.href || '#'}
-										className="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground flex flex-col items-start gap-2 p-4 text-sm font-medium leading-tight whitespace-nowrap"
-									>
-										<div className="flex w-full items-center justify-between">
-											<span>{section.label}</span>
-											{section.badge && (
-												<span className="bg-primary/10 text-primary text-xs px-2 py-0.5 rounded-full">{section.badge}</span>
-											)}
+								<div key={section.itemName} className="border-b last:border-b-0">
+									<div className="flex w-full items-center justify-between">
+										<div>{section.itemName}</div>
+										{section.badge && (
+											<span className="bg-primary/10 text-primary text-xs px-2 py-0.5 rounded-full">{section.badge}</span>
+										)}
 										</div>
-									</Link>
-									
 									{section.children && section.children.length > 0 && (
 										<div className="pl-4">
 											{section.children.map((child) => (
 												<Link 
-													key={child.label}
+													key={child.childName}
 													href={child.href || '#'}
 													className="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground flex items-center justify-between p-2 text-xs text-muted-foreground"
 												>
-													<span>{child.label}</span>
+													<span>{child.childName}</span>
 													{child.badge && (
 														<span className="bg-primary/10 text-primary text-[10px] px-1.5 py-0.5 rounded-full">{child.badge}</span>
 													)}

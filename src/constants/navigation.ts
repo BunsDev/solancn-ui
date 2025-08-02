@@ -3,153 +3,150 @@ import { NavigationItem } from "@/types/navigation";
 
 export const docsNavigation: NavigationItem[] = [
 	{
-		label: "Getting Started",
+		itemName: "Getting Started",
 		href: "/docs/introduction",
 		children: [
-			{ label: "Introduction", href: "/docs/introduction" },
-			{ label: "Installation", href: "/docs/installation" },
+			{ childName: "Introduction", href: "/docs/introduction" },
+			{ childName: "Installation", href: "/docs/installation" },
 		],
 	},
 ];
+
 export const componentsNavigation: NavigationItem[] = [
 	{
-		label: "Blocks",
-		href: "/components/hero",
-		children: [
-			{ label: "Hero", href: "/components/hero" },
-			// { label: "Header", href: "/components/navbar" },
-			{ label: "Pricing", href: "/components/pricing" },
-
-			// { label: "Testimonial", href: "/components/testimonial" },
-			// { label: "Forgot Password", href: "/components/forgotpassword" },
-			// { label: "Team Member", href: "/components/teammember" },
-			// { label: "Integrations", href: "/components/integrations" },
-			// { label: "Network", href: "/components/network" },
-			// { label: "Image Swiper", href: "/components/imageswiper" },
-			// { label: "Noise", href: "/components/noise" },
-
-		],
-	},
-	{
-		label: "Button",
-		href: "/components/button",
-		children: [
-			{ label: "Buttons", href: "/components/button" },
-			{ label: "Dropdown", href: "/components/dropdown" },
-			// { label: "Shimmer Button", href: "/components/shimmer" },
-			{ label: "Drawer", href: "/components/drawer" },
-		],
-	},
-
-	{
-		label: "Badge & Toast",
+		itemName: "Badges",
 		href: "/components/badge",
 		children: [
-			{ label: "Badges", href: "/components/badge" },
-			// { label: "Animated Badges", href: "/components/animatedbadge" },
-			{ label: "Toasts", href: "/components/toast" },
+			{ childName: "Badges", href: "/components/badge" },
+			{ childName: "Toasts", href: "/components/toast" },
 		],
 	},
 	{
-		label: "Input",
-		href: "/components/input",
+		itemName: "Blocks",
+		href: "/components/hero",
 		children: [
-			{ label: "Search", href: "/components/search" },
-			{ label: "Prompt", href: "/components/prompt" },
-			{ label: "Password", href: "/components/password" },
+			{ childName: "Hero", href: "/components/hero" },
+			// { childName: "Header", href: "/components/navbar" },
+			{ childName: "Pricing", href: "/components/pricing" },
+			// { childName: "Testimonial", href: "/components/testimonial" },
+			// { childName: "Forgot Password", href: "/components/forgotpassword" },
+			// { childName: "Integrations", href: "/components/integrations" }, // √
+			// { childName: "Network", href: "/components/network" }, // √
+			// { childName: "Image Swiper", href: "/components/imageswiper" }, // √
+			// { childName: "Noise", href: "/components/noise" },
 		],
 	},
 	{
-		label: "Text",
-		href: "/components/text",
+		itemName: "Buttons",
+		href: "/components/button",
 		children: [
-			{ label: "Animated", href: "/components/text" },
-			{ label: "Fuzzy", href: "/components/fuzzy" },
-			// { label: "Changing", href: "/components/flipwords" },
-			// { label: "Reveal", href: "/components/textreveal" },
-			{ label: "Decrypt", href: "/components/decrypting" },
-			// { label: "Aurora", href: "/components/aurora" },
-			// { label: "Sparkles Text", href: "/components/sparklestext" },
-			{ label: "Ticker", href: "/components/ticker" },
-			// { label: "ResizeHandle", href: "/components/resize-handle" },
+			{ childName: "Buttons", href: "/components/button" },
+			{ childName: "Dropdown", href: "/components/dropdown" },
+			// { childName: "Shimmer Button", href: "/components/shimmer" },
+			{ childName: "Drawer", href: "/components/drawer" },
 		],
 	},
 	{
-		label: "Accordion & Tabs",
-		href: "/components/accordion",
-		children: [
-			// { label: "Dock Tabs", href: "/components/doctabs" },
-			// { label: "Carousel", href: "/components/carousel" },
-			{ label: "Tabs", href: "/components/tabs" },
-			// { label: "Fancy Tabs", href: "/components/tabs-fancy" },
-			// { label: "Classic Tabs", href: "/components/tabs-classic" },
-			// { label: "Dock", href: "/components/dock" },
-			// { label: "File Tree", href: "/components/filetree" },
-			{ label: "Install", href: "/components/copybutton" },
-			{ label: "Accordion", href: "/components/accordion" },
-			// { label: "Fancy", href: "/components/accordion-last" },
-			{ label: "Divider", href: "/components/divider" },
-		],
-	},
-	{
-		label: "Forms & Cards",
+		itemName: "Cards",
 		href: "/components/card",
 		children: [
-			// { label: "Login", href: "/components/login" },
-			// { label: "Login", href: "/components/signin" },
-			// { label: "Newsletter", href: "/components/waitlist" },
-			{ label: "Card", href: "/components/card" },
-			// { label: "Portfolio", href: "/components/portfolio" }, // √
+			// { childName: "Login", href: "/components/login" },
+			// { childName: "Login", href: "/components/signin" },
+			// { childName: "Newsletter", href: "/components/waitlist" },
+			{ childName: "2FA", href: "/components/twostep" },
+			{ childName: "Card", href: "/components/card" },
+			// { childName: "Portfolio", href: "/components/portfolio" }, // √
 
-			{ label: "MFA", href: "/components/twostep" },
-			// { label: "Amazon Gift Card", href: "/components/amazongift" },
-			// { label: "Magic Card", href: "/components/magic" },
-			// { label: "Gradient", href: "/components/gradient" },
-			// { label: "Spotlight Card", href: "/components/spotlightcard" },
-			{ label: "Multi-Select", href: "/components/multiselector" },
+			// { childName: "Amazon Gift Card", href: "/components/amazongift" },
+			// { childName: "Magic Card", href: "/components/magic" },
+			// { childName: "Gradient", href: "/components/gradient" },
+			// { childName: "Spotlight Card", href: "/components/spotlightcard" },
+			{ childName: "Multi-Select", href: "/components/multiselector" },
 		],
 	},
 	{
-		label: "Grid",
+		itemName: "Grids",
 		href: "/components/grid",
 		children: [
-			{ label: "Masonary Grid", href: "/components/masonary" },
-			{ label: "Bento Grid", href: "/components/bento-grid" },
+			{ childName: "Masonary Grid", href: "/components/masonary" },
+			{ childName: "Bento Grid", href: "/components/bento-grid" },
 		],
 	},
+	{
+		itemName: "Inputs",
+		href: "/components/input",
+		children: [
+			{ childName: "Search", href: "/components/search" },
+			{ childName: "Prompt", href: "/components/prompt" },
+			{ childName: "Password", href: "/components/password" },
+		],
+	},
+	{
+		itemName: "Tabs",
+		href: "/components/accordion",
+		children: [
+			// { childName: "Dock Tabs", href: "/components/doctabs" },
+			// { childName: "Carousel", href: "/components/carousel" },
+			{ childName: "Tabs", href: "/components/tabs" },
+			// { childName: "Fancy Tabs", href: "/components/tabs-fancy" },
+			// { childName: "Classic Tabs", href: "/components/tabs-classic" },
+			// { childName: "Dock", href: "/components/dock" },
+			// { childName: "File Tree", href: "/components/filetree" },
+			{ childName: "Install", href: "/components/copybutton" },
+			{ childName: "Accordion", href: "/components/accordion" },
+			// { childName: "Fancy", href: "/components/accordion-last" },
+			{ childName: "Divider", href: "/components/divider" },
+		],
+	},
+	{
+		itemName: "Texts",
+		href: "/components/text",
+		children: [
+			{ childName: "Animated", href: "/components/text" },
+			{ childName: "Fuzzy", href: "/components/fuzzy" },
+			// { childName: "Changing", href: "/components/flipwords" },
+			// { childName: "Reveal", href: "/components/textreveal" },
+			{ childName: "Decrypt", href: "/components/decrypting" },
+			// { childName: "Aurora", href: "/components/aurora" },
+			// { childName: "Sparkles Text", href: "/components/sparklestext" },
+			{ childName: "Ticker", href: "/components/ticker" },
+			// { childName: "ResizeHandle", href: "/components/resize-handle" },
+		],
+	},
+
 
 ];
 
 export const templatesNavigation: NavigationItem[] = [
 	{
-		label: "Templates",
+		itemName: "Templates",
 		href: "/templates/nft-market",
 		children: [
-			{ label: "NFT Market", href: "/templates/nft-market" },
-			{ label: "Bridge", href: "/templates/bridge" },
-			{ label: "Stake", href: "/templates/stake" },
-			// { label: "Wallet", href: "/templates/wallet" },
-			// { label: "Trading View", href: "/templates/tradingview" },
-			// { label: "Portfolio View", href: "/templates/portfolio-view" },
+			{ childName: "NFT Market", href: "/templates/nft-market" },
+			{ childName: "Bridge", href: "/templates/bridge" },
+			{ childName: "Stake", href: "/templates/stake" },
+			// { childName: "Wallet", href: "/templates/wallet" },
+			// { childName: "Trading View", href: "/templates/tradingview" },
+			// { childName: "Portfolio View", href: "/templates/portfolio-view" },
 
-			// { label: "Lending Market", href: "/templates/lendingmarket" },
-			{ label: "DeFi Dashboard", href: "/templates/defi-dashboard" },
-			// { label: "DeFi Portfolio", href: "/templates/defiportfolio" },
+			// { childName: "Lending Market", href: "/templates/lendingmarket" },
+			{ childName: "DeFi Dashboard", href: "/templates/defi-dashboard" },
+			// { childName: "DeFi Portfolio", href: "/templates/defiportfolio" },
 
-			// { label: "NFT Gallery", href: "/templates/nftgallery" },
-			// { label: "NFT Collection", href: "/templates/nftcollection" },
+			// { childName: "NFT Gallery", href: "/templates/nftgallery" },
+			// { childName: "NFT Collection", href: "/templates/nftcollection" },
 		],
 	},
 ];
 
 export const designsNavigation: NavigationItem[] = [
 	{
-		label: "Design",
+		itemName: "Design",
 		href: "/components/pattern",
 		children: [
-			{ label: "Pattern", href: "/components/pattern" },
-			{ label: "Colors", href: "/components/colors" },
-			{ label: "Typography", href: "/components/typography" },
+			{ childName: "Pattern", href: "/components/pattern" },
+			{ childName: "Colors", href: "/components/colors" },
+			{ childName: "Typography", href: "/components/typography" },
 		],
 	},
 ];

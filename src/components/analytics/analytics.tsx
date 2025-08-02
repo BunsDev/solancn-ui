@@ -83,7 +83,6 @@ function getComponentCategory(componentName: string): string {
 			"carousel",
 			"network",
 			"copybutton",
-			"colorpalette",
 			"gradient",
 		],
 	};

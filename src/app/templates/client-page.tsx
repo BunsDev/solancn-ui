@@ -401,7 +401,7 @@ function TemplateCard({
  */
 // Get categories from navigation for filtering
 const allNavigation = [...componentsNavigation, ...templatesNavigation];
-const categories = ["All", ...allNavigation.map((item) => item.label)];
+const categories = ["All", ...allNavigation.map((item) => item.itemName)];
 
 // Interface for the processed component with guaranteed category
 interface ProcessedComponent extends Component {
@@ -415,10 +415,10 @@ const getComponentCategory = (componentName: string): string => {
 		const found = section?.children?.some(
 			(child) =>
 				child?.href?.includes(`/components/${componentName}`) ||
-				child?.label?.toLowerCase() === componentName.toLowerCase(),
+				child?.childName?.toLowerCase() === componentName.toLowerCase(),
 		);
 
-		if (found) return section.label;
+		if (found) return section.itemName;
 	}
 	return "Components"; // Default category
 };

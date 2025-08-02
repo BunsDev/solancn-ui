@@ -39,19 +39,6 @@
     ]
   },
   {
-    "name": "animatedbadge",
-    "description": "A minimalistic animatedbadge component designed with React and Tailwind CSS.",
-    "dependencies": [],
-    "registryDependencies": [],
-    "files": [
-      {
-        "name": "animatedbadge",
-        "content": "",
-        "type": "registry:component"
-      }
-    ]
-  },
-  {
     "name": "aurora",
     "description": "A minimalistic aurora component designed with React and Tailwind CSS.",
     "dependencies": [],
@@ -137,19 +124,6 @@
     "files": [
       {
         "name": "codeprofile",
-        "content": "",
-        "type": "registry:component"
-      }
-    ]
-  },
-  {
-    "name": "colorpalette",
-    "description": "A minimalistic colorpalette component designed with React and Tailwind CSS.",
-    "dependencies": [],
-    "registryDependencies": [],
-    "files": [
-      {
-        "name": "colorpalette",
         "content": "",
         "type": "registry:component"
       }
@@ -696,19 +670,6 @@
     "files": [
       {
         "name": "tabs-fancy",
-        "content": "",
-        "type": "registry:component"
-      }
-    ]
-  },
-  {
-    "name": "teammember",
-    "description": "A minimalistic teammember component designed with React and Tailwind CSS.",
-    "dependencies": [],
-    "registryDependencies": [],
-    "files": [
-      {
-        "name": "teammember",
         "content": "",
         "type": "registry:component"
       }

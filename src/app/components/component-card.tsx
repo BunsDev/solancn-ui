@@ -18,9 +18,9 @@ export function ComponentCard({ component }: ComponentCardProps) {
         <div className="relative h-48 overflow-hidden cursor-pointer">
           <div className="absolute inset-0 bg-gradient-to-b from-purple-50 to-indigo-50 dark:from-zinc-900 dark:to-zinc-950 flex items-center justify-center">
             <div className="text-center px-4">
-              <div className="w-12 h-12 mb-3 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg mx-auto flex items-center justify-center">
+              {/* <div className="w-12 h-12 mb-3 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg mx-auto flex items-center justify-center">
                 <span className="text-white text-lg font-bold">{component.name.charAt(0)}</span>
-              </div>
+              </div> */}
               <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
                 {component.name}
               </h3>

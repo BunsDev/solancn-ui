@@ -65,22 +65,6 @@ export const components: ComponentType[] = [
     ],
   },
   {
-    name: "animatedbadge",
-    title: "Animatedbadge",
-    description: "A minimalistic animatedbadge component designed with React and Tailwind CSS.",
-    type: "registry:component",
-    path: "../app/components/animatedbadge",
-    dependencies: [],
-    files: [
-      {
-        path: "../app/components/animatedbadge",
-        name: "animatedbadge",
-        content: "",
-        type: "registry:component",
-      },
-    ],
-  },
-  {
     name: "aurora",
     title: "Aurora",
     description: "A minimalistic aurora component designed with React and Tailwind CSS.",
@@ -187,22 +171,6 @@ export const components: ComponentType[] = [
       {
         path: "../app/components/codeprofile",
         name: "codeprofile",
-        content: "",
-        type: "registry:component",
-      },
-    ],
-  },
-  {
-    name: "colorpalette",
-    title: "Colorpalette",
-    description: "A minimalistic colorpalette component designed with React and Tailwind CSS.",
-    type: "registry:component",
-    path: "../app/components/colorpalette",
-    dependencies: [],
-    files: [
-      {
-        path: "../app/components/colorpalette",
-        name: "colorpalette",
         content: "",
         type: "registry:component",
       },
@@ -875,22 +843,6 @@ export const components: ComponentType[] = [
       {
         path: "../app/components/tabs-fancy",
         name: "tabs-fancy",
-        content: "",
-        type: "registry:component",
-      },
-    ],
-  },
-  {
-    name: "teammember",
-    title: "Teammember",
-    description: "A minimalistic teammember component designed with React and Tailwind CSS.",
-    type: "registry:component",
-    path: "../app/components/teammember",
-    dependencies: [],
-    files: [
-      {
-        path: "../app/components/teammember",
-        name: "teammember",
         content: "",
         type: "registry:component",
       },

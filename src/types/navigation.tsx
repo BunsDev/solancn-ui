@@ -1,14 +1,14 @@
 import { LucideIcon } from "lucide-react";
 
 export interface NavigationItem {
-	label: string;
+	itemName: string;
 	href?: string;
 	badge?: string;
 	children?: NavigationChild[];
 }
 
 export interface NavigationChild {
-	label: string;
+	childName: string;
 	href?: string;
 	badge?: string;
 }
