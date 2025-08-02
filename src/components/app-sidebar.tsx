@@ -1,226 +1,213 @@
-"use client";
+"use client"
 
-import {
-	AudioWaveform,
-	BookOpen,
-	Bot,
-	Command,
-	Frame,
-	GalleryVerticalEnd,
-	type LucideIcon,
-	Map,
-	PieChart,
-	Settings2,
-	SquareTerminal,
-} from "lucide-react";
-import * as React from "react";
+import * as React from "react"
+import { BookOpen, Command, FileText, Layout, Palette, PenTool } from "lucide-react"
 
-import { NavMain } from "@/components/nav-main";
-// import { NavProjects } from "@/components/nav-projects"
-import { NavResources } from "@/components/nav-resources";
-import { TopicSwitcher } from "@/components/topic-switcher";
+import { NavUser } from "@/components/nav-user"
+import { Label } from "@/components/ui/label"
 import {
 	Sidebar,
 	SidebarContent,
 	SidebarFooter,
+	SidebarGroup,
+	SidebarGroupContent,
 	SidebarHeader,
-	SidebarRail,
-} from "@/components/ui/sidebar";
+	SidebarInput,
+	SidebarMenu,
+	SidebarMenuButton,
+	SidebarMenuItem,
+	useSidebar,
+} from "@/components/ui/sidebar"
+import { Switch } from "@/components/ui/switch"
 import {
 	componentsNavigation,
 	docsNavigation,
 	templatesNavigation,
 } from "@/constants/navigation";
-import { NavProjects } from "./nav-projects";
-import { NavigationChild, NavigationItem, NavMainItemProps, Topic } from "@/types/navigation";
+import { NavigationItem } from "@/types/navigation";
+import Link from "next/link";
 
-const allNavigation: NavigationItem[] = [
-	...docsNavigation,
-	...componentsNavigation,
-	...templatesNavigation,
-];
-
-// This is sample data.
+// This is sample data
 const data = {
-	resources: {
-		name: "Resources",
-		links: [
-			{
-				name: "Solana Docs",
-				url: "https://docs.solana.com/",
-				description: "Official documentation for Solana blockchain",
-			},
-			{
-				name: "Solana Faucet",
-				url: "https://faucet.solana.com/",
-				description: "Get test tokens for development",
-			},
-			{
-				name: "Solana Cookbook",
-				url: "https://solana.com/developers/cookbook/",
-				description: "Recipes for common Solana development tasks",
-			},
-		],
+	user: {
+		name: "shadcn",
+		email: "m@example.com",
+		avatar: "/avatars/shadcn.jpg",
 	},
-	topics: [
+	navMain: [
 		{
-			name: "Solancn UI",
-			logo: GalleryVerticalEnd,
-			plan: "Installation & Guides",
-			path: "/docs/introduction",
-			topicContext: "docs",
+			title: "Documentation",
+			url: "/docs",
+			icon: BookOpen,
+			isActive: true,
+			navigationType: "docs"
+		},
+		// {
+		// 	title: "Guides",
+		// 	url: "/guides",
+		// 	icon: FileText,
+		// 	isActive: false,
+		// },
+		// {
+		// 	title: "Design",
+		// 	url: "/design",
+		// 	icon: Palette,
+		// 	isActive: false,
+		// },
+		{
+			title: "Components",
+			url: "/components",
+			icon: Layout,
+			isActive: false,
+			navigationType: "components"
 		},
 		{
-			name: "Components",
-			logo: Command,
-			plan: "Modular Components",
-			path: "/components",
-			topicContext: "components",
-		},
-		{
-			name: "Templates",
-			logo: Command,
-			plan: "Starter Kits",
-			path: "/templates",
-			topicContext: "templates",
+			title: "Templates",
+			url: "/templates",
+			icon: PenTool,
+			isActive: false,
+			navigationType: "templates"
 		},
 	],
-	navMain: allNavigation,
-};
-
-const activeTopic = data.topics.find((topic) => topic.topicContext === "components");
-if (!activeTopic) {
-	throw new Error("Active topic not found");
+	mails: [...componentsNavigation, ...docsNavigation, ...templatesNavigation]
 }
-
-// Define TopicContext type for better TypeScript support
-export interface TopicContextType {
-	activeTopic: Topic;
-	setActiveTopic: React.Dispatch<React.SetStateAction<Topic>>;
-	filteredNavItems: NavMainItemProps[];
-	platformTitle?: string;
-}
-
-// Create a context for the active topic
-const TopicContext = React.createContext<TopicContextType>({
-	activeTopic: activeTopic,
-	setActiveTopic: () => {},
-	filteredNavItems: [],
-	platformTitle: "Platform",
-});
-
-// Custom hook to use topic context
-export const useTopicContext = () => React.useContext(TopicContext);
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-	// State for tracking active topic, initialized with the first topic
-	const [activeTopic, setActiveTopic] = React.useState<Topic>(data.topics[0]);
-
-	// Filter navigation items based on active topic context
-	const filteredNavItems: NavMainItemProps[] = React.useMemo(() => {
-		// Select appropriate navigation array based on active topic
-		let navigationSource: NavigationItem[] = [];
-		
-		// Select the right navigation source based on active topic
-		switch (activeTopic.topicContext) {
-			case "docs":
-				navigationSource = docsNavigation;
-				break;
+	// Note: I'm using state to show active item.
+	// IRL you should use the url/router.
+	const [activeItem, setActiveItem] = React.useState(data.navMain[0])
+	const [navigationItems, setNavigationItems] = React.useState<NavigationItem[]>(docsNavigation)
+	const { setOpen } = useSidebar()
+	
+	// Function to get the appropriate navigation items based on the selected main item
+	const getNavigationItems = (item: typeof data.navMain[0]) => {
+		switch(item.navigationType) {
 			case "components":
-				navigationSource = componentsNavigation;
-				break;
-			case "templates":
-				navigationSource = templatesNavigation;
-				break;
-			default:
-				navigationSource = [];
-		}
-
-		// Map the navigation structure to the format expected by NavMain
-		const navItems: NavMainItemProps[] = navigationSource.map((section) => {
-			// Make sure we have valid children
-			const children = section.children || [];
-			
-			// Map each section to the NavMainItemProps interface
-			return {
-				title: section.label,
-				href: section.href || children[0]?.href || "/",
-				// Map children to the format expected by NavMain - href is required
-				items: children.map((child) => ({
-					title: child.label,
-					href: child.href || "/",
-					icon: undefined
-				}))
-			};
-		});
-
-		// Return the mapped navigation items
-		return navItems;
-	}, [activeTopic]);
-
-	// Calculate platform title based on active topic
-	const getPlatformTitle = () => {
-		switch (activeTopic.topicContext) {
-			case "components":
-				return "Components";
-			case "templates":
-				return "Templates";
+				return componentsNavigation
 			case "docs":
-				return "Documentation";
-			default:
-				return "Platform";
-		}
-	};
-
-	// Get brand color based on active topic
-	const getBrandColor = () => {
-		switch (activeTopic.topicContext) {
-			case "components":
-				return "#9945FF"; // Solana Purple
+				return docsNavigation
 			case "templates":
-				return "#9945FF"; // Solana Purple
-			case "docs":
-				return "#14F195"; // Solana Green
+				return templatesNavigation
 			default:
-				return "#9945FF"; // Default to Solana Purple
+				return []
 		}
-	};
-
-	// Apply brand color to sidebar elements
-	React.useEffect(() => {
-		const root = document.documentElement;
-		root.style.setProperty("--solana-accent", getBrandColor());
-	}, [activeTopic]);
+	}
 
 	return (
-		<TopicContext.Provider
-			value={{
-				activeTopic,
-				setActiveTopic,
-				filteredNavItems,
-				platformTitle: getPlatformTitle(),
-			}}
+		<Sidebar
+			collapsible="icon"
+			className="overflow-hidden *:data-[sidebar=sidebar]:flex-row"
+			{...props}
 		>
-			<Sidebar collapsible="offcanvas" {...props}>
+			{/* This is the first sidebar */}
+			{/* We disable collapsible and adjust width to icon. */}
+			{/* This will make the sidebar appear as icons. */}
+			<Sidebar
+				collapsible="none"
+				className="w-[calc(var(--sidebar-width-icon)+1px)]! border-r"
+			>
 				<SidebarHeader>
-					<TopicSwitcher
-						topics={data.topics.map((topic) => ({
-							name: topic.name,
-							logo: topic.logo,
-							plan: topic.plan,
-							path: topic.path,
-							topicContext: topic.topicContext,
-						}))}
-					/>
+					<SidebarMenu>
+						<SidebarMenuItem>
+							<SidebarMenuButton size="lg" asChild className="md:h-8 md:p-0">
+								<a href="#">
+									<div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+										<Command className="size-4" />
+									</div>
+									<div className="grid flex-1 text-left text-sm leading-tight">
+										<span className="truncate font-medium">Acme Inc</span>
+										<span className="truncate text-xs">Enterprise</span>
+									</div>
+								</a>
+							</SidebarMenuButton>
+						</SidebarMenuItem>
+					</SidebarMenu>
 				</SidebarHeader>
 				<SidebarContent>
-					<NavMain items={filteredNavItems} />
+					<SidebarGroup>
+						<SidebarGroupContent className="px-1.5 md:px-0">
+							<SidebarMenu>
+								{data.navMain.map((item) => (
+									<SidebarMenuItem key={item.title}>
+										<SidebarMenuButton
+											tooltip={{
+												children: item.title,
+												hidden: false,
+											}}
+											onClick={() => {
+												setActiveItem(item)
+												// Get the appropriate navigation items for the selected main navigation item
+												const items = getNavigationItems(item)
+												setNavigationItems(items)
+												setOpen(true)
+											}}
+											isActive={activeItem?.title === item.title}
+											className="px-2.5 md:px-2"
+										>
+											<item.icon />
+											<span>{item.title}</span>
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+								))}
+							</SidebarMenu>
+						</SidebarGroupContent>
+					</SidebarGroup>
 				</SidebarContent>
-				<SidebarFooter>
-					<NavResources resources={data.resources} />
-				</SidebarFooter>
-				<SidebarRail />
+				{/* <SidebarFooter>
+          <NavUser user={data.user} />
+        </SidebarFooter> */}
 			</Sidebar>
-		</TopicContext.Provider>
-	);
+
+			{/* This is the second sidebar */}
+			{/* We disable collapsible and let it fill remaining space */}
+			<Sidebar collapsible="none" className="hidden flex-1 md:flex">
+				<SidebarHeader className="gap-3.5 border-b p-4">
+					<div className="flex w-full items-center justify-between">
+						<div className="text-foreground text-base font-medium">
+							{activeItem?.title}
+						</div>
+					</div>
+					<SidebarInput placeholder="Type to search..." />
+				</SidebarHeader>
+				<SidebarContent>
+					<SidebarGroup className="px-0">
+						<SidebarGroupContent>
+							{navigationItems.map((section) => (
+								<div key={section.label} className="border-b last:border-b-0">
+									<Link 
+										href={section.href || '#'}
+										className="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground flex flex-col items-start gap-2 p-4 text-sm font-medium leading-tight whitespace-nowrap"
+									>
+										<div className="flex w-full items-center justify-between">
+											<span>{section.label}</span>
+											{section.badge && (
+												<span className="bg-primary/10 text-primary text-xs px-2 py-0.5 rounded-full">{section.badge}</span>
+											)}
+										</div>
+									</Link>
+									
+									{section.children && section.children.length > 0 && (
+										<div className="pl-4">
+											{section.children.map((child) => (
+												<Link 
+													key={child.label}
+													href={child.href || '#'}
+													className="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground flex items-center justify-between p-2 text-xs text-muted-foreground"
+												>
+													<span>{child.label}</span>
+													{child.badge && (
+														<span className="bg-primary/10 text-primary text-[10px] px-1.5 py-0.5 rounded-full">{child.badge}</span>
+													)}
+												</Link>
+											))}
+										</div>
+									)}
+								</div>
+							))}
+						</SidebarGroupContent>
+					</SidebarGroup>
+				</SidebarContent>
+			</Sidebar>
+		</Sidebar>
+	)
 }
