@@ -42,7 +42,6 @@ import ForgotPassword from "@/app/components/forgotpassword/forgotpassword";
 import FuzzySearch from "@/app/components/fuzzy/fuzzy";
 import GradientView from "@/app/components/gradient/gradient-view";
 import { BridgeHero, DexHero, LendingHero, TokenLauncherHero } from "@/app/components/hero/hero";
-import Hero2 from "@/app/components/hero/hero2";
 import NexusOrb from "@/app/components/integrations/nexusorb";
 import NexusOrbSup from "@/app/components/integrations/nexusorbsup";
 import Spider from "@/app/components/integrations/spider";

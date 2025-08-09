@@ -92,7 +92,7 @@ export function MdxTable({
 				return {
 					container: "my-6 overflow-x-auto not-prose",
 					table:
-						"w-full border-collapse rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm bg-white dark:bg-black",
+						"w-full border-collapse rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm bg-background dark:bg-background",
 					thead:
 						"bg-gray-50 dark:bg-black border-b border-gray-200 dark:border-gray-700",
 					th: "px-4 py-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 border-r border-gray-200 dark:border-gray-700 last:border-r-0",

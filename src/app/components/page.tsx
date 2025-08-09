@@ -67,7 +67,7 @@ export default function ComponentsPage() {
               className={cn(
                 "px-3 py-1 text-sm font-medium rounded-md transition-colors",
                 activeCategory === category.id
-                  ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300"
+                  ? "bg-primary/10 text-primary dark:bg-primary/15 dark:text-primary"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
               )}
             >
@@ -95,7 +95,7 @@ export default function ComponentsPage() {
         <div className="text-center py-20">
           <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">No components found</h3>
           <p className="text-gray-600 dark:text-gray-400 mt-2">
-            Try adjusting your search or filter to find what you're looking for
+            {`Try adjusting your search or filter to find what you\'re looking for`}
           </p>
         </div>
       )}
